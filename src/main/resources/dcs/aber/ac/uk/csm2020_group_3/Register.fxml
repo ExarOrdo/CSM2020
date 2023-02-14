@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.RegisterController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RegisterController">
 
     <Button layoutX="175.0" layoutY="265.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" text="Cancel" />
     <Button layoutX="315.0" layoutY="265.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" text="Confirm" />
