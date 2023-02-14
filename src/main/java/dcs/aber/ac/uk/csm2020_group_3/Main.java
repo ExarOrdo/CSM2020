@@ -10,8 +10,6 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    /*private ChangeListener<? super Number> widthChangeListener;
-    private ChangeListener<? super Number> heightChangeListener;*/
 
     @Override
     public void start(Stage stage) throws IOException {
