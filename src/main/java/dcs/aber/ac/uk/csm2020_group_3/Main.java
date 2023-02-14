@@ -11,6 +11,7 @@ import java.io.IOException;
 public class Main extends Application {
 
 
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login.fxml"));
@@ -28,6 +29,7 @@ public class Main extends Application {
             stage.heightProperty().removeListener(heightChangeListener);
             stage.setHeight(newValue.doubleValue() / 2.0);
             stage.heightProperty().addListener(heightChangeListener);
+
         };
         heightChangeListener = (observable, oldValue, newValue) -> {
             stage.widthProperty().removeListener(widthChangeListener);
