@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.RecommendationController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController">
     <children>
         <Pane prefHeight="500.0" prefWidth="55.0" style="-fx-background-color: lightgrey;" />
         <Text layoutX="108.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year One" />
