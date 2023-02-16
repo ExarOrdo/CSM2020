@@ -10,6 +10,9 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    // voodoo request processor for magic backend handling
+    //USE IT!
+    private RequestProcessor requestProcessor;
 
 
 
