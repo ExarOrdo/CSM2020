@@ -1,0 +1,69 @@
+{
+  "students": [
+    {
+      "student_id": 12345,
+      "student_name": "John Smith",
+      "student_course": "Computer Science",
+      "student_year": 4,
+      "student_password": "p@ssword1"
+    }
+  ],
+  "courses": [
+    {
+      "course_id": "G480",
+      "course_name": "MSc Computer Science",
+      "course_description": "Our MSc in Computer Science aims to provide an intensive, 
+      professionally-oriented introduction to computing for able graduates in other 
+      disciplines, especially the humanities, to enable them to enter the software 
+      industry. No previous experience of computing is required."
+    }
+  ],
+  "modules": [
+    {
+      "module_id": "CSM2020",
+      "module_name": "Agile Software Development Project",
+      "module_description": "The aim of this module is to give the student a strong 
+      foundation in agile software engineering that will inform their software development 
+      practice, and prepare them to work in the software industry.",
+      "module_credits": 20,
+      "module_year": "4",
+      "module_semester": 2,
+      "module_tag1": "Computer Science",
+      "module_tag2": "Group work",
+      "module_tag3": null
+    },
+    {
+      "module_id": "CSM6120",
+      "module_name": "Fundamentals of Intelligent Systems",
+      "module_description": "This module introduces the key ideas in Artificial Intelligence 
+      and ensures all students are at roughly the same level before moving on to the 
+      specialist modules.",
+      "module_credits": 20,
+      "module_year": "4",
+      "module_semester": 1,
+      "module_tag1": "Computer Science",
+      "module_tag2": "Artificial Intelligence",
+      "module_tag3": null
+    }
+  ],
+  "core_modules": [
+    {
+      "course_id": "G480",
+      "module_id": "CSM2020"
+    }
+  ],
+  "optional_modules": [
+    {
+      "course_id": "G480",
+      "module_id": "CSM6120"
+    }
+  ],
+  "marks": [
+    {
+      "student_id": 12345,
+      "module_id": "CSM2020",
+      "student_mark": 78,
+      "mark_date": "15/02/2023"
+    }
+  ]
+}
