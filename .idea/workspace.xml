@@ -1,25 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="ANALYZE_INJECTED_CODE" value="false" />
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="828bc034-ea16-417c-914b-f359d39a1161" name="Changes" comment="Update Branch">
-      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/RecordRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/RecordRemover.java" afterDir="false" />
+    <list default="true" id="530f48cc-b960-4994-96b0-1a3ce6418a37" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_controlsfx_controlsfx_11_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_18_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_18_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_18_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_18_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_18_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_18_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_18_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_18_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/csm2020_Group_3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="las35Test" />
+        <entry key="$PROJECT_DIR$" value="testing" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,117 +66,41 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
-  <component name="ProjectId" id="2Lh5EXYh0g9gKHLMtHltRmWe94A" />
+  <component name="ProjectId" id="2LraKmYvk4FloPX7755fLEfHz5v" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/hp/Documents/masters/CSM2020",
+    "last_opened_file_path": "C:/Users/tombl/Downloads/CSM2020old/CSM2020",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\hp\IdeaProjects\CSM2020\src\main\resources\dcs\aber\ac\uk\csm2020_group_3" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="CSM2020" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="CSM2020" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="828bc034-ea16-417c-914b-f359d39a1161" name="Changes" comment="" />
-      <created>1676310363807</created>
+      <changelist id="530f48cc-b960-4994-96b0-1a3ce6418a37" name="Changes" comment="" />
+      <created>1676631594099</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1676310363807</updated>
-      <workItem from="1676310368088" duration="121000" />
-      <workItem from="1676310618519" duration="412000" />
-      <workItem from="1676385049601" duration="4239000" />
-      <workItem from="1676538875344" duration="5669000" />
+      <updated>1676631594099</updated>
+      <workItem from="1676631596086" duration="1228000" />
     </task>
-    <task id="LOCAL-00001" summary="Update Branch">
-      <created>1676310732768</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1676310732768</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Update Branch">
-      <created>1676385455993</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1676385455993</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Update Branch">
-      <created>1676386220020</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1676386220020</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Update Branch">
-      <created>1676386472813</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1676386472813</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Update Branch">
-      <created>1676391287787</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1676391287787</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Update Branch">
-      <created>1676540472493</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1676540472493</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update Branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Branch" />
   </component>
 </project>

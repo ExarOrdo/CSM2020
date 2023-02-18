@@ -9,5 +9,8 @@
         <module name="csm2020_Group_3" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="csm2020_Group_3" target="18" />
+    </bytecodeTargetLevel>
   </component>
 </project>
