@@ -3,30 +3,35 @@ package dcs.aber.ac.uk.csm2020_group_3;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
 
     // voodoo request processor for magic backend handling
     //USE IT!
     private RequestProcessor requestProcessor;
-
+    private static Stage currentStage;
 
 
     @Override
     public void start(Stage stage) throws IOException {
-        //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login.fxml"));
-        //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Register.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Recommendation.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        currentStage = stage;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root = fxmlLoader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
+        stage.setMinHeight(400.0);
+        stage.setMinWidth(600.0);
+
+        /*Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("CSM2020");
         stage.setScene(scene);
         stage.show();
-        //stage.setHeight(420.0);
-        //stage.setWidth(620.0);
         stage.setMinHeight(400.0);
         stage.setMinWidth(600.0);
         /*widthChangeListener = (observable, oldValue, newValue) -> {
@@ -42,6 +47,16 @@ public class Main extends Application {
         };
         stage.widthProperty().addListener(widthChangeListener);
         stage.heightProperty().addListener(heightChangeListener);*/
+    }
+
+    public void changeScene(String fxml) throws IOException{
+        if (Objects.equals(fxml, "Recommendation.fxml")){
+            currentStage.setMinHeight(550);
+        }else{
+            currentStage.setMinHeight(400);
+        }
+        Parent screen = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
+        currentStage.getScene().setRoot(screen);
     }
 
     public static void main(String[] args) {
