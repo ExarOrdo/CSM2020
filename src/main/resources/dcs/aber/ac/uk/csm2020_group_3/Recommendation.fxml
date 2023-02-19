@@ -39,7 +39,7 @@
         </Pane>
         <Button fx:id="burgerBtn" layoutX="8.0" layoutY="5.0" minWidth="40.0" mnemonicParsing="false" onAction="#pressBurgerBtn" prefHeight="40.0" prefWidth="40.0">
          <graphic>
-            <ImageView fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="burgerIcon" fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@burgerBtn.png" />
                </image></ImageView>

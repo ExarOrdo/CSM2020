@@ -4,6 +4,7 @@ import dcs.aber.ac.uk.csm2020_group_3.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -21,10 +22,17 @@ public class RecommendationController {
     Button burgerBtn;
     @FXML
     Button logoutBtn;
+    @FXML
+    ImageView burgerIcon;
 
     @FXML
     protected void pressBurgerBtn() {
         expandedPane.setVisible(!expandedPane.isVisible());
+        if(expandedPane.isVisible()){
+            burgerIcon.setRotate(90);
+        }else {
+            burgerIcon.setRotate(0);
+        }
     }
 
     @FXML
