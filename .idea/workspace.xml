@@ -4,36 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="530f48cc-b960-4994-96b0-1a3ce6418a37" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_controlsfx_controlsfx_11_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_18_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_18_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_18_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_18_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_18_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_18_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_18_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_18_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/csm2020_Group_3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/Main.java" afterDir="false" />
+    <list default="true" id="5ae7aaa1-f56f-4583-a5cc-c35b9ada4381" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Register.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +44,9 @@
     </option>
   </component>
   <component name="ProjectId" id="2LraKmYvk4FloPX7755fLEfHz5v" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -80,7 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/tombl/Downloads/CSM2020old/CSM2020",
+    "last_opened_file_path": "C:/Users/tombl/Documents/CSM2020group3/src/main/resources/dcs/aber/ac/uk/csm2020_group_3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -88,6 +66,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tombl\Documents\CSM2020group3\src\main\resources\dcs\aber\ac\uk\csm2020_group_3" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tombl\Documents\CSM2020group3\src\main\resources\dcs\aber\ac\uk\csm2020_group_3" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

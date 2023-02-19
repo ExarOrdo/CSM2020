@@ -18,7 +18,7 @@ public class LoginController {
 
 
     @FXML
-    private void login(ActionEvent actionEvent) throws IOException {
+    private void login() throws IOException {
 
         Main main = new Main();
         main.changeScene("Recommendation.fxml");
@@ -26,7 +26,7 @@ public class LoginController {
     }
 
     @FXML
-    private void register(ActionEvent actionEvent) throws IOException {
+    private void register() throws IOException {
 
         Main main = new Main();
         main.changeScene("Register.fxml");
