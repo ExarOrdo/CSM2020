@@ -9,13 +9,8 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-public class RecommendationController {
-    @FXML
-    Button enterModuleBtn;
-    @FXML
-    Pane electivePane;
-    @FXML
-    ComboBox futureModulesDropDown;
+public class StudentRecordController {
+
     @FXML
     Pane expandedPane;
     @FXML
@@ -25,7 +20,7 @@ public class RecommendationController {
     @FXML
     ImageView burgerIcon;
     @FXML
-    Button studentRecordBtn;
+    Button recommendationBtn;
 
     @FXML
     protected void pressBurgerBtn() {
@@ -38,16 +33,6 @@ public class RecommendationController {
     }
 
     @FXML
-    protected void pressEnterModuleBtn() {
-        electivePane.setVisible(true);
-    }
-
-    @FXML
-    protected void closeEnterModulePane(){
-        electivePane.setVisible(false);
-    }
-
-    @FXML
     private void logout() throws IOException {
 
         Main main = new Main();
@@ -56,10 +41,10 @@ public class RecommendationController {
     }
 
     @FXML
-    private void toStudentRecord() throws IOException {
+    private void toRecommendation() throws IOException {
 
         Main main = new Main();
-        main.changeScene("StudentRecord.fxml");
+        main.changeScene("Recommendation.fxml");
 
     }
 }
