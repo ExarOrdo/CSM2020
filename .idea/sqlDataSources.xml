@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="DdlMappings">
-    <mapping uuid="824e2147-5a14-4eba-b290-2182bd098cf0" name="@server.database.windows.net Mapping">
-      <data-sources db="a65caf47-c2f7-4e4f-b345-9b4b4539dabc" />
-    </mapping>
-  </component>
-</project>
