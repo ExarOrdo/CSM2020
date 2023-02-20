@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5ae7aaa1-f56f-4583-a5cc-c35b9ada4381" name="Changes" comment="UI fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/StudentRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/StudentRecordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Help.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Help.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/StudentRecord.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/StudentRecord.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +84,7 @@
       <updated>1676631594099</updated>
       <workItem from="1676631596086" duration="1228000" />
       <workItem from="1676844950418" duration="1089000" />
-      <workItem from="1676894448194" duration="586000" />
+      <workItem from="1676894448194" duration="2278000" />
     </task>
     <task id="LOCAL-00001" summary="UI changes">
       <created>1676838448442</created>
@@ -117,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676845999546</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="UI fixes">
+      <created>1676895060455</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1676895060455</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

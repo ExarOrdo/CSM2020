@@ -24,6 +24,8 @@ public class RecommendationController {
     Button logoutBtn;
     @FXML
     ImageView burgerIcon;
+    @FXML
+    Button studentRecordBtn;
 
     @FXML
     protected void pressBurgerBtn() {
@@ -50,6 +52,14 @@ public class RecommendationController {
 
         Main main = new Main();
         main.changeScene("Login.fxml");
+
+    }
+
+    @FXML
+    private void toStudentRecord() throws IOException {
+
+        Main main = new Main();
+        main.changeScene("StudentRecord.fxml");
 
     }
 }
