@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ae7aaa1-f56f-4583-a5cc-c35b9ada4381" name="Changes" comment="Burger icon rotates when clicked">
+    <list default="true" id="5ae7aaa1-f56f-4583-a5cc-c35b9ada4381" name="Changes" comment="UI fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +79,8 @@
       <option name="presentableId" value="Default" />
       <updated>1676631594099</updated>
       <workItem from="1676631596086" duration="1228000" />
-      <workItem from="1676844950418" duration="1013000" />
+      <workItem from="1676844950418" duration="1089000" />
+      <workItem from="1676894448194" duration="586000" />
     </task>
     <task id="LOCAL-00001" summary="UI changes">
       <created>1676838448442</created>
@@ -111,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676845614545</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="UI fixes">
+      <created>1676845999546</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1676845999546</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +126,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="UI changes" />
     <MESSAGE value="Burger icon rotates when clicked" />
-    <option name="LAST_COMMIT_MESSAGE" value="Burger icon rotates when clicked" />
+    <MESSAGE value="UI fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI fixes" />
   </component>
 </project>
