@@ -1,9 +1,0 @@
-<changelist name="Uncommitted_changes_before_Update_at_18_02_2023_16_48_[Changes]" date="1676738897347" recycled="false" toDelete="true">
-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_02_2023_16_48_[Changes]/shelved.patch" />
-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 18/02/2023 16:48 [Changes]" />
-  <binary>
-    <option name="BEFORE_PATH" value="target/classes/dcs/aber/ac/uk/csm2020_group_3/Main.class" />
-    <option name="AFTER_PATH" value="target/classes/dcs/aber/ac/uk/csm2020_group_3/Main.class" />
-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_02_2023_16_48_[Changes]/Main.class" />
-  </binary>
-</changelist>
