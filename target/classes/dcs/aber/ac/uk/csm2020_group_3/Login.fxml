@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.LoginController">
 
-    <Button fx:id="registerBtn" layoutX="174.0" layoutY="235.0" mnemonicParsing="false" onAction="#register" prefHeight="35.0" prefWidth="110.0" text="Register" />
-    <Button fx:id="loginBtn" layoutX="317.0" layoutY="235.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="110.0" text="Log-In" />
-    <TextField id="usernameTextField" layoutX="189.0" layoutY="130.0" prefHeight="35.0" prefWidth="230.0" promptText="Username..." BorderPane.alignment="CENTER" />
-    <TextField id="passwordTextField" layoutX="189.0" layoutY="175.0" prefHeight="35.0" prefWidth="230.0" promptText="Password..." BorderPane.alignment="CENTER" />
-</AnchorPane>
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.LoginController">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      
+             <Button fx:id="registerBtn" layoutX="174.0" layoutY="235.0" mnemonicParsing="false" onAction="#register" prefHeight="35.0" prefWidth="110.0" text="Register" />
+          <Button fx:id="loginBtn" layoutX="317.0" layoutY="235.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="110.0" text="Log-In" />
+          <TextField id="usernameTextField" layoutX="189.0" layoutY="130.0" prefHeight="35.0" prefWidth="230.0" promptText="Username..." BorderPane.alignment="CENTER" />
+          <TextField id="passwordTextField" layoutX="189.0" layoutY="175.0" prefHeight="35.0" prefWidth="230.0" promptText="Password..." BorderPane.alignment="CENTER" />
+      </AnchorPane>
+   </center>
+</BorderPane>
