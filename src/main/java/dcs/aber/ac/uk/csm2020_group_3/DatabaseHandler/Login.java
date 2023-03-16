@@ -10,8 +10,6 @@ public class Login extends DatabaseHandler {
     private final String password;
 
     public Login (String username, String password) {
-
-
         this.username = username;
         this.password = password;
     }
@@ -20,9 +18,11 @@ public class Login extends DatabaseHandler {
         this.connection = DriverManager.getConnection(connectionString);
 
         try{
+
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM STUDENT WHERE StudentID = '" + this.username + "' AND StudentPassword = '" + this.password + "'";
             ResultSet resultSet = statement.executeQuery(query);
+
               if (resultSet.next()){
                   return true;
               }
@@ -34,6 +34,7 @@ public class Login extends DatabaseHandler {
 
         }catch  (Exception err) {
             System.err.println("Error:" + err.getMessage());
+            err.printStackTrace();
         }
         return false;
     }
