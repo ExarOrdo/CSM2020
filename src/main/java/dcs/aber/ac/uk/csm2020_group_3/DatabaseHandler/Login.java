@@ -6,11 +6,11 @@ import java.sql.*;
  */
 public class Login extends DatabaseHandler {
 
-    private final String username;
+    private final String studentId;
     private final String password;
 
-    public Login (String username, String password) {
-        this.username = username;
+    public Login (String studentId, String password) {
+        this.studentId = studentId;
         this.password = password;
     }
 
@@ -20,7 +20,7 @@ public class Login extends DatabaseHandler {
         try{
 
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM STUDENT WHERE StudentID = '" + this.username + "' AND StudentPassword = '" + this.password + "'";
+            String query = "SELECT * FROM STUDENT WHERE StudentID = '" + this.studentId + "' AND StudentPassword = '" + this.password + "'";
             ResultSet resultSet = statement.executeQuery(query);
 
               if (resultSet.next()){

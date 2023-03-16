@@ -1,10 +1,68 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+import java.sql.*;
+
 /**
  * Creates new account with given data,
  * depends on what RecordCreator is meant to be
  */
 public class Register extends DatabaseHandler{
+
+    private final String studentId;
+    private final String password;
+    private final String firstName;
+    private final String lastName;
+    private final int year;
+    private final String course;
+
+
+    public Register(String studentId, String password, String firstName, String lastName, int year, String course){
+        this.studentId = studentId;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.year = year;
+        this.course = course;
+    }
+
+    public boolean tryRegister() throws SQLException {
+        this.connection = DriverManager.getConnection(connectionString);
+        try{
+            Statement statement = connection.createStatement();
+            String query = ("SELECT * FROM STUDENT WHERE StudentID = " + studentId);
+            ResultSet studentExists = statement.executeQuery(query);
+
+            if (studentExists.next()){
+                System.out.println("Student ID already exists.");
+            }
+            else{
+                String fullName = firstName + lastName;
+
+                PreparedStatement createStudent = connection.prepareStatement("INSERT INTO STUDENT (StudentID,StudentName,StudentCourse,StudentYear,StudentPassword) VALUES (?,?,?,?,?)");
+                createStudent.setString(1,this.studentId);
+                createStudent.setString(2,fullName);
+                createStudent.setString(3,this.course);
+                createStudent.setInt(4,this.year);
+                createStudent.setString(5,this.password);
+                createStudent.execute();
+                createStudent.close();
+
+                return true;
+
+            }
+
+
+            studentExists.close();
+            statement.close();
+            connection.close();
+        }catch  (Exception err) {
+            System.err.println("Error:" + err.getMessage());
+            err.printStackTrace();
+        }
+
+
+        return false;
+    }
 
 
 }
