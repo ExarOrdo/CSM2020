@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginController {
 
@@ -25,15 +26,15 @@ public class LoginController {
     TextField studentId;
 
     @FXML
-    private void login() throws IOException {
+    private void login() throws IOException, SQLException {
 
         Main main = new Main();
-        Login test = new Login();
+        Login login = new Login(studentId.getText(), studentPassword.getText());
 
-        if(test.Login(studentId.getText(), studentPassword.getText())) {
+        if(login.tryLogin()) {
             main.changeScene("Recommendation.fxml");
 
-            System.out.println("asdasd");
+            System.out.println("Successful login");
         }
 
 

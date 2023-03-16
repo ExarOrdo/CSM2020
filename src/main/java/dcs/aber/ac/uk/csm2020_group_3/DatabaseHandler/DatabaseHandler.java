@@ -1,5 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+import java.sql.Connection;
+
 /**
  * An abstract class that will be inherited by various
  * classes that interact with the database, but
@@ -7,6 +9,14 @@ package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
  * on their goal.
  */
 abstract class DatabaseHandler {
+    private final static String serverName = "agile-server.database.windows.net";
+    private final static String databaseName = "AGILEDB";
+    private final static String adminUsername = "GroupAdmin";
+    private final static String adminPassword = "2675PKfe7$u!";
+
+    protected String connectionString = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;trustServerCertificate=false;loginTimeout=30;", serverName, databaseName, adminUsername, adminPassword);
+    protected Connection connection;
+
 
     /**
      * method for loading specific information from the db
