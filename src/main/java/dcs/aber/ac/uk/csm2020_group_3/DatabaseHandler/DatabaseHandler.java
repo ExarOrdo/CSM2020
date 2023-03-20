@@ -8,7 +8,7 @@ import java.sql.Connection;
  * will need to perform different actions based
  * on their goal.
  */
-abstract class DatabaseHandler {
+public abstract class DatabaseHandler {
     private final static String serverName = "agile-server.database.windows.net";
     private final static String databaseName = "AGILEDB";
     private final static String adminUsername = "GroupAdmin";
