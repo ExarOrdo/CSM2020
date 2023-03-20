@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+.target
 .idea/shelf
 .idea/libraries
 .idea/dataSources
