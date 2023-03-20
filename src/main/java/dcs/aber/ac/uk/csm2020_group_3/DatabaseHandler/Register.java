@@ -1,5 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+import javafx.fxml.FXML;
+
 import java.sql.*;
 
 /**
@@ -25,17 +27,29 @@ public class Register extends DatabaseHandler{
         this.course = course;
     }
 
-    public boolean tryRegister() throws SQLException {
+    public boolean studentExists() throws SQLException{
         this.connection = DriverManager.getConnection(connectionString);
-        try{
+        try {
             Statement statement = connection.createStatement();
-            String query = ("SELECT * FROM STUDENT WHERE StudentID = '" + studentId+"'");
+            String query = ("SELECT * FROM STUDENT WHERE StudentID = '" + studentId + "'");
             ResultSet studentExists = statement.executeQuery(query);
 
-            if (studentExists.next()){
+            if (studentExists.next()) {
                 System.out.println("Student ID already exists.");
+                return false;
             }
             else{
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public void tryRegister() throws SQLException {
+        this.connection = DriverManager.getConnection(connectionString);
+        try{
+
                 String fullName = firstName + lastName;
 
                 PreparedStatement createStudent = connection.prepareStatement("INSERT INTO STUDENT (StudentID,StudentName,StudentCourse,StudentYear,StudentPassword) VALUES (?,?,?,?,?)");
@@ -47,21 +61,14 @@ public class Register extends DatabaseHandler{
                 createStudent.execute();
                 createStudent.close();
 
-                return true;
-
-            }
 
 
-            studentExists.close();
-            statement.close();
-            connection.close();
         }catch  (Exception err) {
             System.err.println("Error:" + err.getMessage());
             err.printStackTrace();
         }
 
 
-        return false;
     }
 
 

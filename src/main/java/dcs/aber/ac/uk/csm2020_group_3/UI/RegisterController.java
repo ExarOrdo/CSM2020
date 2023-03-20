@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,8 +28,10 @@ public class RegisterController {
     TextField firstName;
     @FXML
     TextField lastName;
-
     @FXML
+    Text alreadyExists;
+
+
     public void initialize() {
         yearComboBox.getItems().removeAll(yearComboBox.getItems());
         yearComboBox.getItems().addAll("0", "1", "2", "3");
@@ -46,10 +50,18 @@ public class RegisterController {
 
         Main main = new Main();
         Register register = new Register(studentId.getText(), password.getText(), firstName.getText(),lastName.getText(),Integer.parseInt(yearComboBox.getValue().toString()), courseComboBox.getValue().toString());
-        if (register.tryRegister()){
+
+        if (!register.studentExists()){
+            alreadyExists.setVisible(true);
+        }
+        else{
+            register.tryRegister();
+            alreadyExists.setVisible(false);
             main.changeScene("Recommendation.fxml");
             System.out.println("Registered successfully.");
         }
 
+
     }
+
 }
