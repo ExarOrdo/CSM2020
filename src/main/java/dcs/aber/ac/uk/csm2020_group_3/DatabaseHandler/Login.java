@@ -14,6 +14,12 @@ public class Login extends DatabaseHandler {
         this.password = password;
     }
 
+
+    public boolean checkExisting() throws SQLException{
+        this.connection = DriverManager.getConnection(connectionString);
+
+        return false;
+    }
     public boolean tryLogin() throws SQLException{
         this.connection = DriverManager.getConnection(connectionString);
 
