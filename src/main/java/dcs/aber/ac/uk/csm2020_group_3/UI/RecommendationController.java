@@ -6,12 +6,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 
 import java.io.IOException;
 
 public class RecommendationController {
-    @FXML
-    Button adminBtn;
     @FXML
     Button enterModuleBtn;
     @FXML
@@ -66,10 +67,44 @@ public class RecommendationController {
     }
 
     @FXML
-    private void toAdmin() throws IOException {
+    private ListView<String> electiveListView;
 
-        Main main = new Main();
-        main.changeScene("Admin.fxml");
+    // Other variables and methods
 
+    @FXML
+    public void initialize() {
+        populateElectiveListView();
+    }
+
+    private void populateElectiveListView() {
+        ObservableList<String> moduleList = FXCollections.observableArrayList(
+                "MSC Project",
+                "Introduction to Computer Infrastructure",
+                "Problems and Solutions",
+                "Fundamentals of Web Development",
+                "Information security",
+                "Introduction to Programming",
+                "Programming Using an Object-Oriented Language",
+                "Professional and Personal Development",
+                "Algorithm Design and Data Structures",
+                "Software Engineering",
+                "Robotics and Embedded Systems",
+                "Modelling Persistent Data",
+                "Agile Development and Testing",
+                "Computational Bioinformatics",
+                "Mobile Development with Android",
+                "Advanced Algorithms",
+                "Computer Graphics and Games",
+                "Professional Issues in the Computing Industry",
+                "Major Project",
+                "Programming for Scientists",
+                "Agile Software Development Project",
+                "Modelling, Managing and Securing Data",
+                "Fundamentals of Intelligent Systems",
+                "Advanced Data Analytics",
+                "Research Topics in Computing"
+        );
+
+        electiveListView.setItems(moduleList);
     }
 }
