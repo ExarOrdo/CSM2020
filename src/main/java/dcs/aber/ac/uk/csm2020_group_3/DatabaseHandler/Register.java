@@ -1,6 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 
 import java.sql.*;
 
@@ -14,17 +15,19 @@ public class Register extends DatabaseHandler{
     private final String password;
     private final String firstName;
     private final String lastName;
-    private final int year;
-    private final String course;
+    private String year ="";
+    private String course= "";
+    private final ComboBox initalCourse;
+    private final ComboBox initalYear;
 
 
-    public Register(String studentId, String password, String firstName, String lastName, int year, String course){
+    public Register(String studentId, String password, String firstName, String lastName, ComboBox year, ComboBox course){
         this.studentId = studentId;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.year = year;
-        this.course = course;
+        this.initalYear = year;
+        this.initalCourse = course;
     }
 
     public boolean studentExists() throws SQLException{
@@ -46,17 +49,30 @@ public class Register extends DatabaseHandler{
         }
 
     }
+
+    public boolean allFieldsFilled() {
+        if (firstName == "" || lastName == "" || studentId == "" || password == "" || initalYear == null || initalCourse == null){
+            return false;
+
+        }
+        else{
+            year = initalYear.getValue().toString();
+            course = initalCourse.getValue().toString();
+
+            return true;
+        }
+
+    }
+
     public void tryRegister() throws SQLException {
         this.connection = DriverManager.getConnection(connectionString);
         try{
-
                 String fullName = firstName + lastName;
-
                 PreparedStatement createStudent = connection.prepareStatement("INSERT INTO STUDENT (StudentID,StudentName,StudentCourse,StudentYear,StudentPassword) VALUES (?,?,?,?,?)");
                 createStudent.setString(1,this.studentId);
                 createStudent.setString(2,fullName);
                 createStudent.setString(3,this.course);
-                createStudent.setInt(4,this.year);
+                createStudent.setInt(4, Integer.parseInt(this.year));
                 createStudent.setString(5,this.password);
                 createStudent.execute();
                 createStudent.close();

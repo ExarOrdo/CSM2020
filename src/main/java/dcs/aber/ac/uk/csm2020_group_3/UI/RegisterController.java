@@ -49,10 +49,16 @@ public class RegisterController {
     private void confirm(ActionEvent actionEvent) throws IOException, SQLException {
 
         Main main = new Main();
-        Register register = new Register(studentId.getText(), password.getText(), firstName.getText(),lastName.getText(),Integer.parseInt(yearComboBox.getValue().toString()), courseComboBox.getValue().toString());
+        Register register = new Register(studentId.getText(), password.getText(), firstName.getText(),lastName.getText(),yearComboBox, courseComboBox);
 
         if (!register.studentExists()){
+            alreadyExists.setText("Student ID already exists");
             alreadyExists.setVisible(true);
+        }
+        else if(!register.allFieldsFilled()) {
+            alreadyExists.setText("All fields must be filled");
+            alreadyExists.setVisible(true);
+
         }
         else{
             register.tryRegister();
