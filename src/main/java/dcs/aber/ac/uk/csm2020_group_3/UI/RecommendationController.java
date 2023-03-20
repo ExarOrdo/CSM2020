@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class RecommendationController {
     @FXML
+    Button adminBtn;
+    @FXML
     Button enterModuleBtn;
     @FXML
     Pane electivePane;
@@ -60,6 +62,14 @@ public class RecommendationController {
 
         Main main = new Main();
         main.changeScene("StudentRecord.fxml");
+
+    }
+
+    @FXML
+    private void toAdmin() throws IOException {
+
+        Main main = new Main();
+        main.changeScene("Admin.fxml");
 
     }
 }

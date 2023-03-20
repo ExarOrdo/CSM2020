@@ -3,16 +3,13 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-public class StudentRecordController {
+public class AdminController {
 
-    @FXML
-    Button adminBtn;
     @FXML
     Pane expandedPane;
     @FXML
@@ -23,6 +20,9 @@ public class StudentRecordController {
     ImageView burgerIcon;
     @FXML
     Button recommendationBtn;
+
+    @FXML
+    Button studentRecordBtn;
 
     @FXML
     protected void pressBurgerBtn() {
@@ -51,10 +51,11 @@ public class StudentRecordController {
     }
 
     @FXML
-    private void toAdmin() throws IOException {
+    private void toStudentRecord() throws IOException {
 
         Main main = new Main();
-        main.changeScene("Admin.fxml");
+        main.changeScene("StudentRecord.fxml");
 
     }
+
 }

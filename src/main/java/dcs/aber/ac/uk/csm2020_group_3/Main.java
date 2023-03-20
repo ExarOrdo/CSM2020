@@ -23,10 +23,10 @@ public class Main extends Application {
         currentStage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
         Parent root = fxmlLoader.load();
-        stage.setScene(new Scene(root));
-        stage.show();
-        stage.setMinHeight(400.0);
-        stage.setMinWidth(600.0);
+        currentStage.setScene(new Scene(root));
+        currentStage.show();
+        currentStage.setMinHeight(400.0);
+        currentStage.setMinWidth(600.0);
 
         /*Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("CSM2020");
@@ -51,7 +51,9 @@ public class Main extends Application {
 
     public void changeScene(String fxml) throws IOException{
         if (Objects.equals(fxml, "Recommendation.fxml")){
+            //currentStage.setMinHeight(1280);
             currentStage.setMinHeight(550);
+            currentStage.setMinWidth(600);
         }else{
             currentStage.setMinHeight(400);
         }
