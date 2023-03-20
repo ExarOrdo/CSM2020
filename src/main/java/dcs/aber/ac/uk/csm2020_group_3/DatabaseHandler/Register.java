@@ -29,7 +29,7 @@ public class Register extends DatabaseHandler{
         this.connection = DriverManager.getConnection(connectionString);
         try{
             Statement statement = connection.createStatement();
-            String query = ("SELECT * FROM STUDENT WHERE StudentID = " + studentId);
+            String query = ("SELECT * FROM STUDENT WHERE StudentID = '" + studentId+"'");
             ResultSet studentExists = statement.executeQuery(query);
 
             if (studentExists.next()){
