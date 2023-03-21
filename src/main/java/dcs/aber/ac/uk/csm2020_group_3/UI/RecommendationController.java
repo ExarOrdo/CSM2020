@@ -35,13 +35,13 @@ public class RecommendationController {
     @FXML
     Button recommendationBtn;
     @FXML
-    Pane elective1;
-    @FXML
-    Pane elective2;
-    @FXML
-    Pane elective3;
+    Pane elective1, elective2, elective3;
     @FXML
     Button confirmModuleBtn;
+    @FXML
+    Button clear1, clear2, clear3;
+
+    private Boolean oneElective, twoElective, threeElective = false;
 
     @FXML
     protected void pressBurgerBtn() {
@@ -111,22 +111,55 @@ public class RecommendationController {
     @FXML
     private void showElective() {
 
-        if (elective1.isVisible() && elective2.isVisible()) {
-            elective3.setVisible(true);
-            enterModuleBtn.setVisible(false);
-            closeEnterModulePane();
-        }
-
-        if (!elective1.isVisible()) {
+        if (!elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective1.setVisible(true);
             enterModuleBtn.setLayoutY(250);
             closeEnterModulePane();
-        } else if (elective1.isVisible()) {
+            oneElective = true;
+            twoElective = false;
+            threeElective = false;
+        }
+        else if (elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective2.setVisible(true);
             enterModuleBtn.setLayoutY(295);
             closeEnterModulePane();
+            twoElective = true;
+            oneElective = false;
+            threeElective = false;
         }
-
+        else if (elective1.isVisible() && elective2.isVisible() && !elective3.isVisible()) {
+            elective3.setVisible(true);
+            enterModuleBtn.setVisible(false);
+            closeEnterModulePane();
+            threeElective = true;
+            oneElective = false;
+            twoElective = false;
+        }
     }
-}
+
+    @FXML
+    private void clearElective() {
+
+            if (oneElective) {
+                elective1.setVisible(false);
+                oneElective = false;
+                twoElective = false;
+                threeElective = false;
+                enterModuleBtn.setLayoutY(205);
+            } else if (twoElective) {
+                elective2.setVisible(false);
+                twoElective = false;
+                oneElective = true;
+                threeElective = false;
+                enterModuleBtn.setLayoutY(250);
+            }else if (threeElective) {
+                elective3.setVisible(false);
+                threeElective = false;
+                oneElective = false;
+                twoElective = true;
+                enterModuleBtn.setVisible(true);
+            }
+        }
+    }
+
 
