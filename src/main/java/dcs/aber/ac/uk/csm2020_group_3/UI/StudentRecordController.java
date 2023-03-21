@@ -23,6 +23,12 @@ public class StudentRecordController {
     ImageView burgerIcon;
     @FXML
     Button recommendationBtn;
+    @FXML
+    Button helpBtn;
+    @FXML
+    Button timetableBtn;
+    @FXML
+    Button studentRecordBtn;
 
     @FXML
     protected void pressBurgerBtn() {
@@ -56,5 +62,25 @@ public class StudentRecordController {
         Main main = new Main();
         main.changeScene("Admin.fxml");
 
+    }
+
+    @FXML
+    private void toHelp() throws IOException {
+
+        Main main = new Main();
+        main.changeScene("Help.fxml");
+
+    }
+
+    @FXML
+    private void toTimetable() throws IOException {
+
+        Main main = new Main();
+        main.changeScene("Timetable.fxml");
+
+    }
+    @FXML
+    private void toStudentRecord() {
+        pressBurgerBtn();
     }
 }

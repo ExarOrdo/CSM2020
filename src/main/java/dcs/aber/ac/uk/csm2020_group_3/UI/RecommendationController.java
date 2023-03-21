@@ -28,6 +28,13 @@ public class RecommendationController {
     ImageView burgerIcon;
     @FXML
     Button studentRecordBtn;
+    @FXML
+    Button helpBtn;
+    @FXML
+    Button timetableBtn;
+    @FXML
+    Button recommendationBtn;
+
 
     @FXML
     protected void pressBurgerBtn() {
@@ -72,4 +79,26 @@ public class RecommendationController {
         main.changeScene("Admin.fxml");
 
     }
+
+    @FXML
+    private void toHelp() throws IOException {
+
+        Main main = new Main();
+        main.changeScene("Help.fxml");
+
+    }
+
+    @FXML
+    private void toTimetable() throws IOException {
+
+        Main main = new Main();
+        main.changeScene("Timetable.fxml");
+
+    }
+
+    @FXML
+    private void toRecommendation() {
+        pressBurgerBtn();
+    }
+
 }
