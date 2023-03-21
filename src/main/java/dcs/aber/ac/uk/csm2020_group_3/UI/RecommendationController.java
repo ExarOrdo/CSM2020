@@ -34,14 +34,21 @@ public class RecommendationController {
     Button timetableBtn;
     @FXML
     Button recommendationBtn;
-
+    @FXML
+    Pane elective1;
+    @FXML
+    Pane elective2;
+    @FXML
+    Pane elective3;
+    @FXML
+    Button confirmModuleBtn;
 
     @FXML
     protected void pressBurgerBtn() {
         expandedPane.setVisible(!expandedPane.isVisible());
-        if(expandedPane.isVisible()){
+        if (expandedPane.isVisible()) {
             burgerIcon.setRotate(90);
-        }else {
+        } else {
             burgerIcon.setRotate(0);
         }
     }
@@ -52,7 +59,7 @@ public class RecommendationController {
     }
 
     @FXML
-    protected void closeEnterModulePane(){
+    protected void closeEnterModulePane() {
         electivePane.setVisible(false);
     }
 
@@ -101,4 +108,25 @@ public class RecommendationController {
         pressBurgerBtn();
     }
 
+    @FXML
+    private void showElective() {
+
+        if (elective1.isVisible() && elective2.isVisible()) {
+            elective3.setVisible(true);
+            enterModuleBtn.setVisible(false);
+            closeEnterModulePane();
+        }
+
+        if (!elective1.isVisible()) {
+            elective1.setVisible(true);
+            enterModuleBtn.setLayoutY(250);
+            closeEnterModulePane();
+        } else if (elective1.isVisible()) {
+            elective2.setVisible(true);
+            enterModuleBtn.setLayoutY(295);
+            closeEnterModulePane();
+        }
+
+    }
 }
+

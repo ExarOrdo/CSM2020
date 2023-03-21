@@ -17,9 +17,8 @@
         <TextArea editable="false" layoutX="160.0" layoutY="70.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
         <TextArea editable="false" layoutX="360.0" layoutY="70.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
         <TextArea editable="false" layoutX="420.0" layoutY="70.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
-        <Text layoutX="111.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
         <Button fx:id="enterModuleBtn" layoutX="160.0" layoutY="205.0" mnemonicParsing="false" onAction="#pressEnterModuleBtn" prefHeight="40.0" prefWidth="340.0" text="[Enter Module]" />
-        <ProgressBar layoutX="160.0" layoutY="401.0" prefHeight="18.0" prefWidth="340.0" progress="0.7" />
+        <ProgressBar layoutX="160.0" layoutY="400.0" prefHeight="18.0" prefWidth="340.0" progress="0.7" />
         <Button layoutX="300.0" layoutY="556.0" mnemonicParsing="false" text="Confirm" />
         <ListView layoutX="155.0" layoutY="450.0" prefHeight="90.0" prefWidth="90.0" />
         <ListView layoutX="285.0" layoutY="450.0" prefHeight="90.0" prefWidth="90.0" />
@@ -35,6 +34,30 @@
       <Text layoutX="187.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High" />
       <Text layoutX="308.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium" />
       <Text layoutX="449.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low" />
+      <Pane fx:id="elective1" layoutX="110.0" layoutY="205.0" prefHeight="40.0" prefWidth="390.0" visible="false">
+         <children>
+            <TextArea editable="false" layoutX="50.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+            <TextArea editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+            <TextArea editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+            <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
+         </children>
+      </Pane>
+      <Pane fx:id="elective2" layoutX="110.0" layoutY="250.0" prefHeight="40.0" prefWidth="390.0" visible="false">
+         <children>
+            <TextArea editable="false" layoutX="50.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+            <TextArea editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+            <TextArea editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+            <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
+         </children>
+      </Pane>
+      <Pane fx:id="elective3" layoutX="110.0" layoutY="295.0" prefHeight="40.0" prefWidth="390.0" visible="false">
+         <children>
+            <TextArea editable="false" layoutX="50.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+            <TextArea editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+            <TextArea editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+            <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
+         </children>
+      </Pane>
         <Pane fx:id="expandedPane" layoutX="-1.0" prefHeight="610.0" prefWidth="140.0" style="-fx-background-color: lightgrey;" visible="false">
             <children>
             <Pane prefHeight="510.0" prefWidth="600.0" />
@@ -55,13 +78,13 @@
          </graphic></Button>
       <Pane fx:id="electivePane" layoutX="82.0" layoutY="63.0" prefHeight="434.0" prefWidth="446.0" visible="false">
          <children>
-            <Pane layoutX="-80.0" layoutY="-58.0" prefHeight="510.0" prefWidth="600.0" />
+            <Pane layoutX="-79.0" layoutY="-66.0" prefHeight="610.0" prefWidth="657.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="434.0" stroke="BLACK" strokeType="INSIDE" width="446.0" />
             <TextField layoutX="15.0" layoutY="15.0" prefHeight="30.0" prefWidth="250.0" promptText="Enter Module Name..." />
             <ComboBox fx:id="futureModulesDropDown" editable="true" layoutX="272.0" layoutY="15.0" prefHeight="30.0" prefWidth="160.0" promptText="Future Modules" />
             <ListView layoutX="15.0" layoutY="54.0" prefHeight="318.0" prefWidth="415.0" />
             <Button layoutX="93.0" layoutY="390.0" mnemonicParsing="false" onAction="#closeEnterModulePane" prefHeight="25.0" prefWidth="110.0" text="Cancel" />
-            <Button layoutX="244.0" layoutY="390.0" mnemonicParsing="false" onAction="#closeEnterModulePane" prefHeight="25.0" prefWidth="110.0" text="Confirm" />
+            <Button fx:id="confirmModuleBtn" layoutX="244.0" layoutY="390.0" mnemonicParsing="false" onAction="#showElective" prefHeight="25.0" prefWidth="110.0" text="Confirm" />
          </children>
       </Pane>
     </children>

@@ -17,7 +17,6 @@ public class Main extends Application {
     private RequestProcessor requestProcessor;
     private static Stage currentStage;
 
-
     @Override
     public void start(Stage stage) throws IOException {
         currentStage = stage;
@@ -34,13 +33,13 @@ public class Main extends Application {
         switch (fxml) {
             case "Login.fxml", "Register.fxml" -> {
                 currentStage.setMinHeight(420);
-                currentStage.setHeight(400);
+                currentStage.setHeight(420);
             }
             case "Recommendation.fxml" -> {
                 currentStage.setMinHeight(650);
                 currentStage.setMinWidth(665);
             }
-            case "StudentRecord.fxml", "Timetable.fxml", "Admin.fxml" -> {
+            case "StudentRecord.fxml", "Timetable.fxml", "Admin.fxml", "Help.fxml" -> {
                 currentStage.setMinHeight(540);
                 currentStage.setHeight(540);
             }
