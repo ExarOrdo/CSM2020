@@ -27,35 +27,23 @@ public class Main extends Application {
         currentStage.show();
         currentStage.setMinHeight(400.0);
         currentStage.setMinWidth(600.0);
-
-        /*Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("CSM2020");
-        stage.setScene(scene);
-        stage.show();
-        stage.setMinHeight(400.0);
-        stage.setMinWidth(600.0);
-        /*widthChangeListener = (observable, oldValue, newValue) -> {
-            stage.heightProperty().removeListener(heightChangeListener);
-            stage.setHeight(newValue.doubleValue() / 2.0);
-            stage.heightProperty().addListener(heightChangeListener);
-
-        };
-        heightChangeListener = (observable, oldValue, newValue) -> {
-            stage.widthProperty().removeListener(widthChangeListener);
-            stage.setWidth(newValue.doubleValue() * 2.0);
-            stage.widthProperty().addListener(widthChangeListener);
-        };
-        stage.widthProperty().addListener(widthChangeListener);
-        stage.heightProperty().addListener(heightChangeListener);*/
     }
 
     public void changeScene(String fxml) throws IOException{
-        if (Objects.equals(fxml, "Recommendation.fxml")){
-            //currentStage.setMinHeight(1280);
-            currentStage.setMinHeight(550);
-            currentStage.setMinWidth(600);
-        }else{
-            currentStage.setMinHeight(400);
+
+        switch (fxml) {
+            case "Login.fxml", "Register.fxml" -> {
+                currentStage.setMinHeight(420);
+                currentStage.setHeight(400);
+            }
+            case "Recommendation.fxml" -> {
+                currentStage.setMinHeight(650);
+                currentStage.setMinWidth(665);
+            }
+            case "StudentRecord.fxml", "Timetable.fxml", "Admin.fxml" -> {
+                currentStage.setMinHeight(540);
+                currentStage.setHeight(540);
+            }
         }
         Parent screen = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
         currentStage.getScene().setRoot(screen);
