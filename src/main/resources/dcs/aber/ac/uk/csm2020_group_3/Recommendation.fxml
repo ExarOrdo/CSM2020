@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextArea?>
@@ -11,42 +10,101 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="720.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController">
     <children>
-        <Pane prefHeight="510.0" prefWidth="55.0" style="-fx-background-color: lightgrey;" />
-        <Text layoutX="281.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year One" />
-        <Text layoutX="119.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
-        <TextArea editable="false" layoutX="160.0" layoutY="70.0" prefHeight="40.0" prefWidth="170.0" text="Module Name" />
-        <TextArea editable="false" layoutX="330.0" layoutY="70.0" prefHeight="40.0" prefWidth="50.0" text="Sem 1" />
-        <TextArea editable="false" layoutX="380.0" layoutY="70.0" prefHeight="40.0" prefWidth="70.0" text="20 Credits" />
-        <Text layoutX="111.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
-        <Button fx:id="enterModuleBtn" layoutX="160.0" layoutY="205.0" mnemonicParsing="false" onAction="#pressEnterModuleBtn" prefHeight="40.0" prefWidth="290.0" text="[Enter Module]" />
-        <ProgressBar layoutX="160.0" layoutY="310.0" prefHeight="18.0" prefWidth="290.0" progress="0.7" />
-        <Button layoutX="275.0" layoutY="472.0" mnemonicParsing="false" text="Confirm" />
-        <ListView layoutX="145.0" layoutY="370.0" prefHeight="90.0" prefWidth="90.0" />
-        <ListView layoutX="260.0" layoutY="370.0" prefHeight="90.0" prefWidth="90.0" />
-        <ListView layoutX="375.0" layoutY="370.0" prefHeight="90.0" prefWidth="90.0" />
-      <Text layoutX="118.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
-      <TextArea editable="false" layoutX="160.0" layoutY="115.0" prefHeight="40.0" prefWidth="170.0" text="Module Name" />
-      <TextArea editable="false" layoutX="330.0" layoutY="115.0" prefHeight="40.0" prefWidth="50.0" text="Sem 1" />
-      <TextArea editable="false" layoutX="380.0" layoutY="115.0" prefHeight="40.0" prefWidth="70.0" text="20 Credits" />
-      <Text layoutX="119.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
-      <TextArea editable="false" layoutX="160.0" layoutY="160.0" prefHeight="40.0" prefWidth="170.0" text="Module Name" />
-      <TextArea editable="false" layoutX="330.0" layoutY="160.0" prefHeight="40.0" prefWidth="50.0" text="Sem 1" />
-      <TextArea editable="false" layoutX="380.0" layoutY="160.0" prefHeight="40.0" prefWidth="70.0" text="20 Credits" />
-      <Text layoutX="177.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High" />
-      <Text layoutX="283.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium" />
-      <Text layoutX="409.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low" />
-        <Pane fx:id="expandedPane" layoutX="-1.0" prefHeight="510.0" prefWidth="140.0" style="-fx-background-color: lightgrey;" visible="false">
+        <Pane prefHeight="800.0" prefWidth="55.0" style="-fx-background-color: lightgrey;" />
+      <Text layoutX="423.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recommendation">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+        <Text layoutX="460.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year One">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+        <Text layoutX="111.0" layoutY="583.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
+      <Text layoutX="435.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chosen Category:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField editable="false" layoutX="589.0" layoutY="105.0" prefHeight="30.0" prefWidth="180.0" />
+      <Button fx:id="selectBtn" layoutX="233.0" layoutY="91.0" mnemonicParsing="false" onAction="#pressSelectBtn" prefHeight="57.0" prefWidth="180.0" text="Select Category">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+        <TextArea editable="false" layoutX="152.0" layoutY="558.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+        <TextArea editable="false" layoutX="352.0" layoutY="558.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+        <TextArea editable="false" layoutX="412.0" layoutY="558.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+        <Button fx:id="addModuleBtn" layoutX="405.0" layoutY="435.0" mnemonicParsing="false" onAction="#showElective" prefHeight="40.0" prefWidth="190.0" text="Add Module">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <ProgressBar layoutX="311.0" layoutY="185.0" prefHeight="20.0" prefWidth="380.0" progress="0.7" />
+        <Button layoutX="471.0" layoutY="740.0" mnemonicParsing="false" text="Confirm" />
+        <ListView layoutX="148.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
+        <ListView layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
+        <ListView layoutX="679.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
+      <Text layoutX="110.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
+      <TextArea editable="false" layoutX="152.0" layoutY="603.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+      <TextArea editable="false" layoutX="352.0" layoutY="603.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+      <TextArea editable="false" layoutX="412.0" layoutY="603.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+      <Text layoutX="111.0" layoutY="672.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
+      <TextArea editable="false" layoutX="152.0" layoutY="648.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+      <TextArea editable="false" layoutX="352.0" layoutY="648.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+      <TextArea editable="false" layoutX="412.0" layoutY="648.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+      <Text layoutX="219.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text layoutX="468.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Text layoutX="753.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+      <Pane fx:id="elective1" layoutX="528.0" layoutY="558.0" prefHeight="40.0" prefWidth="435.0" visible="false">
+         <children>
+            <TextArea editable="false" layoutX="50.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+            <TextArea editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+            <TextArea editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+            <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
+            <Button fx:id="clear1" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElective" prefHeight="25.0" prefWidth="40.0" text="X" />
+         </children>
+      </Pane>
+      <Pane fx:id="elective2" layoutX="528.0" layoutY="603.0" prefHeight="40.0" prefWidth="435.0" visible="false">
+         <children>
+            <TextArea editable="false" layoutX="50.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+            <TextArea editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+            <TextArea editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+            <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
+            <Button fx:id="clear2" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElective" prefHeight="25.0" prefWidth="40.0" text="X" />
+         </children>
+      </Pane>
+      <Pane fx:id="elective3" layoutX="528.0" layoutY="648.0" prefHeight="40.0" prefWidth="435.0" visible="false">
+         <children>
+            <TextArea editable="false" layoutX="50.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+            <TextArea editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+            <TextArea editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+            <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
+            <Button fx:id="clear3" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElective" prefHeight="25.0" prefWidth="40.0" text="X" />
+         </children>
+      </Pane>
+        <Pane fx:id="expandedPane" layoutX="-1.0" prefHeight="800.0" prefWidth="140.0" style="-fx-background-color: lightgrey;" visible="false">
             <children>
-            <Pane prefHeight="510.0" prefWidth="600.0" />
+            <Pane prefHeight="800.0" prefWidth="1000.0" />
                 <Button fx:id="studentRecordBtn" layoutX="6.0" layoutY="70.0" mnemonicParsing="false" onAction="#toStudentRecord" prefHeight="30.0" prefWidth="128.0" text="Student Record" />
-                <Button layoutX="6.0" layoutY="120.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="128.0" text="Recommendations" />
-                <Button layoutX="6.0" layoutY="170.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="128.0" text="Help" />
-                <Button fx:id="adminBtn" layoutX="6.0" layoutY="220.0" mnemonicParsing="false" onAction="#toAdmin" prefHeight="30.0" prefWidth="128.0" text="Admin" />
-                <Button fx:id="logoutBtn" layoutX="6.0" layoutY="270.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="128.0" text="Log-Out" />
+                <Button fx:id="recommendationBtn" layoutX="6.0" layoutY="120.0" mnemonicParsing="false" onAction="#toRecommendation" prefHeight="30.0" prefWidth="128.0" text="Recommendations" />
+                <Button fx:id="timetableBtn" layoutX="6.0" layoutY="170.0" mnemonicParsing="false" onAction="#toTimetable" prefHeight="30.0" prefWidth="128.0" text="Timetable" />
+                <Button fx:id="helpBtn" layoutX="6.0" layoutY="220.0" mnemonicParsing="false" onAction="#toHelp" prefHeight="30.0" prefWidth="128.0" text="Help" />
+                <Button fx:id="adminBtn" layoutX="6.0" layoutY="270.0" mnemonicParsing="false" onAction="#toAdmin" prefHeight="30.0" prefWidth="128.0" text="Admin" />
+                <Button fx:id="logoutBtn" layoutX="6.0" layoutY="320.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="128.0" text="Log-Out" />
             </children>
         </Pane>
         <Button fx:id="burgerBtn" layoutX="8.0" layoutY="5.0" minWidth="40.0" mnemonicParsing="false" onAction="#pressBurgerBtn" prefHeight="40.0" prefWidth="40.0">
@@ -56,15 +114,19 @@
                   <Image url="@burgerBtn.png" />
                </image></ImageView>
          </graphic></Button>
-      <Pane fx:id="electivePane" layoutX="82.0" layoutY="63.0" prefHeight="434.0" prefWidth="446.0" visible="false">
+      <Pane fx:id="categoryPane" layoutX="221.0" layoutY="80.0" prefHeight="530.0" prefWidth="560.0" visible="false">
          <children>
-            <Pane layoutX="-80.0" layoutY="-58.0" prefHeight="510.0" prefWidth="600.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="434.0" stroke="BLACK" strokeType="INSIDE" width="446.0" />
-            <TextField layoutX="15.0" layoutY="15.0" prefHeight="30.0" prefWidth="250.0" promptText="Enter Module Name..." />
-            <ComboBox fx:id="futureModulesDropDown" editable="true" layoutX="272.0" layoutY="15.0" prefHeight="30.0" prefWidth="160.0" promptText="Future Modules" />
-            <ListView layoutX="15.0" layoutY="54.0" prefHeight="318.0" prefWidth="415.0" />
-            <Button layoutX="93.0" layoutY="390.0" mnemonicParsing="false" onAction="#closeEnterModulePane" prefHeight="25.0" prefWidth="110.0" text="Cancel" />
-            <Button layoutX="244.0" layoutY="390.0" mnemonicParsing="false" onAction="#closeEnterModulePane" prefHeight="25.0" prefWidth="110.0" text="Confirm" />
+            <Pane layoutX="-298.0" layoutY="-77.0" prefHeight="800.0" prefWidth="1000.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="530.0" stroke="BLACK" strokeType="INSIDE" width="560.0" />
+            <TextField layoutX="78.0" layoutY="15.0" prefHeight="30.0" prefWidth="467.0" promptText="Category..." />
+            <ListView layoutX="15.0" layoutY="54.0" prefHeight="405.0" prefWidth="530.0" />
+            <Button layoutX="113.0" layoutY="476.0" mnemonicParsing="false" onAction="#closeSelectPane" prefHeight="25.0" prefWidth="110.0" text="Cancel" />
+            <Button layoutX="320.0" layoutY="476.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Confirm" />
+            <Text layoutX="15.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" wrappingWidth="66.2255859375">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
     </children>

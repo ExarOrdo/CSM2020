@@ -12,6 +12,7 @@ public class Login extends DatabaseHandler {
     public Login (String studentId, String password) {
         this.studentId = studentId;
         this.password = password;
+        currentStudent = studentId;
     }
 
 
@@ -30,6 +31,7 @@ public class Login extends DatabaseHandler {
             ResultSet resultSet = statement.executeQuery(query);
 
               if (resultSet.next()){
+                  System.out.println(currentStudent);
                   return true;
               }
 

@@ -8,7 +8,7 @@ import java.sql.Connection;
  * will need to perform different actions based
  * on their goal.
  */
-abstract class DatabaseHandler {
+public abstract class DatabaseHandler {
     private final static String serverName = "agile-server.database.windows.net";
     private final static String databaseName = "AGILEDB";
     private final static String adminUsername = "GroupAdmin";
@@ -17,6 +17,7 @@ abstract class DatabaseHandler {
     protected String connectionString = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;trustServerCertificate=false;loginTimeout=30;", serverName, databaseName, adminUsername, adminPassword);
     protected Connection connection;
 
+    public String currentStudent;
 
     /**
      * method for loading specific information from the db

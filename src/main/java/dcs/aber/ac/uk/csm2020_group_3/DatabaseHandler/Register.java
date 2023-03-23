@@ -28,6 +28,7 @@ public class Register extends DatabaseHandler{
         this.lastName = lastName;
         this.initalYear = year;
         this.initalCourse = course;
+        currentStudent = studentId;
     }
 
     public boolean studentExists() throws SQLException{
@@ -76,7 +77,7 @@ public class Register extends DatabaseHandler{
                 createStudent.setString(5,this.password);
                 createStudent.execute();
                 createStudent.close();
-
+                System.out.println(currentStudent);
 
 
         }catch  (Exception err) {

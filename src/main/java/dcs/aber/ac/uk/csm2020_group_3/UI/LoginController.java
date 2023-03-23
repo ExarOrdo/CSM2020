@@ -35,8 +35,6 @@ public class LoginController {
         Main main = new Main();
         Login login = new Login(studentId.getText(), studentPassword.getText());
 
-
-
         if(login.tryLogin()) {
             incorrectField.setVisible(false);
             main.changeScene("Recommendation.fxml");
@@ -57,5 +55,4 @@ public class LoginController {
         main.changeScene("Register.fxml");
 
     }
-
 }
