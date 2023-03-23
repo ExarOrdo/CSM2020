@@ -13,9 +13,7 @@ public class RecommendationController {
     @FXML
     Button adminBtn;
     @FXML
-    Button enterModuleBtn;
-    @FXML
-    Pane electivePane;
+    Pane categoryPane;
     @FXML
     ComboBox futureModulesDropDown;
     @FXML
@@ -37,7 +35,7 @@ public class RecommendationController {
     @FXML
     Pane elective1, elective2, elective3;
     @FXML
-    Button confirmModuleBtn;
+    Button selectBtn, addModuleBtn;
     @FXML
     Button clear1, clear2, clear3;
 
@@ -54,13 +52,13 @@ public class RecommendationController {
     }
 
     @FXML
-    protected void pressEnterModuleBtn() {
-        electivePane.setVisible(true);
+    protected void pressSelectBtn() {
+        categoryPane.setVisible(true);
     }
 
     @FXML
-    protected void closeEnterModulePane() {
-        electivePane.setVisible(false);
+    protected void closeSelectPane() {
+        categoryPane.setVisible(false);
     }
 
     @FXML
@@ -113,24 +111,21 @@ public class RecommendationController {
 
         if (!elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective1.setVisible(true);
-            enterModuleBtn.setLayoutY(250);
-            closeEnterModulePane();
+            closeSelectPane();
             oneElective = true;
             twoElective = false;
             threeElective = false;
         }
         else if (elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective2.setVisible(true);
-            enterModuleBtn.setLayoutY(295);
-            closeEnterModulePane();
+            closeSelectPane();
             twoElective = true;
             oneElective = false;
             threeElective = false;
         }
         else if (elective1.isVisible() && elective2.isVisible() && !elective3.isVisible()) {
             elective3.setVisible(true);
-            enterModuleBtn.setVisible(false);
-            closeEnterModulePane();
+            closeSelectPane();
             threeElective = true;
             oneElective = false;
             twoElective = false;
@@ -145,19 +140,16 @@ public class RecommendationController {
                 oneElective = false;
                 twoElective = false;
                 threeElective = false;
-                enterModuleBtn.setLayoutY(205);
             } else if (twoElective) {
                 elective2.setVisible(false);
                 twoElective = false;
                 oneElective = true;
                 threeElective = false;
-                enterModuleBtn.setLayoutY(250);
             }else if (threeElective) {
                 elective3.setVisible(false);
                 threeElective = false;
                 oneElective = false;
                 twoElective = true;
-                enterModuleBtn.setVisible(true);
             }
         }
     }

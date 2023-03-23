@@ -34,14 +34,18 @@ public class Main extends Application {
             case "Login.fxml", "Register.fxml" -> {
                 currentStage.setMinHeight(420);
                 currentStage.setHeight(420);
+                currentStage.setMinWidth(620);
+                currentStage.setWidth(620);
             }
             case "Recommendation.fxml" -> {
-                currentStage.setMinHeight(650);
-                currentStage.setMinWidth(665);
+                currentStage.setMinHeight(820);
+                currentStage.setMinWidth(1000);
             }
             case "StudentRecord.fxml", "Timetable.fxml", "Admin.fxml", "Help.fxml" -> {
                 currentStage.setMinHeight(540);
                 currentStage.setHeight(540);
+                currentStage.setMinWidth(620);
+                currentStage.setWidth(620);
             }
         }
         Parent screen = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));

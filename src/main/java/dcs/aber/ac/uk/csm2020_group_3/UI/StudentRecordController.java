@@ -31,6 +31,14 @@ public class StudentRecordController {
     Button studentRecordBtn;
 
     @FXML
+    ComboBox yearComboBox;
+
+    public void initialize() {
+        yearComboBox.getItems().removeAll(yearComboBox.getItems());
+        yearComboBox.getItems().addAll("1", "2", "3", "4");
+    }
+
+    @FXML
     protected void pressBurgerBtn() {
         expandedPane.setVisible(!expandedPane.isVisible());
         if(expandedPane.isVisible()){
