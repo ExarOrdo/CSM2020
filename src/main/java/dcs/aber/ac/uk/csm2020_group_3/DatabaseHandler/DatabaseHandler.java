@@ -17,6 +17,7 @@ public abstract class DatabaseHandler {
     protected String connectionString = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;trustServerCertificate=false;loginTimeout=30;", serverName, databaseName, adminUsername, adminPassword);
     protected Connection connection;
 
+    public String currentStudent;
 
     /**
      * method for loading specific information from the db
