@@ -1,53 +1,40 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
+
 import java.sql.*;
 
 /**
  * Class used for logging in, checks login credentials in the db
  */
-public class Login extends DatabaseHandler {
+public class Login {
 
     private final String studentId;
     private final String password;
+    private Connection connection;
 
-    public Login (String studentId, String password) {
+    public Login(String studentId, String password) {
         this.studentId = studentId;
         this.password = password;
-        currentStudent = studentId;
     }
 
-
-    public boolean checkExisting() throws SQLException{
-        this.connection = DriverManager.getConnection(connectionString);
-
-        return false;
-    }
-    public boolean tryLogin() throws SQLException{
-        this.connection = DriverManager.getConnection(connectionString);
-
-        try{
+    public boolean tryLogin() {
+        try {
+            this.connection = DatabaseConnection.getConnection();
 
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM STUDENT WHERE StudentID = '" + this.studentId + "' AND StudentPassword = '" + this.password + "'";
             ResultSet resultSet = statement.executeQuery(query);
 
-              if (resultSet.next()){
-                  System.out.println(currentStudent);
-                  return true;
-              }
+            if (resultSet.next()) {
+                return true;
+            }
 
-              resultSet.close();
-              statement.close();
-              connection.close();
-
-
-        }catch  (Exception err) {
+            resultSet.close();
+            statement.close();
+        } catch (Exception err) {
             System.err.println("Error:" + err.getMessage());
             err.printStackTrace();
         }
         return false;
     }
-
-    @Override
-    public void load() {;}
 
 }
