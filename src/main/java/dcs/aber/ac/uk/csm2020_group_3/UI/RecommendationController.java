@@ -97,8 +97,6 @@ public class RecommendationController {
         recommender.getModuleData();
     }
 
-}
-
     private void toHelp() throws IOException {
 
         Main main = new Main();
