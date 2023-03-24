@@ -1,6 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.Main;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -8,8 +9,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RecommendationController {
+
+    private Recommender recommender;
+
     @FXML
     Button adminBtn;
     @FXML
@@ -86,6 +91,12 @@ public class RecommendationController {
     }
 
     @FXML
+
+    public void initialize() throws SQLException {
+        recommender = new Recommender();
+        recommender.getModuleData();
+    }
+
     private void toHelp() throws IOException {
 
         Main main = new Main();
@@ -153,5 +164,6 @@ public class RecommendationController {
             }
         }
     }
+
 
 
