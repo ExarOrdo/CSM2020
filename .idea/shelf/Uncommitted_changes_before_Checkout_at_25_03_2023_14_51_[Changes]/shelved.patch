@@ -1,0 +1,232 @@
+Index: src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dcs.aber.ac.uk.csm2020_group_3.UI;\r\n\r\nimport dcs.aber.ac.uk.csm2020_group_3.Main;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Button;\r\nimport javafx.scene.control.ComboBox;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.layout.Pane;\r\n\r\nimport java.io.IOException;\r\n\r\npublic class RecommendationController {\r\n    @FXML\r\n    Button adminBtn;\r\n    @FXML\r\n    Pane categoryPane;\r\n    @FXML\r\n    ComboBox futureModulesDropDown;\r\n    @FXML\r\n    Pane expandedPane;\r\n    @FXML\r\n    Button burgerBtn;\r\n    @FXML\r\n    Button logoutBtn;\r\n    @FXML\r\n    ImageView burgerIcon;\r\n    @FXML\r\n    Button studentRecordBtn;\r\n    @FXML\r\n    Button helpBtn;\r\n    @FXML\r\n    Button timetableBtn;\r\n    @FXML\r\n    Button recommendationBtn;\r\n    @FXML\r\n    Pane elective1, elective2, elective3;\r\n    @FXML\r\n    Button selectBtn, addModuleBtn;\r\n    @FXML\r\n    Button clear1, clear2, clear3;\r\n\r\n    private Boolean oneElective, twoElective, threeElective = false;\r\n\r\n    @FXML\r\n    protected void pressBurgerBtn() {\r\n        expandedPane.setVisible(!expandedPane.isVisible());\r\n        if (expandedPane.isVisible()) {\r\n            burgerIcon.setRotate(90);\r\n        } else {\r\n            burgerIcon.setRotate(0);\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    protected void pressSelectBtn() {\r\n        categoryPane.setVisible(true);\r\n    }\r\n\r\n    @FXML\r\n    protected void closeSelectPane() {\r\n        categoryPane.setVisible(false);\r\n    }\r\n\r\n    @FXML\r\n    private void logout() throws IOException {\r\n\r\n        Main main = new Main();\r\n        main.changeScene(\"Login.fxml\");\r\n\r\n    }\r\n\r\n    @FXML\r\n    private void toStudentRecord() throws IOException {\r\n\r\n        Main main = new Main();\r\n        main.changeScene(\"StudentRecord.fxml\");\r\n\r\n    }\r\n\r\n    @FXML\r\n    private void toAdmin() throws IOException {\r\n\r\n        Main main = new Main();\r\n        main.changeScene(\"Admin.fxml\");\r\n\r\n    }\r\n\r\n    @FXML\r\n    private void toHelp() throws IOException {\r\n\r\n        Main main = new Main();\r\n        main.changeScene(\"Help.fxml\");\r\n\r\n    }\r\n\r\n    @FXML\r\n    private void toTimetable() throws IOException {\r\n\r\n        Main main = new Main();\r\n        main.changeScene(\"Timetable.fxml\");\r\n\r\n    }\r\n\r\n    @FXML\r\n    private void toRecommendation() {\r\n        pressBurgerBtn();\r\n    }\r\n\r\n    @FXML\r\n    private void showElective() {\r\n\r\n        if (!elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {\r\n            elective1.setVisible(true);\r\n            closeSelectPane();\r\n            oneElective = true;\r\n            twoElective = false;\r\n            threeElective = false;\r\n        }\r\n        else if (elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {\r\n            elective2.setVisible(true);\r\n            closeSelectPane();\r\n            twoElective = true;\r\n            oneElective = false;\r\n            threeElective = false;\r\n        }\r\n        else if (elective1.isVisible() && elective2.isVisible() && !elective3.isVisible()) {\r\n            elective3.setVisible(true);\r\n            closeSelectPane();\r\n            threeElective = true;\r\n            oneElective = false;\r\n            twoElective = false;\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    private void clearElective() {\r\n\r\n            if (oneElective) {\r\n                elective1.setVisible(false);\r\n                oneElective = false;\r\n                twoElective = false;\r\n                threeElective = false;\r\n            } else if (twoElective) {\r\n                elective2.setVisible(false);\r\n                twoElective = false;\r\n                oneElective = true;\r\n                threeElective = false;\r\n            }else if (threeElective) {\r\n                elective3.setVisible(false);\r\n                threeElective = false;\r\n                oneElective = false;\r\n                twoElective = true;\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java b/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java
+--- a/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java	(revision 0caf078f77482968837190fab9e67b8d2e8912e9)
++++ b/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java	(date 1679755430678)
+@@ -1,15 +1,21 @@
+ package dcs.aber.ac.uk.csm2020_group_3.UI;
+ 
++import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseConnection;
++import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
+ import dcs.aber.ac.uk.csm2020_group_3.Main;
+ import javafx.fxml.FXML;
+ import javafx.scene.control.Button;
+ import javafx.scene.control.ComboBox;
++import javafx.scene.control.TextArea;
+ import javafx.scene.image.ImageView;
+ import javafx.scene.layout.Pane;
+-
++import java.net.URL;
++import java.util.ResourceBundle;
++import javafx.fxml.Initializable;
+ import java.io.IOException;
++import java.util.List;
+ 
+-public class RecommendationController {
++public class RecommendationController implements Initializable {
+     @FXML
+     Button adminBtn;
+     @FXML
+@@ -152,6 +158,29 @@
+                 twoElective = true;
+             }
+         }
++
++    @FXML
++    private TextArea coreModule1, coreModule2, coreModule3;
++
++    private void displayCoreModules() {
++        int studentID = RecordCreator.getCurrentStudentId(); // Use the logged-in student's ID
++        List<String> coreModules = DatabaseConnection.getCoreModulesForStudent(String.valueOf(studentID));
++
++        if (coreModules.size() >= 1) {
++            coreModule1.setText(coreModules.get(0));
++        }
++        if (coreModules.size() >= 2) {
++            coreModule2.setText(coreModules.get(1));
++        }
++        if (coreModules.size() >= 3) {
++            coreModule3.setText(coreModules.get(2));
++        }
+     }
++
++    @Override
++    public void initialize(URL location, ResourceBundle resources) {
++        displayCoreModules();
++    }
++}
+ 
+ 
+Index: src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/RecordCreator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;\r\n\r\n/**\r\n * Creates a record for a new user\r\n * might need marks??? modules????\r\n */\r\npublic class RecordCreator extends DatabaseHandler{\r\n\r\n\r\n    private int studentId;\r\n\r\n    private String studentName;\r\n\r\n    private String courseName;\r\n\r\n    private int studentYear;\r\n\r\n    private String studentPassword;\r\n\r\n    /**\r\n     *\r\n     * @param studentId id of the new student\r\n     * @param studentName first and last name of the student\r\n     * @param courseName name of the course taken by the student\r\n     * @param studentYear which year the student is\r\n     * @param studentPassword student's account password\r\n     */\r\n    public RecordCreator(int studentId, String studentName, String courseName, int studentYear, String studentPassword) {\r\n\r\n        this.studentId = studentId;\r\n\r\n        this.studentName = studentName;\r\n\r\n        this.courseName = courseName;\r\n\r\n        this.studentYear = studentYear;\r\n\r\n        this.studentPassword = studentPassword;\r\n    }\r\n\r\n    @Override\r\n    public void save() {;}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/RecordCreator.java b/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/RecordCreator.java
+--- a/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/RecordCreator.java	(revision 0caf078f77482968837190fab9e67b8d2e8912e9)
++++ b/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/RecordCreator.java	(date 1679755241906)
+@@ -7,7 +7,7 @@
+ public class RecordCreator extends DatabaseHandler{
+ 
+ 
+-    private int studentId;
++    private static int currentStudentId;
+ 
+     private String studentName;
+ 
+@@ -17,6 +17,14 @@
+ 
+     private String studentPassword;
+ 
++    public static void setCurrentStudentId(int studentId) {
++        currentStudentId = studentId;
++    }
++
++    public static int getCurrentStudentId() {
++        return currentStudentId;
++    }
++
+     /**
+      *
+      * @param studentId id of the new student
+@@ -27,8 +35,6 @@
+      */
+     public RecordCreator(int studentId, String studentName, String courseName, int studentYear, String studentPassword) {
+ 
+-        this.studentId = studentId;
+-
+         this.studentName = studentName;
+ 
+         this.courseName = courseName;
+Index: src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/LoginController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dcs.aber.ac.uk.csm2020_group_3.UI;\r\n\r\nimport dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Login;\r\nimport dcs.aber.ac.uk.csm2020_group_3.Main;\r\nimport javafx.event.ActionEvent;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Button;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.control.PasswordField;\r\nimport javafx.scene.control.TextField;\r\nimport javafx.scene.text.Text;\r\n\r\nimport java.io.IOException;\r\nimport java.sql.SQLException;\r\n\r\npublic class LoginController {\r\n\r\n    @FXML\r\n    Button registerBtn;\r\n\r\n    @FXML\r\n    Button loginBtn;\r\n\r\n    @FXML\r\n    PasswordField studentPassword;\r\n\r\n    @FXML\r\n    TextField studentId;\r\n    @FXML\r\n    Text incorrectField;\r\n\r\n    @FXML\r\n    private void login() throws IOException, SQLException {\r\n\r\n        Main main = new Main();\r\n        Login login = new Login(studentId.getText(), studentPassword.getText());\r\n\r\n        if(login.tryLogin()) {\r\n            incorrectField.setVisible(false);\r\n            main.changeScene(\"Recommendation.fxml\");\r\n\r\n            System.out.println(\"Successful login\");\r\n        }\r\n        else{\r\n            incorrectField.setVisible(true);\r\n        }\r\n\r\n\r\n    }\r\n\r\n    @FXML\r\n    private void register() throws IOException {\r\n\r\n        Main main = new Main();\r\n        main.changeScene(\"Register.fxml\");\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/LoginController.java b/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/LoginController.java
+--- a/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/LoginController.java	(revision 0caf078f77482968837190fab9e67b8d2e8912e9)
++++ b/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/LoginController.java	(date 1679755392600)
+@@ -1,6 +1,7 @@
+ package dcs.aber.ac.uk.csm2020_group_3.UI;
+ 
+ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Login;
++import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
+ import dcs.aber.ac.uk.csm2020_group_3.Main;
+ import javafx.event.ActionEvent;
+ import javafx.fxml.FXML;
+@@ -35,13 +36,12 @@
+         Main main = new Main();
+         Login login = new Login(studentId.getText(), studentPassword.getText());
+ 
+-        if(login.tryLogin()) {
++        if (login.tryLogin()) {
+             incorrectField.setVisible(false);
++            RecordCreator.setCurrentStudentId(Integer.parseInt(studentId.getText())); // Store the logged-in student's ID
+             main.changeScene("Recommendation.fxml");
+-
+             System.out.println("Successful login");
+-        }
+-        else{
++        } else {
+             incorrectField.setVisible(true);
+         }
+ 
+Index: src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/DatabaseConnection.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;\r\n\r\nimport java.sql.*;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class DatabaseConnection {\r\n\r\n    private static Connection connection = null;\r\n    private static final String serverName = \"agile-server.mysql.database.azure.com\";\r\n    private static final String databaseName = \"AGILEDB\";\r\n    private static final String username = \"GroupAdmin\";\r\n    private static final String password = \"2675PKfe7$u!\";\r\n\r\n    public static Connection getConnection() throws SQLException {\r\n        if (connection == null) {\r\n            String connectionString = String.format(\"jdbc:mysql://%s:3306/%s?useSSL=true&requireSSL=false&user=%s&password=%s\", serverName, databaseName, username, password);\r\n            connection = DriverManager.getConnection(connectionString);\r\n        }\r\n        return connection;\r\n    }\r\n\r\n    public static List<String> getCoreModulesForStudent(String studentID) {\r\n        List<String> coreModules = new ArrayList<>();\r\n\r\n        try {\r\n            Connection connection = getConnection();\r\n\r\n            // Find the course name for the student\r\n            String courseID = \"\";\r\n            PreparedStatement studentStatement = connection.prepareStatement(\"SELECT StudentCourse FROM STUDENT WHERE StudentID = ?\");\r\n            studentStatement.setString(1, studentID);\r\n            ResultSet studentResult = studentStatement.executeQuery();\r\n            if (studentResult.next()) {\r\n                courseID = studentResult.getString(\"StudentCourse\");\r\n            }\r\n\r\n            // Find the core modules for the course\r\n            PreparedStatement coreModuleStatement = connection.prepareStatement(\"SELECT ModuleName FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?\");\r\n            coreModuleStatement.setString(1, courseID);\r\n            ResultSet coreModuleResult = coreModuleStatement.executeQuery();\r\n            while (coreModuleResult.next()) {\r\n                String moduleName = coreModuleResult.getString(\"ModuleName\");\r\n                coreModules.add(moduleName);\r\n            }\r\n\r\n            // Close the connection\r\n            coreModuleResult.close();\r\n            coreModuleStatement.close();\r\n            studentResult.close();\r\n            studentStatement.close();\r\n\r\n        } catch (SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        return coreModules;\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/DatabaseConnection.java b/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/DatabaseConnection.java
+--- a/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/DatabaseConnection.java	(revision 0caf078f77482968837190fab9e67b8d2e8912e9)
++++ b/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/DatabaseConnection.java	(date 1679663004687)
+@@ -34,19 +34,23 @@
+             if (studentResult.next()) {
+                 courseID = studentResult.getString("StudentCourse");
+             }
++            System.out.println("CourseID: " + courseID); // Debug statement
+ 
+-            // Find the core modules for the course
+-            PreparedStatement coreModuleStatement = connection.prepareStatement("SELECT ModuleName FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?");
+-            coreModuleStatement.setString(1, courseID);
+-            ResultSet coreModuleResult = coreModuleStatement.executeQuery();
+-            while (coreModuleResult.next()) {
+-                String moduleName = coreModuleResult.getString("ModuleName");
+-                coreModules.add(moduleName);
+-            }
++            if (!courseID.isEmpty()) {
++                // Find the core modules for the course
++                PreparedStatement coreModuleStatement = connection.prepareStatement("SELECT ModuleName FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?");
++                coreModuleStatement.setString(1, courseID);
++                ResultSet coreModuleResult = coreModuleStatement.executeQuery();
++                while (coreModuleResult.next()) {
++                    String moduleName = coreModuleResult.getString("ModuleName");
++                    coreModules.add(moduleName);
++                }
+ 
+-            // Close the connection
+-            coreModuleResult.close();
+-            coreModuleStatement.close();
++                // Close the connection
++                coreModuleResult.close();
++                coreModuleStatement.close();
++            }
++
+             studentResult.close();
+             studentStatement.close();
+ 
+@@ -54,7 +58,9 @@
+             e.printStackTrace();
+         }
+ 
++        System.out.println("Core Modules: " + coreModules); // Debug statement
+         return coreModules;
+     }
+ 
+-}
+\ No newline at end of file
++
++}
+Index: src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.ListView?>\r\n<?import javafx.scene.control.ProgressBar?>\r\n<?import javafx.scene.control.TextArea?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.image.Image?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.layout.Pane?>\r\n<?import javafx.scene.shape.Rectangle?>\r\n<?import javafx.scene.text.Font?>\r\n<?import javafx.scene.text.Text?>\r\n\r\n<AnchorPane prefHeight=\"800.0\" prefWidth=\"1000.0\" xmlns=\"http://javafx.com/javafx/\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController\">\r\n    <children>\r\n        <Pane prefHeight=\"800.0\" prefWidth=\"55.0\" style=\"-fx-background-color: lightgrey;\" />\r\n      <Text layoutX=\"423.0\" layoutY=\"52.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Recommendation\">\r\n         <font>\r\n            <Font size=\"20.0\" />\r\n         </font>\r\n      </Text>\r\n        <Text layoutX=\"460.0\" layoutY=\"527.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Year One\">\r\n         <font>\r\n            <Font size=\"20.0\" />\r\n         </font></Text>\r\n        <Text layoutX=\"111.0\" layoutY=\"583.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Core\" />\r\n      <Text layoutX=\"435.0\" layoutY=\"126.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Chosen Category:\">\r\n         <font>\r\n            <Font size=\"18.0\" />\r\n         </font>\r\n      </Text>\r\n      <TextField editable=\"false\" layoutX=\"589.0\" layoutY=\"105.0\" prefHeight=\"30.0\" prefWidth=\"180.0\" />\r\n      <Button fx:id=\"selectBtn\" layoutX=\"233.0\" layoutY=\"91.0\" mnemonicParsing=\"false\" onAction=\"#pressSelectBtn\" prefHeight=\"57.0\" prefWidth=\"180.0\" text=\"Select Category\">\r\n         <font>\r\n            <Font size=\"16.0\" />\r\n         </font>\r\n      </Button>\r\n        <TextArea editable=\"false\" layoutX=\"152.0\" layoutY=\"558.0\" prefHeight=\"40.0\" prefWidth=\"200.0\" text=\"Module Name\" />\r\n        <TextArea editable=\"false\" layoutX=\"352.0\" layoutY=\"558.0\" prefHeight=\"40.0\" prefWidth=\"60.0\" text=\"Sem 1\" />\r\n        <TextArea editable=\"false\" layoutX=\"412.0\" layoutY=\"558.0\" prefHeight=\"40.0\" prefWidth=\"80.0\" text=\"20 Credits\" />\r\n        <Button fx:id=\"addModuleBtn\" layoutX=\"405.0\" layoutY=\"435.0\" mnemonicParsing=\"false\" onAction=\"#showElective\" prefHeight=\"40.0\" prefWidth=\"190.0\" text=\"Add Module\">\r\n         <font>\r\n            <Font size=\"14.0\" />\r\n         </font></Button>\r\n        <ProgressBar layoutX=\"311.0\" layoutY=\"185.0\" prefHeight=\"20.0\" prefWidth=\"380.0\" progress=\"0.7\" />\r\n        <Button layoutX=\"471.0\" layoutY=\"740.0\" mnemonicParsing=\"false\" text=\"Confirm\" />\r\n        <ListView layoutX=\"148.0\" layoutY=\"259.0\" prefHeight=\"150.0\" prefWidth=\"180.0\" />\r\n        <ListView layoutX=\"411.0\" layoutY=\"259.0\" prefHeight=\"150.0\" prefWidth=\"180.0\" />\r\n        <ListView layoutX=\"679.0\" layoutY=\"259.0\" prefHeight=\"150.0\" prefWidth=\"180.0\" />\r\n      <Text layoutX=\"110.0\" layoutY=\"628.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Core\" />\r\n      <TextArea editable=\"false\" layoutX=\"152.0\" layoutY=\"603.0\" prefHeight=\"40.0\" prefWidth=\"200.0\" text=\"Module Name\" />\r\n      <TextArea editable=\"false\" layoutX=\"352.0\" layoutY=\"603.0\" prefHeight=\"40.0\" prefWidth=\"60.0\" text=\"Sem 1\" />\r\n      <TextArea editable=\"false\" layoutX=\"412.0\" layoutY=\"603.0\" prefHeight=\"40.0\" prefWidth=\"80.0\" text=\"20 Credits\" />\r\n      <Text layoutX=\"111.0\" layoutY=\"672.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Core\" />\r\n      <TextArea editable=\"false\" layoutX=\"152.0\" layoutY=\"648.0\" prefHeight=\"40.0\" prefWidth=\"200.0\" text=\"Module Name\" />\r\n      <TextArea editable=\"false\" layoutX=\"352.0\" layoutY=\"648.0\" prefHeight=\"40.0\" prefWidth=\"60.0\" text=\"Sem 1\" />\r\n      <TextArea editable=\"false\" layoutX=\"412.0\" layoutY=\"648.0\" prefHeight=\"40.0\" prefWidth=\"80.0\" text=\"20 Credits\" />\r\n      <Text layoutX=\"219.0\" layoutY=\"246.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"High\">\r\n         <font>\r\n            <Font size=\"18.0\" />\r\n         </font></Text>\r\n      <Text layoutX=\"468.0\" layoutY=\"245.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Medium\">\r\n         <font>\r\n            <Font size=\"18.0\" />\r\n         </font></Text>\r\n      <Text layoutX=\"753.0\" layoutY=\"246.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Low\">\r\n         <font>\r\n            <Font size=\"18.0\" />\r\n         </font></Text>\r\n      <Pane fx:id=\"elective1\" layoutX=\"528.0\" layoutY=\"558.0\" prefHeight=\"40.0\" prefWidth=\"435.0\" visible=\"false\">\r\n         <children>\r\n            <TextArea editable=\"false\" layoutX=\"50.0\" prefHeight=\"40.0\" prefWidth=\"200.0\" text=\"Module Name\" />\r\n            <TextArea editable=\"false\" layoutX=\"250.0\" prefHeight=\"40.0\" prefWidth=\"60.0\" text=\"Sem 1\" />\r\n            <TextArea editable=\"false\" layoutX=\"310.0\" prefHeight=\"40.0\" prefWidth=\"80.0\" text=\"20 Credits\" />\r\n            <Text layoutX=\"1.0\" layoutY=\"25.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Elective\" />\r\n            <Button fx:id=\"clear1\" layoutX=\"395.0\" layoutY=\"8.0\" mnemonicParsing=\"false\" onAction=\"#clearElective\" prefHeight=\"25.0\" prefWidth=\"40.0\" text=\"X\" />\r\n         </children>\r\n      </Pane>\r\n      <Pane fx:id=\"elective2\" layoutX=\"528.0\" layoutY=\"603.0\" prefHeight=\"40.0\" prefWidth=\"435.0\" visible=\"false\">\r\n         <children>\r\n            <TextArea editable=\"false\" layoutX=\"50.0\" prefHeight=\"40.0\" prefWidth=\"200.0\" text=\"Module Name\" />\r\n            <TextArea editable=\"false\" layoutX=\"250.0\" prefHeight=\"40.0\" prefWidth=\"60.0\" text=\"Sem 1\" />\r\n            <TextArea editable=\"false\" layoutX=\"310.0\" prefHeight=\"40.0\" prefWidth=\"80.0\" text=\"20 Credits\" />\r\n            <Text layoutX=\"1.0\" layoutY=\"25.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Elective\" />\r\n            <Button fx:id=\"clear2\" layoutX=\"395.0\" layoutY=\"8.0\" mnemonicParsing=\"false\" onAction=\"#clearElective\" prefHeight=\"25.0\" prefWidth=\"40.0\" text=\"X\" />\r\n         </children>\r\n      </Pane>\r\n      <Pane fx:id=\"elective3\" layoutX=\"528.0\" layoutY=\"648.0\" prefHeight=\"40.0\" prefWidth=\"435.0\" visible=\"false\">\r\n         <children>\r\n            <TextArea editable=\"false\" layoutX=\"50.0\" prefHeight=\"40.0\" prefWidth=\"200.0\" text=\"Module Name\" />\r\n            <TextArea editable=\"false\" layoutX=\"250.0\" prefHeight=\"40.0\" prefWidth=\"60.0\" text=\"Sem 1\" />\r\n            <TextArea editable=\"false\" layoutX=\"310.0\" prefHeight=\"40.0\" prefWidth=\"80.0\" text=\"20 Credits\" />\r\n            <Text layoutX=\"1.0\" layoutY=\"25.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Elective\" />\r\n            <Button fx:id=\"clear3\" layoutX=\"395.0\" layoutY=\"8.0\" mnemonicParsing=\"false\" onAction=\"#clearElective\" prefHeight=\"25.0\" prefWidth=\"40.0\" text=\"X\" />\r\n         </children>\r\n      </Pane>\r\n        <Pane fx:id=\"expandedPane\" layoutX=\"-1.0\" prefHeight=\"800.0\" prefWidth=\"140.0\" style=\"-fx-background-color: lightgrey;\" visible=\"false\">\r\n            <children>\r\n            <Pane prefHeight=\"800.0\" prefWidth=\"1000.0\" />\r\n                <Button fx:id=\"studentRecordBtn\" layoutX=\"6.0\" layoutY=\"70.0\" mnemonicParsing=\"false\" onAction=\"#toStudentRecord\" prefHeight=\"30.0\" prefWidth=\"128.0\" text=\"Student Record\" />\r\n                <Button fx:id=\"recommendationBtn\" layoutX=\"6.0\" layoutY=\"120.0\" mnemonicParsing=\"false\" onAction=\"#toRecommendation\" prefHeight=\"30.0\" prefWidth=\"128.0\" text=\"Recommendations\" />\r\n                <Button fx:id=\"timetableBtn\" layoutX=\"6.0\" layoutY=\"170.0\" mnemonicParsing=\"false\" onAction=\"#toTimetable\" prefHeight=\"30.0\" prefWidth=\"128.0\" text=\"Timetable\" />\r\n                <Button fx:id=\"helpBtn\" layoutX=\"6.0\" layoutY=\"220.0\" mnemonicParsing=\"false\" onAction=\"#toHelp\" prefHeight=\"30.0\" prefWidth=\"128.0\" text=\"Help\" />\r\n                <Button fx:id=\"adminBtn\" layoutX=\"6.0\" layoutY=\"270.0\" mnemonicParsing=\"false\" onAction=\"#toAdmin\" prefHeight=\"30.0\" prefWidth=\"128.0\" text=\"Admin\" />\r\n                <Button fx:id=\"logoutBtn\" layoutX=\"6.0\" layoutY=\"320.0\" mnemonicParsing=\"false\" onAction=\"#logout\" prefHeight=\"30.0\" prefWidth=\"128.0\" text=\"Log-Out\" />\r\n            </children>\r\n        </Pane>\r\n        <Button fx:id=\"burgerBtn\" layoutX=\"8.0\" layoutY=\"5.0\" minWidth=\"40.0\" mnemonicParsing=\"false\" onAction=\"#pressBurgerBtn\" prefHeight=\"40.0\" prefWidth=\"40.0\">\r\n         <graphic>\r\n            <ImageView fx:id=\"burgerIcon\" fitHeight=\"32.0\" fitWidth=\"40.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n               <image>\r\n                  <Image url=\"@burgerBtn.png\" />\r\n               </image></ImageView>\r\n         </graphic></Button>\r\n      <Pane fx:id=\"categoryPane\" layoutX=\"221.0\" layoutY=\"80.0\" prefHeight=\"530.0\" prefWidth=\"560.0\" visible=\"false\">\r\n         <children>\r\n            <Pane layoutX=\"-298.0\" layoutY=\"-77.0\" prefHeight=\"800.0\" prefWidth=\"1000.0\" />\r\n            <Rectangle arcHeight=\"5.0\" arcWidth=\"5.0\" fill=\"#e1e1e1\" height=\"530.0\" stroke=\"BLACK\" strokeType=\"INSIDE\" width=\"560.0\" />\r\n            <TextField layoutX=\"78.0\" layoutY=\"15.0\" prefHeight=\"30.0\" prefWidth=\"467.0\" promptText=\"Category...\" />\r\n            <ListView layoutX=\"15.0\" layoutY=\"54.0\" prefHeight=\"405.0\" prefWidth=\"530.0\" />\r\n            <Button layoutX=\"113.0\" layoutY=\"476.0\" mnemonicParsing=\"false\" onAction=\"#closeSelectPane\" prefHeight=\"25.0\" prefWidth=\"110.0\" text=\"Cancel\" />\r\n            <Button layoutX=\"320.0\" layoutY=\"476.0\" mnemonicParsing=\"false\" prefHeight=\"25.0\" prefWidth=\"110.0\" text=\"Confirm\" />\r\n            <Text layoutX=\"15.0\" layoutY=\"37.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Search:\" wrappingWidth=\"66.2255859375\">\r\n               <font>\r\n                  <Font size=\"18.0\" />\r\n               </font>\r\n            </Text>\r\n         </children>\r\n      </Pane>\r\n    </children>\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml b/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml
+--- a/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml	(revision 0caf078f77482968837190fab9e67b8d2e8912e9)
++++ b/src/main/resources/dcs/aber/ac/uk/csm2020_group_3/Recommendation.fxml	(date 1679661666987)
+@@ -37,7 +37,7 @@
+             <Font size="16.0" />
+          </font>
+       </Button>
+-        <TextArea editable="false" layoutX="152.0" layoutY="558.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
++        <TextArea fx:id="coreModule1" editable="false" layoutX="152.0" layoutY="558.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+         <TextArea editable="false" layoutX="352.0" layoutY="558.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+         <TextArea editable="false" layoutX="412.0" layoutY="558.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+         <Button fx:id="addModuleBtn" layoutX="405.0" layoutY="435.0" mnemonicParsing="false" onAction="#showElective" prefHeight="40.0" prefWidth="190.0" text="Add Module">
+@@ -50,11 +50,11 @@
+         <ListView layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
+         <ListView layoutX="679.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
+       <Text layoutX="110.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
+-      <TextArea editable="false" layoutX="152.0" layoutY="603.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
++      <TextArea fx:id="coreModule2" editable="false" layoutX="152.0" layoutY="603.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+       <TextArea editable="false" layoutX="352.0" layoutY="603.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+       <TextArea editable="false" layoutX="412.0" layoutY="603.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+       <Text layoutX="111.0" layoutY="672.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
+-      <TextArea editable="false" layoutX="152.0" layoutY="648.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
++      <TextArea fx:id="coreModule3" editable="false" layoutX="152.0" layoutY="648.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+       <TextArea editable="false" layoutX="352.0" layoutY="648.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
+       <TextArea editable="false" layoutX="412.0" layoutY="648.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
+       <Text layoutX="219.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High">
