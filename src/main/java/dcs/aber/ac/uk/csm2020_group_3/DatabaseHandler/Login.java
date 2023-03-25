@@ -2,8 +2,6 @@ package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
 import java.sql.*;
 
-import static dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler.getConnection;
-
 /**
  * Class used for logging in, checks login credentials in the db
  */
@@ -20,7 +18,7 @@ public class Login {
 
     public boolean tryLogin() {
         try {
-            this.connection = getConnection();
+            this.connection = DatabaseConnection.getConnection();
 
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM STUDENT WHERE StudentID = '" + this.studentId + "' AND StudentPassword = '" + this.password + "'";

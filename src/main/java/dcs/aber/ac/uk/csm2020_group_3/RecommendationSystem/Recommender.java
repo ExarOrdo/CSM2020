@@ -1,7 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Class responsible for handling the recommendation system,
@@ -26,9 +25,6 @@ public class Recommender {
         dataLoader = new DataLoader();
     }
 
-    public List<String> getCoreModulesForStudent(String studentID) {
-        return dataLoader.getCoreModulesForStudent(studentID);
-    }
     public void getModuleData() throws SQLException {
         if (dataLoader.tryLoadingModules()) {
             System.out.println("Cores, optionals and module tables have been loaded!");
