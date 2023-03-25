@@ -18,7 +18,7 @@ public class Login {
 
     public boolean tryLogin() {
         try {
-            this.connection = DatabaseConnection.getConnection();
+            this.connection = DatabaseHandler.getConnection();
 
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM STUDENT WHERE StudentID = '" + this.studentId + "' AND StudentPassword = '" + this.password + "'";

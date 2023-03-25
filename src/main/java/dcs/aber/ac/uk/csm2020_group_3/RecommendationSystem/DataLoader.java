@@ -2,10 +2,9 @@ package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataLoader extends DatabaseHandler {
 
@@ -53,5 +52,47 @@ public class DataLoader extends DatabaseHandler {
         }
 
         return false;
+    }
+
+    public List<String> getCoreModulesForStudent(String studentID) {
+        List<String> coreModules = new ArrayList<>();
+
+        try {
+            Connection connection = getConnection();
+
+            // Find the course name for the student
+            String courseID = "";
+            PreparedStatement studentStatement = connection.prepareStatement("SELECT StudentCourse FROM STUDENT WHERE StudentID = ?");
+            studentStatement.setString(1, studentID);
+            ResultSet studentResult = studentStatement.executeQuery();
+            if (studentResult.next()) {
+                courseID = studentResult.getString("StudentCourse");
+            }
+            System.out.println("CourseID: " + courseID); // Debug statement
+
+            if (!courseID.isEmpty()) {
+                // Find the core modules for the course
+                PreparedStatement coreModuleStatement = connection.prepareStatement("SELECT ModuleName FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?");
+                coreModuleStatement.setString(1, courseID);
+                ResultSet coreModuleResult = coreModuleStatement.executeQuery();
+                while (coreModuleResult.next()) {
+                    String moduleName = coreModuleResult.getString("ModuleName");
+                    coreModules.add(moduleName);
+                }
+
+                // Close the connection
+                coreModuleResult.close();
+                coreModuleStatement.close();
+            }
+
+            studentResult.close();
+            studentStatement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Core Modules: " + coreModules); // Debug statement
+        return coreModules;
     }
 }
