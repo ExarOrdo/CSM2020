@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a41e50c0-a9e0-441f-b9d7-64fee4f48b5e" name="Changes" comment="Refactor:&#10;1. Moved getcoremodulesforstudent from DatabaseConnection.java to DataLoader.java.&#10;2. Removed DatabaseConnection.java.&#10;3. Updated DatabaseHandler.java with correct information.&#10;4. Updated Login.java to reference DatabaseHandler.java instead of DatabaseConnection.java.&#10;5. Updated RecommendationController.java to reference DatabaseHandler.java instead of DatabaseConnection.java.&#10;&#10;Loading studentID:&#10;1. Modified RecordCreator.java to store current studentID.&#10;- Created two static methods to set and get id.&#10;&#10;2. Updated LoginController.java to set the value of currentstudenID&#10;&#10;3. Modified RecommendationController.java to use current student id rather than test version." />
+    <list default="true" id="a41e50c0-a9e0-441f-b9d7-64fee4f48b5e" name="Changes" comment="Refactor:&#10;1. Moved getcoremodulesforstudent from DatabaseConnection.java to DataLoader.java.&#10;2. Removed DatabaseConnection.java.&#10;3. Updated DatabaseHandler.java with correct information.&#10;4. Updated Login.java to reference DatabaseHandler.java instead of DatabaseConnection.java.&#10;5. Updated RecommendationController.java to reference DatabaseHandler.java instead of DatabaseConnection.java.&#10;&#10;Loading studentID:&#10;1. Modified RecordCreator.java to store current studentID.&#10;- Created two static methods to set and get id.&#10;&#10;2. Updated LoginController.java to set the value of currentstudenID&#10;&#10;3. Modified RecommendationController.java to use current student id rather than test version.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/RecommendationSystem/Recommender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/RecommendationSystem/Recommender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/DatabaseHandler/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/RecommendationSystem/Recommender.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/RecommendationSystem/Recommender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dcs/aber/ac/uk/csm2020_group_3/UI/RecommendationController.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +111,7 @@
       <workItem from="1678961456335" duration="3414000" />
       <workItem from="1679314738632" duration="13167000" />
       <workItem from="1679505684933" duration="933000" />
-      <workItem from="1679523953150" duration="38264000" />
+      <workItem from="1679523953150" duration="40477000" />
     </task>
     <task id="LOCAL-00001" summary="All tables stored locally">
       <created>1678961720997</created>
@@ -161,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679759633197</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Refactor:&#10;1. Moved getcoremodulesforstudent from DatabaseConnection.java to DataLoader.java.&#10;2. Removed DatabaseConnection.java.&#10;3. Updated DatabaseHandler.java with correct information.&#10;4. Updated Login.java to reference DatabaseHandler.java instead of DatabaseConnection.java.&#10;5. Updated RecommendationController.java to reference DatabaseHandler.java instead of DatabaseConnection.java.&#10;&#10;Loading studentID:&#10;1. Modified RecordCreator.java to store current studentID.&#10;- Created two static methods to set and get id.&#10;&#10;2. Updated LoginController.java to set the value of currentstudenID&#10;&#10;3. Modified RecommendationController.java to use current student id rather than test version.">
+      <created>1679760025510</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1679760025510</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -3,6 +3,7 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.DataLoader;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -164,8 +165,8 @@ public class RecommendationController implements Initializable {
 
     private void displayCoreModules() {
         int studentID = RecordCreator.getCurrentStudentId(); // Use the logged-in student's ID
-        DataLoader dataLoader = new DataLoader();
-        List<String> coreModules = dataLoader.getCoreModulesForStudent(String.valueOf(studentID));
+        Recommender recommender = new Recommender();
+        List<String> coreModules = recommender.getCoreModulesForStudent(String.valueOf(studentID));
 
         if (coreModules.size() >= 1) {
             coreModule1.setText(coreModules.get(0));
