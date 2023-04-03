@@ -30,7 +30,7 @@ public abstract class DatabaseHandler {
 
     protected static Connection getConnection() throws SQLException {
         if (staticConnection == null) {
-            staticConnection = DriverManager.getConnection(connectionString);
+            staticConnection = DriverManager.   getConnection(connectionString);
         }
         return staticConnection;
     }
