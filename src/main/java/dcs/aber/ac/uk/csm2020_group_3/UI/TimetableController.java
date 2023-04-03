@@ -18,8 +18,6 @@ public class TimetableController {
     @FXML
     ImageView burgerIcon;
     @FXML
-    Button adminBtn;
-    @FXML
     Button recommendationBtn;
     @FXML
     Button studentRecordBtn;
@@ -58,13 +56,6 @@ public class TimetableController {
 
         Main main = new Main();
         main.changeScene("StudentRecord.fxml");
-
-    }
-    @FXML
-    private void toAdmin() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("Admin.fxml");
 
     }
 

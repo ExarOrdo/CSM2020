@@ -31,9 +31,9 @@ public class Main extends Application {
     public void changeScene(String fxml) throws IOException{
 
         switch (fxml) {
-            case "Login.fxml", "Register.fxml" -> {
-                currentStage.setMinHeight(420);
-                currentStage.setHeight(420);
+            case "Login.fxml", "Register.fxml", "AdminLogin.fxml" -> {
+                currentStage.setMinHeight(430);
+                currentStage.setHeight(430);
                 currentStage.setMinWidth(620);
                 currentStage.setWidth(620);
             }
@@ -41,7 +41,7 @@ public class Main extends Application {
                 currentStage.setMinHeight(820);
                 currentStage.setMinWidth(1000);
             }
-            case "StudentRecord.fxml", "Timetable.fxml", "Admin.fxml", "Help.fxml" -> {
+            case "StudentRecord.fxml", "Timetable.fxml", "Admin.fxml", "Help.fxml", "AdminTimetable.fxml" -> {
                 currentStage.setMinHeight(540);
                 currentStage.setHeight(540);
                 currentStage.setMinWidth(620);

@@ -17,10 +17,7 @@ import java.sql.SQLException;
 public class LoginController {
 
     @FXML
-    Button registerBtn;
-
-    @FXML
-    Button loginBtn;
+    Button registerBtn, loginBtn, adminBtn;
 
     @FXML
     PasswordField studentPassword;
@@ -53,6 +50,14 @@ public class LoginController {
 
         Main main = new Main();
         main.changeScene("Register.fxml");
+
+    }
+
+    @FXML
+    private void adminLogin() throws IOException {
+
+        Main main = new Main();
+        main.changeScene("AdminLogin.fxml");
 
     }
 }
