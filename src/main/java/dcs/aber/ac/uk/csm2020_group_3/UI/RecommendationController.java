@@ -97,6 +97,7 @@ public class RecommendationController {
         recommender.getModuleData();
     }
 
+    @FXML
     private void toHelp() throws IOException {
 
         Main main = new Main();
