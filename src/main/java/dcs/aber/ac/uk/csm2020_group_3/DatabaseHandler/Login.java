@@ -9,7 +9,6 @@ public class Login {
 
     private final String studentId;
     private final String password;
-    private Connection connection;
 
     public Login(String studentId, String password) {
         this.studentId = studentId;
@@ -18,7 +17,7 @@ public class Login {
 
     public boolean tryLogin() {
         try {
-            this.connection = DatabaseConnection.getConnection();
+            Connection connection = getConnection();
 
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM STUDENT WHERE StudentID = '" + this.studentId + "' AND StudentPassword = '" + this.password + "'";
