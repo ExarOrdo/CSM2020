@@ -1,6 +1,8 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * An abstract class that will be inherited by various
@@ -9,12 +11,12 @@ import java.sql.Connection;
  * on their goal.
  */
 public abstract class DatabaseHandler {
-    private final static String serverName = "agile-server.database.windows.net";
+    private final static String serverName = "agile-server.mysql.database.azure.com";
     private final static String databaseName = "AGILEDB";
     private final static String adminUsername = "GroupAdmin";
     private final static String adminPassword = "2675PKfe7$u!";
 
-    protected String connectionString = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;trustServerCertificate=false;loginTimeout=30;", serverName, databaseName, adminUsername, adminPassword);
+    protected String connectionString = String.format("jdbc:mysql://%s:3306/%s?useSSL=true&requireSSL=false&user=%s&password=%s", serverName, databaseName, adminUsername, adminPassword);
     protected Connection connection;
 
     public String currentStudent;
@@ -44,11 +46,8 @@ public abstract class DatabaseHandler {
      */
     public void update() {;}
 
-    protected static Connection getConnection() throws SQLException {
-        if (staticConnection == null) {
-            staticConnection = DriverManager.   getConnection(connectionString);
-        }
-        return staticConnection;
+    protected Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(this.connectionString);
     }
 
 }
