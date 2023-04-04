@@ -52,7 +52,7 @@ public class LoginControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testRegisterButton() throws IOException, InterruptedException {
+    public void testRegisterButton(){
         FxRobot robot = new FxRobot();
         robot.clickOn("#registerBtn");
         assertEquals("Register", Main.currentStage.getTitle());
