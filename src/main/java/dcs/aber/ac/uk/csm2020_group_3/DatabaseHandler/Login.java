@@ -1,5 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+
 import java.sql.*;
 
 import static dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler.getConnection;
@@ -29,7 +30,6 @@ public class Login {
             if (resultSet.next()) {
                 return true;
             }
-
             resultSet.close();
             statement.close();
         } catch (Exception err) {

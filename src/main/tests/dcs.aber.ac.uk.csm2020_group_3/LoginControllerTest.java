@@ -21,6 +21,7 @@ public class LoginControllerTest extends ApplicationTest {
         Thread thread = new Thread(() -> Platform.runLater(() -> {
             try {
                 new Main().start(new Stage());
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -33,8 +34,8 @@ public class LoginControllerTest extends ApplicationTest {
     public void testLoginSuccess() {
 
         FxRobot robot = new FxRobot();
-        robot.clickOn("#usernameTextField").write("12345");
-        robot.clickOn("#passwordTextField").write("password");
+        robot.clickOn("#studentId").write("12345");
+        robot.clickOn("#studentPassword").write("password");
         robot.clickOn("#loginBtn");
         assertEquals("Recommendation", Main.currentStage.getTitle());
     }
@@ -43,16 +44,17 @@ public class LoginControllerTest extends ApplicationTest {
     public void testLoginFailure() {
         FxRobot robot = new FxRobot();
 
-        robot.clickOn("#usernameTextField").write("12345");
-        robot.clickOn("#passwordTextField").write("wrongPassword");
+        robot.clickOn("#studentId").write("12345");
+        robot.clickOn("#studentPassword").write("wrongPassword");
         robot.clickOn("#loginBtn");
         Scene scene = Main.currentStage.getScene();
         Text incorrectField = (Text) scene.lookup("#incorrectField");
         assertTrue(incorrectField.isVisible());
     }
 
+
     @Test
-    public void testRegisterButton(){
+    public void testRegisterButton() {
         FxRobot robot = new FxRobot();
         robot.clickOn("#registerBtn");
         assertEquals("Register", Main.currentStage.getTitle());
