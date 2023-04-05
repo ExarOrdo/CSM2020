@@ -7,8 +7,6 @@ package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 public class RecordCreator extends DatabaseHandler{
 
 
-    private static int currentStudentId;
-
     private String studentName;
 
     private String courseName;
@@ -17,13 +15,6 @@ public class RecordCreator extends DatabaseHandler{
 
     private String studentPassword;
 
-    public static void setCurrentStudentId(int studentId) {
-        currentStudentId = studentId;
-    }
-
-    public static int getCurrentStudentId() {
-        return currentStudentId;
-    }
 
     /**
      *

@@ -14,7 +14,13 @@ public abstract class DatabaseHandler {
     protected static String connectionString = String.format("jdbc:mysql://%s:3306/%s?useSSL=true&requireSSL=false&user=%s&password=%s", serverName, databaseName, adminUsername, adminPassword);
     protected Connection connection;
 
-    public String currentStudent;
+    private static Connection staticConnection = null;
+
+    public static String currentStudentId;
+
+    public static String getCurrentStudentId() {
+        return currentStudentId;
+    }
 
     public void load() {;}
 

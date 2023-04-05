@@ -1,6 +1,5 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 
 import java.sql.*;
@@ -28,7 +27,7 @@ public class Register extends DatabaseHandler{
         this.lastName = lastName;
         this.initalYear = year;
         this.initalCourse = course;
-        currentStudent = studentId;
+        currentStudentId = studentId;
     }
 
     public boolean studentExists() throws SQLException{
@@ -77,7 +76,7 @@ public class Register extends DatabaseHandler{
                 createStudent.setString(5,this.password);
                 createStudent.execute();
                 createStudent.close();
-                System.out.println(currentStudent);
+                System.out.println(currentStudentId);
 
 
         }catch  (Exception err) {

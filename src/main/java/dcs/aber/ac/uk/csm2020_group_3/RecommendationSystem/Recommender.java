@@ -1,5 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,7 +10,13 @@ import java.util.List;
  */
 public class Recommender {
 
+    public static ResultSet coreTableResult;
+    public static ResultSet optionalTableResult;
+    public static ResultSet moduleTableResult;
+
     private ListUpdater listUpdater;
+
+    //private WeightCalculator weightCalculator;
 
     private StrengthCalculator strengthCalculator;
 
@@ -27,7 +34,7 @@ public class Recommender {
     }
 
     public List<String> getCoreModulesForStudent(String studentID) {
-        return dataLoader.getCoreModulesForStudent(studentID);
+        return dataLoader.loadModuleData(studentID);
     }
     public void getModuleData() throws SQLException {
         if (dataLoader.tryLoadingModules()) {
