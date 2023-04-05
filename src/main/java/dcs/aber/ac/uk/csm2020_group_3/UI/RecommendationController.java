@@ -161,21 +161,27 @@ public class RecommendationController implements Initializable {
     }
 
     @FXML
-    private TextArea coreModule1, coreModule2, coreModule3;
+    private TextArea coreModule1, coreModule2, coreModule3, semester1, semester2, semester3, credits1, credits2, credits3;
 
     private void displayCoreModules() {
         String studentID = RecordCreator.getCurrentStudentId(); // Use the logged-in student's ID
         Recommender recommender = new Recommender();
-        List<String> coreModules = recommender.getCoreModulesForStudent(String.valueOf(studentID));
+        List<DataLoader.ModuleInfo> coreModules = recommender.loadModuleData(String.valueOf(studentID));
 
         if (coreModules.size() >= 1) {
-            coreModule1.setText(coreModules.get(0));
+            coreModule1.setText(coreModules.get(0).getModuleName());
+            semester1.setText("Sem " + coreModules.get(0).getModuleSemester());
+            credits1.setText(coreModules.get(0).getModuleCredits() + " Credits");
         }
         if (coreModules.size() >= 2) {
-            coreModule2.setText(coreModules.get(1));
+            coreModule2.setText(coreModules.get(1).getModuleName());
+            semester2.setText("Sem " + coreModules.get(1).getModuleSemester());
+            credits2.setText(coreModules.get(1).getModuleCredits() + " Credits");
         }
         if (coreModules.size() >= 3) {
-            coreModule3.setText(coreModules.get(2));
+            coreModule3.setText(coreModules.get(2).getModuleName());
+            semester3.setText("Sem " + coreModules.get(2).getModuleSemester());
+            credits3.setText(coreModules.get(2).getModuleCredits() + " Credits");
         }
     }
 

@@ -33,9 +33,10 @@ public class Recommender {
         dataLoader = new DataLoader();
     }
 
-    public List<String> getCoreModulesForStudent(String studentID) {
+    public List<DataLoader.ModuleInfo> loadModuleData(String studentID) {
         return dataLoader.loadModuleData(studentID);
     }
+
     public void getModuleData() throws SQLException {
         if (dataLoader.tryLoadingModules()) {
             System.out.println("Cores, optionals and module tables have been loaded!");
