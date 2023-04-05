@@ -1,6 +1,5 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.DataLoader;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ModuleInfo;

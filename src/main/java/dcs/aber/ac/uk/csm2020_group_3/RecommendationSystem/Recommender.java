@@ -28,14 +28,16 @@ public class Recommender {
 
     private DataLoader dataLoader;
 
-
-    public Recommender(){
+    public Recommender() {
         dataLoader = new DataLoader();
+        coreListGenerator = new CoreListGenerator(dataLoader);
     }
 
     public List<ModuleInfo> loadModuleData(String studentID) {
-        return dataLoader.loadModuleData(studentID);
+        return coreListGenerator.generateCoreList(studentID);
     }
+
+
 
     public void getModuleData() throws SQLException {
         if (dataLoader.tryLoadingModules()) {
