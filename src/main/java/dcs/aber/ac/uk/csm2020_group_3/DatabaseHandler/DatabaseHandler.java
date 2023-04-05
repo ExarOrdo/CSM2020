@@ -33,9 +33,6 @@ public abstract class DatabaseHandler {
     public void update() {;}
 
     protected static Connection getConnection() throws SQLException {
-        if (staticConnection == null) {
-            staticConnection = DriverManager.   getConnection(connectionString);
-        }
-        return staticConnection;
+        return DriverManager.getConnection(connectionString);
     }
 }
