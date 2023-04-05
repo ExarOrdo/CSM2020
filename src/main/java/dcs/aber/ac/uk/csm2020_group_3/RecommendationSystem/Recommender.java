@@ -33,7 +33,7 @@ public class Recommender {
         dataLoader = new DataLoader();
     }
 
-    public List<DataLoader.ModuleInfo> loadModuleData(String studentID) {
+    public List<ModuleInfo> loadModuleData(String studentID) {
         return dataLoader.loadModuleData(studentID);
     }
 

@@ -61,29 +61,6 @@ public class DataLoader extends DatabaseHandler {
         return false;
     }
 
-    public static class ModuleInfo {
-        private String moduleName;
-        private int moduleCredits;
-        private int moduleSemester;
-
-        public ModuleInfo(String moduleName, int moduleCredits, int moduleSemester) {
-            this.moduleName = moduleName;
-            this.moduleCredits = moduleCredits;
-            this.moduleSemester = moduleSemester;
-        }
-
-        public String getModuleName() {
-            return moduleName;
-        }
-
-        public int getModuleCredits() {
-            return moduleCredits;
-        }
-
-        public int getModuleSemester() {
-            return moduleSemester;
-        }
-    }
 
     public List<ModuleInfo> loadModuleData(String studentID) {
         List<ModuleInfo> coreModules = new ArrayList<>();
