@@ -1,5 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Login;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
@@ -38,7 +39,8 @@ public class LoginController {
 
         if (login.tryLogin()) {
             incorrectField.setVisible(false);
-            RecordCreator.setCurrentStudentId(Integer.parseInt(studentId.getText())); // Store the logged-in student's ID
+            Login.setCurrentStudentId(studentId.getText()); // Store the logged-in student's ID
+
             main.changeScene("Recommendation.fxml");
             System.out.println("Successful login");
         } else {

@@ -16,7 +16,11 @@ public abstract class DatabaseHandler {
 
     private static Connection staticConnection = null;
 
-    public String currentStudent;
+    public static String currentStudentId;
+
+    public static String getCurrentStudentId() {
+        return currentStudentId;
+    }
 
     public void load() {;}
 

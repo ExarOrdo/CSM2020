@@ -10,7 +10,8 @@ public class DataLoader extends DatabaseHandler {
 
     private CheckEnrolledModules checkEnrolledModules;
 
-    private final String coreModulesQuery = "SELECT * FROM CORE_MODULE";
+    private final String courseQuery = "SELECT StudentCourse FROM STUDENT WHERE StudentID = ?";
+    private final String coreModulesQuery = "SELECT ModuleName FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
     private final String optionalModulesQuery = "SELECT * FROM OPTIONAL_MODULE";
     private final String modulesQuery = "SELECT * FROM MODULE";
 
@@ -19,6 +20,13 @@ public class DataLoader extends DatabaseHandler {
 
         try {
             Statement statement = connection.createStatement();
+
+            ResultSet studentCourseResult = statement.executeQuery(courseQuery);
+            if (!studentCourseResult.next()) {
+                System.err.println("Student course failed to load!");
+                return false;
+            }
+            //load into local structure
 
             ResultSet coreTableResult = statement.executeQuery(coreModulesQuery);
             if (!coreTableResult.next()) {
@@ -44,7 +52,6 @@ public class DataLoader extends DatabaseHandler {
             statement.close();
             connection.close();
 
-            return true;
 
         } catch (Exception err) {
             System.err.println("Error: " + err.getMessage());
@@ -54,7 +61,7 @@ public class DataLoader extends DatabaseHandler {
         return false;
     }
 
-    public List<String> getCoreModulesForStudent(String studentID) {
+    public List<String> loadModuleData(String studentID) {
         List<String> coreModules = new ArrayList<>();
 
         try {
