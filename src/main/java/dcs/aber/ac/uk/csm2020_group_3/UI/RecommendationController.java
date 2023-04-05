@@ -1,20 +1,22 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.DataLoader;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.List;
 
-public class RecommendationController {
-
-    private Recommender recommender;
-
+public class RecommendationController implements Initializable {
     @FXML
     Button adminBtn;
     @FXML
@@ -91,13 +93,6 @@ public class RecommendationController {
     }
 
     @FXML
-
-    public void initialize() throws SQLException {
-        recommender = new Recommender();
-        recommender.getModuleData();
-    }
-
-    @FXML
     private void toHelp() throws IOException {
 
         Main main = new Main();
@@ -147,24 +142,51 @@ public class RecommendationController {
     @FXML
     private void clearElective() {
 
-            if (oneElective) {
-                elective1.setVisible(false);
-                oneElective = false;
-                twoElective = false;
-                threeElective = false;
-            } else if (twoElective) {
-                elective2.setVisible(false);
-                twoElective = false;
-                oneElective = true;
-                threeElective = false;
-            }else if (threeElective) {
-                elective3.setVisible(false);
-                threeElective = false;
-                oneElective = false;
-                twoElective = true;
-            }
+        if (oneElective) {
+            elective1.setVisible(false);
+            oneElective = false;
+            twoElective = false;
+            threeElective = false;
+        } else if (twoElective) {
+            elective2.setVisible(false);
+            twoElective = false;
+            oneElective = true;
+            threeElective = false;
+        }else if (threeElective) {
+            elective3.setVisible(false);
+            threeElective = false;
+            oneElective = false;
+            twoElective = true;
         }
     }
 
+    @FXML
+    private TextArea coreModule1, coreModule2, coreModule3, semester1, semester2, semester3, credits1, credits2, credits3;
 
+    private void displayCoreModules() {
+        String studentID = RecordCreator.getCurrentStudentId(); // Use the logged-in student's ID
+        Recommender recommender = new Recommender();
+        List<DataLoader.ModuleInfo> coreModules = recommender.loadModuleData(String.valueOf(studentID));
 
+        if (coreModules.size() >= 1) {
+            coreModule1.setText(coreModules.get(0).getModuleName());
+            semester1.setText("Sem " + coreModules.get(0).getModuleSemester());
+            credits1.setText(coreModules.get(0).getModuleCredits() + " Credits");
+        }
+        if (coreModules.size() >= 2) {
+            coreModule2.setText(coreModules.get(1).getModuleName());
+            semester2.setText("Sem " + coreModules.get(1).getModuleSemester());
+            credits2.setText(coreModules.get(1).getModuleCredits() + " Credits");
+        }
+        if (coreModules.size() >= 3) {
+            coreModule3.setText(coreModules.get(2).getModuleName());
+            semester3.setText("Sem " + coreModules.get(2).getModuleSemester());
+            credits3.setText(coreModules.get(2).getModuleCredits() + " Credits");
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        displayCoreModules();
+    }
+}

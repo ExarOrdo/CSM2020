@@ -1,16 +1,20 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+
 import java.sql.*;
-
-
 
 /**
  * Class used for logging in, checks login credentials in the db
  */
-public class Login extends DatabaseHandler{
+
+public class Login extends DatabaseHandler {
 
     private final String studentId;
     private final String password;
+
+    public static void setCurrentStudentId(String studentId) {
+        currentStudentId = studentId;
+    }
 
     public Login(String studentId, String password) {
         this.studentId = studentId;
@@ -28,11 +32,10 @@ public class Login extends DatabaseHandler{
             if (resultSet.next()) {
                 return true;
             }
-
             resultSet.close();
             statement.close();
         } catch (Exception err) {
-            System.err.println("tryLogin method exception: " + err.getMessage());
+            System.err.println("Error:" + err.getMessage());
             err.printStackTrace();
         }
         return false;

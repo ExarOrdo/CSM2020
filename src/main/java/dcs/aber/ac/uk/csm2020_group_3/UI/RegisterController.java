@@ -4,6 +4,7 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Register;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -15,6 +16,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class RegisterController {
+    public Button confirmBtn;
+    public Button cancelBtn;
     @FXML
     ComboBox yearComboBox;
     @FXML
