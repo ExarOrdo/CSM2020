@@ -61,8 +61,32 @@ public class DataLoader extends DatabaseHandler {
         return false;
     }
 
-    public List<String> loadModuleData(String studentID) {
-        List<String> coreModules = new ArrayList<>();
+    public static class ModuleInfo {
+        private String moduleName;
+        private int moduleCredits;
+        private int moduleSemester;
+
+        public ModuleInfo(String moduleName, int moduleCredits, int moduleSemester) {
+            this.moduleName = moduleName;
+            this.moduleCredits = moduleCredits;
+            this.moduleSemester = moduleSemester;
+        }
+
+        public String getModuleName() {
+            return moduleName;
+        }
+
+        public int getModuleCredits() {
+            return moduleCredits;
+        }
+
+        public int getModuleSemester() {
+            return moduleSemester;
+        }
+    }
+
+    public List<ModuleInfo> loadModuleData(String studentID) {
+        List<ModuleInfo> coreModules = new ArrayList<>();
 
         try {
             Connection connection = getConnection();
@@ -79,12 +103,14 @@ public class DataLoader extends DatabaseHandler {
 
             if (!courseID.isEmpty()) {
                 // Find the core modules for the course
-                PreparedStatement coreModuleStatement = connection.prepareStatement("SELECT ModuleName FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?");
+                PreparedStatement coreModuleStatement = connection.prepareStatement("SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?");
                 coreModuleStatement.setString(1, courseID);
                 ResultSet coreModuleResult = coreModuleStatement.executeQuery();
                 while (coreModuleResult.next()) {
                     String moduleName = coreModuleResult.getString("ModuleName");
-                    coreModules.add(moduleName);
+                    int moduleCredits = coreModuleResult.getInt("ModuleCredits");
+                    int moduleSemester = coreModuleResult.getInt("ModuleSemester");
+                    coreModules.add(new ModuleInfo(moduleName, moduleCredits, moduleSemester));
                 }
 
                 // Close the connection
@@ -102,4 +128,5 @@ public class DataLoader extends DatabaseHandler {
         System.out.println("Core Modules: " + coreModules); // Debug statement
         return coreModules;
     }
+
 }
