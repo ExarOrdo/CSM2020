@@ -3,16 +3,12 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-public class StudentRecordController {
-
-    @FXML
-    Button adminBtn;
+public class TimetableController {
     @FXML
     Pane expandedPane;
     @FXML
@@ -22,22 +18,15 @@ public class StudentRecordController {
     @FXML
     ImageView burgerIcon;
     @FXML
+    Button adminBtn;
+    @FXML
     Button recommendationBtn;
+    @FXML
+    Button studentRecordBtn;
     @FXML
     Button helpBtn;
     @FXML
     Button timetableBtn;
-    @FXML
-    Button studentRecordBtn;
-
-    @FXML
-    ComboBox yearComboBox;
-
-    public void initialize() {
-        yearComboBox.getItems().removeAll(yearComboBox.getItems());
-        yearComboBox.getItems().addAll("1", "2", "3", "4");
-    }
-
     @FXML
     protected void pressBurgerBtn() {
         expandedPane.setVisible(!expandedPane.isVisible());
@@ -65,6 +54,13 @@ public class StudentRecordController {
     }
 
     @FXML
+    private void toStudentRecord() throws IOException {
+
+        Main main = new Main();
+        main.changeScene("StudentRecord.fxml");
+
+    }
+    @FXML
     private void toAdmin() throws IOException {
 
         Main main = new Main();
@@ -81,14 +77,7 @@ public class StudentRecordController {
     }
 
     @FXML
-    private void toTimetable() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("Timetable.fxml");
-
-    }
-    @FXML
-    private void toStudentRecord() {
+    private void toTimetable() {
         pressBurgerBtn();
     }
 }

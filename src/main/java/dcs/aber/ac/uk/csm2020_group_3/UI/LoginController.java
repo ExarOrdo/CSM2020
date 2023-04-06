@@ -1,12 +1,14 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Login;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -19,21 +21,27 @@ public class LoginController {
     Button loginBtn;
 
     @FXML
-    TextField studentPassword;
+    PasswordField studentPassword;
 
     @FXML
     TextField studentId;
+    @FXML
+    Text incorrectField;
 
     @FXML
     private void login() throws IOException {
 
         Main main = new Main();
-        Login test = new Login();
+        Login login = new Login(studentId.getText(), studentPassword.getText());
 
-        if(test.Login(studentId.getText(), studentPassword.getText())) {
+        if (login.tryLogin()) {
+            incorrectField.setVisible(false);
+            Login.setCurrentStudentId(studentId.getText()); // Store the logged-in student's ID
+
             main.changeScene("Recommendation.fxml");
-
-            System.out.println("asdasd");
+            System.out.println("Successful login");
+        } else {
+            incorrectField.setVisible(true);
         }
 
 
@@ -46,5 +54,4 @@ public class LoginController {
         main.changeScene("Register.fxml");
 
     }
-
 }
