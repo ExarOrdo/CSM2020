@@ -1,12 +1,13 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+
 /**
  * Creates a record for a new user
  * might need marks??? modules????
  */
 public class RecordCreator extends DatabaseHandler{
 
-    private Table destinationTable;
+    //private Table destinationTable;
     //declare an arraylist of record types
     //
 
