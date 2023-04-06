@@ -1,6 +1,9 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,7 +19,7 @@ public class Recommender {
 
     private ListUpdater listUpdater;
 
-    //private WeightCalculator weightCalculator;
+    private WeightGenerator weightGenerator;
 
     private StrengthCalculator strengthCalculator;
 
@@ -25,6 +28,13 @@ public class Recommender {
     private CoreListGenerator coreListGenerator;
 
     private ElectiveListGenerator electiveListGenerator;
+
+    /**
+     * Dictionary of modules strings and weights -  {moduleName1:weight, ...., }
+     */
+    public static HashMap<String, Integer> currentModuleWeights;
+
+    public static ArrayList<Object> currentlySelectedModules;
 
     private DataLoader dataLoader;
 
