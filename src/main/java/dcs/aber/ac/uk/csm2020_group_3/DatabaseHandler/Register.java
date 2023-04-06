@@ -65,7 +65,8 @@ public class Register extends DatabaseHandler{
     }
 
     public void tryRegister() throws SQLException {
-        this.connection = DriverManager.getConnection(connectionString);
+        //this.connection = DriverManager.getConnection(connectionString);
+        this.connection = getConnection();
         try{
                 String fullName = firstName + lastName;
                 PreparedStatement createStudent = connection.prepareStatement("INSERT INTO STUDENT (StudentID,StudentName,StudentCourse,StudentYear,StudentPassword) VALUES (?,?,?,?,?)");

@@ -15,20 +15,25 @@ public class StudentRecord extends Record{
 
     private String studentPassword;
 
+    private String studentCourse;
+
 
     /**
      * Construct a single student record for Student table
      * @param id student's id
-     * @param name student's name
+     * @param firstName student's first name
+     * @param lastName student's last name
      * @param year student's current year
      * @param password student's password
      */
-    public StudentRecord (String id, String name, int year, String password) {
+    public StudentRecord (String id, String firstName, String lastName, int year, String course,String password) {
         this.studentId = id;
 
-        this.studentName = name;
+        this.studentName = firstName + lastName;
 
         this.studentYear = year;
+
+        this.studentCourse = course;
 
         this.studentPassword = password;
 
@@ -51,6 +56,10 @@ public class StudentRecord extends Record{
 
     public String getStudentPassword() {
         return studentPassword;
+    }
+
+    public String getStudentCourse() {
+        return studentCourse;
     }
 }
 
