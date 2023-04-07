@@ -5,15 +5,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class parsing core module data and storing them
+ */
 public class CoreListGenerator {
+
+    public static List<ModuleInfo> coreModulesList;
 
     private DataLoader dataLoader;
 
+    /**
+     * Creates a list of ModuleInfo objects
+     */
     public CoreListGenerator(DataLoader dataLoader) {
         this.dataLoader = dataLoader;
     }
 
-    public List<ModuleInfo> generateCoreList(String studentID) {
+    public void generateCoreList(String studentID) {
         List<ModuleInfo> coreModules = new ArrayList<>();
 
         ResultSet coreModuleResult = dataLoader.loadModuleData(studentID);
@@ -22,7 +30,10 @@ public class CoreListGenerator {
                 String moduleName = coreModuleResult.getString("ModuleName");
                 int moduleCredits = coreModuleResult.getInt("ModuleCredits");
                 int moduleSemester = coreModuleResult.getInt("ModuleSemester");
-                coreModules.add(new ModuleInfo(moduleName, moduleCredits, moduleSemester));
+                String tag1 = coreModuleResult.getString("ModuleName");
+                String tag2 = coreModuleResult.getString("ModuleName");
+                String tag3 = coreModuleResult.getString("ModuleName");
+                coreModules.add(new ModuleInfo(moduleName, moduleCredits, moduleSemester, tag1, tag2, tag3));
             }
             coreModuleResult.close();
         } catch (SQLException e) {
@@ -30,6 +41,7 @@ public class CoreListGenerator {
         }
 
         System.out.println("Core Modules: " + coreModules);
-        return coreModules;
+        coreModulesList = coreModules;
+
     }
 }

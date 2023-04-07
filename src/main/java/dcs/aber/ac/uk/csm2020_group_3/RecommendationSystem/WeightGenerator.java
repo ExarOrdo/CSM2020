@@ -1,12 +1,29 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Class responsible for generating and calculating similarity between modules (weights)
  * Gets tags from ResultSet objects from the DataLoader.
  */
 public class WeightGenerator {
+
+    private ElectiveListGenerator electiveListGenerator;
+
+    private CoreListGenerator coreListGenerator;
+
+    public WeightGenerator (CoreListGenerator coreListGenerator, ElectiveListGenerator electiveListGenerator) {
+        this.coreListGenerator = coreListGenerator;
+        this.electiveListGenerator = electiveListGenerator;
+    }
+
+    /**
+     * Method that gets tags from ModuleInfo Objects - might not be needed.
+     */
+    //public ArrayList<String> tagExtractor(){
+    //   return
+    //}
 
     /**
      * Calculates Jaccard's index between two lists of tags
@@ -37,19 +54,31 @@ public class WeightGenerator {
 
 
     /**
-     * Gets currently enrolled modules for student.
-     * Gets currently selected modules for student.
-     * Takes optional module as an argument.
-     * Calculates the weights between optional module and enrolled + selected modules.
-     * Returns an arrayList of weights
+     * Method that generates weights between each elective module and each core module, then
+     * combines those to create a weight metric for each elective module.
+     * Returns a hashTable - moduleName: weight
      */
-    public static void GetWeights() {
+    public static void generateWeights() {
 
-        // use studentID
-        // get the required module data
-        // access currentModuleWeights
-        // add to it
-        ;
+        // access current electives
+        //electiveListGenerator()
+
+        // access current cores
+
+        // run for loop with jaccards
+        // add values to dict
+        }
+       ;
+
+    /**
+     * Method that is called when an elective is selected by user.
+     * Recalculates moduleWeights with a slight bias towards chosen elective.
+     */
+    public static void recalculateWeights() {
+
+        // take moduleWeight
+        // iterate across weights in moduleWeight
+            // recalculate new weight and replace
+            // repeat
     }
-
 }

@@ -30,24 +30,42 @@ public class Recommender {
     private ElectiveListGenerator electiveListGenerator;
 
     /**
-     * Dictionary of modules strings and weights -  {moduleName1:weight, ...., }
+     * Lists containing moduleInfo objects per year.
      */
-    public static HashMap<String, Integer> currentModuleWeights;
 
-    public static ArrayList<Object> currentlySelectedModules;
+    public static ArrayList<Object> year1Modules;
+
+    public static ArrayList<Object> year2Modules;
+
+    public static ArrayList<Object> year3Modules;
+
+    public static ArrayList<Object> year4Modules;
+
 
     private DataLoader dataLoader;
 
-    public Recommender() {
+    /**
+     * Constructor for Recommender class
+     * @param studentID
+     */
+    public Recommender(String studentID) {
         dataLoader = new DataLoader();
         coreListGenerator = new CoreListGenerator(dataLoader);
+        electiveListGenerator = new ElectiveListGenerator(dataLoader);
+        weightGenerator = new WeightGenerator(coreListGenerator, electiveListGenerator);
+
+        // calls methods after instantiating Recommender (after login/register)
+        coreListGenerator.generateCoreList(studentID);
+        electiveListGenerator.generateElectiveList(studentID);
     }
 
-    public List<ModuleInfo> loadModuleData(String studentID) {
-        return coreListGenerator.generateCoreList(studentID);
+    public List<ModuleInfo> getCoreList() {
+        return CoreListGenerator.coreModulesList;
     }
 
-
+    public List<ModuleInfo> getElectiveList() {
+        return ElectiveListGenerator.electiveModulesList;
+    }
 
     public void getModuleData() throws SQLException {
         if (dataLoader.tryLoadingModules()) {

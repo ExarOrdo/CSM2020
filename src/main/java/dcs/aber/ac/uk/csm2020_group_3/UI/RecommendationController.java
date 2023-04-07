@@ -165,8 +165,8 @@ public class RecommendationController implements Initializable {
 
     private void displayCoreModules() {
         String studentID = RecordCreator.getCurrentStudentId(); // Use the logged-in student's ID
-        Recommender recommender = new Recommender();
-        List<ModuleInfo> coreModules = recommender.loadModuleData(String.valueOf(studentID));
+        Recommender recommender = new Recommender(studentID);
+        List<ModuleInfo> coreModules = recommender.getCoreList();
 
         if (coreModules.size() >= 1) {
             coreModule1.setText(coreModules.get(0).getModuleName());

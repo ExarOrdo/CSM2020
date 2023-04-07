@@ -10,8 +10,8 @@ public class DataLoader extends DatabaseHandler {
     private CheckEnrolledModules checkEnrolledModules;
 
     private final String courseQuery = "SELECT StudentCourse FROM STUDENT WHERE StudentID = ?";
-    private final String coreModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
-    private final String optionalModulesQuery = "SELECT * FROM OPTIONAL_MODULE";
+    private final String coreModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
+    private final String electiveModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
     private final String modulesQuery = "SELECT * FROM MODULE";
 
 
@@ -35,7 +35,7 @@ public class DataLoader extends DatabaseHandler {
             }
             //load the core table into local structure
 
-            ResultSet optionalTableResult = statement.executeQuery(optionalModulesQuery);
+            ResultSet optionalTableResult = statement.executeQuery(electiveModulesQuery);
             if (!optionalTableResult.next()) {
                 System.err.println("Optional modules failed to load!");
                 return false;
@@ -64,6 +64,7 @@ public class DataLoader extends DatabaseHandler {
 
     public ResultSet loadModuleData(String studentID) {
         ResultSet coreModuleResult = null;
+        ResultSet electiveModuleResult = null;
         try {
             Connection connection = getConnection();
 
@@ -82,6 +83,11 @@ public class DataLoader extends DatabaseHandler {
                 PreparedStatement coreModuleStatement = connection.prepareStatement(coreModulesQuery);
                 coreModuleStatement.setString(1, courseID);
                 coreModuleResult = coreModuleStatement.executeQuery();
+
+                // Find electives
+                // PreparedStatement electiveModuleStatement = connection.prepareStatement(electiveModulesQuery);
+                // electiveModuleStatement.setString(1, courseID);
+                // electiveModuleResult = coreModuleStatement.executeQuery();
             }
 
             studentResult.close();
