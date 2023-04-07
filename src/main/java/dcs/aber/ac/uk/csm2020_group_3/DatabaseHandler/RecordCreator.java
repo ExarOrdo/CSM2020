@@ -12,8 +12,8 @@ import java.sql.SQLException;
  */
 public class RecordCreator extends DatabaseHandler{
 
-    private Table typeOfRecord;
-    private Record recordObject;
+    private final Table typeOfRecord;
+    private final Record recordObject;
 
     public RecordCreator(Record recordObject) {
         this.recordObject = recordObject;
