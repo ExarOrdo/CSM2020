@@ -84,6 +84,35 @@ public class RecordCreator extends DatabaseHandler{
                 break;
             case MODULE:
 
+                ModuleRecord moduleRecord = (ModuleRecord) recordObject;
+
+                try{
+                    PreparedStatement createRecord = connection.prepareStatement("INSERT INTO MODULE (ModuleID, ModuleName, ModuleDescription, ModuleCredits," +
+                            "ModuleYear, ModuleSemester, ModuleTag1, ModuleTag2, ModuleTag3) VALUES (?,?,?,?,?,?,?,?,?)");
+
+                    createRecord.setString(1, moduleRecord.getModuleId());
+                    createRecord.setString(2, moduleRecord.getModuleName());
+                    createRecord.setString(3, moduleRecord.getModuleDescription());
+                    createRecord.setInt(4, moduleRecord.getModuleCredits());
+                    createRecord.setInt(5, moduleRecord.getModuleYear());
+                    createRecord.setInt(6, moduleRecord.getModuleCredits());
+                    createRecord.setString(7, moduleRecord.getTag1());
+                    createRecord.setString(8, moduleRecord.getTag2());
+                    createRecord.setString(9, moduleRecord.getTag3());
+
+
+                    createRecord.execute();
+                    createRecord.close();
+
+                    System.out.println("Added new module with id: " + moduleRecord.getModuleId() + " and name: " + moduleRecord.getModuleName());
+
+
+                }catch  (Exception err) {
+                    System.err.println("Error when creating Course record in Course table:" + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
+
                 break;
             case MARKS:
 
@@ -92,7 +121,6 @@ public class RecordCreator extends DatabaseHandler{
 
                 CourseRecord courseRecord = (CourseRecord) recordObject;
 
-                this.connection = getConnection();
                 try{
                     PreparedStatement createRecord = connection.prepareStatement("INSERT INTO COURSE (CourseID, CourseName, CourseDescription) VALUES (?,?,?)");
 

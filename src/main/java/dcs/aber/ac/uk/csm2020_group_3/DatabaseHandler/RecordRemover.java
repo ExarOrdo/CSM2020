@@ -35,12 +35,12 @@ public class RecordRemover extends DatabaseHandler{
                 StudentRecord studentRecord = (StudentRecord) recordObject;
 
                 try {
-                    PreparedStatement createStudent = connection.prepareStatement("DELETE FROM STUDENT WHERE StudentID = ?");
+                    PreparedStatement statement = connection.prepareStatement("DELETE FROM STUDENT WHERE StudentID = ?");
 
-                    createStudent.setString(1, studentRecord.getStudentId());
+                    statement.setString(1, studentRecord.getStudentId());
 
-                    createStudent.execute();
-                    createStudent.close();
+                    statement.execute();
+                    statement.close();
 
                     System.out.println("Removed student with id: " + studentRecord.getStudentId());
 
@@ -58,13 +58,13 @@ public class RecordRemover extends DatabaseHandler{
 
                 this.connection = getConnection();
                 try {
-                    PreparedStatement createRecord = connection.prepareStatement("DELETE FROM OPTIONAL_MODULE (CousreID, ModuleID) VALUES (?,?)");
+                    PreparedStatement statement = connection.prepareStatement("DELETE FROM OPTIONAL_MODULE (CousreID, ModuleID) VALUES (?,?)");
 
-                    createRecord.setString(1, optionalModuleRecord.getCourseId());
-                    createRecord.setString(2, optionalModuleRecord.getModuleId());
+                    statement.setString(1, optionalModuleRecord.getCourseId());
+                    statement.setString(2, optionalModuleRecord.getModuleId());
 
-                    createRecord.execute();
-                    createRecord.close();
+                    statement.execute();
+                    statement.close();
 
                     System.out.println("Deleted optional module with id: " + optionalModuleRecord.getModuleId() + " for " +
                             "course with id: +" + optionalModuleRecord.getCourseId());
@@ -82,6 +82,26 @@ public class RecordRemover extends DatabaseHandler{
                 break;
             case MODULE:
 
+                ModuleRecord moduleRecord = (ModuleRecord) recordObject;
+
+                try {
+                    PreparedStatement statement = connection.prepareStatement("DELETE FROM MODULE WHERE ModuleID = ?");
+
+                    statement.setString(1, moduleRecord.getModuleId());
+
+                    statement.execute();
+                    statement.close();
+
+                    System.out.println("Removed module with id: " + moduleRecord.getModuleId());
+
+
+                } catch (Exception err) {
+                    System.err.println("Error when removing module record from Module table:" + err.getMessage());
+                    err.printStackTrace();
+
+                    return false;
+                }
+
                 break;
             case MARKS:
 
@@ -91,12 +111,12 @@ public class RecordRemover extends DatabaseHandler{
                 CourseRecord courseRecord = (CourseRecord) recordObject;
 
                 try {
-                    PreparedStatement createStudent = connection.prepareStatement("DELETE FROM COURSE WHERE CourseID = ?");
+                    PreparedStatement statement = connection.prepareStatement("DELETE FROM COURSE WHERE CourseID = ?");
 
-                    createStudent.setString(1, courseRecord.getCourseId());
+                    statement.setString(1, courseRecord.getCourseId());
 
-                    createStudent.execute();
-                    createStudent.close();
+                    statement.execute();
+                    statement.close();
 
                     System.out.println("Removed course with id: " + courseRecord.getCourseId());
 
