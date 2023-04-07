@@ -88,6 +88,25 @@ public class RecordRemover extends DatabaseHandler{
                 break;
             case COURSE:
 
+                CourseRecord courseRecord = (CourseRecord) recordObject;
+
+                try {
+                    PreparedStatement createStudent = connection.prepareStatement("DELETE FROM COURSE WHERE CourseID = ?");
+
+                    createStudent.setString(1, courseRecord.getCourseId());
+
+                    createStudent.execute();
+                    createStudent.close();
+
+                    System.out.println("Removed course with id: " + courseRecord.getCourseId());
+
+
+                } catch (Exception err) {
+                    System.err.println("Error when removing course record from Course table:" + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
+
                 break;
             default:
                 System.err.println("Unknown type of Record subclass instance type.");

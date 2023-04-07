@@ -59,9 +59,8 @@ public class RecordCreator extends DatabaseHandler{
 
                 OptionalModuleRecord optionalModuleRecord = (OptionalModuleRecord) recordObject;
 
-                this.connection = getConnection();
                 try{
-                    PreparedStatement createRecord = connection.prepareStatement("INSERT INTO OPTIONAL_MODULE (CousreID, ModuleID) VALUES (?,?)");
+                    PreparedStatement createRecord = connection.prepareStatement("INSERT INTO OPTIONAL_MODULE (CourseID, ModuleID) VALUES (?,?)");
 
                     createRecord.setString(1, optionalModuleRecord.getCourseId());
                     createRecord.setString(2,optionalModuleRecord.getModuleId());
@@ -91,6 +90,28 @@ public class RecordCreator extends DatabaseHandler{
                 break;
             case COURSE:
 
+                CourseRecord courseRecord = (CourseRecord) recordObject;
+
+                this.connection = getConnection();
+                try{
+                    PreparedStatement createRecord = connection.prepareStatement("INSERT INTO COURSE (CourseID, CourseName, CourseDescription) VALUES (?,?,?)");
+
+                    createRecord.setString(1, courseRecord.getCourseId());
+                    createRecord.setString(2,courseRecord.getCourseName());
+                    createRecord.setString(3, courseRecord.getCourseDescription());
+
+                    createRecord.execute();
+                    createRecord.close();
+
+                    System.out.println("Added new course with id: " + courseRecord.getCourseId() + " and name: " +
+                            courseRecord.getCourseName());
+
+
+                }catch  (Exception err) {
+                    System.err.println("Error when creating Course record in Course table:" + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
                 break;
             default:
                 System.err.println("Unknown type of Record subclass instance type.");
