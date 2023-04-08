@@ -2,10 +2,7 @@ package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Class responsible for handling the recommendation system,
@@ -19,6 +16,8 @@ public class Recommender {
 
     private ListUpdater listUpdater;
 
+    private ModuleSorter moduleSorter;
+
     private WeightGenerator weightGenerator;
 
     private StrengthCalculator strengthCalculator;
@@ -29,19 +28,6 @@ public class Recommender {
 
     private ElectiveListGenerator electiveListGenerator;
 
-    /**
-     * Lists containing moduleInfo objects per year.
-     */
-
-    public static ArrayList<Object> year1Modules;
-
-    public static ArrayList<Object> year2Modules;
-
-    public static ArrayList<Object> year3Modules;
-
-    public static ArrayList<Object> year4Modules;
-
-
     private DataLoader dataLoader;
 
     /**
@@ -50,6 +36,7 @@ public class Recommender {
      */
     public Recommender(String studentID) {
         dataLoader = new DataLoader();
+        moduleSorter = new ModuleSorter();
         coreListGenerator = new CoreListGenerator(dataLoader);
         electiveListGenerator = new ElectiveListGenerator(dataLoader);
         weightGenerator = new WeightGenerator(coreListGenerator, electiveListGenerator);
@@ -57,13 +44,15 @@ public class Recommender {
         // calls methods after instantiating Recommender (after login/register)
         coreListGenerator.generateCoreList(studentID);
         electiveListGenerator.generateElectiveList(studentID);
+        moduleSorter.sortModules(coreListGenerator.getCoreModulesList());
+        weightGenerator.generateWeights(this.getCoreList(), this.getElectiveList());
     }
 
-    public List<ModuleInfo> getCoreList() {
+    public ArrayList<ModuleInfo> getCoreList() {
         return CoreListGenerator.coreModulesList;
     }
 
-    public List<ModuleInfo> getElectiveList() {
+    public ArrayList<ModuleInfo> getElectiveList() {
         return ElectiveListGenerator.electiveModulesList;
     }
 

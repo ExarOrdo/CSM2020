@@ -7,11 +7,11 @@ import java.sql.ResultSet;
 
 public class DataLoader extends DatabaseHandler {
 
-    private CheckEnrolledModules checkEnrolledModules;
+    private EnrolledModules checkEnrolledModules;
 
     private final String courseQuery = "SELECT StudentCourse FROM STUDENT WHERE StudentID = ?";
-    private final String coreModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
-    private final String electiveModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
+    private final String coreModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
+    private final String electiveModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
     private final String modulesQuery = "SELECT * FROM MODULE";
 
 

@@ -1,5 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ModuleInfo;
@@ -164,7 +165,7 @@ public class RecommendationController implements Initializable {
     private TextArea coreModule1, coreModule2, coreModule3, semester1, semester2, semester3, credits1, credits2, credits3;
 
     private void displayCoreModules() {
-        String studentID = RecordCreator.getCurrentStudentId(); // Use the logged-in student's ID
+        String studentID = DatabaseHandler.getCurrentStudentId(); // Use the logged-in student's ID
         Recommender recommender = new Recommender(studentID);
         List<ModuleInfo> coreModules = recommender.getCoreList();
 

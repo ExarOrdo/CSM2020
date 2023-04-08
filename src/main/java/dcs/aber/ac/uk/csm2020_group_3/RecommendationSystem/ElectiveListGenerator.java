@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ElectiveListGenerator {
 
-    public static List<ModuleInfo> electiveModulesList;
+    public static ArrayList<ModuleInfo> electiveModulesList;
 
     private DataLoader dataLoader;
 
@@ -20,7 +20,14 @@ public class ElectiveListGenerator {
     }
 
     public void generateElectiveList(String studentID) {
-        List<ModuleInfo> electiveModules = new ArrayList<>();
+        ArrayList<ModuleInfo> electiveModules = new ArrayList<>();
+        String tag2 = null;
+        String tag3 = null;
+        String tag4 = null;
+        String tag5 = null;
+        String tag6 = null;
+        String tag7 = null;
+        String tag8 = null;
 
         ResultSet electiveModuleResult = dataLoader.loadModuleData(studentID);
         try {
@@ -28,10 +35,74 @@ public class ElectiveListGenerator {
                 String moduleName = electiveModuleResult.getString("ModuleName");
                 int moduleCredits = electiveModuleResult.getInt("ModuleCredits");
                 int moduleSemester = electiveModuleResult.getInt("ModuleSemester");
-                String tag1 = electiveModuleResult.getString("ModuleName");
-                String tag2 = electiveModuleResult.getString("ModuleName");
-                String tag3 = electiveModuleResult.getString("ModuleName");
-                electiveModules.add(new ModuleInfo(moduleName, moduleCredits, moduleSemester, tag1, tag2, tag3));
+                int moduleYear = electiveModuleResult.getInt("ModuleYear");
+                String tag1 = electiveModuleResult.getString("ModuleTag1");
+                ModuleInfo electiveModule = new ModuleInfo(moduleName, moduleCredits, moduleSemester, moduleYear, tag1);
+
+                try {
+                    tag2 = electiveModuleResult.getString("ModuleTag2");
+                    if (tag2 != null) {
+                        electiveModule.setModuleTag(tag2, 2);
+                    }
+                } catch (SQLException e) {
+                    //e.printStackTrace();
+                }
+
+                try {
+                    tag3 = electiveModuleResult.getString("ModuleTag3");
+                    if (tag3 != null) {
+                        electiveModule.setModuleTag(tag3, 3);
+                    }
+                } catch (SQLException e) {
+                    //e.printStackTrace();
+                }
+
+                try {
+                    tag4 = electiveModuleResult.getString("ModuleTag4");
+                    if (tag4 != null) {
+                        electiveModule.setModuleTag(tag4, 4);
+                    }
+                } catch (SQLException e) {
+                    //e.printStackTrace();
+                }
+
+                try {
+                    tag5 = electiveModuleResult.getString("ModuleTag5");
+                    if (tag5 != null) {
+                        electiveModule.setModuleTag(tag5, 5);
+                    }
+                } catch (SQLException e) {
+                    //e.printStackTrace();
+                }
+
+                try {
+                    tag6 = electiveModuleResult.getString("ModuleTag6");
+                    if (tag6 != null) {
+                        electiveModule.setModuleTag(tag6, 6);
+                    }
+                } catch (SQLException e) {
+                    //e.printStackTrace();
+                }
+
+                try {
+                    tag7 = electiveModuleResult.getString("ModuleTag7");
+                    if (tag7 != null) {
+                        electiveModule.setModuleTag(tag7, 7);
+                    }
+                } catch (SQLException e) {
+                    //e.printStackTrace();
+                }
+
+                try {
+                    tag8 = electiveModuleResult.getString("ModuleTag8");
+                    if (tag8 != null) {
+                        electiveModule.setModuleTag(tag8, 8);
+                    }
+                } catch (SQLException e) {
+                    //e.printStackTrace();
+                }
+
+                electiveModules.add(electiveModule);
             }
             electiveModuleResult.close();
         } catch (SQLException e) {
