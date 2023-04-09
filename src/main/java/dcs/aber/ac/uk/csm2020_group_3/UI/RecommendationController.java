@@ -1,13 +1,13 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
-import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ModuleInfo;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -167,23 +167,29 @@ public class RecommendationController implements Initializable {
     private void displayCoreModules() {
         String studentID = DatabaseHandler.getCurrentStudentId(); // Use the logged-in student's ID
         Recommender recommender = new Recommender(studentID);
-        List<ModuleInfo> coreModules = recommender.getCoreList();
+        List<Module> coreModules = recommender.getCoreList();
 
         if (coreModules.size() >= 1) {
-            coreModule1.setText(coreModules.get(0).getModuleName());
-            semester1.setText("Sem " + coreModules.get(0).getModuleSemester());
-            credits1.setText(coreModules.get(0).getModuleCredits() + " Credits");
+            coreModule1.setText(coreModules.get(0).getName());
+            semester1.setText("Sem " + coreModules.get(0).getSemester());
+            credits1.setText(coreModules.get(0).getCredits() + " Credits");
         }
         if (coreModules.size() >= 2) {
-            coreModule2.setText(coreModules.get(1).getModuleName());
-            semester2.setText("Sem " + coreModules.get(1).getModuleSemester());
-            credits2.setText(coreModules.get(1).getModuleCredits() + " Credits");
+            coreModule2.setText(coreModules.get(1).getName());
+            semester2.setText("Sem " + coreModules.get(1).getSemester());
+            credits2.setText(coreModules.get(1).getCredits() + " Credits");
         }
         if (coreModules.size() >= 3) {
-            coreModule3.setText(coreModules.get(2).getModuleName());
-            semester3.setText("Sem " + coreModules.get(2).getModuleSemester());
-            credits3.setText(coreModules.get(2).getModuleCredits() + " Credits");
+            coreModule3.setText(coreModules.get(2).getName());
+            semester3.setText("Sem " + coreModules.get(2).getSemester());
+            credits3.setText(coreModules.get(2).getCredits() + " Credits");
         }
+    }
+
+    @FXML
+    private ListView high, medium, low;
+
+    private void displayRecommendations(){
     }
 
     @Override

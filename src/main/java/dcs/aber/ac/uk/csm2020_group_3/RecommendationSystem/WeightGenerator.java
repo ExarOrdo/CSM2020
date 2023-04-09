@@ -1,16 +1,12 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * Class responsible for generating and calculating similarity between modules (weights)
  * Gets tags from ResultSet objects from the DataLoader.
  */
-public class WeightGenerator {
-
-    public static HashMap<String, Float> electivesWeightDict;
+public class WeightGenerator extends ModuleHandler{
 
     private ElectiveListGenerator electiveListGenerator;
 
@@ -22,7 +18,7 @@ public class WeightGenerator {
     }
 
     /**
-     * Method that gets tags from ModuleInfo Objects - might not be needed.
+     * Method that gets tags from Module Objects - might not be needed.
      */
     //public ArrayList<String> tagExtractor(){
     //   return
@@ -60,22 +56,20 @@ public class WeightGenerator {
      * combines those to create a weight metric for each elective module.
      * Returns a hashTable - moduleName: weight
      */
-    public void generateWeights(ArrayList<ModuleInfo> currentCores, ArrayList<ModuleInfo> currentElectives) {
-
-        // initialize counter variables
-        electivesWeightDict = new HashMap<>();
+    public void generateWeights(ArrayList<Module> currentCores, ArrayList<Module> currentElectives) {
 
         // run for loop with jaccards
-        for (ModuleInfo currentElective : currentElectives) {
+        for (Module currentElective : currentElectives) {
             float moduleWeight = 0;
-            for (ModuleInfo currentCore : currentCores) {
+            for (Module currentCore : currentCores) {
                 moduleWeight += calculateWeight(currentElective.getTagList(), currentCore.getTagList());
 
             }
             // normalize moduleWeight, put in dict with module name, set public variable to temp variable.
-            electivesWeightDict.put(currentElective.getModuleName(), moduleWeight / currentCores.size());
+            currentElective.setWeight(moduleWeight / currentCores.size());
+            System.out.println(currentElective.getName());
+            System.out.println(currentElective.getWeight());
         }
-        System.out.println(electivesWeightDict);
         }
 
     /**
@@ -89,11 +83,11 @@ public class WeightGenerator {
         Float newWeight = 0f;
 
         // take list of electivesWeightDict values and keys
-        ArrayList<Float> electivesWeightList = new ArrayList<Float>(electivesWeightDict.values());
-        ArrayList<String> electivesWeightKeyList = new ArrayList<String>(electivesWeightDict.keySet());
+        //ArrayList<Float> electivesWeightList = new ArrayList<Float>(electivesWeightDict.values());
+        //ArrayList<String> electivesWeightKeyList = new ArrayList<String>(electivesWeightDict.keySet());
 
         // iterate across weights
-        for (int i = 0; i < electivesWeightList.size(); i++){
+        //for (int i = 0; i < electivesWeightList.size(); i++){
             ;
             // put in recalculated value into Dict
             //electivesWeightDict.put( (electivesWeightKeyList.get(i)), (electivesWeightDict.get(electivesWeightKeyList.get(i)))* REST OF CALCULATION THAT NEEDS
@@ -101,5 +95,4 @@ public class WeightGenerator {
         }
             // recalculate new weight and replace
             // repeat
-    }
 }

@@ -7,25 +7,24 @@ import java.util.ArrayList;
 /**
  * Class parsing core module data and storing them
  */
-public class CoreListGenerator {
+public class CoreListGenerator extends ModuleHandler {
 
-    public static ArrayList<ModuleInfo> coreModulesList;
+    public static ArrayList<Module> coreModulesList;
     private DataLoader dataLoader;
-    private ModuleSorter moduleSorter;
 
     public CoreListGenerator(DataLoader dataLoader) {
         this.dataLoader = dataLoader;
     }
-    public ArrayList<ModuleInfo> getCoreModulesList(){
+    public ArrayList<Module> getCoreModulesList(){
         return coreModulesList;
     }
 
     /**
-     * Creates a list of ModuleInfo objects.
-     * These are immediately sorted by the ModuleSorter
+     * Creates a list of Module objects.
+     * These are immediately sorted by the ModuleHandler
      */
     public void generateCoreList(String studentID) {
-        ArrayList<ModuleInfo> coreModules = new ArrayList<>(30);
+        ArrayList<Module> coreModules = new ArrayList<>(30);
         String tag2 = null;
         String tag3 = null;
         String tag4 = null;
@@ -34,7 +33,6 @@ public class CoreListGenerator {
         String tag7 = null;
         String tag8 = null;
 
-        moduleSorter = new ModuleSorter();
         ResultSet coreModuleResult = dataLoader.loadModuleData(studentID);
         try {
             while (coreModuleResult.next()) {
@@ -43,7 +41,7 @@ public class CoreListGenerator {
                 int moduleSemester = coreModuleResult.getInt("ModuleSemester");
                 int moduleYear = coreModuleResult.getInt("ModuleYear");
                 String tag1 = coreModuleResult.getString("ModuleTag1");
-                ModuleInfo coreModule = new ModuleInfo(moduleName, moduleCredits, moduleSemester, moduleYear, tag1);
+                Module coreModule = new Module(moduleName, moduleCredits, moduleSemester, moduleYear, tag1);
 
                 try {
                     tag2 = coreModuleResult.getString("ModuleTag2");
@@ -117,7 +115,6 @@ public class CoreListGenerator {
 
         System.out.println("Core Modules: " + coreModules);
         coreModulesList = coreModules;
-        moduleSorter.sortModules(coreModulesList);
 
     }
 

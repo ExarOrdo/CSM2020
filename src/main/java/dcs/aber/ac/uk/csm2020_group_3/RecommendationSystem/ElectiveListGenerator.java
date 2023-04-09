@@ -3,15 +3,14 @@ package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class parsing elective module data and storing them
  */
 
-public class ElectiveListGenerator {
+public class ElectiveListGenerator extends ModuleHandler{
 
-    public static ArrayList<ModuleInfo> electiveModulesList;
+    public static ArrayList<Module> electiveModulesList;
 
     private DataLoader dataLoader;
 
@@ -20,7 +19,7 @@ public class ElectiveListGenerator {
     }
 
     public void generateElectiveList(String studentID) {
-        ArrayList<ModuleInfo> electiveModules = new ArrayList<>();
+        ArrayList<Module> electiveModules = new ArrayList<>();
         String tag2 = null;
         String tag3 = null;
         String tag4 = null;
@@ -37,7 +36,7 @@ public class ElectiveListGenerator {
                 int moduleSemester = electiveModuleResult.getInt("ModuleSemester");
                 int moduleYear = electiveModuleResult.getInt("ModuleYear");
                 String tag1 = electiveModuleResult.getString("ModuleTag1");
-                ModuleInfo electiveModule = new ModuleInfo(moduleName, moduleCredits, moduleSemester, moduleYear, tag1);
+                Module electiveModule = new Module(moduleName, moduleCredits, moduleSemester, moduleYear, tag1);
 
                 try {
                     tag2 = electiveModuleResult.getString("ModuleTag2");
