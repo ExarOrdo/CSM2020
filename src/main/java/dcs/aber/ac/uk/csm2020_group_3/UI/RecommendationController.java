@@ -22,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class RecommendationController implements Initializable {
+    public ListView high;
     @FXML
     Button adminBtn;
     @FXML
@@ -198,10 +199,11 @@ public class RecommendationController implements Initializable {
      */
 
     private void displayRecommendations(){
+        /*
         highView = new ListView<>();
         mediumView = new ListView<>();
         lowView = new ListView<>();
-
+*/
         //high = StrengthCalculator.highStrength;
         //medium = StrengthCalculator.mediumStrength;
         //low = StrengthCalculator.lowStrength;
@@ -217,10 +219,12 @@ public class RecommendationController implements Initializable {
             mediumView.getItems().add(StrengthCalculator.mediumStrength.get(j).getName());
 
         }
+
         for ( int k = 0; k < StrengthCalculator.lowStrength.size(); k++){
             lowView.getItems().add(StrengthCalculator.lowStrength.get(k).getName());
 
         }
+
 
 
     }
