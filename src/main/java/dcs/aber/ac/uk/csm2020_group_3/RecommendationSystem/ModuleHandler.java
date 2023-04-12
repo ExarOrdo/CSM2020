@@ -1,6 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Class that sorts modules - from those selected in UI to those from Generators - and stores them.
@@ -73,6 +74,8 @@ public abstract class ModuleHandler {
             }
         }
     }
+
+
 
     public void moveModuleToSelectedList(){
         ;

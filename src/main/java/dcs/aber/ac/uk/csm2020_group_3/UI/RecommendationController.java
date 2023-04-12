@@ -4,6 +4,7 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.StrengthCalculator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -16,6 +17,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.util.List;
+import javafx.scene.layout.VBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class RecommendationController implements Initializable {
     @FXML
@@ -187,13 +191,43 @@ public class RecommendationController implements Initializable {
     }
 
     @FXML
-    private ListView high, medium, low;
+    private ListView<String> highView, mediumView, lowView;
+
+    /**
+     * Takes lists of modules sorted by weight, gets their weight and puts into ListView variables for javaFX
+     */
 
     private void displayRecommendations(){
+        highView = new ListView<>();
+        mediumView = new ListView<>();
+        lowView = new ListView<>();
+
+        //high = StrengthCalculator.highStrength;
+        //medium = StrengthCalculator.mediumStrength;
+        //low = StrengthCalculator.lowStrength;
+
+        // Would be nice to continue working with Module objects the entire way if possible!
+
+        // loop through array lists, add to listview
+        for ( int i = 0; i < StrengthCalculator.highStrength.size(); i++){
+            highView.getItems().add(StrengthCalculator.highStrength.get(i).getName());
+
+        }
+        for ( int j = 0; j < StrengthCalculator.mediumStrength.size(); j++){
+            mediumView.getItems().add(StrengthCalculator.mediumStrength.get(j).getName());
+
+        }
+        for ( int k = 0; k < StrengthCalculator.lowStrength.size(); k++){
+            lowView.getItems().add(StrengthCalculator.lowStrength.get(k).getName());
+
+        }
+
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         displayCoreModules();
+        displayRecommendations();
     }
 }
