@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -20,13 +19,13 @@
             <Font size="20.0" />
          </font></Text>
         <Text layoutX="111.0" layoutY="583.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
-      <Text layoutX="435.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chosen Category:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <TextField editable="false" layoutX="589.0" layoutY="105.0" prefHeight="30.0" prefWidth="180.0" />
-      <Button fx:id="selectBtn" layoutX="233.0" layoutY="91.0" mnemonicParsing="false" onAction="#pressSelectBtn" prefHeight="57.0" prefWidth="180.0" text="Select Category">
+      <CheckBox layoutX="493.0" layoutY="90.0" mnemonicParsing="false" text="Tag 1" />
+      <CheckBox layoutX="493.0" layoutY="119.0" mnemonicParsing="false" text="Tag 4" />
+      <CheckBox layoutX="583.0" layoutY="90.0" mnemonicParsing="false" text="Tag 2" />
+      <CheckBox layoutX="583.0" layoutY="119.0" mnemonicParsing="false" text="Tag 5" />
+      <CheckBox layoutX="673.0" layoutY="90.0" mnemonicParsing="false" text="Tag 3" />
+      <CheckBox layoutX="673.0" layoutY="119.0" mnemonicParsing="false" text="Tag 6" />
+      <Button fx:id="selectBtn" layoutX="261.0" layoutY="90.0" mnemonicParsing="false" onAction="#pressSelectBtn" prefHeight="57.0" prefWidth="180.0" text="Search Modules">
          <font>
             <Font size="16.0" />
          </font>
@@ -38,10 +37,10 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-        <ProgressBar layoutX="311.0" layoutY="185.0" prefHeight="20.0" prefWidth="380.0" progress="0.7" />
+        <ProgressBar layoutX="311.0" layoutY="194.0" prefHeight="20.0" prefWidth="380.0" progress="0.7" />
         <Button layoutX="471.0" layoutY="740.0" mnemonicParsing="false" text="Confirm" />
         <ListView fx:id="highView" layoutX="148.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
-        <ListView fx:id="mediumView" layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0"/>
+        <ListView fx:id="mediumView" layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="lowView" layoutX="679.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
       <Text layoutX="110.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
       <TextArea fx:id="coreModule2" editable="false" layoutX="152.0" layoutY="603.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
@@ -111,8 +110,8 @@
          <children>
             <Pane layoutX="-298.0" layoutY="-77.0" prefHeight="800.0" prefWidth="1000.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="530.0" stroke="BLACK" strokeType="INSIDE" width="560.0" />
-            <TextField layoutX="78.0" layoutY="15.0" prefHeight="30.0" prefWidth="467.0" promptText="Category..." />
-            <ListView layoutX="15.0" layoutY="54.0" prefHeight="405.0" prefWidth="530.0" />
+            <TextField fx:id="searchBar" layoutX="78.0" layoutY="15.0" onKeyTyped="#search" prefHeight="30.0" prefWidth="467.0" promptText="Module..." />
+            <ListView fx:id="allElectivesList" layoutX="15.0" layoutY="54.0" prefHeight="405.0" prefWidth="530.0" />
             <Button layoutX="113.0" layoutY="476.0" mnemonicParsing="false" onAction="#closeSelectPane" prefHeight="25.0" prefWidth="110.0" text="Cancel" />
             <Button layoutX="320.0" layoutY="476.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Confirm" />
             <Text layoutX="15.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" wrappingWidth="66.2255859375">

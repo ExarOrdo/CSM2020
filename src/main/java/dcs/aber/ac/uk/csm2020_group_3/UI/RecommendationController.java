@@ -2,15 +2,20 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ElectiveListGenerator;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.StrengthCalculator;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
@@ -18,9 +23,6 @@ import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.util.List;
 
-import javafx.scene.layout.VBox;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
@@ -183,7 +185,7 @@ public class RecommendationController implements Initializable {
     }
 
     @FXML
-    private ListView<String> highView, mediumView, lowView;
+    private ListView<String> highView, mediumView, lowView, allElectivesList;
 
     /**
      * Takes lists of modules sorted by weight, gets their weight and puts into ListView variables for javaFX
@@ -215,10 +217,7 @@ public class RecommendationController implements Initializable {
             lowView.getItems().add(StrengthCalculator.lowStrength.get(k).getName());
 
         }
-
-
     }
-
 
     private void listViewWrapText(ListView<String> listView){
         listView.setCellFactory(new Callback<>() {
@@ -241,6 +240,30 @@ public class RecommendationController implements Initializable {
         });
     }
 
+    @FXML
+    private TextField searchBar;
+    private ArrayList<String> searchResult = new ArrayList<>();
+    private String lastSearchState = "";
+    private final ArrayList<String> electiveNames = new ArrayList<>();
+
+    public void search(KeyEvent event) throws IOException {
+        if (searchBar.getLength() >= lastSearchState.length() && lastSearchState.length() != 0) {
+            searchResult = updateSearchBar(searchResult, searchBar.getText());
+        } else {
+            searchResult = updateSearchBar(electiveNames, searchBar.getText());
+        }
+        lastSearchState = searchBar.getText();
+        ObservableList<String> searchList = FXCollections.observableArrayList(searchResult);
+        allElectivesList.setItems(searchList);
+    }
+
+    public static ArrayList<String> updateSearchBar(ArrayList<String> modules, String searchString) {
+        ArrayList<String> searchResult = new ArrayList<>();
+        for (String name : modules) {
+            if (name.toLowerCase().startsWith(searchString.toLowerCase())) searchResult.add(name);
+        }
+        return searchResult;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -249,6 +272,9 @@ public class RecommendationController implements Initializable {
         listViewWrapText(highView);
         listViewWrapText(mediumView);
         listViewWrapText(lowView);
-
+        for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
+            allElectivesList.getItems().add(ElectiveListGenerator.electiveModulesList.get(i).getName());
+            electiveNames.add(ElectiveListGenerator.electiveModulesList.get(i).getName());
+        }
     }
 }
