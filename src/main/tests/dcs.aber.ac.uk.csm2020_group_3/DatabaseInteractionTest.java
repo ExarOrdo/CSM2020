@@ -129,10 +129,19 @@ public class DatabaseInteractionTest {
         assertTrue(recordRemover.tryRemovingRecord());
     }
 
-
-
     @Test
     @Order (6)
+    void testRemovingOptionalModule() throws SQLException {
+
+        OptionalModuleRecord optionalModuleRecord = new OptionalModuleRecord(courseId, moduleId);
+
+        RecordRemover recordRemover = new RecordRemover(optionalModuleRecord);
+
+        assertTrue(recordRemover.tryRemovingRecord());
+    }
+
+    @Test
+    @Order (7)
     void testRemovingCourse() throws SQLException {
 
         CourseRecord courseRecord = new CourseRecord(courseId, courseName, courseDescription);
@@ -142,16 +151,6 @@ public class DatabaseInteractionTest {
         assertTrue(recordRemover.tryRemovingRecord());
     }
 
-    @Test
-    @Order (7)
-    void testRemovingOptionalModule() throws SQLException {
-
-        OptionalModuleRecord optionalModuleRecord = new OptionalModuleRecord(courseId, moduleId);
-
-        RecordRemover recordRemover = new RecordRemover(optionalModuleRecord);
-
-        assertTrue(recordRemover.tryRemovingRecord());
-    }
 
     @Test
     @Order (8)
