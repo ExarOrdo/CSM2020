@@ -1,22 +1,31 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.DataLoader;
-import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.StrengthCalculator;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.fxml.Initializable;
+
 import java.io.IOException;
 import java.util.List;
 
+import javafx.scene.layout.VBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.text.Text;
+import javafx.util.Callback;
+
 public class RecommendationController implements Initializable {
+    public ListView high;
     @FXML
     Pane categoryPane;
     @FXML
@@ -112,15 +121,13 @@ public class RecommendationController implements Initializable {
             oneElective = true;
             twoElective = false;
             threeElective = false;
-        }
-        else if (elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
+        } else if (elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective2.setVisible(true);
             closeSelectPane();
             twoElective = true;
             oneElective = false;
             threeElective = false;
-        }
-        else if (elective1.isVisible() && elective2.isVisible() && !elective3.isVisible()) {
+        } else if (elective1.isVisible() && elective2.isVisible() && !elective3.isVisible()) {
             elective3.setVisible(true);
             closeSelectPane();
             threeElective = true;
@@ -142,7 +149,7 @@ public class RecommendationController implements Initializable {
             twoElective = false;
             oneElective = true;
             threeElective = false;
-        }else if (threeElective) {
+        } else if (threeElective) {
             elective3.setVisible(false);
             threeElective = false;
             oneElective = false;
@@ -151,26 +158,97 @@ public class RecommendationController implements Initializable {
     }
 
     @FXML
-    private TextArea coreModule1, coreModule2, coreModule3;
+    private TextArea coreModule1, coreModule2, coreModule3, semester1, semester2, semester3, credits1, credits2, credits3;
 
     private void displayCoreModules() {
-        int studentID = RecordCreator.getCurrentStudentId(); // Use the logged-in student's ID
-        Recommender recommender = new Recommender();
-        List<String> coreModules = recommender.getCoreModulesForStudent(String.valueOf(studentID));
+        String studentID = DatabaseHandler.getCurrentStudentId(); // Use the logged-in student's ID
+        Recommender recommender = new Recommender(studentID);
+        List<Module> coreModules = recommender.getCoreList();
 
         if (coreModules.size() >= 1) {
-            coreModule1.setText(coreModules.get(0));
+            coreModule1.setText(coreModules.get(0).getName());
+            semester1.setText("Sem " + coreModules.get(0).getSemester());
+            credits1.setText(coreModules.get(0).getCredits() + " Credits");
         }
         if (coreModules.size() >= 2) {
-            coreModule2.setText(coreModules.get(1));
+            coreModule2.setText(coreModules.get(1).getName());
+            semester2.setText("Sem " + coreModules.get(1).getSemester());
+            credits2.setText(coreModules.get(1).getCredits() + " Credits");
         }
         if (coreModules.size() >= 3) {
-            coreModule3.setText(coreModules.get(2));
+            coreModule3.setText(coreModules.get(2).getName());
+            semester3.setText("Sem " + coreModules.get(2).getSemester());
+            credits3.setText(coreModules.get(2).getCredits() + " Credits");
         }
     }
+
+    @FXML
+    private ListView<String> highView, mediumView, lowView;
+
+    /**
+     * Takes lists of modules sorted by weight, gets their weight and puts into ListView variables for javaFX
+     */
+
+    private void displayRecommendations() {
+        /*
+        highView = new ListView<>();
+        mediumView = new ListView<>();
+        lowView = new ListView<>();
+*/
+        //high = StrengthCalculator.highStrength;
+        //medium = StrengthCalculator.mediumStrength;
+        //low = StrengthCalculator.lowStrength;
+
+        // Would be nice to continue working with Module objects the entire way if possible!
+
+        // loop through array lists, add to listview
+        for (int i = 0; i < StrengthCalculator.highStrength.size(); i++) {
+            highView.getItems().add(StrengthCalculator.highStrength.get(i).getName());
+
+        }
+        for (int j = 0; j < StrengthCalculator.mediumStrength.size(); j++) {
+            mediumView.getItems().add(StrengthCalculator.mediumStrength.get(j).getName());
+
+        }
+
+        for (int k = 0; k < StrengthCalculator.lowStrength.size(); k++) {
+            lowView.getItems().add(StrengthCalculator.lowStrength.get(k).getName());
+
+        }
+
+
+    }
+
+
+    private void listViewWrapText(ListView<String> listView){
+        listView.setCellFactory(new Callback<>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (!empty && item != null) {
+                            Text text = new Text(item);
+                            text.setWrappingWidth(listView.getWidth() - 20);
+                            setGraphic(text);
+                        } else {
+                            setGraphic(null);
+                        }
+                    }
+                };
+            }
+        });
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         displayCoreModules();
+        displayRecommendations();
+        listViewWrapText(highView);
+        listViewWrapText(mediumView);
+        listViewWrapText(lowView);
+
     }
 }

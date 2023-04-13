@@ -3,22 +3,30 @@ package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.ResultSet;
 
 public class DataLoader extends DatabaseHandler {
 
-    private CheckEnrolledModules checkEnrolledModules;
+    private EnrolledModules checkEnrolledModules;
 
-    private final String coreModulesQuery = "SELECT * FROM CORE_MODULE";
-    private final String optionalModulesQuery = "SELECT * FROM OPTIONAL_MODULE";
+    private final String courseQuery = "SELECT StudentCourse FROM STUDENT WHERE StudentID = ?";
+    private final String coreModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3, m.ModuleTag4, m.ModuleTag5, m.ModuleTag6, m.ModuleTag7, m.ModuleTag8 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
+    private final String electiveModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3, m.ModuleTag4, m.ModuleTag5, m.ModuleTag6, m.ModuleTag7, m.ModuleTag8 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
     private final String modulesQuery = "SELECT * FROM MODULE";
+
 
     public boolean tryLoadingModules() throws SQLException {
         this.connection = DriverManager.getConnection(connectionString);
 
         try {
             Statement statement = connection.createStatement();
+
+            ResultSet studentCourseResult = statement.executeQuery(courseQuery);
+            if (!studentCourseResult.next()) {
+                System.err.println("Student course failed to load!");
+                return false;
+            }
+            //load into local structure
 
             ResultSet coreTableResult = statement.executeQuery(coreModulesQuery);
             if (!coreTableResult.next()) {
@@ -27,7 +35,7 @@ public class DataLoader extends DatabaseHandler {
             }
             //load the core table into local structure
 
-            ResultSet optionalTableResult = statement.executeQuery(optionalModulesQuery);
+            ResultSet optionalTableResult = statement.executeQuery(electiveModulesQuery);
             if (!optionalTableResult.next()) {
                 System.err.println("Optional modules failed to load!");
                 return false;
@@ -44,7 +52,6 @@ public class DataLoader extends DatabaseHandler {
             statement.close();
             connection.close();
 
-            return true;
 
         } catch (Exception err) {
             System.err.println("Error: " + err.getMessage());
@@ -54,15 +61,16 @@ public class DataLoader extends DatabaseHandler {
         return false;
     }
 
-    public List<String> getCoreModulesForStudent(String studentID) {
-        List<String> coreModules = new ArrayList<>();
 
+    public ResultSet loadModuleData(String studentID) {
+        ResultSet coreModuleResult = null;
+        ResultSet electiveModuleResult = null;
         try {
             Connection connection = getConnection();
 
             // Find the course name for the student
             String courseID = "";
-            PreparedStatement studentStatement = connection.prepareStatement("SELECT StudentCourse FROM STUDENT WHERE StudentID = ?");
+            PreparedStatement studentStatement = connection.prepareStatement(courseQuery);
             studentStatement.setString(1, studentID);
             ResultSet studentResult = studentStatement.executeQuery();
             if (studentResult.next()) {
@@ -72,17 +80,14 @@ public class DataLoader extends DatabaseHandler {
 
             if (!courseID.isEmpty()) {
                 // Find the core modules for the course
-                PreparedStatement coreModuleStatement = connection.prepareStatement("SELECT ModuleName FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?");
+                PreparedStatement coreModuleStatement = connection.prepareStatement(coreModulesQuery);
                 coreModuleStatement.setString(1, courseID);
-                ResultSet coreModuleResult = coreModuleStatement.executeQuery();
-                while (coreModuleResult.next()) {
-                    String moduleName = coreModuleResult.getString("ModuleName");
-                    coreModules.add(moduleName);
-                }
+                coreModuleResult = coreModuleStatement.executeQuery();
 
-                // Close the connection
-                coreModuleResult.close();
-                coreModuleStatement.close();
+                // Find electives
+                // PreparedStatement electiveModuleStatement = connection.prepareStatement(electiveModulesQuery);
+                // electiveModuleStatement.setString(1, courseID);
+                // electiveModuleResult = coreModuleStatement.executeQuery();
             }
 
             studentResult.close();
@@ -92,7 +97,7 @@ public class DataLoader extends DatabaseHandler {
             e.printStackTrace();
         }
 
-        System.out.println("Core Modules: " + coreModules); // Debug statement
-        return coreModules;
+        return coreModuleResult;
     }
+
 }

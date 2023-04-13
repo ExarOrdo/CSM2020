@@ -15,37 +15,45 @@ public class Main extends Application {
     // voodoo request processor for magic backend handling
     //USE IT!
     private RequestProcessor requestProcessor;
-    private static Stage currentStage;
+    public static Stage currentStage;
 
+    public FXMLLoader fxmlLoader;
     @Override
     public void start(Stage stage) throws IOException {
         currentStage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
         Parent root = fxmlLoader.load();
         currentStage.setScene(new Scene(root));
         currentStage.show();
         currentStage.setMinHeight(400.0);
         currentStage.setMinWidth(600.0);
+        currentStage.setTitle("Login");
     }
 
     public void changeScene(String fxml) throws IOException{
 
+        final String sceneTitle = fxml.substring(0, fxml.length() - 5);
         switch (fxml) {
             case "Login.fxml", "Register.fxml", "AdminLogin.fxml" -> {
                 currentStage.setMinHeight(430);
                 currentStage.setHeight(430);
                 currentStage.setMinWidth(620);
                 currentStage.setWidth(620);
+                currentStage.setTitle(sceneTitle);
             }
             case "Recommendation.fxml" -> {
                 currentStage.setMinHeight(820);
                 currentStage.setMinWidth(1000);
+                currentStage.setTitle(sceneTitle);
+
             }
             case "StudentRecord.fxml", "Timetable.fxml", "Admin.fxml", "Help.fxml", "AdminTimetable.fxml" -> {
                 currentStage.setMinHeight(540);
                 currentStage.setHeight(540);
                 currentStage.setMinWidth(620);
                 currentStage.setWidth(620);
+                currentStage.setTitle(sceneTitle);
+
             }
         }
         Parent screen = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));

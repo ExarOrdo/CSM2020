@@ -1,17 +1,20 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
-import java.sql.*;
 
-import static dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler.getConnection;
+import java.sql.*;
 
 /**
  * Class used for logging in, checks login credentials in the db
  */
-public class Login {
+
+public class Login extends DatabaseHandler {
 
     private final String studentId;
     private final String password;
-    private Connection connection;
+
+    public static void setCurrentStudentId(String studentId) {
+        currentStudentId = studentId;
+    }
 
     public Login(String studentId, String password) {
         this.studentId = studentId;
@@ -20,7 +23,7 @@ public class Login {
 
     public boolean tryLogin() {
         try {
-            this.connection = getConnection();
+            Connection connection = getConnection();
 
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM STUDENT WHERE StudentID = '" + this.studentId + "' AND StudentPassword = '" + this.password + "'";
@@ -29,7 +32,6 @@ public class Login {
             if (resultSet.next()) {
                 return true;
             }
-
             resultSet.close();
             statement.close();
         } catch (Exception err) {
