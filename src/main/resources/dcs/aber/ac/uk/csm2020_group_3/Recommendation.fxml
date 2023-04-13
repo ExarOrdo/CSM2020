@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -40,7 +41,7 @@
         <ProgressBar layoutX="311.0" layoutY="185.0" prefHeight="20.0" prefWidth="380.0" progress="0.7" />
         <Button layoutX="471.0" layoutY="740.0" mnemonicParsing="false" text="Confirm" />
         <ListView fx:id="highView" layoutX="148.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
-        <ListView fx:id="mediumView" layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
+        <ListView fx:id="mediumView" layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0"/>
         <ListView fx:id="lowView" layoutX="679.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
       <Text layoutX="110.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
       <TextArea fx:id="coreModule2" editable="false" layoutX="152.0" layoutY="603.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
