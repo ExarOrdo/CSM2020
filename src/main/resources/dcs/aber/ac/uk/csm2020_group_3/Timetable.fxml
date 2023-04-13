@@ -32,31 +32,31 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <TextArea prefHeight="200.0" prefWidth="200.0" />
-         <TextArea layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-         <TextArea layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-         <TextArea layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-         <TextArea layoutX="100.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-         <TextArea layoutX="370.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-         <TextArea layoutX="280.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <TextArea layoutX="190.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         <TextArea layoutX="100.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-         <TextArea layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-         <TextArea layoutX="10.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
-         <TextArea layoutX="100.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <TextArea layoutX="190.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-         <TextArea layoutX="280.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-         <TextArea layoutX="370.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-         <TextArea layoutX="10.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
-         <TextArea layoutX="100.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         <TextArea layoutX="190.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-         <TextArea layoutX="280.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-         <TextArea layoutX="370.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-         <TextArea layoutX="10.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
-         <TextArea layoutX="100.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         <TextArea layoutX="190.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-         <TextArea layoutX="280.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-         <TextArea layoutX="370.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+         <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" />
+         <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+         <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+         <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
+         <TextArea editable="false" layoutX="100.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
+         <TextArea editable="false" layoutX="370.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+         <TextArea editable="false" layoutX="280.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <TextArea editable="false" layoutX="190.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         <TextArea editable="false" layoutX="100.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         <TextArea editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         <TextArea editable="false" layoutX="10.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+         <TextArea editable="false" layoutX="100.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <TextArea editable="false" layoutX="190.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         <TextArea editable="false" layoutX="280.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+         <TextArea editable="false" layoutX="370.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+         <TextArea editable="false" layoutX="10.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+         <TextArea editable="false" layoutX="100.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <TextArea editable="false" layoutX="190.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+         <TextArea editable="false" layoutX="280.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+         <TextArea editable="false" layoutX="370.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+         <TextArea editable="false" layoutX="10.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+         <TextArea editable="false" layoutX="100.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <TextArea editable="false" layoutX="190.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+         <TextArea editable="false" layoutX="280.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+         <TextArea editable="false" layoutX="370.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
       </children>
    </GridPane>
 
