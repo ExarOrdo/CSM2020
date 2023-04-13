@@ -58,10 +58,9 @@ public class RecordRemover extends DatabaseHandler{
 
                 this.connection = getConnection();
                 try {
-                    PreparedStatement statement = connection.prepareStatement("DELETE FROM OPTIONAL_MODULE (CousreID, ModuleID) VALUES (?,?)");
+                    PreparedStatement statement = connection.prepareStatement("DELETE FROM OPTIONAL_MODULE WHERE ModuleId = ?");
 
-                    statement.setString(1, optionalModuleRecord.getCourseId());
-                    statement.setString(2, optionalModuleRecord.getModuleId());
+                    statement.setString(1, optionalModuleRecord.getModuleId());
 
                     statement.execute();
                     statement.close();
