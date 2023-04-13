@@ -6,7 +6,23 @@ import java.util.ArrayList;
  * Class responsible for generating and calculating similarity between modules (weights)
  * Gets tags from ResultSet objects from the DataLoader.
  */
-public class WeightGenerator {
+public class WeightGenerator extends ModuleHandler{
+
+    private ElectiveListGenerator electiveListGenerator;
+
+    private CoreListGenerator coreListGenerator;
+
+    public WeightGenerator (CoreListGenerator coreListGenerator, ElectiveListGenerator electiveListGenerator) {
+        this.coreListGenerator = coreListGenerator;
+        this.electiveListGenerator = electiveListGenerator;
+    }
+
+    /**
+     * Method that gets tags from Module Objects - might not be needed.
+     */
+    //public ArrayList<String> tagExtractor(){
+    //   return
+    //}
 
     /**
      * Calculates Jaccard's index between two lists of tags
@@ -35,21 +51,48 @@ public class WeightGenerator {
         return weight;
     }
 
+    /**
+     * Method that generates weights between each elective module and each core module, then
+     * combines those to create a weight metric for each elective module.
+     * Returns a hashTable - moduleName: weight
+     */
+    public void generateWeights(ArrayList<Module> currentCores, ArrayList<Module> currentElectives) {
+
+        // run for loop with jaccards
+        for (Module currentElective : currentElectives) {
+            float moduleWeight = 0;
+            for (Module currentCore : currentCores) {
+                moduleWeight += calculateWeight(currentElective.getTagList(), currentCore.getTagList());
+
+            }
+            // normalize moduleWeight, put in dict with module name, set public variable to temp variable.
+            currentElective.setWeight(moduleWeight / currentCores.size());
+            System.out.println(currentElective.getName());
+            System.out.println(currentElective.getWeight());
+        }
+        }
 
     /**
-     * Gets currently enrolled modules for student.
-     * Gets currently selected modules for student.
-     * Takes optional module as an argument.
-     * Calculates the weights between optional module and enrolled + selected modules.
-     * Returns an arrayList of weights
+     * Method that is called when an elective is selected by user.
+     * Recalculates moduleWeights with a slight bias towards chosen elective.
+     * ****************************
+     * THIS FUNCTION ASSUMES THAT UPON SELECTING a MODULE IT IS ADDED TO A LIST, WHICH IS USED IN CALCULATION BELOW
      */
-    public static void GetWeights() {
+    public static void recalculateWeights() {
 
-        // use studentID
-        // get the required module data
-        // access currentModuleWeights
-        // add to it
-        ;
-    }
+        Float newWeight = 0f;
 
+        // take list of electivesWeightDict values and keys
+        //ArrayList<Float> electivesWeightList = new ArrayList<Float>(electivesWeightDict.values());
+        //ArrayList<String> electivesWeightKeyList = new ArrayList<String>(electivesWeightDict.keySet());
+
+        // iterate across weights
+        //for (int i = 0; i < electivesWeightList.size(); i++){
+            ;
+            // put in recalculated value into Dict
+            //electivesWeightDict.put( (electivesWeightKeyList.get(i)), (electivesWeightDict.get(electivesWeightKeyList.get(i)))* REST OF CALCULATION THAT NEEDS
+            // SELECTED MODULES BEFORE ELECTIVE IS CHOSEN + SELECTED MODULES AFTER ELECTIVE IS CHOSEN BY CONTROLLER);
+        }
+            // recalculate new weight and replace
+            // repeat
 }
