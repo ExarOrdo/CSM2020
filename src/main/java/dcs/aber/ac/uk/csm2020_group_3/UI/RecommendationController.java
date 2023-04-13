@@ -27,8 +27,6 @@ import javafx.util.Callback;
 public class RecommendationController implements Initializable {
     public ListView high;
     @FXML
-    Button adminBtn;
-    @FXML
     Pane categoryPane;
     @FXML
     ComboBox futureModulesDropDown;
@@ -90,14 +88,6 @@ public class RecommendationController implements Initializable {
 
         Main main = new Main();
         main.changeScene("StudentRecord.fxml");
-
-    }
-
-    @FXML
-    private void toAdmin() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("Admin.fxml");
 
     }
 
