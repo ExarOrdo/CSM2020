@@ -248,16 +248,16 @@ public class RecommendationController implements Initializable {
 
     public void search(KeyEvent event) throws IOException {
         if (searchBar.getLength() >= lastSearchState.length() && lastSearchState.length() != 0) {
-            searchResult = updateSearchBar(searchResult, searchBar.getText());
+            searchResult = getSearch(searchResult, searchBar.getText());
         } else {
-            searchResult = updateSearchBar(electiveNames, searchBar.getText());
+            searchResult = getSearch(electiveNames, searchBar.getText());
         }
         lastSearchState = searchBar.getText();
         ObservableList<String> searchList = FXCollections.observableArrayList(searchResult);
         allElectivesList.setItems(searchList);
     }
 
-    public static ArrayList<String> updateSearchBar(ArrayList<String> modules, String searchString) {
+    public static ArrayList<String> getSearch(ArrayList<String> modules, String searchString) {
         ArrayList<String> searchResult = new ArrayList<>();
         for (String name : modules) {
             if (name.toLowerCase().startsWith(searchString.toLowerCase())) searchResult.add(name);
