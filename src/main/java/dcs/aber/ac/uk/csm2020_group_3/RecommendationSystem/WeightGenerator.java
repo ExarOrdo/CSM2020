@@ -1,18 +1,24 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.util.ArrayList;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ModuleHandler;
 
 /**
  * Class responsible for generating and calculating similarity between modules (weights)
  * Gets tags from ResultSet objects from the DataLoader.
  */
-public class WeightGenerator extends ModuleHandler{
+public class WeightGenerator extends ModuleHandler {
 
+
+    /**
+     * Bias determines how much current electives change the weights of suggested electives, from 1-4 (for now)
+     */
+    private Integer bias = 2;
     private ElectiveListGenerator electiveListGenerator;
 
     private CoreListGenerator coreListGenerator;
 
-    public WeightGenerator (CoreListGenerator coreListGenerator, ElectiveListGenerator electiveListGenerator) {
+    public WeightGenerator(CoreListGenerator coreListGenerator, ElectiveListGenerator electiveListGenerator) {
         this.coreListGenerator = coreListGenerator;
         this.electiveListGenerator = electiveListGenerator;
     }
@@ -70,7 +76,7 @@ public class WeightGenerator extends ModuleHandler{
             System.out.println(currentElective.getName());
             System.out.println(currentElective.getWeight());
         }
-        }
+    }
 
     /**
      * Method that is called when an elective is selected by user.
@@ -78,21 +84,34 @@ public class WeightGenerator extends ModuleHandler{
      * ****************************
      * THIS FUNCTION ASSUMES THAT UPON SELECTING a MODULE IT IS ADDED TO A LIST, WHICH IS USED IN CALCULATION BELOW
      */
-    public static void recalculateWeights() {
+    public void recalculateWeights() {
 
         Float newWeight = 0f;
 
-        // take list of electivesWeightDict values and keys
-        //ArrayList<Float> electivesWeightList = new ArrayList<Float>(electivesWeightDict.values());
-        //ArrayList<String> electivesWeightKeyList = new ArrayList<String>(electivesWeightDict.keySet());
+        // **********HALP PLS*********
+        //I want to access the variables:
+        getModuleAmount();
+        currentModuleAmount;
 
-        // iterate across weights
-        //for (int i = 0; i < electivesWeightList.size(); i++){
-            ;
-            // put in recalculated value into Dict
-            //electivesWeightDict.put( (electivesWeightKeyList.get(i)), (electivesWeightDict.get(electivesWeightKeyList.get(i)))* REST OF CALCULATION THAT NEEDS
-            // SELECTED MODULES BEFORE ELECTIVE IS CHOSEN + SELECTED MODULES AFTER ELECTIVE IS CHOSEN BY CONTROLLER);
+        // have updated electivelist with chosen removed
+        // iterate through modules in electiveList
+        // modify their weights by:
+
+        // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
+        // where old amount = all modules - newly added.
+        // where new amount = newlyaddedmodules.size()
+        // where newWeight = calculateWeight( newly added module/modules, electiveList with new ones removed)
+
+
+        // iterate across modules in electives list
+        for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
+
+            // assign modules new weights
+            ElectiveListGenerator.electiveModulesList.get(i).setWeight(                    );
+
+
+            ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (       /newlyAddedModules.size())
         }
-            // recalculate new weight and replace
-            // repeat
+
+    }
 }

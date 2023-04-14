@@ -27,6 +27,7 @@ public class ElectiveListGenerator extends ModuleHandler{
         String tag6 = null;
         String tag7 = null;
         String tag8 = null;
+        String prerequisiteModule = "";
 
         ResultSet electiveModuleResult = dataLoader.loadModuleData(studentID);
         try {
@@ -96,6 +97,15 @@ public class ElectiveListGenerator extends ModuleHandler{
                     tag8 = electiveModuleResult.getString("ModuleTag8");
                     if (tag8 != null) {
                         electiveModule.setModuleTag(tag8, 8);
+                    }
+                } catch (SQLException e) {
+                    //e.printStackTrace();
+                }
+
+                try{
+                    prerequisiteModule = electiveModuleResult.getString("ModulePrerequisite");
+                    if (prerequisiteModule != null) {
+                        electiveModule.setPrerequisite(prerequisiteModule);
                     }
                 } catch (SQLException e) {
                     //e.printStackTrace();

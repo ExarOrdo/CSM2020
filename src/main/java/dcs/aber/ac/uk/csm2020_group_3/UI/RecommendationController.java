@@ -3,6 +3,7 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ModuleHandler;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.StrengthCalculator;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import java.util.List;
 import javafx.scene.layout.VBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 
 public class RecommendationController implements Initializable {
     public ListView high;
@@ -128,15 +130,13 @@ public class RecommendationController implements Initializable {
             oneElective = true;
             twoElective = false;
             threeElective = false;
-        }
-        else if (elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
+        } else if (elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective2.setVisible(true);
             closeSelectPane();
             twoElective = true;
             oneElective = false;
             threeElective = false;
-        }
-        else if (elective1.isVisible() && elective2.isVisible() && !elective3.isVisible()) {
+        } else if (elective1.isVisible() && elective2.isVisible() && !elective3.isVisible()) {
             elective3.setVisible(true);
             closeSelectPane();
             threeElective = true;
@@ -158,7 +158,7 @@ public class RecommendationController implements Initializable {
             twoElective = false;
             oneElective = true;
             threeElective = false;
-        }else if (threeElective) {
+        } else if (threeElective) {
             elective3.setVisible(false);
             threeElective = false;
             oneElective = false;
@@ -198,7 +198,7 @@ public class RecommendationController implements Initializable {
      * Takes lists of modules sorted by weight, gets their weight and puts into ListView variables for javaFX
      */
 
-    private void displayRecommendations(){
+    private void displayRecommendations() {
         /*
         highView = new ListView<>();
         mediumView = new ListView<>();
@@ -211,23 +211,48 @@ public class RecommendationController implements Initializable {
         // Would be nice to continue working with Module objects the entire way if possible!
 
         // loop through array lists, add to listview
-        for ( int i = 0; i < StrengthCalculator.highStrength.size(); i++){
+        for (int i = 0; i < StrengthCalculator.highStrength.size(); i++) {
             highView.getItems().add(StrengthCalculator.highStrength.get(i).getName());
 
         }
-        for ( int j = 0; j < StrengthCalculator.mediumStrength.size(); j++){
+        for (int j = 0; j < StrengthCalculator.mediumStrength.size(); j++) {
             mediumView.getItems().add(StrengthCalculator.mediumStrength.get(j).getName());
 
         }
 
-        for ( int k = 0; k < StrengthCalculator.lowStrength.size(); k++){
+        for (int k = 0; k < StrengthCalculator.lowStrength.size(); k++) {
             lowView.getItems().add(StrengthCalculator.lowStrength.get(k).getName());
+        }
+    }
+
+    /**
+     * Bunch of functions that run when an elective is chosen in the UI.
+     */
+    private void onElectiveChosen(){
+
+        ////// actual steps
+        // gets module from module elective selected
+        // if in string form, find module in elective list, call this module chosenModule below.
+
+        // check prereq calls sort(which inherently checks for credits)
+            // saves previousModuleAmount and currentModuleAmount
+
+        ////// overall steps
+        // get module/modules chosen
+        // check prereq
+        // checks credits
+        // sorts into list
+        // run recalculate
+        // display new electives in UI
+        // show new weights in UI
+        // set newlyAddedModules to empty again.
 
         }
 
-
-
-    }
+    private void confirm(){
+            // when confirm is pressed, local moduleYearLists are added to db
+            //,or they are
+        }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

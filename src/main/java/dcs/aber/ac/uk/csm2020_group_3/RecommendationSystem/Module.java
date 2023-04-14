@@ -3,6 +3,7 @@ package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 import java.util.ArrayList;
 
 public class Module implements Comparable<Module> {
+    private String prerequisiteModule;
     private float Weight;
     private String Name;
     private int Credits;
@@ -31,6 +32,7 @@ public class Module implements Comparable<Module> {
         this.tag7 = null;
         this.tag8 = null;
         this.Weight = 0f;
+        this.prerequisiteModule = "";
 
     }
 
@@ -75,6 +77,14 @@ public class Module implements Comparable<Module> {
 
     public void setWeight(Float weight) {
         this.Weight = weight;
+    }
+
+    public void setPrerequisite(String prerequisitename){
+        this.prerequisiteModule = prerequisitename;
+    }
+
+    public String getPrerequisite(){
+        return this.prerequisiteModule;
     }
 
     public ArrayList<String> getTagList() {
