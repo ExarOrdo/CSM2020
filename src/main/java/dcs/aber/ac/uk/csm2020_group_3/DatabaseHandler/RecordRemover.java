@@ -2,6 +2,7 @@ package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.Record;
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -77,6 +78,27 @@ public class RecordRemover extends DatabaseHandler{
 
                 break;
             case CORE_MODULE:
+
+                CoreModuleRecord coreModuleRecord = (CoreModuleRecord) recordObject;
+
+                this.connection = getConnection();
+                try {
+                    PreparedStatement statement = connection.prepareStatement("DELETE FROM CORE_MODULE WHERE ModuleId = ?");
+
+                    statement.setString(1, coreModuleRecord.getModuleId());
+
+                    statement.execute();
+                    statement.close();
+
+                    System.out.println("Deleted core module with id: " + coreModuleRecord.getModuleId() + " for " +
+                            "course with id: +" + coreModuleRecord.getCourseId());
+
+
+                } catch (Exception err) {
+                    System.err.println("Error when deleting Core module record in Core_Module table:" + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
 
                 break;
             case MODULE:

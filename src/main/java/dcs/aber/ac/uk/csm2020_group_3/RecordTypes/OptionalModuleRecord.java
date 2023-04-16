@@ -5,7 +5,7 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table;
 /**
  * Class for holding information about optional module record, used when dealing with db
  */
-public class OptionalModuleRecord extends Record{
+public class OptionalModuleRecord extends Record {
 
     private String courseId;
 

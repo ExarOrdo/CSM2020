@@ -2,10 +2,7 @@ package dcs.aber.ac.uk.csm2020_group_3;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordRemover;
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.CourseRecord;
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.ModuleRecord;
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.OptionalModuleRecord;
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.StudentRecord;
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -13,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import java.sql.SQLException;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,6 +54,8 @@ public class DatabaseInteractionTest {
     private final CourseRecord courseRecord = new CourseRecord(courseId, courseName, courseDescription);
     private final OptionalModuleRecord optionalModuleRecord = new OptionalModuleRecord(courseId, moduleId);
 
+    private final CoreModuleRecord coreModuleRecord = new CoreModuleRecord(courseId, moduleId);
+
     //
     private void createStudentRecord() throws SQLException {
         RecordCreator recordCreator = new RecordCreator(studentRecord);
@@ -74,6 +74,11 @@ public class DatabaseInteractionTest {
 
     private void createOptionalRecord() throws SQLException {
         RecordCreator recordCreator = new RecordCreator(optionalModuleRecord);
+        recordCreator.tryCreatingRecord();
+    }
+
+    private void createCoreRecord() throws SQLException {
+        RecordCreator recordCreator = new RecordCreator(coreModuleRecord);
         recordCreator.tryCreatingRecord();
     }
 
@@ -115,12 +120,20 @@ public class DatabaseInteractionTest {
         assertTrue(recordCreator.tryCreatingRecord());
     }
 
+    @Test
+    @Order (5)
+    void testCreatingCoreModule() throws SQLException {
+        RecordCreator recordCreator = new RecordCreator(coreModuleRecord);
+
+        assertTrue(recordCreator.tryCreatingRecord());
+    }
+
 
 
     //===================================================
     //then test removing them
     @Test
-    @Order(5)
+    @Order(6)
     void testRemovingStudent() throws SQLException {
 
         RecordRemover recordRemover = new RecordRemover(studentRecord);
@@ -130,10 +143,8 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (6)
+    @Order (7)
     void testRemovingOptionalModule() throws SQLException {
-
-        OptionalModuleRecord optionalModuleRecord = new OptionalModuleRecord(courseId, moduleId);
 
         RecordRemover recordRemover = new RecordRemover(optionalModuleRecord);
 
@@ -141,10 +152,17 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (7)
+    @Order (8)
+    void testRemovingCoreModule() throws SQLException {
+        RecordRemover recordRemover = new RecordRemover(coreModuleRecord);
+
+        assertTrue(recordRemover.tryRemovingRecord());
+    }
+
+    @Test
+    @Order (9)
     void testRemovingCourse() throws SQLException {
 
-        CourseRecord courseRecord = new CourseRecord(courseId, courseName, courseDescription);
 
         RecordRemover recordRemover = new RecordRemover(courseRecord);
 
@@ -153,11 +171,8 @@ public class DatabaseInteractionTest {
 
 
     @Test
-    @Order (8)
+    @Order (10)
     void testRemovingModule() throws SQLException {
-
-        ModuleRecord moduleRecord = new ModuleRecord(moduleId, moduleName, moduleDescription, moduleCredits, moduleYear,
-                moduleSemester, tag1, tag2, tag3);
 
         RecordRemover recordRemover = new RecordRemover(moduleRecord);
 

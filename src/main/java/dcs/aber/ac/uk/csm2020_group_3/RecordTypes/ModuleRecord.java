@@ -2,7 +2,7 @@ package dcs.aber.ac.uk.csm2020_group_3.RecordTypes;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table;
 
-public class ModuleRecord extends Record{
+public class ModuleRecord extends Record {
 
     private String moduleId;
 

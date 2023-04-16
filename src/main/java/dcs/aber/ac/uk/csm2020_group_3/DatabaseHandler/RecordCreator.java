@@ -7,8 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Creates a record for a new user
- * might need marks??? modules????
+ * Creates a record for any of the existing tables in our db
  */
 public class RecordCreator extends DatabaseHandler{
 
@@ -80,6 +79,27 @@ public class RecordCreator extends DatabaseHandler{
 
                 break;
             case CORE_MODULE:
+
+                CoreModuleRecord coreModuleRecord = (CoreModuleRecord) recordObject;
+
+                try{
+                    PreparedStatement createRecord = connection.prepareStatement("INSERT INTO CORE_MODULE (CourseID, ModuleID) VALUES (?,?)");
+
+                    createRecord.setString(1, coreModuleRecord.getCourseId());
+                    createRecord.setString(2, coreModuleRecord.getModuleId());
+
+                    createRecord.execute();
+                    createRecord.close();
+
+                    System.out.println("Added new core module with id: " + coreModuleRecord.getModuleId() + " for " +
+                            "course with id: +" + coreModuleRecord.getCourseId());
+
+
+                }catch  (Exception err) {
+                    System.err.println("Error when creating Core module record in Core_Module table:" + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
 
                 break;
             case MODULE:

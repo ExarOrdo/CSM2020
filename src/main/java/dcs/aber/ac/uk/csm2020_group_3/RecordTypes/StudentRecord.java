@@ -5,7 +5,7 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table;
 /**
  * Holds data regarding single student record, used when dealing with db
  */
-public class StudentRecord extends Record{
+public class StudentRecord extends Record {
 
     private String studentId;
 
