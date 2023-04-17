@@ -20,8 +20,7 @@
             <Button fx:id="recommendationBtn" layoutX="6.0" layoutY="120.0" mnemonicParsing="false" onAction="#toRecommendation" prefHeight="30.0" prefWidth="128.0" text="Recommendations" />
             <Button fx:id="timetableBtn" layoutX="6.0" layoutY="170.0" mnemonicParsing="false" onAction="#toTimetable" prefHeight="30.0" prefWidth="128.0" text="Timetable" />
             <Button fx:id="helpBtn" layoutX="6.0" layoutY="220.0" mnemonicParsing="false" onAction="#toHelp" prefHeight="30.0" prefWidth="128.0" text="Help" />
-            <Button fx:id="adminBtn" layoutX="6.0" layoutY="270.0" mnemonicParsing="false" onAction="#toAdmin" prefHeight="30.0" prefWidth="128.0" text="Admin" />
-            <Button fx:id="logoutBtn" layoutX="6.0" layoutY="320.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="128.0" text="Log-Out" />
+            <Button fx:id="logoutBtn" layoutX="6.0" layoutY="270.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="128.0" text="Log-Out" />
         </children>
     </Pane>
     <Button fx:id="burgerBtn" layoutX="8.0" layoutY="5.0" minWidth="40.0" mnemonicParsing="false" onAction="#pressBurgerBtn" prefHeight="40.0" prefWidth="40.0">

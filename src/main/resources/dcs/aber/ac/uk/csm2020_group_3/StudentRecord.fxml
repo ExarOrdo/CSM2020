@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="510.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.StudentRecordController">
+<AnchorPane prefHeight="510.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.StudentRecordController">
     <Text layoutX="365.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID:" />
     <Text layoutX="80.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" />
     <ComboBox fx:id="yearComboBox" editable="true" layoutX="122.0" layoutY="55.0" prefWidth="150.0" />
-    <ListView layoutX="80.0" layoutY="94.0" prefHeight="388.0" prefWidth="267.0" />
+    <TableView fx:id="studentModuleTableView" layoutX="80.0" layoutY="94.0" prefHeight="388.0" prefWidth="267.0">
+        <columns>
+            <TableColumn fx:id="moduleIDColumn" text="Module ID" />
+            <TableColumn fx:id="studentMarkColumn" text="Student Mark" />
+            <TableColumn fx:id="moduleMarkDateColumn" prefWidth="75.0" text="Mark Date" />
+        </columns>
+    </TableView>
     <Label layoutX="232.0" layoutY="10.0" text="Student Record">
         <font>
             <Font size="20.0" />
@@ -24,9 +23,9 @@
     </Label>
    <Text layoutX="365.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
    <Text layoutX="365.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course:" />
-   <TextField layoutX="430.0" layoutY="88.0" />
-   <TextField layoutX="430.0" layoutY="123.0" />
-   <TextField layoutX="430.0" layoutY="158.0" />
+   <Label fx:id="studentIDField" layoutX="430.0" layoutY="92.0" />
+   <Label fx:id="studentNameField" layoutX="430.0" layoutY="127.0" />
+   <Label fx:id="studentCourseField" layoutX="430.0" layoutY="162.0" />
     <Pane prefHeight="510.0" prefWidth="55.0" style="-fx-background-color: lightgrey;" />
     <Pane fx:id="expandedPane" layoutX="-1.0" prefHeight="510.0" prefWidth="140.0" style="-fx-background-color: lightgrey;" visible="false">
         <children>
@@ -35,8 +34,7 @@
             <Button fx:id="recommendationBtn" layoutX="6.0" layoutY="120.0" mnemonicParsing="false" onAction="#toRecommendation" prefHeight="30.0" prefWidth="128.0" text="Recommendations" />
             <Button fx:id="timetableBtn" layoutX="6.0" layoutY="170.0" mnemonicParsing="false" onAction="#toTimetable" prefHeight="30.0" prefWidth="128.0" text="Timetable" />
             <Button fx:id="helpBtn" layoutX="6.0" layoutY="220.0" mnemonicParsing="false" onAction="#toHelp" prefHeight="30.0" prefWidth="128.0" text="Help" />
-            <Button fx:id="adminBtn" layoutX="6.0" layoutY="270.0" mnemonicParsing="false" onAction="#toAdmin" prefHeight="30.0" prefWidth="128.0" text="Admin" />
-            <Button fx:id="logoutBtn" layoutX="6.0" layoutY="320.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="128.0" text="Log-Out" />
+            <Button fx:id="logoutBtn" layoutX="6.0" layoutY="270.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="128.0" text="Log-Out" />
         </children>
     </Pane>
     <Button fx:id="burgerBtn" layoutX="8.0" layoutY="5.0" minWidth="40.0" mnemonicParsing="false" onAction="#pressBurgerBtn" prefHeight="40.0" prefWidth="40.0">
@@ -46,4 +44,6 @@
                     <Image url="@burgerBtn.png" />
                 </image></ImageView>
         </graphic></Button>
+    <TextArea fx:id="moduleNameField" layoutX="373.0" layoutY="263.0" prefHeight="26.0" prefWidth="200.0" editable="false" wrapText="true" />
+    <TextArea fx:id="moduleDescriptionField" layoutX="372.0" layoutY="309.0" prefHeight="173.0" prefWidth="200.0" editable="false" wrapText="true" />
 </AnchorPane>

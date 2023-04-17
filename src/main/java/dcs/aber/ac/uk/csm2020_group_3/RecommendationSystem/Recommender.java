@@ -47,6 +47,7 @@ public class Recommender extends ModuleHandler{
         strengthCalculator.sortByWeights(this.getElectiveList());
     }
 
+
     public ArrayList<Module> getCoreList() {
         return CoreListGenerator.coreModulesList;
     }

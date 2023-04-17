@@ -4,29 +4,36 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
-import java.io.IOException;
-import java.util.List;
-import javafx.scene.layout.VBox;
+
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ElectiveListGenerator;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.StrengthCalculator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
+
+import java.io.IOException;
+import java.util.List;
+
+import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 
 public class RecommendationController implements Initializable {
 
     private Recommender recommender;
 
-    @FXML
-    Button adminBtn;
     @FXML
     Pane categoryPane;
     @FXML
@@ -89,14 +96,6 @@ public class RecommendationController implements Initializable {
 
         Main main = new Main();
         main.changeScene("StudentRecord.fxml");
-
-    }
-
-    @FXML
-    private void toAdmin() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("Admin.fxml");
 
     }
 
@@ -195,7 +194,7 @@ public class RecommendationController implements Initializable {
     }
 
     @FXML
-    private ListView<String> highView, mediumView, lowView;
+    private ListView<String> highView, mediumView, lowView, allElectivesList;
 
     /**
      * Takes lists of modules sorted by weight, gets their weight and puts into ListView variables for javaFX
@@ -232,9 +231,7 @@ public class RecommendationController implements Initializable {
      * Bunch of functions that run when an elective is chosen in the UI.
      */
     private void onElectiveChosen(){
-
-
-        // get module/modules chosen
+    // get module/modules chosen
         // check prereq
         // checks credits
         // sorts into list
@@ -259,10 +256,64 @@ public class RecommendationController implements Initializable {
             //,or they are
         }
 
+    private void listViewWrapText(ListView<String> listView){
+        listView.setCellFactory(new Callback<>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (!empty && item != null) {
+                            Text text = new Text(item);
+                            text.setWrappingWidth(listView.getWidth() - 20);
+                            setGraphic(text);
+                        } else {
+                            setGraphic(null);
+                        }
+                    }
+                };
+            }
+        });
+    }
+
+    @FXML
+    private TextField searchBar;
+    private ArrayList<String> searchResult = new ArrayList<>();
+    private String lastSearchState = "";
+    private final ArrayList<String> electiveNames = new ArrayList<>();
+
+    public void search(KeyEvent event) throws IOException {
+        if (searchBar.getLength() >= lastSearchState.length() && lastSearchState.length() != 0) {
+            searchResult = getSearch(searchResult, searchBar.getText());
+        } else {
+            searchResult = getSearch(electiveNames, searchBar.getText());
+        }
+        lastSearchState = searchBar.getText();
+        ObservableList<String> searchList = FXCollections.observableArrayList(searchResult);
+        allElectivesList.setItems(searchList);
+    }
+
+
+    public static ArrayList<String> getSearch(ArrayList<String> modules, String searchString) {
+        ArrayList<String> searchResult = new ArrayList<>();
+        for (String name : modules) {
+            if (name.toLowerCase().startsWith(searchString.toLowerCase())) searchResult.add(name);
+        }
+        return searchResult;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         createRecommender();
         displayCoreModules();
         displayRecommendations();
+        listViewWrapText(highView);
+        listViewWrapText(mediumView);
+        listViewWrapText(lowView);
+        for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
+            allElectivesList.getItems().add(ElectiveListGenerator.electiveModulesList.get(i).getName());
+            electiveNames.add(ElectiveListGenerator.electiveModulesList.get(i).getName());
+        }
     }
 }

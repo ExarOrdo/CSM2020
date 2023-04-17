@@ -19,13 +19,7 @@ public class AdminController {
     @FXML
     ImageView burgerIcon;
     @FXML
-    Button recommendationBtn;
-    @FXML
-    Button studentRecordBtn;
-    @FXML
-    Button helpBtn;
-    @FXML
-    Button timetableBtn;
+    Button adminTimetableBtn;
     @FXML
     Button adminBtn;
 
@@ -48,34 +42,10 @@ public class AdminController {
     }
 
     @FXML
-    private void toRecommendation() throws IOException {
+    private void toAdminTimetable() throws IOException {
 
         Main main = new Main();
-        main.changeScene("Recommendation.fxml");
-
-    }
-
-    @FXML
-    private void toStudentRecord() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("StudentRecord.fxml");
-
-    }
-
-    @FXML
-    private void toHelp() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("Help.fxml");
-
-    }
-
-    @FXML
-    private void toTimetable() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("Timetable.fxml");
+        main.changeScene("AdminTimetable.fxml");
 
     }
 
