@@ -27,7 +27,6 @@ public class RecommendationController implements Initializable {
 
     private Recommender recommender;
 
-    public ListView high;
     @FXML
     Button adminBtn;
     @FXML
@@ -126,7 +125,7 @@ public class RecommendationController implements Initializable {
 
     @FXML
     private void showElective() {
-
+        onElectiveChosen();
         if (!elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective1.setVisible(true);
             closeSelectPane();
@@ -241,6 +240,12 @@ public class RecommendationController implements Initializable {
         // check prereq
         // checks credits
         // sorts into list
+        String selectedElective ="";
+        selectedElective = highView.getSelectionModel().getSelectedItem();
+
+        //iterate across currently selected modules
+        //
+
         //recommender.checkPrerequisitesAndCreditsAndAdd(); // currently accepts Module object, modify to take string if needed
 
         // run recalculate
@@ -248,7 +253,7 @@ public class RecommendationController implements Initializable {
         // display new electives in UI
         // show new weights in UI
         // set newlyAddedModules to empty again.
-
+        System.out.println(selectedElective);
         }
 
     private void confirm(){
