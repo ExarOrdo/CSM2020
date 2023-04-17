@@ -12,7 +12,7 @@ public class MarkRecord extends Record{
 
     private int studentMark;
 
-    private Date markDate;
+    private java.sql.Date markDate;
 
 
     /**
@@ -22,7 +22,7 @@ public class MarkRecord extends Record{
      * @param studentMark
      * @param markDate
      */
-    public MarkRecord(String studentId, String moduleId, int studentMark, Date markDate) {
+    public MarkRecord(String studentId, String moduleId, int studentMark, java.sql.Date markDate) {
         this.studentId = studentId;
         this.moduleId = moduleId;
         this.studentMark = studentMark;
@@ -44,7 +44,7 @@ public class MarkRecord extends Record{
         return studentMark;
     }
 
-    public Date getMarkDate() {
+    public java.sql.Date getMarkDate() {
         return markDate;
     }
 }

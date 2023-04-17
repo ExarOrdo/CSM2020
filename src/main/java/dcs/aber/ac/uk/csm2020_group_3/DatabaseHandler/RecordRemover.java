@@ -4,8 +4,11 @@ import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.Record;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import static dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table.COURSE;
 
 
 public class RecordRemover extends DatabaseHandler{
@@ -125,8 +128,29 @@ public class RecordRemover extends DatabaseHandler{
 
                 break;
             case MARKS:
+                MarkRecord markRecord = (MarkRecord) recordObject;
 
-                break;
+                try {
+                    PreparedStatement statement = connection.prepareStatement("DELETE FROM MARKS WHERE StudentID = ? AND ModuleID = ? AND StudentMark = ? AND MarkDate = ?");
+
+                    statement.setString(1, markRecord.getStudentId());
+                    statement.setString(2, markRecord.getModuleId());
+                    statement.setInt(3, markRecord.getStudentMark());
+                    statement.setDate(4, markRecord.getMarkDate()); //again, evil cast, dunno why
+
+                    statement.execute();
+                    statement.close();
+
+                    System.out.println("Removed Mark for student: " + markRecord.getStudentId() + " for module id: " + markRecord.getModuleId());
+
+
+                } catch (Exception err) {
+                    System.err.println("Error when removing Mark record from Marks table:" + err.getMessage());
+                    err.printStackTrace();
+                }
+
+                    break;
+
             case COURSE:
 
                 CourseRecord courseRecord = (CourseRecord) recordObject;

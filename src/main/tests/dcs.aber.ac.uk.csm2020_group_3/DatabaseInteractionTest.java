@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,13 +49,20 @@ public class DatabaseInteractionTest {
     private final String tag3 = "testTag3";
 
 
+    //mark details
+    private final int studentMark = 2;
+
+    private final java.sql.Date markDate = new java.sql.Date(2023,11,1); //deprecated but why not
+
+
     //record objects to use in tests
     private final StudentRecord studentRecord = new StudentRecord(id, firstName, lastName, year, course, password);
     private final ModuleRecord moduleRecord = new ModuleRecord(moduleId, moduleName, moduleDescription, moduleCredits, moduleYear, moduleSemester, tag1, tag2, tag3);
     private final CourseRecord courseRecord = new CourseRecord(courseId, courseName, courseDescription);
     private final OptionalModuleRecord optionalModuleRecord = new OptionalModuleRecord(courseId, moduleId);
-
     private final CoreModuleRecord coreModuleRecord = new CoreModuleRecord(courseId, moduleId);
+
+    private final MarkRecord markRecord = new MarkRecord(id, moduleId, studentMark, markDate);
 
     //
     private void createStudentRecord() throws SQLException {
@@ -128,12 +136,28 @@ public class DatabaseInteractionTest {
         assertTrue(recordCreator.tryCreatingRecord());
     }
 
+    @Test
+    @Order (6)
+    void testCreatingMark() throws SQLException{
+        RecordCreator recordCreator = new RecordCreator(markRecord);
+
+        assertTrue(recordCreator.tryCreatingRecord());
+    }
 
 
     //===================================================
     //then test removing them
+
     @Test
-    @Order(6)
+    @Order (7)
+    void testRemovingMark() throws SQLException {
+        RecordRemover recordRemover = new RecordRemover(markRecord);
+
+        assertTrue(recordRemover.tryRemovingRecord());
+    }
+
+    @Test
+    @Order(8)
     void testRemovingStudent() throws SQLException {
 
         RecordRemover recordRemover = new RecordRemover(studentRecord);
@@ -143,7 +167,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (7)
+    @Order (9)
     void testRemovingOptionalModule() throws SQLException {
 
         RecordRemover recordRemover = new RecordRemover(optionalModuleRecord);
@@ -152,7 +176,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (8)
+    @Order (10)
     void testRemovingCoreModule() throws SQLException {
         RecordRemover recordRemover = new RecordRemover(coreModuleRecord);
 
@@ -160,7 +184,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (9)
+    @Order (11)
     void testRemovingCourse() throws SQLException {
 
 
@@ -171,7 +195,7 @@ public class DatabaseInteractionTest {
 
 
     @Test
-    @Order (10)
+    @Order (12)
     void testRemovingModule() throws SQLException {
 
         RecordRemover recordRemover = new RecordRemover(moduleRecord);

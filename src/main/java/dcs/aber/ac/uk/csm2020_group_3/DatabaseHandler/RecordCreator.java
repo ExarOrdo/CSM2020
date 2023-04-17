@@ -3,6 +3,7 @@ package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.Record;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -134,8 +135,30 @@ public class RecordCreator extends DatabaseHandler{
                 }
 
                 break;
+
             case MARKS:
 
+                MarkRecord markRecord  = (MarkRecord) recordObject;
+
+                try{
+                    PreparedStatement createRecord = connection.prepareStatement("INSERT INTO MARKs (StudentID, ModuleID, StudentMark, MarkDate) VALUES (?,?,?,?)");
+
+                    createRecord.setString(1, markRecord.getStudentId());
+                    createRecord.setString(2,markRecord.getModuleId());
+                    createRecord.setInt(3, markRecord.getStudentMark());
+                    createRecord.setDate(4, markRecord.getMarkDate()); //evil cast hack, might need to change later
+
+                    createRecord.execute();
+                    createRecord.close();
+
+                    System.out.println("Added new Mark: " + markRecord.getStudentMark() + " for student id: " + markRecord.getStudentId());
+
+
+                }catch  (Exception err) {
+                    System.err.println("Error when creating Mark record in Marks table:" + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
                 break;
             case COURSE:
 
