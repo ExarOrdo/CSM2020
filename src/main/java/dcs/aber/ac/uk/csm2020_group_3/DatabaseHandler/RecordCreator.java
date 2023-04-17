@@ -29,18 +29,17 @@ public class RecordCreator extends DatabaseHandler{
         //apparently switch Pattern Matching is not supported in java 18 so enjoy extra variable band-aid
         switch (typeOfRecord) {
             //case of registering a student
-            case STUDENT:
+            case STUDENT -> {
                 //cast recordObject into StudentRecord object
                 StudentRecord studentRecord = (StudentRecord) recordObject;
-
-                try{
+                try {
                     PreparedStatement createStudent = connection.prepareStatement("INSERT INTO STUDENT (StudentID,StudentName,StudentCourse,StudentYear,StudentPassword) VALUES (?,?,?,?,?)");
 
                     createStudent.setString(1, studentRecord.getStudentId());
-                    createStudent.setString(2,studentRecord.getStudentName());
+                    createStudent.setString(2, studentRecord.getStudentName());
                     createStudent.setString(3, studentRecord.getStudentCourse());
                     createStudent.setInt(4, studentRecord.getStudentYear());
-                    createStudent.setString(5,studentRecord.getStudentPassword());
+                    createStudent.setString(5, studentRecord.getStudentPassword());
 
                     createStudent.execute();
                     createStudent.close();
@@ -48,22 +47,19 @@ public class RecordCreator extends DatabaseHandler{
                     System.out.println("Registered student with id: " + studentRecord.getStudentId());
 
 
-                }catch  (Exception err) {
+                } catch (Exception err) {
                     System.err.println("Error when creating Student record in Student table:" + err.getMessage());
                     err.printStackTrace();
                     return false;
                 }
-
-                break;
-            case OPTIONAL_MODULE:
-
+            }
+            case OPTIONAL_MODULE -> {
                 OptionalModuleRecord optionalModuleRecord = (OptionalModuleRecord) recordObject;
-
-                try{
+                try {
                     PreparedStatement createRecord = connection.prepareStatement("INSERT INTO OPTIONAL_MODULE (CourseID, ModuleID) VALUES (?,?)");
 
                     createRecord.setString(1, optionalModuleRecord.getCourseId());
-                    createRecord.setString(2,optionalModuleRecord.getModuleId());
+                    createRecord.setString(2, optionalModuleRecord.getModuleId());
 
                     createRecord.execute();
                     createRecord.close();
@@ -72,18 +68,15 @@ public class RecordCreator extends DatabaseHandler{
                             "course with id: +" + optionalModuleRecord.getCourseId());
 
 
-                }catch  (Exception err) {
+                } catch (Exception err) {
                     System.err.println("Error when creating Optional module record in Optional_Module table:" + err.getMessage());
                     err.printStackTrace();
                     return false;
                 }
-
-                break;
-            case CORE_MODULE:
-
+            }
+            case CORE_MODULE -> {
                 CoreModuleRecord coreModuleRecord = (CoreModuleRecord) recordObject;
-
-                try{
+                try {
                     PreparedStatement createRecord = connection.prepareStatement("INSERT INTO CORE_MODULE (CourseID, ModuleID) VALUES (?,?)");
 
                     createRecord.setString(1, coreModuleRecord.getCourseId());
@@ -96,18 +89,15 @@ public class RecordCreator extends DatabaseHandler{
                             "course with id: +" + coreModuleRecord.getCourseId());
 
 
-                }catch  (Exception err) {
+                } catch (Exception err) {
                     System.err.println("Error when creating Core module record in Core_Module table:" + err.getMessage());
                     err.printStackTrace();
                     return false;
                 }
-
-                break;
-            case MODULE:
-
+            }
+            case MODULE -> {
                 ModuleRecord moduleRecord = (ModuleRecord) recordObject;
-
-                try{
+                try {
                     PreparedStatement createRecord = connection.prepareStatement("INSERT INTO MODULE (ModuleID, ModuleName, ModuleDescription, ModuleCredits," +
                             "ModuleYear, ModuleSemester, ModuleTag1, ModuleTag2, ModuleTag3) VALUES (?,?,?,?,?,?,?,?,?)");
 
@@ -128,23 +118,19 @@ public class RecordCreator extends DatabaseHandler{
                     System.out.println("Added new module with id: " + moduleRecord.getModuleId() + " and name: " + moduleRecord.getModuleName());
 
 
-                }catch  (Exception err) {
+                } catch (Exception err) {
                     System.err.println("Error when creating Course record in Course table:" + err.getMessage());
                     err.printStackTrace();
                     return false;
                 }
-
-                break;
-
-            case MARKS:
-
-                MarkRecord markRecord  = (MarkRecord) recordObject;
-
-                try{
+            }
+            case MARKS -> {
+                MarkRecord markRecord = (MarkRecord) recordObject;
+                try {
                     PreparedStatement createRecord = connection.prepareStatement("INSERT INTO MARKs (StudentID, ModuleID, StudentMark, MarkDate) VALUES (?,?,?,?)");
 
                     createRecord.setString(1, markRecord.getStudentId());
-                    createRecord.setString(2,markRecord.getModuleId());
+                    createRecord.setString(2, markRecord.getModuleId());
                     createRecord.setInt(3, markRecord.getStudentMark());
                     createRecord.setDate(4, markRecord.getMarkDate()); //evil cast hack, might need to change later
 
@@ -154,21 +140,19 @@ public class RecordCreator extends DatabaseHandler{
                     System.out.println("Added new Mark: " + markRecord.getStudentMark() + " for student id: " + markRecord.getStudentId());
 
 
-                }catch  (Exception err) {
+                } catch (Exception err) {
                     System.err.println("Error when creating Mark record in Marks table:" + err.getMessage());
                     err.printStackTrace();
                     return false;
                 }
-                break;
-            case COURSE:
-
+            }
+            case COURSE -> {
                 CourseRecord courseRecord = (CourseRecord) recordObject;
-
-                try{
+                try {
                     PreparedStatement createRecord = connection.prepareStatement("INSERT INTO COURSE (CourseID, CourseName, CourseDescription) VALUES (?,?,?)");
 
                     createRecord.setString(1, courseRecord.getCourseId());
-                    createRecord.setString(2,courseRecord.getCourseName());
+                    createRecord.setString(2, courseRecord.getCourseName());
                     createRecord.setString(3, courseRecord.getCourseDescription());
 
                     createRecord.execute();
@@ -178,15 +162,16 @@ public class RecordCreator extends DatabaseHandler{
                             courseRecord.getCourseName());
 
 
-                }catch  (Exception err) {
+                } catch (Exception err) {
                     System.err.println("Error when creating Course record in Course table:" + err.getMessage());
                     err.printStackTrace();
                     return false;
                 }
-                break;
-            default:
+            }
+            default -> {
                 System.err.println("Unknown type of Record subclass instance type.");
                 return false;
+            }
         }
 
 

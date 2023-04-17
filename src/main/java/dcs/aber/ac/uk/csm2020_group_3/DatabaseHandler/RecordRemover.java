@@ -34,10 +34,9 @@ public class RecordRemover extends DatabaseHandler{
         //enjoy another switch magic because no Pattern matching
         switch (typeOfRecord) {
             //case of registering a student
-            case STUDENT:
+            case STUDENT -> {
                 //cast recordObject into StudentRecord object
                 StudentRecord studentRecord = (StudentRecord) recordObject;
-
                 try {
                     PreparedStatement statement = connection.prepareStatement("DELETE FROM STUDENT WHERE StudentID = ?");
 
@@ -54,12 +53,9 @@ public class RecordRemover extends DatabaseHandler{
                     err.printStackTrace();
                     return false;
                 }
-
-                break;
-            case OPTIONAL_MODULE:
-
+            }
+            case OPTIONAL_MODULE -> {
                 OptionalModuleRecord optionalModuleRecord = (OptionalModuleRecord) recordObject;
-
                 this.connection = getConnection();
                 try {
                     PreparedStatement statement = connection.prepareStatement("DELETE FROM OPTIONAL_MODULE WHERE ModuleId = ?");
@@ -78,12 +74,9 @@ public class RecordRemover extends DatabaseHandler{
                     err.printStackTrace();
                     return false;
                 }
-
-                break;
-            case CORE_MODULE:
-
+            }
+            case CORE_MODULE -> {
                 CoreModuleRecord coreModuleRecord = (CoreModuleRecord) recordObject;
-
                 this.connection = getConnection();
                 try {
                     PreparedStatement statement = connection.prepareStatement("DELETE FROM CORE_MODULE WHERE ModuleId = ?");
@@ -102,12 +95,9 @@ public class RecordRemover extends DatabaseHandler{
                     err.printStackTrace();
                     return false;
                 }
-
-                break;
-            case MODULE:
-
+            }
+            case MODULE -> {
                 ModuleRecord moduleRecord = (ModuleRecord) recordObject;
-
                 try {
                     PreparedStatement statement = connection.prepareStatement("DELETE FROM MODULE WHERE ModuleID = ?");
 
@@ -125,11 +115,9 @@ public class RecordRemover extends DatabaseHandler{
 
                     return false;
                 }
-
-                break;
-            case MARKS:
+            }
+            case MARKS -> {
                 MarkRecord markRecord = (MarkRecord) recordObject;
-
                 try {
                     PreparedStatement statement = connection.prepareStatement("DELETE FROM MARKS WHERE StudentID = ? AND ModuleID = ? AND StudentMark = ? AND MarkDate = ?");
 
@@ -148,13 +136,9 @@ public class RecordRemover extends DatabaseHandler{
                     System.err.println("Error when removing Mark record from Marks table:" + err.getMessage());
                     err.printStackTrace();
                 }
-
-                    break;
-
-            case COURSE:
-
+            }
+            case COURSE -> {
                 CourseRecord courseRecord = (CourseRecord) recordObject;
-
                 try {
                     PreparedStatement statement = connection.prepareStatement("DELETE FROM COURSE WHERE CourseID = ?");
 
@@ -171,11 +155,11 @@ public class RecordRemover extends DatabaseHandler{
                     err.printStackTrace();
                     return false;
                 }
-
-                break;
-            default:
+            }
+            default -> {
                 System.err.println("Unknown type of Record subclass instance type.");
                 return false;
+            }
         }
         return true;
     }
