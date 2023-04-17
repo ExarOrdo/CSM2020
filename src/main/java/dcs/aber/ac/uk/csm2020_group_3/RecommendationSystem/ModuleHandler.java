@@ -21,6 +21,7 @@ public abstract class ModuleHandler {
         year3Modules = new ArrayList<>();
         year4Modules = new ArrayList<>();
         currentModuleAmount = 0;
+        newlyAddedModules = new ArrayList<>();
 
     }
 
@@ -265,6 +266,7 @@ public abstract class ModuleHandler {
      * @param elective
      */
     public void checkPrerequisitesAndCreditsAndAdd(Module elective){
+        newlyAddedModules = new ArrayList<>();
 
         // check if module has a prerequisite
         if (!elective.getPrerequisite().equals("")) {

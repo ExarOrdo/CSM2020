@@ -16,7 +16,7 @@ public class Recommender extends ModuleHandler{
 
     private ListUpdater listUpdater;
 
-    private WeightGenerator weightGenerator;
+    public WeightGenerator weightGenerator;
 
     private StrengthCalculator strengthCalculator;
 

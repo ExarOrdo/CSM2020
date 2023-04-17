@@ -86,12 +86,6 @@ public class WeightGenerator extends ModuleHandler {
      */
     public void recalculateWeights() {
 
-        Float newWeight = 0f;
-
-        // **********HALP PLS*********
-        //I want to access the variables:
-        getModuleAmount();
-        currentModuleAmount;
 
         // have updated electivelist with chosen removed
         // iterate through modules in electiveList
@@ -107,10 +101,21 @@ public class WeightGenerator extends ModuleHandler {
         for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
 
             // assign modules new weights
-            ElectiveListGenerator.electiveModulesList.get(i).setWeight(                    );
+            System.out.println(getModuleAmount());
+            System.out.println(newlyAddedModules);
 
+            // recalculate each elective weight w.r.t newlyAddedElectives
+            for (int j = 0 ; j < newlyAddedModules.size(); j++){
 
-            ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (       /newlyAddedModules.size())
+                // set new weight, where:
+                // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
+                ElectiveListGenerator.electiveModulesList.get(i).setWeight(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (getModuleAmount()/newlyAddedModules.size()) + bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())/ newlyAddedModules.size()));
+
+            }
+            //calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())
+            //ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (getModuleAmount()/newlyAddedModules.size()) + 2 * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())/ newlyAddedModules.size())
+            System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getName());
+            System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());
         }
 
     }

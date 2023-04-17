@@ -24,6 +24,9 @@ import javafx.collections.ObservableList;
 
 
 public class RecommendationController implements Initializable {
+
+    private Recommender recommender;
+
     public ListView high;
     @FXML
     Button adminBtn;
@@ -170,8 +173,6 @@ public class RecommendationController implements Initializable {
     private TextArea coreModule1, coreModule2, coreModule3, semester1, semester2, semester3, credits1, credits2, credits3;
 
     private void displayCoreModules() {
-        String studentID = DatabaseHandler.getCurrentStudentId(); // Use the logged-in student's ID
-        Recommender recommender = new Recommender(studentID);
         List<Module> coreModules = recommender.getCoreList();
 
         if (coreModules.size() >= 1) {
@@ -189,6 +190,11 @@ public class RecommendationController implements Initializable {
             semester3.setText("Sem " + coreModules.get(2).getSemester());
             credits3.setText(coreModules.get(2).getCredits() + " Credits");
         }
+    }
+
+    private void createRecommender(){
+        String studentID = DatabaseHandler.getCurrentStudentId(); // Use the logged-in student's ID
+        recommender = new Recommender(studentID);
     }
 
     @FXML
@@ -230,19 +236,15 @@ public class RecommendationController implements Initializable {
      */
     private void onElectiveChosen(){
 
-        ////// actual steps
-        // gets module from module elective selected
-        // if in string form, find module in elective list, call this module chosenModule below.
 
-        // check prereq calls sort(which inherently checks for credits)
-            // saves previousModuleAmount and currentModuleAmount
-
-        ////// overall steps
         // get module/modules chosen
         // check prereq
         // checks credits
         // sorts into list
+        //recommender.checkPrerequisitesAndCreditsAndAdd(); // currently accepts Module object, modify to take string if needed
+
         // run recalculate
+        //recommender.weightGenerator.recalculateWeights();
         // display new electives in UI
         // show new weights in UI
         // set newlyAddedModules to empty again.
@@ -256,6 +258,7 @@ public class RecommendationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        createRecommender();
         displayCoreModules();
         displayRecommendations();
     }
