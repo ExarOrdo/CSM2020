@@ -2,6 +2,9 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
+
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ElectiveListGenerator;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
@@ -26,8 +29,11 @@ import java.util.List;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
+
 public class RecommendationController implements Initializable {
-    public ListView high;
+
+    private Recommender recommender;
+
     @FXML
     Pane categoryPane;
     @FXML
@@ -116,7 +122,7 @@ public class RecommendationController implements Initializable {
 
     @FXML
     private void showElective() {
-
+        onElectiveChosen();
         if (!elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective1.setVisible(true);
             closeSelectPane();
@@ -163,8 +169,6 @@ public class RecommendationController implements Initializable {
     private TextArea coreModule1, coreModule2, coreModule3, semester1, semester2, semester3, credits1, credits2, credits3;
 
     private void displayCoreModules() {
-        String studentID = DatabaseHandler.getCurrentStudentId(); // Use the logged-in student's ID
-        Recommender recommender = new Recommender(studentID);
         List<Module> coreModules = recommender.getCoreList();
 
         if (coreModules.size() >= 1) {
@@ -182,6 +186,11 @@ public class RecommendationController implements Initializable {
             semester3.setText("Sem " + coreModules.get(2).getSemester());
             credits3.setText(coreModules.get(2).getCredits() + " Credits");
         }
+    }
+
+    private void createRecommender(){
+        String studentID = DatabaseHandler.getCurrentStudentId(); // Use the logged-in student's ID
+        recommender = new Recommender(studentID);
     }
 
     @FXML
@@ -215,9 +224,37 @@ public class RecommendationController implements Initializable {
 
         for (int k = 0; k < StrengthCalculator.lowStrength.size(); k++) {
             lowView.getItems().add(StrengthCalculator.lowStrength.get(k).getName());
-
         }
     }
+
+    /**
+     * Bunch of functions that run when an elective is chosen in the UI.
+     */
+    private void onElectiveChosen(){
+    // get module/modules chosen
+        // check prereq
+        // checks credits
+        // sorts into list
+        String selectedElective ="";
+        selectedElective = highView.getSelectionModel().getSelectedItem();
+
+        //iterate across currently selected modules
+        //
+
+        //recommender.checkPrerequisitesAndCreditsAndAdd(); // currently accepts Module object, modify to take string if needed
+
+        // run recalculate
+        //recommender.weightGenerator.recalculateWeights();
+        // display new electives in UI
+        // show new weights in UI
+        // set newlyAddedModules to empty again.
+        System.out.println(selectedElective);
+        }
+
+    private void confirm(){
+            // when confirm is pressed, local moduleYearLists are added to db
+            //,or they are
+        }
 
     private void listViewWrapText(ListView<String> listView){
         listView.setCellFactory(new Callback<>() {
@@ -257,6 +294,7 @@ public class RecommendationController implements Initializable {
         allElectivesList.setItems(searchList);
     }
 
+
     public static ArrayList<String> getSearch(ArrayList<String> modules, String searchString) {
         ArrayList<String> searchResult = new ArrayList<>();
         for (String name : modules) {
@@ -267,6 +305,7 @@ public class RecommendationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        createRecommender();
         displayCoreModules();
         displayRecommendations();
         listViewWrapText(highView);

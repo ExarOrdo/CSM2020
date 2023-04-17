@@ -16,7 +16,7 @@ public class Recommender extends ModuleHandler{
 
     private ListUpdater listUpdater;
 
-    private WeightGenerator weightGenerator;
+    public WeightGenerator weightGenerator;
 
     private StrengthCalculator strengthCalculator;
 
@@ -42,7 +42,7 @@ public class Recommender extends ModuleHandler{
         // calls methods after instantiating Recommender (after login/register)
         coreListGenerator.generateCoreList(studentID);
         electiveListGenerator.generateElectiveList(studentID);
-        sortModules(coreListGenerator.getCoreModulesList());
+        sortModulesAndCheckCredits(coreListGenerator.getCoreModulesList());
         weightGenerator.generateWeights(this.getCoreList(), this.getElectiveList());
         strengthCalculator.sortByWeights(this.getElectiveList());
     }

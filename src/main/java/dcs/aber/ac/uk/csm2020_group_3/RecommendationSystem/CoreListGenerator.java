@@ -21,6 +21,7 @@ public class CoreListGenerator extends ModuleHandler {
 
     /**
      * Creates a list of Module objects.
+     * Creates each module object and sets attributes from query results.
      * These are immediately sorted by the ModuleHandler
      */
     public void generateCoreList(String studentID) {
