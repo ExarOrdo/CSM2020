@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-public class TimetableController {
+public class AdminTimetableController {
     @FXML
     Pane expandedPane;
     @FXML
@@ -18,13 +18,10 @@ public class TimetableController {
     @FXML
     ImageView burgerIcon;
     @FXML
-    Button recommendationBtn;
+    Button adminTimetableBtn;
     @FXML
-    Button studentRecordBtn;
-    @FXML
-    Button helpBtn;
-    @FXML
-    Button timetableBtn;
+    Button adminBtn;
+
     @FXML
     protected void pressBurgerBtn() {
         expandedPane.setVisible(!expandedPane.isVisible());
@@ -37,38 +34,18 @@ public class TimetableController {
 
     @FXML
     private void logout() throws IOException {
-
         Main main = new Main();
         main.changeScene("Login.fxml");
-
     }
 
     @FXML
-    private void toRecommendation() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("Recommendation.fxml");
-
-    }
-
-    @FXML
-    private void toStudentRecord() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("StudentRecord.fxml");
-
-    }
-
-    @FXML
-    private void toHelp() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("Help.fxml");
-
-    }
-
-    @FXML
-    private void toTimetable() {
+    private void toAdminTimetable(){
         pressBurgerBtn();
+    }
+
+    @FXML
+    private void toAdmin() throws IOException {
+        Main main = new Main();
+        main.changeScene("Admin.fxml");
     }
 }

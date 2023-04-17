@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+
 /**
  * Creates a record for any of the existing tables in our db
  */
@@ -22,6 +23,7 @@ public class RecordCreator extends DatabaseHandler{
     }
 
     public boolean tryCreatingRecord() throws SQLException {
+
 
 
         this.connection = getConnection();
@@ -178,4 +180,5 @@ public class RecordCreator extends DatabaseHandler{
 
         return true;
     }
+
 }

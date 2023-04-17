@@ -1,14 +1,14 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Class responsible for handling the recommendation system,
  * uses several subclasses to distribute the workload
  */
-public class Recommender {
+public class Recommender extends ModuleHandler{
 
     public static ResultSet coreTableResult;
     public static ResultSet optionalTableResult;
@@ -16,7 +16,7 @@ public class Recommender {
 
     private ListUpdater listUpdater;
 
-    //private WeightCalculator weightCalculator;
+    private WeightGenerator weightGenerator;
 
     private StrengthCalculator strengthCalculator;
 
@@ -28,14 +28,34 @@ public class Recommender {
 
     private DataLoader dataLoader;
 
-
-    public Recommender(){
+    /**
+     * Constructor for Recommender class
+     * @param studentID
+     */
+    public Recommender(String studentID) {
         dataLoader = new DataLoader();
+        coreListGenerator = new CoreListGenerator(dataLoader);
+        electiveListGenerator = new ElectiveListGenerator(dataLoader);
+        weightGenerator = new WeightGenerator(coreListGenerator, electiveListGenerator);
+        strengthCalculator = new StrengthCalculator();
+
+        // calls methods after instantiating Recommender (after login/register)
+        coreListGenerator.generateCoreList(studentID);
+        electiveListGenerator.generateElectiveList(studentID);
+        sortModules(coreListGenerator.getCoreModulesList());
+        weightGenerator.generateWeights(this.getCoreList(), this.getElectiveList());
+        strengthCalculator.sortByWeights(this.getElectiveList());
     }
 
-    public List<String> getCoreModulesForStudent(String studentID) {
-        return dataLoader.loadModuleData(studentID);
+
+    public ArrayList<Module> getCoreList() {
+        return CoreListGenerator.coreModulesList;
     }
+
+    public ArrayList<Module> getElectiveList() {
+        return ElectiveListGenerator.electiveModulesList;
+    }
+
     public void getModuleData() throws SQLException {
         if (dataLoader.tryLoadingModules()) {
             System.out.println("Cores, optionals and module tables have been loaded!");
