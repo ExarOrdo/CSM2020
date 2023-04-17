@@ -4,6 +4,8 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 
 import java.sql.*;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataLoader extends DatabaseHandler {
 
@@ -13,6 +15,9 @@ public class DataLoader extends DatabaseHandler {
     private final String coreModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3, m.ModuleTag4, m.ModuleTag5, m.ModuleTag6, m.ModuleTag7, m.ModuleTag8 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
     private final String electiveModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3, m.ModuleTag4, m.ModuleTag5, m.ModuleTag6, m.ModuleTag7, m.ModuleTag8 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
     private final String modulesQuery = "SELECT * FROM MODULE";
+    private final String studentRecordQuery = "SELECT * FROM STUDENT WHERE StudentID = ?";
+    private final String studentRecordModulesQuery = "SELECT module.ModuleID, marks.StudentMark, module.ModuleYear, marks.MarkDate FROM marks JOIN module ON marks.ModuleID = module.ModuleID WHERE marks.StudentID = ? AND module.ModuleYear = ?";
+    private final String moduleNameAndDescriptionQuery = "SELECT ModuleName, ModuleDescription FROM MODULE WHERE ModuleID = ?";
 
 
     public boolean tryLoadingModules() throws SQLException {
@@ -59,6 +64,64 @@ public class DataLoader extends DatabaseHandler {
         }
 
         return false;
+    }
+
+
+    public Map<String, String> loadStudentDetails(String studentId) {
+        Map<String, String> studentDetails = new HashMap<>();
+
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(studentRecordQuery);
+            statement.setString(1, studentId);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                studentDetails.put("student_id", resultSet.getString("StudentID"));
+                studentDetails.put("student_name", resultSet.getString("StudentName"));
+                studentDetails.put("student_course", resultSet.getString("StudentCourse"));
+                studentDetails.put("student_year", resultSet.getString("StudentYear")); // Added student_year
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return studentDetails;
+    }
+
+    public ResultSet loadStudentModulesWithMarksByYear(String studentID, int year) {
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(studentRecordModulesQuery);
+            preparedStatement.setString(1, studentID);
+            preparedStatement.setInt(2, year);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public Map<String, String> getModuleNameAndDescription(String moduleID) {
+        Map<String, String> moduleNameAndDescription = new HashMap<>();
+
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(moduleNameAndDescriptionQuery);
+            statement.setString(1, moduleID);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                moduleNameAndDescription.put("module_name", resultSet.getString("ModuleName"));
+                moduleNameAndDescription.put("module_description", resultSet.getString("ModuleDescription"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return moduleNameAndDescription;
     }
 
 
