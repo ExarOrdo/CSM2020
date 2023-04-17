@@ -32,6 +32,15 @@ import javafx.util.Callback;
 
 public class RecommendationController implements Initializable {
 
+    public TextArea elective1Name;
+    public TextArea elective1Sem;
+    public TextArea elective1Cred;
+    public TextArea elective2Name;
+    public TextArea elective2Sem;
+    public TextArea elective2Cred;
+    public TextArea elective3Name;
+    public TextArea elective3Sem;
+    public TextArea elective3Cred;
     private Recommender recommender;
 
     @FXML
@@ -146,7 +155,7 @@ public class RecommendationController implements Initializable {
 
     @FXML
     private void clearElective() {
-
+        addModuleBtn.setVisible(true);
         if (oneElective) {
             elective1.setVisible(false);
             oneElective = false;
@@ -230,31 +239,6 @@ public class RecommendationController implements Initializable {
     /**
      * Bunch of functions that run when an elective is chosen in the UI.
      */
-    private void onElectiveChosen(){
-    // get module/modules chosen
-        // check prereq
-        // checks credits
-        // sorts into list
-        String selectedElective ="";
-        selectedElective = highView.getSelectionModel().getSelectedItem();
-
-        //iterate across currently selected modules
-        //
-
-        //recommender.checkPrerequisitesAndCreditsAndAdd(); // currently accepts Module object, modify to take string if needed
-
-        // run recalculate
-        //recommender.weightGenerator.recalculateWeights();
-        // display new electives in UI
-        // show new weights in UI
-        // set newlyAddedModules to empty again.
-        System.out.println(selectedElective);
-        }
-
-    private void confirm(){
-            // when confirm is pressed, local moduleYearLists are added to db
-            //,or they are
-        }
 
     private void listViewWrapText(ListView<String> listView){
         listView.setCellFactory(new Callback<>() {
@@ -301,6 +285,75 @@ public class RecommendationController implements Initializable {
             if (name.toLowerCase().startsWith(searchString.toLowerCase())) searchResult.add(name);
         }
         return searchResult;
+    }
+
+    /**
+     * Bunch of functions that run when an elective is chosen in the UI.
+     */
+    private void onElectiveChosen(){
+
+
+        // get module/modules chosen
+        // check prereq
+        // checks credits
+        // sorts into list
+        String selectedElective ="";
+        Module selectedModule = null;
+
+
+        if(highView.getSelectionModel().getSelectedItem()!= null){
+            selectedElective = highView.getSelectionModel().getSelectedItem();
+
+        }else if(mediumView.getSelectionModel().getSelectedItem()!= null){
+            selectedElective = mediumView.getSelectionModel().getSelectedItem();
+        }else if(lowView.getSelectionModel().getSelectedItem()!= null){
+            selectedElective = lowView.getSelectionModel().getSelectedItem();
+        }
+        highView.getSelectionModel().clearSelection();
+        mediumView.getSelectionModel().clearSelection();
+        lowView.getSelectionModel().clearSelection();
+
+
+        //iterate across currently selected modules
+        for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
+            if(selectedElective.equals(ElectiveListGenerator.electiveModulesList.get(i).getName())){
+                selectedModule = ElectiveListGenerator.electiveModulesList.get(i);
+            }
+        }
+
+
+        assert selectedModule != null;
+        recommender.checkPrerequisitesAndCreditsAndAdd(selectedModule); // currently accepts Module object, modify to take string if needed
+        
+        
+        // run recalculate
+        recommender.weightGenerator.recalculateWeights();
+
+        if (!elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
+            elective1Name.setText(String.valueOf(selectedModule.getName()));
+            elective1Sem.setText("Sem " + selectedModule.getSemester());
+            elective1Cred.setText(String.valueOf(selectedModule.getCredits()));
+        } else if (elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
+            elective2Name.setText(String.valueOf(selectedModule.getName()));
+            elective2Sem.setText("Sem " + selectedModule.getSemester());
+            elective2Cred.setText(String.valueOf(selectedModule.getCredits()));
+            addModuleBtn.setVisible(true);
+        } else if (elective1.isVisible() && elective2.isVisible() && !elective3.isVisible()) {
+            elective3Name.setText(String.valueOf(selectedModule.getName()));
+            elective3Sem.setText("Sem " + selectedModule.getSemester());
+            elective3Cred.setText(String.valueOf(selectedModule.getCredits()));
+            addModuleBtn.setVisible(false);
+        }
+
+        // display new electives in UI
+        // show new weights in UI
+        // set newlyAddedModules to empty again.
+        System.out.println(selectedElective);
+    }
+
+    private void confirm(){
+        // when confirm is pressed, local moduleYearLists are added to db
+        //,or they are
     }
 
     @Override
