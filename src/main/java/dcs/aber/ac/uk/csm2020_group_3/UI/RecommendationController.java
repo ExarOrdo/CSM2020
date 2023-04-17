@@ -2,10 +2,8 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ModuleHandler;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.StrengthCalculator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
