@@ -65,7 +65,7 @@ public class RecordRemover extends DatabaseHandler{
                     statement.execute();
                     statement.close();
 
-                    System.out.println("Deleted optional module with id: " + optionalModuleRecord.getModuleId() + " for " +
+                    System.out.println("Removed optional module with id: " + optionalModuleRecord.getModuleId() + " for " +
                             "course with id: +" + optionalModuleRecord.getCourseId());
 
 
@@ -86,7 +86,7 @@ public class RecordRemover extends DatabaseHandler{
                     statement.execute();
                     statement.close();
 
-                    System.out.println("Deleted core module with id: " + coreModuleRecord.getModuleId() + " for " +
+                    System.out.println("Removed core module with id: " + coreModuleRecord.getModuleId() + " for " +
                             "course with id: +" + coreModuleRecord.getCourseId());
 
 
