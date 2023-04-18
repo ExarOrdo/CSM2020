@@ -449,4 +449,17 @@ public class DatabaseInteractionTest {
         removeStudentRecord(studentRecord);
 
     }
+
+    @Test
+    @Order(18)
+    void testUpdatingCourseRecord() throws SQLException {
+        createCourseRecord(courseRecord);
+
+        RecordUpdater recordUpdater = new RecordUpdater(courseRecord, courseRecord2);
+
+        assertTrue(recordUpdater.tryUpdatingRecord());
+
+        removeCourseRecord(courseRecord);
+
+    }
 }

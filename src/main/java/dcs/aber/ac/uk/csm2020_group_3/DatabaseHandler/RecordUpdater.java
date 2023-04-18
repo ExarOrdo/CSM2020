@@ -174,6 +174,26 @@ public class RecordUpdater extends DatabaseHandler{
             }
 
             case COURSE -> {
+                CourseRecord courseRecord = (CourseRecord) recordToUpdate;
+                CourseRecord newDetails = (CourseRecord) newRecordDetails;
+
+                try {
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE COURSE SET " +
+                            "CourseName = ?, CourseDescription = ? " +
+                            "WHERE CourseID = ?");
+
+                    editRecord.setString(1, newDetails.getCourseName());
+                    editRecord.setString(2, newDetails.getCourseDescription());
+                    editRecord.setString(3, courseRecord.getCourseId());
+
+                    editRecord.execute();
+                    editRecord.close();
+
+                }catch (Exception err) {
+                    System.err.println("Error when updating Course record in Course table " + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
 
             }
 
