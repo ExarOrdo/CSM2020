@@ -1,6 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
 
@@ -14,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -38,7 +40,8 @@ public class RecommendationController implements Initializable {
     public TextArea elective3Name;
     public TextArea elective3Sem;
     public TextArea elective3Cred;
-    public CheckBox tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8;
+    public RadioButton tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8;
+    public Text currentYear;
     private Recommender recommender;
 
     @FXML
@@ -175,23 +178,59 @@ public class RecommendationController implements Initializable {
     @FXML
     private TextArea coreModule1, coreModule2, coreModule3, semester1, semester2, semester3, credits1, credits2, credits3;
 
-    private void displayCoreModules() {
-        List<Module> coreModules = recommender.getCoreList();
-
-        if (coreModules.size() >= 1) {
-            coreModule1.setText(coreModules.get(0).getName());
-            semester1.setText("Sem " + coreModules.get(0).getSemester());
-            credits1.setText(coreModules.get(0).getCredits() + " Credits");
+    private void displayCoreModules() throws SQLException {
+        RecordLoader recordLoader = new RecordLoader();
+        int year = recordLoader.getStudentYear(DatabaseHandler.getCurrentStudentId());
+        if (year ==1) {
+            if (ModuleHandler.year1Modules.size() >= 1) {
+                coreModule1.setText(ModuleHandler.year1Modules.get(0).getName());
+                semester1.setText("Sem " + ModuleHandler.year1Modules.get(0).getSemester());
+                credits1.setText(ModuleHandler.year1Modules.get(0).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year1Modules.size() >= 2) {
+                coreModule2.setText(ModuleHandler.year1Modules.get(1).getName());
+                semester2.setText("Sem " + ModuleHandler.year1Modules.get(1).getSemester());
+                credits2.setText(ModuleHandler.year1Modules.get(1).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year1Modules.size() >= 3) {
+                coreModule3.setText(ModuleHandler.year1Modules.get(2).getName());
+                semester3.setText("Sem " + ModuleHandler.year1Modules.get(2).getSemester());
+                credits3.setText(ModuleHandler.year1Modules.get(2).getCredits() + " Credits");
+            }
         }
-        if (coreModules.size() >= 2) {
-            coreModule2.setText(coreModules.get(1).getName());
-            semester2.setText("Sem " + coreModules.get(1).getSemester());
-            credits2.setText(coreModules.get(1).getCredits() + " Credits");
+        else if (year ==2) {
+            if (ModuleHandler.year2Modules.size() >= 1) {
+                coreModule1.setText(ModuleHandler.year2Modules.get(0).getName());
+                semester1.setText("Sem " + ModuleHandler.year2Modules.get(0).getSemester());
+                credits1.setText(ModuleHandler.year2Modules.get(0).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year2Modules.size() >= 2) {
+                coreModule2.setText(ModuleHandler.year2Modules.get(1).getName());
+                semester2.setText("Sem " + ModuleHandler.year2Modules.get(1).getSemester());
+                credits2.setText(ModuleHandler.year2Modules.get(1).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year2Modules.size() >= 3) {
+                coreModule3.setText(ModuleHandler.year2Modules.get(2).getName());
+                semester3.setText("Sem " + ModuleHandler.year2Modules.get(2).getSemester());
+                credits3.setText(ModuleHandler.year2Modules.get(2).getCredits() + " Credits");
+            }
         }
-        if (coreModules.size() >= 3) {
-            coreModule3.setText(coreModules.get(2).getName());
-            semester3.setText("Sem " + coreModules.get(2).getSemester());
-            credits3.setText(coreModules.get(2).getCredits() + " Credits");
+        else if (year ==3) {
+            if (ModuleHandler.year3Modules.size() >= 1) {
+                coreModule1.setText(ModuleHandler.year3Modules.get(0).getName());
+                semester1.setText("Sem " + ModuleHandler.year3Modules.get(0).getSemester());
+                credits1.setText(ModuleHandler.year3Modules.get(0).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year3Modules.size() >= 2) {
+                coreModule2.setText(ModuleHandler.year3Modules.get(1).getName());
+                semester2.setText("Sem " + ModuleHandler.year3Modules.get(1).getSemester());
+                credits2.setText(ModuleHandler.year3Modules.get(1).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year3Modules.size() >= 3) {
+                coreModule3.setText(ModuleHandler.year3Modules.get(2).getName());
+                semester3.setText("Sem " + ModuleHandler.year3Modules.get(2).getSemester());
+                credits3.setText(ModuleHandler.year3Modules.get(2).getCredits() + " Credits");
+            }
         }
     }
 
@@ -384,6 +423,8 @@ public class RecommendationController implements Initializable {
                     }
                 }
             }
+
+
         tag1.setText(tags.get(0));
         tag2.setText(tags.get(1));
         tag3.setText(tags.get(2));
@@ -398,8 +439,18 @@ public class RecommendationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        RecordLoader recordLoader = new RecordLoader();
+        try {
+            currentYear.setText("Year " + recordLoader.getStudentYear(DatabaseHandler.getCurrentStudentId()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         createRecommender();
-        displayCoreModules();
+        try {
+            displayCoreModules();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         displayRecommendations();
         listViewWrapText(highView);
         listViewWrapText(mediumView);
@@ -409,5 +460,15 @@ public class RecommendationController implements Initializable {
             electiveNames.add(ElectiveListGenerator.electiveModulesList.get(i).getName());
         }
         loadTags();
+        ToggleGroup toggleGroup = new ToggleGroup();
+        tag1.setToggleGroup(toggleGroup);
+        tag2.setToggleGroup(toggleGroup);
+        tag3.setToggleGroup(toggleGroup);
+        tag4.setToggleGroup(toggleGroup);
+        tag5.setToggleGroup(toggleGroup);
+        tag6.setToggleGroup(toggleGroup);
+        tag7.setToggleGroup(toggleGroup);
+        tag8.setToggleGroup(toggleGroup);
+
     }
 }
