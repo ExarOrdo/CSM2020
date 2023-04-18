@@ -1,13 +1,20 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Login;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
 public class AdminLoginController {
 
+    public TextField adminId;
+    public PasswordField adminPassword;
+    public Text incorrectField;
     @FXML
     Button backBtn, adminLoginBtn;
 
@@ -20,6 +27,14 @@ public class AdminLoginController {
     @FXML
     private void toAdmin() throws IOException {
         Main main = new Main();
-        main.changeScene("Admin.fxml");
+        Login login = new Login(adminId.getText(), adminPassword.getText());
+        if (login.tryLogin()) {
+            incorrectField.setVisible(false);
+
+            main.changeScene("Admin.fxml");
+            System.out.println("Successful login");
+        } else {
+            incorrectField.setVisible(true);
+        }
     }
 }
