@@ -1,6 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordRemover;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordUpdater;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
@@ -461,5 +462,12 @@ public class DatabaseInteractionTest {
 
         removeCourseRecord(courseRecord);
 
+    }
+
+    @Test
+    @Order(19)
+    void testGettingStudentYear() throws SQLException {
+        RecordLoader recordLoader = new RecordLoader();
+        System.out.println("Year fetched: " + recordLoader.getStudentYear("12345"));
     }
 }
