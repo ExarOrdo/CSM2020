@@ -46,6 +46,13 @@ public class DatabaseInteractionTest {
     private final String courseName = "testCourseName";
     private final String courseDescription = "testCourseDescription";
 
+    //second course record details
+    private final String courseId2 = "testCourseId2";
+    private final String courseName2 = "testCourseName2";
+    private final String courseDescription2 = "testCourseDescription2";
+
+
+
     //module details
     private final String moduleId = "testModuleID";
     private final String moduleName = "testModuleName";
@@ -56,6 +63,33 @@ public class DatabaseInteractionTest {
     private final String tag1 = "testTag1";
     private final String tag2 = "testTag2";
     private final String tag3 = "testTag3";
+
+    //second module details
+    private final String moduleId2 = "testModuleId2";
+    private final String moduleName2 = "testModuleName2";
+    private final String moduleDescription2 = "testModuleDescription2";
+    private final int moduleCredit2 = 40;
+    private final int moduleYear2 = 3;
+    private final int moduleSemester2 = 3;
+    private final String tagTwo1 = "testTagTwo1";
+    private final String tagTwo2 = "testTagTwo2";
+    private final String tagTwo3 = "testTagTwo3";
+
+    //updated module details
+    private final String updatedModuleId = "updatedModuleId";
+    private final String updatedModuleName = "updatedModuleName";
+    private final String updatedModuleDescription = "updatedModuleDescription";
+    private final int updatedModuleCredits = 20;
+    private final int updatedModuleYear = 2;
+    private final int updatedModuleSemester = 2;
+    private final String updatedTag1 = "updatedTag1";
+    private final String updatedTag2 = "updatedTag2";
+    private final String updatedTag3 = "updatedTag3";
+
+    //updated course details
+    private final String updatedCourseId = "updatedCourseId";
+    private final String updatedCourseName = "updatedCourseName";
+    private final String updatedCourseDescription = "updatedCourseDescription";
 
 
     //mark details
@@ -69,68 +103,76 @@ public class DatabaseInteractionTest {
     private final StudentRecord updateStudentRecord = new StudentRecord(id, updateFirstName, updateLastName, updateYear, updateCourse, updatePassword);
 
     private final ModuleRecord moduleRecord = new ModuleRecord(moduleId, moduleName, moduleDescription, moduleCredits, moduleYear, moduleSemester, tag1, tag2, tag3);
+    private final ModuleRecord moduleRecord2 = new ModuleRecord(moduleId2, moduleName2, moduleDescription2, moduleCredit2, moduleYear2, moduleSemester2, tagTwo1, tagTwo2, tagTwo3);
+    private final ModuleRecord updatedModuleRecord = new ModuleRecord(updatedModuleId, updatedModuleName, updatedModuleDescription, updatedModuleCredits, updatedModuleYear, updatedModuleSemester, updatedTag1, updatedTag2, updatedTag3);
+
     private final CourseRecord courseRecord = new CourseRecord(courseId, courseName, courseDescription);
+    private final CourseRecord courseRecord2 = new CourseRecord(courseId2, courseName2, courseDescription2);
+    private final CourseRecord updatedCourseRecord = new CourseRecord(updatedCourseId, updatedCourseName, updatedCourseDescription);
+
     private final OptionalModuleRecord optionalModuleRecord = new OptionalModuleRecord(courseId, moduleId);
+    private final OptionalModuleRecord optionalModuleRecord2 = new OptionalModuleRecord(courseId2, moduleId2);
+
     private final CoreModuleRecord coreModuleRecord = new CoreModuleRecord(courseId, moduleId);
     private final MarkRecord markRecord = new MarkRecord(id, moduleId, studentMark, markDate);
 
     //
-    private void createStudentRecord() throws SQLException {
+    private void createStudentRecord(StudentRecord studentRecord) throws SQLException {
         RecordCreator recordCreator = new RecordCreator(studentRecord);
         recordCreator.tryCreatingRecord();
     }
 
-    private void createModuleRecord() throws SQLException {
+    private void createModuleRecord(ModuleRecord moduleRecord) throws SQLException {
         RecordCreator recordCreator = new RecordCreator(moduleRecord);
         recordCreator.tryCreatingRecord();
     }
 
-    private void createCourseRecord() throws SQLException {
+    private void createCourseRecord(CourseRecord courseRecord) throws SQLException {
         RecordCreator recordCreator = new RecordCreator(courseRecord);
         recordCreator.tryCreatingRecord();
     }
 
-    private void createOptionalRecord() throws SQLException {
+    private void createOptionalRecord(OptionalModuleRecord optionalModuleRecord) throws SQLException {
         RecordCreator recordCreator = new RecordCreator(optionalModuleRecord);
         recordCreator.tryCreatingRecord();
     }
 
-    private void createCoreRecord() throws SQLException {
+    private void createCoreRecord(CoreModuleRecord coreModuleRecord) throws SQLException {
         RecordCreator recordCreator = new RecordCreator(coreModuleRecord);
         recordCreator.tryCreatingRecord();
     }
 
-    private void createMarksRecord() throws SQLException {
+    private void createMarksRecord(MarkRecord markRecord) throws SQLException {
         RecordCreator recordCreator = new RecordCreator(markRecord);
         recordCreator.tryCreatingRecord();
     }
 
-    private void removeStudentRecord() throws SQLException {
+    private void removeStudentRecord(StudentRecord studentRecord) throws SQLException {
         RecordRemover recordRemover = new RecordRemover(studentRecord);
         recordRemover.tryRemovingRecord();
     }
 
-    private void removeModuleRecord() throws SQLException {
+    private void removeModuleRecord(ModuleRecord moduleRecord) throws SQLException {
         RecordRemover recordRemover = new RecordRemover(moduleRecord);
         recordRemover.tryRemovingRecord();
     }
 
-    private void removeCourseRecord() throws SQLException {
+    private void removeCourseRecord(CourseRecord courseRecord) throws SQLException {
         RecordRemover recordRemover = new RecordRemover(courseRecord);
         recordRemover.tryRemovingRecord();
     }
 
-    private void removeOptionalRecord() throws SQLException {
+    private void removeOptionalRecord(OptionalModuleRecord optionalModuleRecord) throws SQLException {
         RecordRemover recordRemover = new RecordRemover(optionalModuleRecord);
         recordRemover.tryRemovingRecord();
     }
 
-    private void removeCoreRecord() throws SQLException {
+    private void removeCoreRecord(CoreModuleRecord coreModuleRecord) throws SQLException {
         RecordRemover recordRemover = new RecordRemover(coreModuleRecord);
         recordRemover.tryRemovingRecord();
     }
 
-    private void removeMarkRecord() throws SQLException {
+    private void removeMarkRecord(MarkRecord markRecord) throws SQLException {
         RecordRemover recordRemover = new RecordRemover(markRecord);
         recordRemover.tryRemovingRecord();
     }
@@ -145,7 +187,7 @@ public class DatabaseInteractionTest {
 
         assertTrue(recordCreator.tryCreatingRecord());
 
-        removeStudentRecord();
+        removeStudentRecord(studentRecord);
     }
 
     @Test
@@ -155,7 +197,7 @@ public class DatabaseInteractionTest {
 
         assertTrue(recordCreator.tryCreatingRecord());
 
-        removeModuleRecord();
+        removeModuleRecord(moduleRecord);
     }
 
     @Test
@@ -166,53 +208,53 @@ public class DatabaseInteractionTest {
 
         assertTrue(recordCreator.tryCreatingRecord());
 
-        removeCourseRecord();
+        removeCourseRecord(courseRecord);
     }
 
     @Test
     @Order (4)
     void testCreatingOptionalModule() throws SQLException {
 
-        createCourseRecord();
-        createModuleRecord();
+        createCourseRecord(courseRecord);
+        createModuleRecord(moduleRecord);
 
         RecordCreator recordCreator = new RecordCreator(optionalModuleRecord);
 
         assertTrue(recordCreator.tryCreatingRecord());
 
-        removeOptionalRecord();
-        removeCourseRecord();
-        removeModuleRecord();
+        removeOptionalRecord(optionalModuleRecord);
+        removeCourseRecord(courseRecord);
+        removeModuleRecord(moduleRecord);
     }
 
     @Test
     @Order (5)
     void testCreatingCoreModule() throws SQLException {
-        createCourseRecord();
-        createModuleRecord();
+        createCourseRecord(courseRecord);
+        createModuleRecord(moduleRecord);
 
         RecordCreator recordCreator = new RecordCreator(coreModuleRecord);
 
         assertTrue(recordCreator.tryCreatingRecord());
 
-        removeCoreRecord();
-        removeCourseRecord();
-        removeModuleRecord();
+        removeCoreRecord(coreModuleRecord);
+        removeCourseRecord(courseRecord);
+        removeModuleRecord(moduleRecord);
     }
 
     @Test
     @Order (6)
     void testCreatingMark() throws SQLException{
-        createStudentRecord();
-        createModuleRecord();
+        createStudentRecord(studentRecord);
+        createModuleRecord(moduleRecord);
 
         RecordCreator recordCreator = new RecordCreator(markRecord);
 
         assertTrue(recordCreator.tryCreatingRecord());
 
-        removeMarkRecord();
-        removeStudentRecord();
-        removeModuleRecord();
+        removeMarkRecord(markRecord);
+        removeStudentRecord(studentRecord);
+        removeModuleRecord(moduleRecord);
     }
 
 
@@ -222,23 +264,23 @@ public class DatabaseInteractionTest {
     @Test
     @Order (7)
     void testRemovingMark() throws SQLException {
-        createStudentRecord();
-        createModuleRecord();
-        createMarksRecord();
+        createStudentRecord(studentRecord);
+        createModuleRecord(moduleRecord);
+        createMarksRecord(markRecord);
 
         RecordRemover recordRemover = new RecordRemover(markRecord);
 
         assertTrue(recordRemover.tryRemovingRecord());
 
-        removeStudentRecord();
-        removeModuleRecord();
+        removeStudentRecord(studentRecord);
+        removeModuleRecord(moduleRecord);
     }
 
     @Test
     @Order(8)
     void testRemovingStudent() throws SQLException {
 
-        createStudentRecord();
+        createStudentRecord(studentRecord);
 
         RecordRemover recordRemover = new RecordRemover(studentRecord);
 
@@ -249,37 +291,37 @@ public class DatabaseInteractionTest {
     @Test
     @Order (9)
     void testRemovingOptionalModule() throws SQLException {
-        createCourseRecord();
-        createModuleRecord();
-        createOptionalRecord();
+        createCourseRecord(courseRecord);
+        createModuleRecord(moduleRecord);
+        createOptionalRecord(optionalModuleRecord);
 
         RecordRemover recordRemover = new RecordRemover(optionalModuleRecord);
 
         assertTrue(recordRemover.tryRemovingRecord());
 
-        removeCourseRecord();
-        removeModuleRecord();
+        removeCourseRecord(courseRecord);
+        removeModuleRecord(moduleRecord);
     }
 
     @Test
     @Order (10)
     void testRemovingCoreModule() throws SQLException {
-        createCourseRecord();
-        createModuleRecord();
-        createCoreRecord();
+        createCourseRecord(courseRecord);
+        createModuleRecord(moduleRecord);
+        createCoreRecord(coreModuleRecord);
 
         RecordRemover recordRemover = new RecordRemover(coreModuleRecord);
 
         assertTrue(recordRemover.tryRemovingRecord());
 
-        removeCourseRecord();
-        removeModuleRecord();
+        removeCourseRecord(courseRecord);
+        removeModuleRecord(moduleRecord);
     }
 
     @Test
     @Order (11)
     void testRemovingCourse() throws SQLException {
-        createCourseRecord();
+        createCourseRecord(courseRecord);
 
         RecordRemover recordRemover = new RecordRemover(courseRecord);
 
@@ -290,7 +332,7 @@ public class DatabaseInteractionTest {
     @Test
     @Order (12)
     void testRemovingModule() throws SQLException {
-        createModuleRecord();
+        createModuleRecord(moduleRecord);
 
         RecordRemover recordRemover = new RecordRemover(moduleRecord);
 
@@ -300,7 +342,7 @@ public class DatabaseInteractionTest {
     @Test
     @Order(13)
     void testUpdatingStudent() throws SQLException {
-        createStudentRecord();
+        createStudentRecord(studentRecord);
 
         RecordUpdater recordUpdater = new RecordUpdater(studentRecord, updateStudentRecord);
         assertTrue(recordUpdater.tryUpdatingRecord());
@@ -308,7 +350,29 @@ public class DatabaseInteractionTest {
         RecordUpdater newRecordUpdater = new RecordUpdater(updateStudentRecord, studentRecord);
         assertTrue(newRecordUpdater.tryUpdatingRecord());
 
-        removeStudentRecord();
+        removeStudentRecord(studentRecord);
 
+    }
+
+    @Test
+    @Order(14)
+    void testUpdatingOptionalModule() throws SQLException {
+        createModuleRecord(moduleRecord);
+        createCourseRecord(courseRecord);
+        createOptionalRecord(optionalModuleRecord);
+
+        //create second course and module to change the Optional details
+        createModuleRecord(moduleRecord2);
+        createCourseRecord(courseRecord2);
+
+        RecordUpdater recordUpdater = new RecordUpdater(optionalModuleRecord, optionalModuleRecord2);
+
+        assertTrue(recordUpdater.tryUpdatingRecord());
+
+        removeModuleRecord(moduleRecord);
+        removeModuleRecord(moduleRecord2);
+        removeCourseRecord(courseRecord);
+        removeCourseRecord(courseRecord2);
+        removeOptionalRecord(optionalModuleRecord2);
     }
 }

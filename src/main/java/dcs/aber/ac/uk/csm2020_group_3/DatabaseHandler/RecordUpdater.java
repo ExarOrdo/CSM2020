@@ -1,5 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.OptionalModuleRecord;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.Record;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.StudentRecord;
 import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
@@ -62,7 +63,24 @@ public class RecordUpdater extends DatabaseHandler{
             }
 
             case OPTIONAL_MODULE -> {
+                OptionalModuleRecord optionalModuleRecord = (OptionalModuleRecord) recordToUpdate;
+                OptionalModuleRecord newDetails = (OptionalModuleRecord) newRecordDetails;
+                try {
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE OPTIONAL_MODULE SET" +
+                            "CourseID = ?, ModuleID = ? WHERE CourseID = ? AND ModuleID = ?");
 
+                    editRecord.setString(1, newDetails.getCourseId());
+                    editRecord.setString(2, newDetails.getModuleId());
+                    editRecord.setString(3, optionalModuleRecord.getCourseId());
+                    editRecord.setString(4, optionalModuleRecord.getModuleId());
+
+                    System.out.println("Edited details for Optional Module ID: " + optionalModuleRecord.getModuleId() +
+                            " for Course ID: " + optionalModuleRecord.getCourseId());
+                } catch (Exception err) {
+                    System.err.println("Error when editing Optional Module record in Optional_Module table: " + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
             }
 
             case CORE_MODULE -> {
