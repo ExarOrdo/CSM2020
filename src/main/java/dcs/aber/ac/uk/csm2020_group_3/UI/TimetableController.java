@@ -2,7 +2,9 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.CoreListGenerator;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.DataLoader;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ElectiveListGenerator;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.EnrolledModules;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +18,7 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -145,15 +148,25 @@ public class TimetableController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
+       /* for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
             electiveNames.add(ElectiveListGenerator.electiveModulesList.get(i).getName());
         }
         for (int i = 0; i < CoreListGenerator.coreModulesList.size(); i++) {
             coreNames.add(CoreListGenerator.coreModulesList.get(i).getName());
         }
         allModules.addAll(coreNames);
-        allModules.addAll(electiveNames);
+        allModules.addAll(electiveNames);*/
 
+        EnrolledModules enrolledModules = new EnrolledModules(new DataLoader());
+        try {
+            enrolledModules.generateEnrolledModules(LoginController.getLoginID());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        allModules.addAll(EnrolledModules.enrolledModuleList);
+
+        System.out.println(EnrolledModules.enrolledModuleList);
         populateTimetable();
     }
 }

@@ -19,6 +19,9 @@ public class DataLoader extends DatabaseHandler {
     private final String studentRecordModulesQuery = "SELECT module.ModuleID, marks.StudentMark, module.ModuleYear, marks.MarkDate FROM marks JOIN module ON marks.ModuleID = module.ModuleID WHERE marks.StudentID = ? AND module.ModuleYear = ?";
     private final String moduleNameAndDescriptionQuery = "SELECT ModuleName, ModuleDescription FROM MODULE WHERE ModuleID = ?";
 
+   // private final String confirmedStudentModules = "SELECT marks.ModuleID, marks.StudentMark, module.ModuleName FROM marks JOIN module ON marks.ModuleID = module.ModuleID WHERE marks.StudentID = ? AND marks.StudentMark = null";
+
+    private final String confirmedStudentModules = "SELECT marks.StudentID, marks.ModuleID, marks.StudentMark FROM marks WHERE marks.StudentID = ? AND marks.StudentMark = -1";
 
     public boolean tryLoadingModules() throws SQLException {
         this.connection = DriverManager.getConnection(connectionString);
@@ -103,6 +106,20 @@ public class DataLoader extends DatabaseHandler {
 
         return null;
     }
+
+    public ResultSet loadModulesNoMarks(String studentID) throws SQLException {
+        connection = getConnection();
+        try {
+
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT marks.ModuleID FROM marks WHERE marks.StudentID = ? AND marks.StudentMark = -1");
+            preparedStatement.setString(1, studentID);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public Map<String, String> getModuleNameAndDescription(String moduleID) {
         Map<String, String> moduleNameAndDescription = new HashMap<>();
