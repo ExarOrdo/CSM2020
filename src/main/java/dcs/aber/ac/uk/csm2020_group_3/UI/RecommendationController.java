@@ -321,11 +321,16 @@ public class RecommendationController implements Initializable {
         assert selectedModule != null;
 
         // check prereqs, if prereq has another
-        recommender.checkPrerequisites(selectedModule); // currently accepts Module object, modify to take string if needed
-        if (recommender.checkCredits(ModuleHandler.newlyAddedModules).equals(Boolean.TRUE)){
+        recommender.checkPrerequisites(selectedModule);     // return newlyAddedModules
+
+        // for each module and it's prereqs.
+        for (int i = 0; i < ModuleHandler.newlyAddedModules.size(); i++){
+
+            // sort and try credit check,
+            recommender.sortModules(ModuleHandler.newlyAddedModules.get(i));
+            //recommender.checkCredits()
 
         }
-        recommender.sortModules(ModuleHandler.newlyAddedModules);
         
         // run recalculate
         recommender.weightGenerator.recalculateWeights();
