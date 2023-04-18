@@ -328,6 +328,8 @@ public class RecommendationController implements Initializable {
 
             // sort and try credit check,
             recommender.sortModules(ModuleHandler.newlyAddedModules.get(i));
+
+            // check for each year
             //recommender.checkCredits()
 
         }
