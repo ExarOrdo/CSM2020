@@ -22,7 +22,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-        <Text layoutX="460.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year One">
+        <Text fx:id="currentYear" layoutX="460.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year One">
          <font>
             <Font size="20.0" />
          </font></Text>

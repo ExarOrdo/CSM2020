@@ -17,8 +17,8 @@
           <TextField  fx:id="password" layoutX="330.0" layoutY="100.0" prefHeight="35.0" prefWidth="170.0" promptText="Password..." BorderPane.alignment="CENTER" />
          <TextField  fx:id="firstName" layoutX="100.0" layoutY="155.0" prefHeight="35.0" prefWidth="170.0" promptText="First Name..." />
          <TextField fx:id="lastName" layoutX="330.0" layoutY="155.0" prefHeight="35.0" prefWidth="170.0" promptText="Last Name..." />
-          <ComboBox fx:id="yearComboBox" editable="true" layoutX="100.0" layoutY="210.0" prefHeight="35.0" prefWidth="170.0" promptText="Year..." />
-          <ComboBox fx:id="courseComboBox" editable="true" layoutX="330.0" layoutY="210.0" prefHeight="35.0" prefWidth="170.0" promptText="Course..." />
+          <ComboBox fx:id="yearComboBox" layoutX="100.0" layoutY="210.0" prefHeight="35.0" prefWidth="170.0" promptText="Year..." />
+          <ComboBox fx:id="courseComboBox" layoutX="330.0" layoutY="210.0" prefHeight="35.0" prefWidth="170.0" promptText="Course..." />
          <Text fx:id="alreadyExists" fill="RED" layoutX="235.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID already exists" visible="false" />
       
       </AnchorPane>
