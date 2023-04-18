@@ -41,17 +41,9 @@ public class Main extends Application {
                 currentStage.setWidth(620);
                 currentStage.setTitle(sceneTitle);
             }
-            case "Recommendation.fxml" -> {
+            case "Recommendation.fxml","StudentRecord.fxml", "Timetable.fxml", "Help.fxml", "Admin.fxml", "AdminTimetable.fxml" -> {
                 currentStage.setMinHeight(820);
-                currentStage.setMinWidth(1000);
-                currentStage.setTitle(sceneTitle);
-
-            }
-            case "StudentRecord.fxml", "Timetable.fxml", "Admin.fxml", "Help.fxml", "AdminTimetable.fxml" -> {
-                currentStage.setMinHeight(540);
-                currentStage.setHeight(540);
-                currentStage.setMinWidth(620);
-                currentStage.setWidth(620);
+                currentStage.setMinWidth(1020);
                 currentStage.setTitle(sceneTitle);
 
             }

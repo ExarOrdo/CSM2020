@@ -15,7 +15,7 @@ public class DataLoader extends DatabaseHandler {
 
     private final String courseQuery = "SELECT StudentCourse FROM STUDENT WHERE StudentID = ?";
     private final String coreModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3, m.ModuleTag4, m.ModuleTag5, m.ModuleTag6, m.ModuleTag7, m.ModuleTag8 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
-    private final String electiveModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3, m.ModuleTag4, m.ModuleTag5, m.ModuleTag6, m.ModuleTag7, m.ModuleTag8 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
+    private final String electiveModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3, m.ModuleTag4, m.ModuleTag5, m.ModuleTag6, m.ModuleTag7, m.ModuleTag8 FROM OPTIONAL_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
     private final String modulesQuery = "SELECT * FROM MODULE";
     private final String studentRecordQuery = "SELECT * FROM STUDENT WHERE StudentID = ?";
     private final String studentRecordModulesQuery = "SELECT module.ModuleID, marks.StudentMark, module.ModuleYear, marks.MarkDate FROM marks JOIN module ON marks.ModuleID = module.ModuleID WHERE marks.StudentID = ? AND module.ModuleYear = ?";
@@ -163,6 +163,44 @@ public class DataLoader extends DatabaseHandler {
         }
 
         return coreModuleResult;
+    }
+
+    public ResultSet loadModuleDataElective(String studentID) {
+        ResultSet coreModuleResult = null;
+        ResultSet electiveModuleResult = null;
+        try {
+            Connection connection = getConnection();
+
+            // Find the course name for the student
+            String courseID = "";
+            PreparedStatement studentStatement = connection.prepareStatement(courseQuery);
+            studentStatement.setString(1, studentID);
+            ResultSet studentResult = studentStatement.executeQuery();
+            if (studentResult.next()) {
+                courseID = studentResult.getString("StudentCourse");
+            }
+            System.out.println("CourseID: " + courseID); // Debug statement
+
+            if (!courseID.isEmpty()) {
+                // Find the core modules for the course
+                PreparedStatement electiveModuleStatement = connection.prepareStatement(electiveModulesQuery);
+                electiveModuleStatement.setString(1, courseID);
+                electiveModuleResult = electiveModuleStatement.executeQuery();
+
+                // Find electives
+                // PreparedStatement electiveModuleStatement = connection.prepareStatement(electiveModulesQuery);
+                // electiveModuleStatement.setString(1, courseID);
+                // electiveModuleResult = coreModuleStatement.executeQuery();
+            }
+
+            studentResult.close();
+            studentStatement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return electiveModuleResult;
     }
 
 }
