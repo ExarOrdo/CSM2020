@@ -51,7 +51,7 @@ public class Register extends DatabaseHandler{
     }
 
     public boolean allFieldsFilled() {
-        if (firstName == "" || lastName == "" || studentId == "" || password == "" || initalYear == null || initalCourse == null){
+        if (firstName.isEmpty() || lastName.isEmpty() || studentId.isEmpty() || password.isEmpty() || initalYear.getValue() == null || initalCourse.getValue() == null){
             return false;
 
         }
