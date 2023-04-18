@@ -1,5 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.CoreModuleRecord;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.OptionalModuleRecord;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.Record;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.StudentRecord;
@@ -84,7 +85,8 @@ public class RecordUpdater extends DatabaseHandler{
             }
 
             case CORE_MODULE -> {
-
+                CoreModuleRecord coreModuleRecord = (CoreModuleRecord) recordToUpdate;
+                CoreModuleRecord newDetails = (CoreModuleRecord) newRecordDetails;
             }
 
             case MODULE -> {
