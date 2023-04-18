@@ -17,13 +17,19 @@ public class ModuleRecord extends Record {
     private int moduleSemester;
 
     private String tag1;
-
     private String tag2;
-
     private String tag3;
+    private String tag4;
+    private String tag5;
+    private String tag6;
+    private String tag7;
+    private String tag8;
+
+    private String modulePrerequisite;
+
 
     /**
-     * Consutrct an object holding data about single Module record
+     * Constructs module record object
      * @param moduleId
      * @param moduleName
      * @param moduleDescription
@@ -36,7 +42,8 @@ public class ModuleRecord extends Record {
      */
     public ModuleRecord(String moduleId, String moduleName, String moduleDescription,
                         int moduleCredits, int moduleYear, int moduleSemester,
-                        String tag1, String tag2, String tag3) {
+                        String tag1, String tag2, String tag3, String tag4, String tag5,
+                        String tag6, String tag7, String tag8, String modulePrerequisite) {
 
         this.moduleId = moduleId;
 
@@ -51,12 +58,17 @@ public class ModuleRecord extends Record {
         this. moduleSemester = moduleSemester;
 
         this.tag1 = tag1;
-
         this.tag2 = tag2;
-
         this.tag3 = tag3;
+        this.tag4 = tag4;
+        this.tag5 = tag5;
+        this.tag6 = tag6;
+        this.tag7 = tag7;
+        this.tag8 = tag8;
 
-        this.setNumberOfFields(9);
+        this.modulePrerequisite = modulePrerequisite;
+
+        this.setNumberOfFields(15);
         this.setTableName(Table.MODULE);
     }
 

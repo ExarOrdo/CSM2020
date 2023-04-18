@@ -63,6 +63,13 @@ public class DatabaseInteractionTest {
     private final String tag1 = "testTag1";
     private final String tag2 = "testTag2";
     private final String tag3 = "testTag3";
+    private final String tag4 = "testTag4";
+    private final String tag5 = "testTag5";
+    private final String tag6 = "testTag6";
+    private final String tag7 = "testTag7";
+    private final String tag8 = "testTag8";
+
+    private final String modulePrerequisite = "testPrerequisite";
 
     //second module details
     private final String moduleId2 = "testModuleId2";
@@ -74,6 +81,11 @@ public class DatabaseInteractionTest {
     private final String tagTwo1 = "testTagTwo1";
     private final String tagTwo2 = "testTagTwo2";
     private final String tagTwo3 = "testTagTwo3";
+    private final String tagTwo4 = "testTagTwo4";
+    private final String tagTwo5 = "testTagTwo5";
+    private final String tagTwo6 = "testTagTwo6";
+    private final String tagTwo7 = "testTagTwo7";
+    private final String tagTwo8 = "testTagTwo8";
 
     //updated module details
     private final String updatedModuleId = "updatedModuleId";
@@ -85,6 +97,11 @@ public class DatabaseInteractionTest {
     private final String updatedTag1 = "updatedTag1";
     private final String updatedTag2 = "updatedTag2";
     private final String updatedTag3 = "updatedTag3";
+    private final String updatedTag4 = "updatedTag4";
+    private final String updatedTag5 = "updatedTag5";
+    private final String updatedTag6 = "updatedTag6";
+    private final String updatedTag7 = "updatedTag7";
+    private final String updatedTag8 = "updatedTag8";
 
     //updated course details
     private final String updatedCourseId = "updatedCourseId";
@@ -102,9 +119,9 @@ public class DatabaseInteractionTest {
     private final StudentRecord studentRecord = new StudentRecord(id, firstName, lastName, year, course, password);
     private final StudentRecord updateStudentRecord = new StudentRecord(id, updateFirstName, updateLastName, updateYear, updateCourse, updatePassword);
 
-    private final ModuleRecord moduleRecord = new ModuleRecord(moduleId, moduleName, moduleDescription, moduleCredits, moduleYear, moduleSemester, tag1, tag2, tag3);
-    private final ModuleRecord moduleRecord2 = new ModuleRecord(moduleId2, moduleName2, moduleDescription2, moduleCredit2, moduleYear2, moduleSemester2, tagTwo1, tagTwo2, tagTwo3);
-    private final ModuleRecord updatedModuleRecord = new ModuleRecord(updatedModuleId, updatedModuleName, updatedModuleDescription, updatedModuleCredits, updatedModuleYear, updatedModuleSemester, updatedTag1, updatedTag2, updatedTag3);
+    private final ModuleRecord moduleRecord = new ModuleRecord(moduleId, moduleName, moduleDescription, moduleCredits, moduleYear, moduleSemester, tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, modulePrerequisite);
+    private final ModuleRecord moduleRecord2 = new ModuleRecord(moduleId2, moduleName2, moduleDescription2, moduleCredit2, moduleYear2, moduleSemester2, tagTwo1, tagTwo2, tagTwo3, tagTwo4, tagTwo5, tagTwo6, tagTwo7, tagTwo8, modulePrerequisite);
+    private final ModuleRecord updatedModuleRecord = new ModuleRecord(updatedModuleId, updatedModuleName, updatedModuleDescription, updatedModuleCredits, updatedModuleYear, updatedModuleSemester, updatedTag1, updatedTag2, updatedTag3, updatedTag4, updatedTag5, updatedTag6, updatedTag7, updatedTag8, modulePrerequisite);
 
     private final CourseRecord courseRecord = new CourseRecord(courseId, courseName, courseDescription);
     private final CourseRecord courseRecord2 = new CourseRecord(courseId2, courseName2, courseDescription2);
@@ -114,6 +131,8 @@ public class DatabaseInteractionTest {
     private final OptionalModuleRecord optionalModuleRecord2 = new OptionalModuleRecord(courseId2, moduleId2);
 
     private final CoreModuleRecord coreModuleRecord = new CoreModuleRecord(courseId, moduleId);
+    private final CoreModuleRecord coreModuleRecord2 = new CoreModuleRecord(courseId2, moduleId2);
+
     private final MarkRecord markRecord = new MarkRecord(id, moduleId, studentMark, markDate);
 
     //
@@ -374,5 +393,27 @@ public class DatabaseInteractionTest {
         removeCourseRecord(courseRecord);
         removeCourseRecord(courseRecord2);
         removeOptionalRecord(optionalModuleRecord2);
+    }
+
+    @Test
+    @Order(15)
+    void testUpdatingCoreModuleRecord() throws SQLException {
+        createModuleRecord(moduleRecord);
+        createCourseRecord(courseRecord);
+        createCoreRecord(coreModuleRecord);
+
+        //create second course and module to change the Optional details
+        createModuleRecord(moduleRecord2);
+        createCourseRecord(courseRecord2);
+
+        RecordUpdater recordUpdater = new RecordUpdater(coreModuleRecord, coreModuleRecord2);
+
+        assertTrue(recordUpdater.tryUpdatingRecord());
+
+        removeModuleRecord(moduleRecord);
+        removeModuleRecord(moduleRecord2);
+        removeCourseRecord(courseRecord);
+        removeCourseRecord(courseRecord2);
+        removeCoreRecord(coreModuleRecord2);
     }
 }

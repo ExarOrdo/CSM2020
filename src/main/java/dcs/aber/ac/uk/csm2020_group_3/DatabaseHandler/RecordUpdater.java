@@ -87,6 +87,23 @@ public class RecordUpdater extends DatabaseHandler{
             case CORE_MODULE -> {
                 CoreModuleRecord coreModuleRecord = (CoreModuleRecord) recordToUpdate;
                 CoreModuleRecord newDetails = (CoreModuleRecord) newRecordDetails;
+
+                try {
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE CORE_MODULE SET" +
+                            "CourseID = ?, ModuleID = ? WHERE CourseID = ? AND ModuleID = ?");
+                    editRecord.setString(1, newDetails.getCourseId());
+                    editRecord.setString(2, newDetails.getModuleId());
+                    editRecord.setString(3, coreModuleRecord.getCourseId());
+                    editRecord.setString(4, coreModuleRecord.getModuleId());
+
+                    System.out.println("Edited details for Core Module ID: " + coreModuleRecord.getModuleId() +
+                            " for Course ID: " + coreModuleRecord.getCourseId());
+
+                } catch (Exception err) {
+                    System.err.println("Error when editing Core Module record in Core_Module table: " + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
             }
 
             case MODULE -> {
