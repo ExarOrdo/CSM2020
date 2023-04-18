@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class ElectiveListGenerator extends ModuleHandler{
 
     public static ArrayList<Module> electiveModulesList;
+    //
 
     private DataLoader dataLoader;
 

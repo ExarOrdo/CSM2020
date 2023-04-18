@@ -11,6 +11,8 @@ public class DataLoader extends DatabaseHandler {
 
     private EnrolledModules checkEnrolledModules;
 
+    //
+
     private final String courseQuery = "SELECT StudentCourse FROM STUDENT WHERE StudentID = ?";
     private final String coreModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3, m.ModuleTag4, m.ModuleTag5, m.ModuleTag6, m.ModuleTag7, m.ModuleTag8 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
     private final String electiveModulesQuery = "SELECT m.ModuleName, m.ModuleCredits, m.ModuleSemester, m.ModuleYear, m.ModuleTag1, m.ModuleTag2, m.ModuleTag3, m.ModuleTag4, m.ModuleTag5, m.ModuleTag6, m.ModuleTag7, m.ModuleTag8 FROM CORE_MODULE cm JOIN MODULE m ON cm.ModuleID = m.ModuleID WHERE cm.CourseID = ?";
