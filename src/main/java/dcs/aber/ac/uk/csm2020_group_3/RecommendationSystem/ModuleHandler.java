@@ -40,7 +40,7 @@ public abstract class ModuleHandler {
         return currentModuleAmount;
     }
 
-    public void setNewlyAddedModules() {
+    public void setNewlyAddedModulesZero() {
         newlyAddedModules = new ArrayList<>();
     }
 
