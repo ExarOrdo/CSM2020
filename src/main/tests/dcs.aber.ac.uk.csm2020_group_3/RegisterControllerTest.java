@@ -1,5 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3;
 
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordRemover;
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.StudentRecord;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
@@ -9,6 +11,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,8 +34,12 @@ public class RegisterControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testRegistration() {
+    public void testRegistration() throws SQLException {
         FxRobot robot = new FxRobot();
+        StudentRecord studentRecord = new StudentRecord("uiUnitTestRegister", "John", "Doe", 1, "Computer Science", "password123");
+        RecordRemover recordRemover = new RecordRemover(studentRecord);
+        recordRemover.tryRemovingRecord();
+
         // Enter valid student details
         robot.clickOn("#studentId").write("uiUnitTestRegister");
         robot.clickOn("#password").write("password123");
