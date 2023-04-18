@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
@@ -37,6 +38,7 @@ public class RecommendationController implements Initializable {
     public TextArea elective3Name;
     public TextArea elective3Sem;
     public TextArea elective3Cred;
+    public CheckBox tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8;
     private Recommender recommender;
 
     @FXML
@@ -193,7 +195,7 @@ public class RecommendationController implements Initializable {
         }
     }
 
-    private void createRecommender(){
+    private void createRecommender() {
         String studentID = DatabaseHandler.getCurrentStudentId(); // Use the logged-in student's ID
         recommender = new Recommender(studentID);
     }
@@ -236,7 +238,7 @@ public class RecommendationController implements Initializable {
      * Bunch of functions that run when an elective is chosen in the UI.
      */
 
-    private void listViewWrapText(ListView<String> listView){
+    private void listViewWrapText(ListView<String> listView) {
         listView.setCellFactory(new Callback<>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
@@ -286,23 +288,23 @@ public class RecommendationController implements Initializable {
     /**
      * Bunch of functions that run when an elective is chosen in the UI.
      */
-    private void onElectiveChosen(){
+    private void onElectiveChosen() {
 
 
         // get module/modules chosen
         // check prereq
         // checks credits
         // sorts into list
-        String selectedElective ="";
+        String selectedElective = "";
         Module selectedModule = null;
 
 
-        if(highView.getSelectionModel().getSelectedItem()!= null){
+        if (highView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = highView.getSelectionModel().getSelectedItem();
 
-        }else if(mediumView.getSelectionModel().getSelectedItem()!= null){
+        } else if (mediumView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = mediumView.getSelectionModel().getSelectedItem();
-        }else if(lowView.getSelectionModel().getSelectedItem()!= null){
+        } else if (lowView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = lowView.getSelectionModel().getSelectedItem();
         }
         highView.getSelectionModel().clearSelection();
@@ -312,7 +314,7 @@ public class RecommendationController implements Initializable {
 
         //iterate across currently selected modules
         for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
-            if(selectedElective.equals(ElectiveListGenerator.electiveModulesList.get(i).getName())){
+            if (selectedElective.equals(ElectiveListGenerator.electiveModulesList.get(i).getName())) {
                 selectedModule = ElectiveListGenerator.electiveModulesList.get(i);
             }
         }
@@ -324,7 +326,7 @@ public class RecommendationController implements Initializable {
         recommender.checkPrerequisites(selectedModule);     // return newlyAddedModules
 
         // for each module and it's prereqs.
-        for (int i = 0; i < ModuleHandler.newlyAddedModules.size(); i++){
+        for (int i = 0; i < ModuleHandler.newlyAddedModules.size(); i++) {
 
             // sort and try credit check,
             recommender.sortModules(ModuleHandler.newlyAddedModules.get(i));
@@ -340,7 +342,7 @@ public class RecommendationController implements Initializable {
 
 
         }
-        
+
         // run recalculate
         recommender.weightGenerator.recalculateWeights();
 
@@ -368,10 +370,31 @@ public class RecommendationController implements Initializable {
         System.out.println(selectedElective);
     }
 
-    private void confirm(){
+    private void confirm() {
         // when confirm is pressed, local moduleYearLists are added to db
         //,or they are
     }
+
+    public void loadTags() {
+        List<String> tags = new ArrayList<String>();
+        for (int i = 0; i<ElectiveListGenerator.electiveModulesList.size();i++){
+            for (int x = 1; x<ElectiveListGenerator.electiveModulesList.get(i).getTagList().size(); x++){
+                    if (!tags.contains(ElectiveListGenerator.electiveModulesList.get(i).getTagList().get(x))){
+                         tags.add(ElectiveListGenerator.electiveModulesList.get(i).getTagList().get(x));
+                    }
+                }
+            }
+        tag1.setText(tags.get(0));
+        tag2.setText(tags.get(1));
+        tag3.setText(tags.get(2));
+        tag4.setText(tags.get(3));
+        tag5.setText(tags.get(4));
+        tag6.setText(tags.get(5));
+        tag7.setText(tags.get(6));
+        tag8.setText(tags.get(7));
+
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -385,5 +408,6 @@ public class RecommendationController implements Initializable {
             allElectivesList.getItems().add(ElectiveListGenerator.electiveModulesList.get(i).getName());
             electiveNames.add(ElectiveListGenerator.electiveModulesList.get(i).getName());
         }
+        loadTags();
     }
 }
