@@ -150,6 +150,26 @@ public class RecordUpdater extends DatabaseHandler{
             }
 
             case MARKS -> {
+                MarkRecord markRecord = (MarkRecord) recordToUpdate;
+                MarkRecord newDetails = (MarkRecord) newRecordDetails;
+
+                try {
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE MARKS SET " +
+                            "StudentMark = ?, MarkDate = ? WHERE StudentID = ? AND ModuleID = ?");
+
+                    editRecord.setInt(1, newDetails.getStudentMark());
+                    editRecord.setDate(2, newDetails.getMarkDate());
+                    editRecord.setString(3, markRecord.getStudentId());
+                    editRecord.setString(4, markRecord.getModuleId());
+
+                    editRecord.execute();
+                    editRecord.close();
+
+                } catch (Exception err) {
+                    System.err.println("Error when updating Mark record in Mark table " + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
 
             }
 

@@ -110,9 +110,11 @@ public class DatabaseInteractionTest {
 
 
     //mark details
-    private final int studentMark = 2;
-
+    private final int studentMark = 42;
     private final java.sql.Date markDate = new java.sql.Date(2023,11,1); //deprecated but why not
+
+    private final int studentMark2 = 50;
+    private final java.sql.Date markDate2 = new java.sql.Date(2023,2,12); //deprecated but why not
 
 
     //record objects to use in tests
@@ -134,6 +136,7 @@ public class DatabaseInteractionTest {
     private final CoreModuleRecord coreModuleRecord2 = new CoreModuleRecord(courseId2, moduleId2);
 
     private final MarkRecord markRecord = new MarkRecord(id, moduleId, studentMark, markDate);
+    private final MarkRecord markRecord2 = new MarkRecord(id, moduleId, studentMark2, markDate2);
 
     //
     private void createStudentRecord(StudentRecord studentRecord) throws SQLException {
@@ -427,6 +430,23 @@ public class DatabaseInteractionTest {
         assertTrue(recordUpdater.tryUpdatingRecord());
 
         removeModuleRecord(moduleRecord);
+
+    }
+
+    @Test
+    @Order(17)
+    void testUpdatingMarkRecord() throws SQLException {
+        createStudentRecord(studentRecord);
+        createModuleRecord(moduleRecord);
+        createMarksRecord(markRecord);
+
+        RecordUpdater recordUpdater = new RecordUpdater(markRecord, markRecord2);
+
+        assertTrue(recordUpdater.tryUpdatingRecord());
+
+        removeMarkRecord(markRecord2);
+        removeModuleRecord(moduleRecord);
+        removeStudentRecord(studentRecord);
 
     }
 }
