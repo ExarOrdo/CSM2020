@@ -65,7 +65,7 @@ public class RecordUpdater extends DatabaseHandler{
                 OptionalModuleRecord optionalModuleRecord = (OptionalModuleRecord) recordToUpdate;
                 OptionalModuleRecord newDetails = (OptionalModuleRecord) newRecordDetails;
                 try {
-                    PreparedStatement editRecord = connection.prepareStatement("UPDATE OPTIONAL_MODULE SET" +
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE OPTIONAL_MODULE SET " +
                             "CourseID = ?, ModuleID = ? WHERE CourseID = ? AND ModuleID = ?");
 
                     editRecord.setString(1, newDetails.getCourseId());
@@ -90,7 +90,7 @@ public class RecordUpdater extends DatabaseHandler{
                 CoreModuleRecord newDetails = (CoreModuleRecord) newRecordDetails;
 
                 try {
-                    PreparedStatement editRecord = connection.prepareStatement("UPDATE CORE_MODULE SET" +
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE CORE_MODULE SET " +
                             "CourseID = ?, ModuleID = ? WHERE CourseID = ? AND ModuleID = ?");
                     editRecord.setString(1, newDetails.getCourseId());
                     editRecord.setString(2, newDetails.getModuleId());
