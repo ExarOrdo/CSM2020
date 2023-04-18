@@ -107,4 +107,28 @@ public class ModuleRecord extends Record {
     public String getTag3() {
         return tag3;
     }
+
+    public String getTag4() {
+        return tag4;
+    }
+
+    public String getTag5() {
+        return tag5;
+    }
+
+    public String getTag6() {
+        return tag6;
+    }
+
+    public String getTag7() {
+        return tag7;
+    }
+
+    public String getTag8() {
+        return tag8;
+    }
+
+    public String getModulePrerequisite() {
+        return modulePrerequisite;
+    }
 }

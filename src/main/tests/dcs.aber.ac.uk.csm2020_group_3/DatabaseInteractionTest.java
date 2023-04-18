@@ -416,4 +416,17 @@ public class DatabaseInteractionTest {
         removeCourseRecord(courseRecord2);
         removeCoreRecord(coreModuleRecord2);
     }
+
+    @Test
+    @Order(16)
+    void testUpdatingModuleRecord() throws SQLException {
+        createModuleRecord(moduleRecord);
+
+        RecordUpdater recordUpdater = new RecordUpdater(moduleRecord, moduleRecord2);
+
+        assertTrue(recordUpdater.tryUpdatingRecord());
+
+        removeModuleRecord(moduleRecord);
+
+    }
 }

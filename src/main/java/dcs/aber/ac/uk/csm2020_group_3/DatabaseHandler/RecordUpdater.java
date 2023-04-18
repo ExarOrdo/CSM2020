@@ -1,9 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.CoreModuleRecord;
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.OptionalModuleRecord;
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.Record;
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.StudentRecord;
 import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.sql.PreparedStatement;
@@ -75,6 +73,9 @@ public class RecordUpdater extends DatabaseHandler{
                     editRecord.setString(3, optionalModuleRecord.getCourseId());
                     editRecord.setString(4, optionalModuleRecord.getModuleId());
 
+                    editRecord.execute();
+                    editRecord.close();
+
                     System.out.println("Edited details for Optional Module ID: " + optionalModuleRecord.getModuleId() +
                             " for Course ID: " + optionalModuleRecord.getCourseId());
                 } catch (Exception err) {
@@ -96,6 +97,9 @@ public class RecordUpdater extends DatabaseHandler{
                     editRecord.setString(3, coreModuleRecord.getCourseId());
                     editRecord.setString(4, coreModuleRecord.getModuleId());
 
+                    editRecord.execute();
+                    editRecord.close();
+
                     System.out.println("Edited details for Core Module ID: " + coreModuleRecord.getModuleId() +
                             " for Course ID: " + coreModuleRecord.getCourseId());
 
@@ -107,6 +111,41 @@ public class RecordUpdater extends DatabaseHandler{
             }
 
             case MODULE -> {
+                ModuleRecord moduleRecord = (ModuleRecord) recordToUpdate;
+                ModuleRecord newDetails = (ModuleRecord)  newRecordDetails;
+
+                try {
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE MODULE SET " +
+                            "ModuleName = ?, ModuleDescription = ?, ModuleCredits = ?, ModuleYear = ?," +
+                            "ModuleSemester = ?, ModuleTag1 = ?, ModuleTag2 = ?, ModuleTag3 = ?, ModuleTag4 = ?," +
+                            "ModuleTag5 = ?, ModuleTag6 = ?, ModuleTag7 = ?, ModuleTag8 = ?, ModulePrerequisite = ?" +
+                            "WHERE ModuleID = ?");
+                    editRecord.setString(1, newDetails.getModuleName());
+                    editRecord.setString(2, newDetails.getModuleDescription());
+                    editRecord.setInt(3, newDetails.getModuleCredits());
+                    editRecord.setInt(4, newDetails.getModuleYear());
+                    editRecord.setInt(5, newDetails.getModuleSemester());
+                    editRecord.setString(6, newDetails.getTag1());
+                    editRecord.setString(7, newDetails.getTag2());
+                    editRecord.setString(8, newDetails.getTag3());
+                    editRecord.setString(9, newDetails.getTag4());
+                    editRecord.setString(10, newDetails.getTag5());
+                    editRecord.setString(11, newDetails.getTag6());
+                    editRecord.setString(12, newDetails.getTag7());
+                    editRecord.setString(13, newDetails.getTag8());
+                    editRecord.setString(14, newDetails.getModulePrerequisite());
+                    editRecord.setString(15, moduleRecord.getModuleId());
+
+                    editRecord.execute();
+                    editRecord.close();
+
+                    System.out.println("Edited details for a Module ID: " + moduleRecord.getModuleId());
+
+                }catch (Exception err) {
+                    System.err.println("Error when editing Module record in Module table: " + err.getMessage());
+                    err.printStackTrace();
+                    return false;
+                }
 
             }
 
