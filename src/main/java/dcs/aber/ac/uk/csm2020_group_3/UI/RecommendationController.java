@@ -3,12 +3,8 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ElectiveListGenerator;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Recommender;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.StrengthCalculator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -323,8 +319,13 @@ public class RecommendationController implements Initializable {
 
 
         assert selectedModule != null;
-        recommender.checkPrerequisitesAndCreditsAndAdd(selectedModule); // currently accepts Module object, modify to take string if needed
-        
+
+        // check prereqs, if prereq has another
+        recommender.checkPrerequisites(selectedModule); // currently accepts Module object, modify to take string if needed
+        if (recommender.checkCredits(ModuleHandler.newlyAddedModules).equals(Boolean.TRUE)){
+
+        }
+        recommender.sortModules(ModuleHandler.newlyAddedModules);
         
         // run recalculate
         recommender.weightGenerator.recalculateWeights();
@@ -347,7 +348,9 @@ public class RecommendationController implements Initializable {
 
         // display new electives in UI
         // show new weights in UI
+
         // set newlyAddedModules to empty again.
+        recommender.setNewlyAddedModulesZero();
         System.out.println(selectedElective);
     }
 
