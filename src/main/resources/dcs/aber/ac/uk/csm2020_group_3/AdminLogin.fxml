@@ -13,9 +13,9 @@
     <center>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                     prefHeight="400.0" prefWidth="600.0">
-            <TextField id="adminUsernameTextField" fx:id="adminId" layoutX="189.0" layoutY="130.0" prefHeight="35.0"
+            <TextField  fx:id="adminId" layoutX="189.0" layoutY="130.0" prefHeight="35.0"
                        prefWidth="230.0" promptText="Admin Username..." BorderPane.alignment="CENTER"/>
-            <PasswordField id="adminPasswordTextField" fx:id="adminPassword" layoutX="189.0" layoutY="175.0"
+            <PasswordField  fx:id="adminPassword" layoutX="189.0" layoutY="175.0"
                            prefHeight="35.0" prefWidth="230.0" promptText="Password..." BorderPane.alignment="CENTER"/>
             <Button fx:id="backBtn" layoutX="174.0" layoutY="235.0" mnemonicParsing="false" onAction="#backToLogin"
                     prefHeight="35.0" prefWidth="110.0" text="Go Back"/>
