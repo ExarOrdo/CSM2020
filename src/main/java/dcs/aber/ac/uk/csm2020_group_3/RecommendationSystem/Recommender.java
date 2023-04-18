@@ -42,7 +42,7 @@ public class Recommender extends ModuleHandler{
         // calls methods after instantiating Recommender (after login/register)
         coreListGenerator.generateCoreList(studentID);
         electiveListGenerator.generateElectiveList(studentID);
-        sortModulesAndCheckCredits(coreListGenerator.getCoreModulesList());
+        sortModules(coreListGenerator.getCoreModulesList());
         weightGenerator.generateWeights(this.getCoreList(), this.getElectiveList());
         strengthCalculator.sortByWeights(this.getElectiveList());
     }
