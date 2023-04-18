@@ -29,7 +29,7 @@ public class ElectiveListGenerator extends ModuleHandler{
         String tag8 = null;
         String prerequisiteModule = "";
 
-        ResultSet electiveModuleResult = dataLoader.loadModuleData(studentID);
+        ResultSet electiveModuleResult = dataLoader.loadModuleDataElective(studentID);
         try {
             while (electiveModuleResult.next()) {
                 String moduleName = electiveModuleResult.getString("ModuleName");
