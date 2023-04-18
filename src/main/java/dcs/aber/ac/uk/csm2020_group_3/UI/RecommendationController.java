@@ -329,8 +329,15 @@ public class RecommendationController implements Initializable {
             // sort and try credit check,
             recommender.sortModules(ModuleHandler.newlyAddedModules.get(i));
 
-            // check for each year
-            //recommender.checkCredits()
+            // check credit limit for each year.
+            if (recommender.checkCredits().equals(Boolean.FALSE)){
+
+                // remove selected module + any prereqs from lists.
+                ElectiveListGenerator.electiveModulesList.removeAll(ModuleHandler.newlyAddedModules);
+
+                // UI message - failed credit check.,
+            }
+
 
         }
         
