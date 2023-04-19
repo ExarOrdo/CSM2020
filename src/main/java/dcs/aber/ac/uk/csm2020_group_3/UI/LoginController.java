@@ -37,17 +37,22 @@ public class LoginController {
         Main main = new Main();
         Login login = new Login(studentId.getText(), studentPassword.getText());
 
-        if (login.tryLogin()) {
-            incorrectField.setVisible(false);
-            Login.setCurrentStudentId(studentId.getText()); // Store the logged-in student's ID
-
-            loginID = studentId.getText();
-            main.changeScene("Recommendation.fxml");
-            System.out.println("Successful login");
-        } else {
+        if(login.allFieldsFilled()){
+            if (login.tryLogin()) {
+                incorrectField.setVisible(false);
+                Login.setCurrentStudentId(studentId.getText()); // Store the logged-in student's ID
+                loginID = studentId.getText();
+                main.changeScene("Recommendation.fxml");
+                System.out.println("Successful login");
+            } else {
+                incorrectField.setText("Incorrect Student ID or Password");
+                incorrectField.setVisible(true);
+            }
+        }
+        else{
+            incorrectField.setText("All fields must be filled");
             incorrectField.setVisible(true);
         }
-
 
     }
 
