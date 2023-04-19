@@ -1,7 +1,9 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordRemover;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.ModuleRecord;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -186,15 +188,55 @@ public class AdminController implements Initializable {
 
 
         //get listview selected item to know what to delete
-
+        String year0Selection = year0list.getSelectionModel().getSelectedItem();
+        String year1Selection = year1list.getSelectionModel().getSelectedItem();
+        String year2Selection = year2list.getSelectionModel().getSelectedItem();
+        String year3Selection = year3list.getSelectionModel().getSelectedItem();
+        String year4Selection = year4list.getSelectionModel().getSelectedItem();
 
 
         //more fancy lambda expressions for removing and adding module buttons
-        removeBtn0.setOnMouseClicked(event -> System.out.println("Remove button0 pressed"));
-        removeBtn1.setOnMouseClicked(event -> System.out.println("Remove button1 pressed"));
-        removeBtn2.setOnMouseClicked(event -> System.out.println("Remove button2 pressed"));
-        removeBtn3.setOnMouseClicked(event -> System.out.println("Remove button3 pressed"));
-        removeBtn4.setOnMouseClicked(event -> System.out.println("Remove button4 pressed"));
+        removeBtn0.setOnMouseClicked(event -> {
+            System.out.println("Remove button0 pressed");
+            try {
+                removeModule(year0Selection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        removeBtn1.setOnMouseClicked(event -> {
+            System.out.println("Remove button1 pressed");
+            try {
+                removeModule(year1Selection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        removeBtn2.setOnMouseClicked(event -> {
+            System.out.println("Remove button2 pressed");
+            try {
+                removeModule(year2Selection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        removeBtn3.setOnMouseClicked(event -> {
+            System.out.println("Remove button3 pressed");
+            try {
+                removeModule(year3Selection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        removeBtn4.setOnMouseClicked(event -> {
+            System.out.println("Remove button4 pressed");
+            try {
+                removeModule(year4Selection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
 
         addBtn0.setOnMouseClicked(event -> System.out.println("Add button0 pressed"));
         addBtn1.setOnMouseClicked(event -> System.out.println("Add button1 pressed"));
@@ -272,6 +314,15 @@ public class AdminController implements Initializable {
         }
     }
 
-   //private void removeModule()
+    private void removeModule(String selectedModuleName) throws SQLException {
+
+        ModuleRecord moduleRecord = recordLoader.getModuleByName(selectedModuleName);
+
+        RecordRemover recordRemover = new RecordRemover(moduleRecord);
+
+        recordRemover.tryRemovingRecord();
+
+
+    }
 
 }

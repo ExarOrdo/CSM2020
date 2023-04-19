@@ -131,4 +131,64 @@ public class ModuleRecord extends Record {
     public String getModulePrerequisite() {
         return modulePrerequisite;
     }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
+    }
+
+    public void setModuleId(String moduleId) {
+        this.moduleId = moduleId;
+    }
+
+    public void setModuleDescription(String moduleDescription) {
+        this.moduleDescription = moduleDescription;
+    }
+
+    public void setModuleCredits(int moduleCredits) {
+        this.moduleCredits = moduleCredits;
+    }
+
+    public void setModuleYear(int moduleYear) {
+        this.moduleYear = moduleYear;
+    }
+
+    public void setModuleSemester(int moduleSemester) {
+        this.moduleSemester = moduleSemester;
+    }
+
+    public void setTag1(String tag1) {
+        this.tag1 = tag1;
+    }
+
+    public void setTag2(String tag2) {
+        this.tag2 = tag2;
+    }
+
+    public void setTag3(String tag3) {
+        this.tag3 = tag3;
+    }
+
+    public void setTag4(String tag4) {
+        this.tag4 = tag4;
+    }
+
+    public void setTag5(String tag5) {
+        this.tag5 = tag5;
+    }
+
+    public void setTag6(String tag6) {
+        this.tag6 = tag6;
+    }
+
+    public void setTag7(String tag7) {
+        this.tag7 = tag7;
+    }
+
+    public void setTag8(String tag8) {
+        this.tag8 = tag8;
+    }
+
+    public void setModulePrerequisite(String modulePrerequisite) {
+        this.modulePrerequisite = modulePrerequisite;
+    }
 }

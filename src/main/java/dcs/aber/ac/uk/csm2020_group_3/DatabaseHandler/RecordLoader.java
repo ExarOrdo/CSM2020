@@ -1,5 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.ModuleRecord;
+
 import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -119,5 +121,44 @@ public class RecordLoader extends DatabaseHandler{
 
         Collections.sort(moduleStringList);
         return moduleStringList;
+    }
+
+    public ModuleRecord getModuleByName(String moduleName) throws SQLException {
+        ModuleRecord moduleRecord = null;
+
+        this.connection = getConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM MODULE WHERE ModuleName = ?");
+            statement.setString(1, moduleName);
+
+            ResultSet moduleResultSet = statement.executeQuery();
+
+            //super ugly data parsing because i'm too tired to figure out anything better or more flexible
+            moduleResultSet.next();
+
+            String id = moduleResultSet.getString("ModuleID");
+            String name = moduleResultSet.getString("ModuleName");
+            String description = moduleResultSet.getString("ModuleDescription");
+            int credits = moduleResultSet.getInt("ModuleCredits");
+            int year = moduleResultSet.getInt("ModuleYear");
+            int semester = moduleResultSet.getInt("ModuleSemester");
+            String tag1 = moduleResultSet.getString("ModuleTag1");
+            String tag2 = moduleResultSet.getString("ModuleTag2");
+            String tag3 =moduleResultSet.getString("ModuleTag3");
+            String tag4 =moduleResultSet.getString("ModuleTag4");
+            String tag5 =moduleResultSet.getString("ModuleTag5");
+            String tag6 =moduleResultSet.getString("ModuleTag6");
+            String tag7 =moduleResultSet.getString("ModuleTag7");
+            String tag8 =moduleResultSet.getString("ModuleTag8");
+            String prerequisite = moduleResultSet.getString("ModulePrerequisite");
+
+            moduleRecord = new ModuleRecord(id, name, description, credits, year, semester, tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, prerequisite);
+        } catch (Exception err) {
+            System.err.println("Error when getting full module data by name for admin: " + err.getMessage());
+            err.printStackTrace();
+        }
+
+        return moduleRecord;
     }
 }
