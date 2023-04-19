@@ -82,6 +82,15 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        //disable tabs and course box so that user chooses subjects first
+        courseBox.setDisable(true);
+        year0tab.setDisable(true);
+        year1tab.setDisable(true);
+        year2tab.setDisable(true);
+        year3tab.setDisable(true);
+        year4tab.setDisable(true);
+
+
         //arraylists used for combo boxes and listviews
         ArrayList<String> subjectStringList = new ArrayList<>();
 
@@ -104,10 +113,14 @@ public class AdminController implements Initializable {
             subjectBox.getItems().add(s);
         }
 
+
         //handle subject box selection
         subjectBox.setOnAction((event) -> {
             String chosenSubject = (String) subjectBox.getValue();
             System.out.println("Admin chose: " + chosenSubject);
+
+            //after user chooses subject, let them select course
+            courseBox.setDisable(false);
 
             //empty the list and combobox if new subject is chosen
             ref.courseStringList = new ArrayList<>();
