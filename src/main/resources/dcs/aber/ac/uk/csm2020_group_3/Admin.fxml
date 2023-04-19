@@ -110,8 +110,8 @@
          </Tab>
      </tabs>
    </TabPane>
-   <ComboBox layoutX="139.0" layoutY="21.0" prefHeight="30.0" prefWidth="150.0" />
-   <ComboBox layoutX="398.0" layoutY="20.0" prefHeight="30.0" prefWidth="310.0" />
+   <ComboBox fx:id="subjectBox" layoutX="139.0" layoutY="21.0" prefHeight="30.0" prefWidth="150.0" />
+   <ComboBox fx:id="courseBox" layoutX="398.0" layoutY="20.0" prefHeight="30.0" prefWidth="310.0" />
    <Text layoutX="69.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" y="20.0">
       <font>
          <Font size="18.0" />
