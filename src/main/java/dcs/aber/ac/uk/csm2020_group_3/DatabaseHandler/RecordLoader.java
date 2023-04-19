@@ -1,5 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,22 +29,46 @@ public class RecordLoader extends DatabaseHandler{
     }
 
     public ArrayList<String> getSubjectList() throws SQLException {
-        ArrayList<String> courseList = new ArrayList<>();
+        ArrayList<String> subjectList = new ArrayList<>();
 
         this.connection = getConnection();
 
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT DISTINCT ModuleTag1 FROM MODULE");
-            ResultSet courseResultSet = statement.executeQuery();
+            ResultSet subjectResultSet = statement.executeQuery();
 
-            while (courseResultSet.next()) {
-                courseList.add(courseResultSet.getString("ModuleTag1"));
-                System.out.println(courseResultSet.getString("ModuleTag1"));
+            while (subjectResultSet.next()) {
+                subjectList.add(subjectResultSet.getString("ModuleTag1"));
+                System.out.println(subjectResultSet.getString("ModuleTag1"));
             }
 
 
         } catch (Exception err) {
-            System.err.print("Error during getting subject list for admin page: " + err.getMessage());
+            System.err.println("Error during getting subject list for admin page: " + err.getMessage());
+            err.printStackTrace();
+        }
+
+        return subjectList;
+    }
+
+    public ArrayList<String> getCourseListBySubject(String subject) throws SQLException {
+        ArrayList<String> courseList = new ArrayList<>();
+
+        this.connection = getConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT DISTINCT CourseName FROM COURSE JOIN CORE_MODULE ON CORE_MODULE.CourseID = COURSE.CourseID " +
+                    "JOIN MODULE ON MODULE.ModuleID = CORE_MODULE.ModuleID WHERE MODULE.ModuleTag1 = ?");
+            statement.setString(1, subject);
+            ResultSet courseResultSet = statement.executeQuery();
+
+            while (courseResultSet.next()) {
+
+                courseList.add(courseResultSet.getString("CourseName"));
+                System.out.println(courseResultSet.getString("CourseName"));
+            }
+        } catch (Exception err) {
+            System.err.println("Error during getting course list for admin page: " + err.getMessage());
             err.printStackTrace();
         }
 

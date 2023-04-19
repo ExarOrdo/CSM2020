@@ -21,6 +21,9 @@ public class AdminController implements Initializable {
 
     @FXML
     ComboBox subjectBox;
+
+    @FXML
+    ComboBox courseBox;
     @FXML
     Pane expandedPane;
     @FXML
@@ -68,16 +71,41 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         ArrayList<String> subjectStringList = new ArrayList<>();
+        var ref = new Object() {
+            ArrayList<String> courseStringList = new ArrayList<>();
+        };
+
+
         try {
             subjectStringList = recordLoader.getSubjectList();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         //populate combo box for subjects
-        for (int i = 0; i < subjectStringList.size(); i++) {
-            subjectBox.getItems().add(subjectStringList.get(i));
+        for (String s : subjectStringList) {
+            subjectBox.getItems().add(s);
         }
+
+        subjectBox.setOnAction((event) -> {
+            String chosenSubject = (String) subjectBox.getValue();
+            System.out.println("Admin chose: " + chosenSubject);
+
+            //empty the list and combobox if new subject is chosen
+            ref.courseStringList = new ArrayList<>();
+            courseBox.getItems().clear();
+
+            try {
+                ref.courseStringList = recordLoader.getCourseListBySubject(chosenSubject);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            for (String s : ref.courseStringList) {
+                courseBox.getItems().add(s);
+            }
+        });
     }
 
 

@@ -471,9 +471,16 @@ public class DatabaseInteractionTest {
 
     @Test
     @Order(20)
-    void testGettingCourseNames() throws SQLException{
+    void testGettingSubjectNames() throws SQLException{
         RecordLoader recordLoader = new RecordLoader();
         recordLoader.getSubjectList();
 
+    }
+
+    @Test
+    @Order(21)
+    void testGettingCourseNames() throws SQLException {
+        RecordLoader recordLoader = new RecordLoader();
+        recordLoader.getCourseListBySubject("Computer Science");
     }
 }
