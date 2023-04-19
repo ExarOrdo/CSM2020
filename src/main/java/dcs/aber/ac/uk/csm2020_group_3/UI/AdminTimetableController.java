@@ -8,8 +8,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-public class AdminController {
-
+public class AdminTimetableController {
     @FXML
     Pane expandedPane;
     @FXML
@@ -35,24 +34,18 @@ public class AdminController {
 
     @FXML
     private void logout() throws IOException {
-
         Main main = new Main();
         main.changeScene("Login.fxml");
-
     }
 
     @FXML
-    private void toAdminTimetable() throws IOException {
-
-        Main main = new Main();
-        main.changeScene("AdminTimetable.fxml");
-
-    }
-
-    @FXML
-    private void toAdmin() {
+    private void toAdminTimetable(){
         pressBurgerBtn();
     }
 
-
+    @FXML
+    private void toAdmin() throws IOException {
+        Main main = new Main();
+        main.changeScene("Admin.fxml");
+    }
 }

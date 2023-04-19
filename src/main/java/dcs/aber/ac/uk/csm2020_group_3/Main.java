@@ -34,24 +34,16 @@ public class Main extends Application {
 
         final String sceneTitle = fxml.substring(0, fxml.length() - 5);
         switch (fxml) {
-            case "Login.fxml", "Register.fxml" -> {
-                currentStage.setMinHeight(420);
-                currentStage.setHeight(420);
+            case "Login.fxml", "Register.fxml", "AdminLogin.fxml" -> {
+                currentStage.setMinHeight(430);
+                currentStage.setHeight(430);
                 currentStage.setMinWidth(620);
                 currentStage.setWidth(620);
                 currentStage.setTitle(sceneTitle);
             }
-            case "Recommendation.fxml" -> {
+            case "Recommendation.fxml", "StudentRecord.fxml", "Timetable.fxml", "Help.fxml", "Admin.fxml", "AdminTimetable.fxml" -> {
                 currentStage.setMinHeight(820);
-                currentStage.setMinWidth(1000);
-                currentStage.setTitle(sceneTitle);
-
-            }
-            case "StudentRecord.fxml", "Timetable.fxml", "Admin.fxml", "Help.fxml" -> {
-                currentStage.setMinHeight(540);
-                currentStage.setHeight(540);
-                currentStage.setMinWidth(620);
-                currentStage.setWidth(620);
+                currentStage.setMinWidth(1020);
                 currentStage.setTitle(sceneTitle);
 
             }

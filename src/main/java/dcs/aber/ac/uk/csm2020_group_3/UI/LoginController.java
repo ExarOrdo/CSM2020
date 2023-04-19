@@ -14,11 +14,14 @@ import java.io.IOException;
 
 public class LoginController {
 
-    @FXML
-    Button registerBtn;
+    private static String loginID;
+
+    public static String getLoginID() {
+        return loginID;
+    }
 
     @FXML
-    Button loginBtn;
+    Button registerBtn, loginBtn, adminBtn;
 
     @FXML
     PasswordField studentPassword;
@@ -38,6 +41,7 @@ public class LoginController {
             incorrectField.setVisible(false);
             Login.setCurrentStudentId(studentId.getText()); // Store the logged-in student's ID
 
+            loginID = studentId.getText();
             main.changeScene("Recommendation.fxml");
             System.out.println("Successful login");
         } else {
@@ -52,6 +56,14 @@ public class LoginController {
 
         Main main = new Main();
         main.changeScene("Register.fxml");
+
+    }
+
+    @FXML
+    private void adminLogin() throws IOException {
+
+        Main main = new Main();
+        main.changeScene("AdminLogin.fxml");
 
     }
 }
