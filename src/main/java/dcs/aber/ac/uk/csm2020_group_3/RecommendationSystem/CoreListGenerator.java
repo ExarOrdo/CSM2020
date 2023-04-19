@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class CoreListGenerator extends ModuleHandler {
 
     public static ArrayList<Module> coreModulesList;
-    private DataLoader dataLoader;
+    private final DataLoader dataLoader;
 
     public CoreListGenerator(DataLoader dataLoader) {
         this.dataLoader = dataLoader;

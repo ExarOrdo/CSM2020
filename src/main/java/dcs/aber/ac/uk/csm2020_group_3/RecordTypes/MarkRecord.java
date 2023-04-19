@@ -6,13 +6,13 @@ import java.util.Date;
 
 public class MarkRecord extends Record{
 
-    private String studentId;
+    private final String studentId;
 
-    private String moduleId;
+    private final String moduleId;
 
-    private int studentMark;
+    private final int studentMark;
 
-    private java.sql.Date markDate;
+    private final java.sql.Date markDate;
 
 
     /**

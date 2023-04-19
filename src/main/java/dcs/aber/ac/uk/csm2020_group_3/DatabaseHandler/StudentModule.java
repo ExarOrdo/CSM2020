@@ -4,9 +4,9 @@ package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 import java.sql.Date;
 
 public class StudentModule {
-    private String moduleID;
-    private int moduleYear;
-    private int studentMark;
+    private final String moduleID;
+    private final int moduleYear;
+    private final int studentMark;
 
     private final Date markDate;
 

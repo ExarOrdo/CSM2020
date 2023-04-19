@@ -22,11 +22,11 @@ public class Recommender extends ModuleHandler{
 
     private TimeLimitCalculator timeLimitCalculator;
 
-    private CoreListGenerator coreListGenerator;
+    private final CoreListGenerator coreListGenerator;
 
-    private ElectiveListGenerator electiveListGenerator;
+    private final ElectiveListGenerator electiveListGenerator;
 
-    private DataLoader dataLoader;
+    private final DataLoader dataLoader;
     /**
      * Constructor for Recommender class
      * @param studentID

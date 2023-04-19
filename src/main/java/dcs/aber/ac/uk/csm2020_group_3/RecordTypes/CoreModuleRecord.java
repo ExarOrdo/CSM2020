@@ -4,9 +4,9 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table;
 
 public class CoreModuleRecord extends Record{
 
-    private String courseId;
+    private final String courseId;
 
-    private String moduleId;
+    private final String moduleId;
 
     /**
      * Constructs an object that holds data about single Core Module record

@@ -12,10 +12,10 @@ public class WeightGenerator extends ModuleHandler {
     /**
      * Bias determines how much current electives change the weights of suggested electives, from 1-4 (for now)
      */
-    private Integer bias = 1;
-    private ElectiveListGenerator electiveListGenerator;
+    private final Integer bias = 1;
+    private final ElectiveListGenerator electiveListGenerator;
 
-    private CoreListGenerator coreListGenerator;
+    private final CoreListGenerator coreListGenerator;
 
     public WeightGenerator(CoreListGenerator coreListGenerator, ElectiveListGenerator electiveListGenerator) {
         this.coreListGenerator = coreListGenerator;
