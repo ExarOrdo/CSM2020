@@ -158,24 +158,25 @@ public class RecommendationController implements Initializable {
             twoElective = false;
             threeElective = false;
 
+            // get Module selectedModule from ModuleName string
             String selectedElective = elective1Name.getText();
             Module selectedModule = null;
             System.out.println("m0duL0");
             System.out.println(ModuleHandler.modulesToBeMoved);
             System.out.println(ModuleHandler.modulesToBeMoved.get(0).getName());
 
-            //iterate across last changed modules
             for (int i = 0; i < ModuleHandler.modulesToBeMoved.size(); i++) {
                 if(selectedElective.equals(ModuleHandler.modulesToBeMoved.get(i).getName())){
                     selectedModule = ModuleHandler.modulesToBeMoved.get(i);
                 }
             }
 
+
             // add chosenElective back to electiveList
             ElectiveListGenerator.electiveModulesList.add(selectedModule);
 
             // recalculate weights
-            recommender.recalculateWeights();
+            recommender.recalculateWeightsOnRemove();
             recommender.clearNewModules();
 
             // update UI
@@ -388,7 +389,7 @@ public class RecommendationController implements Initializable {
 
         }
 
-        recommender.recalculateWeights();
+        recommender.recalculateWeightsOnAdd();
 
         if (!elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective1Name.setText(String.valueOf(selectedModule.getName()));

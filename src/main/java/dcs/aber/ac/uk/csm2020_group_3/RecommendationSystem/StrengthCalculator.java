@@ -27,22 +27,25 @@ public class StrengthCalculator extends ModuleHandler{
         lowStrength = new ArrayList<Module>();
 
         //print modules by weight before and after
+        /*
         System.out.println("BEFORE SOR");
         for (int i = 0; i < modules.size(); i++){
             System.out.println(modules.get(i).getName());
             System.out.println(modules.get(i).getWeight());
         }
-
+        */
         // sort modules
         Collections.sort(modules);
         Collections.reverse(modules);
 
-
+        /*
         System.out.println("AFTER SORT");
         for (int i = 0; i < modules.size(); i++){
             System.out.println(modules.get(i).getName());
             System.out.println(modules.get(i).getWeight());
         }
+
+        */
 
         // split into three lists
         for ( int i = 0; i < (int) Math.ceil(modules.size() / 3); i++ ){

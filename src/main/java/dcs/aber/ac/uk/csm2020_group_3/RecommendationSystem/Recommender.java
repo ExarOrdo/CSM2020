@@ -48,9 +48,15 @@ public class Recommender extends ModuleHandler{
 
     }
 
-    public void recalculateWeights(){
+    public void recalculateWeightsOnAdd(){
         // recalculate weights with chosen electives and regenerate lists
-        weightGenerator.recalculateWeights();
+        weightGenerator.recalculateWeightsOnAdd();
+        strengthCalculator.sortByWeights(ElectiveListGenerator.electiveModulesList);
+    }
+
+    public void recalculateWeightsOnRemove(){
+        // recalculate weights with chosen electives and regenerate lists
+        weightGenerator.recalculateWeightsOnRemove();
         strengthCalculator.sortByWeights(ElectiveListGenerator.electiveModulesList);
     }
 
