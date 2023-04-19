@@ -157,16 +157,51 @@ public class RecommendationController implements Initializable {
             oneElective = false;
             twoElective = false;
             threeElective = false;
+
+            String selectedElective = elective1Name.getText();
+            Module selectedModule = null;
+            System.out.println("m0duL0");
+            System.out.println(ModuleHandler.modulesToBeMoved);
+            System.out.println(ModuleHandler.modulesToBeMoved.get(0).getName());
+
+            //iterate across last changed modules
+            for (int i = 0; i < ModuleHandler.modulesToBeMoved.size(); i++) {
+                if(selectedElective.equals(ModuleHandler.modulesToBeMoved.get(i).getName())){
+                    selectedModule = ModuleHandler.modulesToBeMoved.get(i);
+                }
+            }
+
+            // add chosenElective back to electiveList
+            ElectiveListGenerator.electiveModulesList.add(selectedModule);
+
+            // recalculate weights
+            recommender.recalculateWeights();
+            recommender.clearNewModules();
+
+            // update UI
+            highView.getItems().clear();
+            mediumView.getItems().clear();
+            lowView.getItems().clear();
+            displayRecommendations();
+
+
+
         } else if (twoElective) {
             elective2.setVisible(false);
             twoElective = false;
             oneElective = true;
             threeElective = false;
+            elective2Name.getText();
+
+
         } else if (threeElective) {
             elective3.setVisible(false);
             threeElective = false;
             oneElective = false;
             twoElective = true;
+            elective3Name.getText();
+
+
         }
     }
 
@@ -283,6 +318,10 @@ public class RecommendationController implements Initializable {
         return searchResult;
     }
 
+    public void moduleNameToModule(){
+
+    }
+
     /**
      * Bunch of functions that run when an elective is chosen in the UI.
      */
@@ -320,29 +359,36 @@ public class RecommendationController implements Initializable {
 
         assert selectedModule != null;
 
-        // check prereqs, if prereq has another
-        recommender.checkPrerequisites(selectedModule);     // return newlyAddedModules
+        // check chosen module for prerequisites
+        // added chosen modules and any prerequisites to list newlyAddedModules
+        recommender.checkPrerequisites(selectedModule);                             // return newlyAddedModules
 
         // for each module and it's prereqs.
-        for (int i = 0; i < ModuleHandler.newlyAddedModules.size(); i++){
+        for (int i = 0; i < ModuleHandler.modulesToBeMoved.size(); i++){
 
-            // sort and try credit check,
-            recommender.sortModules(ModuleHandler.newlyAddedModules.get(i));
+            // sort modules into yearXModules.
+            recommender.sortModules(ModuleHandler.modulesToBeMoved.get(i));
 
             // check credit limit for each year.
             if (recommender.checkCredits().equals(Boolean.FALSE)){
 
                 // remove selected module + any prereqs from lists.
-                ElectiveListGenerator.electiveModulesList.removeAll(ModuleHandler.newlyAddedModules);
+                ElectiveListGenerator.electiveModulesList.removeAll(ModuleHandler.modulesToBeMoved);
 
-                // UI message - failed credit check.,
+                // UI message
+                // failed to add message due to credit limit
             }
 
+            // if credit check suceeds
+            else{
+
+                // remove module from electiveList
+                ElectiveListGenerator.electiveModulesList.remove(ModuleHandler.modulesToBeMoved.get(i));
+            }
 
         }
-        
-        // run recalculate
-        recommender.weightGenerator.recalculateWeights();
+
+        recommender.recalculateWeights();
 
         if (!elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective1Name.setText(String.valueOf(selectedModule.getName()));
@@ -361,10 +407,16 @@ public class RecommendationController implements Initializable {
         }
 
         // display new electives in UI
+        highView.getItems().clear();
+        mediumView.getItems().clear();
+        lowView.getItems().clear();
+
+        displayRecommendations();
+            // ElectiveListGenerator.electiveList should be updated above by 'sortModules'
+            // strengthCalculator then orders into separate lists.
         // show new weights in UI
 
         // set newlyAddedModules to empty again.
-        recommender.setNewlyAddedModulesZero();
         System.out.println(selectedElective);
     }
 

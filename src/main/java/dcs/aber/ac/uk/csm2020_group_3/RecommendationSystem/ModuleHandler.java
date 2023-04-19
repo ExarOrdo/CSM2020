@@ -11,7 +11,7 @@ public abstract class ModuleHandler {
     public Integer test;
 
     private static Integer currentModuleAmount;
-    public static ArrayList<Module> newlyAddedModules;
+    public static ArrayList<Module> modulesToBeMoved;
     private static Integer credits;
 
     public ModuleHandler(){
@@ -21,7 +21,7 @@ public abstract class ModuleHandler {
         year3Modules = new ArrayList<>();
         year4Modules = new ArrayList<>();
         currentModuleAmount = 0;
-        newlyAddedModules = new ArrayList<>();
+        modulesToBeMoved = new ArrayList<>();
 
     }
 
@@ -31,17 +31,21 @@ public abstract class ModuleHandler {
     public static ArrayList<Module> year3Modules;
     public static ArrayList<Module> year4Modules;
 
+    /**
+     * Gets a Module object from it's string name
+     */
+
     public void updateModuleAmount(Module elective){
         currentModuleAmount = year0Modules.size() + year1Modules.size() + year2Modules.size() + year3Modules.size() + year4Modules.size();
-        newlyAddedModules.add(elective);
+        modulesToBeMoved.add(elective);
     }
 
     public Integer getModuleAmount(){
         return currentModuleAmount;
     }
 
-    public void setNewlyAddedModulesZero() {
-        newlyAddedModules = new ArrayList<>();
+    public void clearNewModules() {
+        modulesToBeMoved = new ArrayList<>();
     }
 
 
@@ -54,30 +58,24 @@ public abstract class ModuleHandler {
         // check year and then append to respective list
         if (module.getYear() == 0) {
             year0Modules.add(module);
-            updateModuleAmount(module);
 
         }
         if (module.getYear() == 1) {
             year1Modules.add(module);
-            updateModuleAmount(module);
 
         }
         if (module.getYear() == 2) {
             year2Modules.add(module);
-            updateModuleAmount(module);
 
         }
         if (module.getYear() == 3) {
             year3Modules.add(module);
-            updateModuleAmount(module);
 
         }
         if (module.getYear() == 4) {
             year4Modules.add(module);
-            updateModuleAmount(module);
 
         }
-        updateModuleAmount(module);
 
     }
     public void sortModules(ArrayList<Module> modules) {
@@ -87,27 +85,22 @@ public abstract class ModuleHandler {
             // check year and then append to respective list
             if (module.getYear() == 0) {
                 year0Modules.add(module);
-                updateModuleAmount(module);
 
             }
             if (module.getYear() == 1) {
                 year1Modules.add(module);
-                updateModuleAmount(module);
 
             }
             if (module.getYear() == 2) {
                 year2Modules.add(module);
-                updateModuleAmount(module);
 
             }
             if (module.getYear() == 3) {
                 year3Modules.add(module);
-                updateModuleAmount(module);
 
             }
             if (module.getYear() == 4) {
                 year4Modules.add(module);
-                updateModuleAmount(module);
 
             }
         }
@@ -171,7 +164,8 @@ public abstract class ModuleHandler {
      * @param elective
      */
     public void checkPrerequisites(Module elective){
-        newlyAddedModules = new ArrayList<>();
+        modulesToBeMoved = new ArrayList<>();
+        modulesToBeMoved.add(elective);
 
         // check if module has a prerequisite
         if (!elective.getPrerequisite().equals("")) {

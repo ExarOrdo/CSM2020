@@ -1,7 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.util.ArrayList;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ModuleHandler;
 
 /**
  * Class responsible for generating and calculating similarity between modules (weights)
@@ -81,8 +80,7 @@ public class WeightGenerator extends ModuleHandler {
     /**
      * Method that is called when an elective is selected by user.
      * Recalculates moduleWeights with a slight bias towards chosen elective.
-     * ****************************
-     * THIS FUNCTION ASSUMES THAT UPON SELECTING a MODULE IT IS ADDED TO A LIST, WHICH IS USED IN CALCULATION BELOW
+     * Changes Module weights of modules in electivesList
      */
     public void recalculateWeights() {
 
@@ -102,20 +100,22 @@ public class WeightGenerator extends ModuleHandler {
 
             // assign modules new weights
             System.out.println(getModuleAmount());
-            System.out.println(newlyAddedModules);
+            System.out.println(modulesToBeMoved);
 
             // recalculate each elective weight w.r.t newlyAddedElectives
-            for (int j = 0 ; j < newlyAddedModules.size(); j++){
+            for (int j = 0; j < modulesToBeMoved.size(); j++){
 
                 // set new weight, where:
                 // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
-                ElectiveListGenerator.electiveModulesList.get(i).setWeight(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (getModuleAmount()/newlyAddedModules.size()) + bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())/ newlyAddedModules.size()));
+                ElectiveListGenerator.electiveModulesList.get(i).setWeight(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (getModuleAmount()/ modulesToBeMoved.size()) + bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList())/ ElectiveListGenerator.electiveModulesList.size()));
 
-            }
+
             //calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())
             //ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (getModuleAmount()/newlyAddedModules.size()) + 2 * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())/ newlyAddedModules.size())
+            System.out.println("Chosen Elective :");
             System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getName());
             System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());
+            }
         }
 
     }
