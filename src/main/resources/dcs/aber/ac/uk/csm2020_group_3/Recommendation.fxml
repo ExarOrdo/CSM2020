@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController">
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController">
     <children>
         <Pane prefHeight="800.0" prefWidth="55.0" style="-fx-background-color: lightgrey;" />
       <Text layoutX="423.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recommendation">
@@ -66,7 +66,7 @@
             <Font size="14.0" />
          </font></Button>
         <ProgressBar layoutX="311.0" layoutY="194.0" prefHeight="20.0" prefWidth="380.0" progress="0.7" />
-        <Button fx:id="confirmButton" layoutX="471.0" layoutY="740.0" mnemonicParsing="false" text="Confirm" onAction="#confirm" />
+        <Button fx:id="confirmButton" layoutX="471.0" layoutY="740.0" mnemonicParsing="false" onAction="#confirm" text="Confirm" />
         <ListView fx:id="highView" layoutX="148.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="mediumView" layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="lowView" layoutX="679.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
@@ -141,7 +141,7 @@
             <TextField fx:id="searchBar" layoutX="78.0" layoutY="15.0" onKeyTyped="#search" prefHeight="30.0" prefWidth="467.0" promptText="Module..." />
             <ListView fx:id="allElectivesList" layoutX="15.0" layoutY="54.0" prefHeight="405.0" prefWidth="530.0" />
             <Button layoutX="113.0" layoutY="476.0" mnemonicParsing="false" onAction="#closeSelectPane" prefHeight="25.0" prefWidth="110.0" text="Cancel" />
-            <Button layoutX="320.0" layoutY="476.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Confirm" />
+            <Button fx:id="confirmSearchSelection" layoutX="320.0" layoutY="476.0" mnemonicParsing="false" onAction="#showElective" prefHeight="25.0" prefWidth="110.0" text="Confirm" />
             <Text layoutX="15.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" wrappingWidth="66.2255859375">
                <font>
                   <Font size="18.0" />

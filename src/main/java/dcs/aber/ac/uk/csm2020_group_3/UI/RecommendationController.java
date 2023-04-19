@@ -6,6 +6,7 @@ import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.StudentModule;
 
+import javafx.scene.input.MouseEvent;
 
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import javafx.collections.FXCollections;
@@ -18,14 +19,11 @@ import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.fxml.Initializable;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.scene.layout.Region;
@@ -44,8 +42,10 @@ public class RecommendationController implements Initializable {
     public TextArea elective3Name;
     public TextArea elective3Sem;
     public TextArea elective3Cred;
-    public RadioButton tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8;
+    public RadioButton  tag2, tag3, tag4, tag5, tag6, tag7, tag8;
+    public RadioButton tag1;
     public Text currentYear;
+    public Button confirmSearchSelection;
     private Recommender recommender;
 
     @FXML
@@ -184,9 +184,11 @@ public class RecommendationController implements Initializable {
             // add chosenElective back to electiveList
             ElectiveListGenerator.electiveModulesList.add(selectedModule);
 
+            allElectivesList.getItems().add(selectedModule.getName());
             // recalculate weights
             recommender.recalculateWeightsOnRemove();
             recommender.clearNewModules();
+
 
             // update UI
             highView.getItems().clear();
@@ -213,6 +215,7 @@ public class RecommendationController implements Initializable {
 
 
         }
+
     }
 
     @FXML
@@ -390,6 +393,10 @@ public class RecommendationController implements Initializable {
         } else if (lowView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = lowView.getSelectionModel().getSelectedItem();
         }
+        else if (allElectivesList.getSelectionModel().getSelectedItem() !=null){
+            selectedElective = allElectivesList.getSelectionModel().getSelectedItem();
+
+        }
         highView.getSelectionModel().clearSelection();
         mediumView.getSelectionModel().clearSelection();
         lowView.getSelectionModel().clearSelection();
@@ -458,7 +465,7 @@ public class RecommendationController implements Initializable {
         highView.getItems().clear();
         mediumView.getItems().clear();
         lowView.getItems().clear();
-
+        allElectivesList.getItems().remove(selectedModule.getName());
         displayRecommendations();
             // ElectiveListGenerator.electiveList should be updated above by 'sortModules'
             // strengthCalculator then orders into separate lists.
@@ -544,6 +551,7 @@ public class RecommendationController implements Initializable {
     }
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         RecordLoader recordLoader = new RecordLoader();
@@ -576,6 +584,9 @@ public class RecommendationController implements Initializable {
         tag6.setToggleGroup(toggleGroup);
         tag7.setToggleGroup(toggleGroup);
         tag8.setToggleGroup(toggleGroup);
+
+
+
 
     }
 }
