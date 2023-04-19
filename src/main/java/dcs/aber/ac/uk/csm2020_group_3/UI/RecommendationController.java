@@ -473,42 +473,51 @@ public class RecommendationController implements Initializable {
     private Button confirmButton;
 
     public void confirm() {
-    List<String> selectedElectiveIds = new ArrayList<>();
+        List<String> selectedElectiveIds = new ArrayList<>();
         selectedElectiveIds.add(elective1Name.getText());
         selectedElectiveIds.add(elective2Name.getText());
         selectedElectiveIds.add(elective3Name.getText());
 
-        if (selectedElectiveIds.stream().anyMatch(s -> s.isEmpty()) || selectedElectiveIds.stream().distinct().count() != selectedElectiveIds.size()) {
-        showAlert(Alert.AlertType.WARNING, "Warning", "Please make a selection for each elective module and ensure you have not selected the same module twice.");
-        return;
-    }
+        if (selectedElectiveIds.stream().anyMatch(s -> s.equals("Module Name"))) {
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select three modules.");
+            return;
+        }
 
-    String studentID = DatabaseHandler.getCurrentStudentId();
+        if (selectedElectiveIds.stream().filter(s -> !s.equals("Module Name")).distinct().count() != selectedElectiveIds.size()) {
+            showAlert(Alert.AlertType.WARNING, "Warning", "Duplicate modules are not allowed.");
+            return;
+        }
 
-    DataLoader dataLoader = new DataLoader();
-    List<String> alreadyExistingModules = dataLoader.saveSelectedModules(studentID, selectedElectiveIds);
+        String studentID = DatabaseHandler.getCurrentStudentId();
 
-    Alert alert = new Alert(alreadyExistingModules.isEmpty() ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
+        DataLoader dataLoader = new DataLoader();
+        List<String> alreadyExistingModules = dataLoader.saveSelectedModules(studentID, selectedElectiveIds);
+
+        Alert alert = new Alert(alreadyExistingModules.isEmpty() ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
         alert.setTitle(alreadyExistingModules.isEmpty() ? "Success" : "Error");
         alert.setHeaderText(null);
 
         if (alreadyExistingModules.isEmpty()) {
-        alert.setContentText("Modules were successfully added to your student record.");
-    } else {
-        String bulletPointList = alreadyExistingModules.stream()
-                .map(moduleName -> "• " + moduleName)
-                .collect(Collectors.joining("\n"));
+            String bulletPointList = selectedElectiveIds.stream()
+                    .map(moduleName -> "• " + moduleName)
+                    .collect(Collectors.joining("\n"));
 
-        alert.setContentText("The following modules already exist in your student record and cannot be added:\n" + bulletPointList);
-    }
+            alert.setContentText("The following modules were successfully added to your student record:\n" + bulletPointList);
+        } else {
+            String bulletPointList = alreadyExistingModules.stream()
+                    .map(moduleName -> "• " + moduleName)
+                    .collect(Collectors.joining("\n"));
 
-    DialogPane dialogPane = alert.getDialogPane();
+            alert.setContentText("The following modules already exist in your student record and cannot be added:\n" + bulletPointList);
+        }
+
+        DialogPane dialogPane = alert.getDialogPane();
         dialogPane.setMinWidth(400);
         dialogPane.setMinHeight(Region.USE_PREF_SIZE);
         dialogPane.setMaxWidth(800);
 
         alert.showAndWait();
-}
+    }
 
     private void showAlert(Alert.AlertType alertType, String title, String contentText) {
         Alert alert = new Alert(alertType);
@@ -517,6 +526,7 @@ public class RecommendationController implements Initializable {
         alert.setContentText(contentText);
         alert.showAndWait();
     }
+
 
 
     public void loadTags() {
