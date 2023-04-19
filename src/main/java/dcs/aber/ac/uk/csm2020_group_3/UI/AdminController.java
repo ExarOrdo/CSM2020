@@ -4,6 +4,8 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordRemover;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.ModuleRecord;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +22,28 @@ import java.util.ResourceBundle;
 public class AdminController implements Initializable {
 
     private final RecordLoader recordLoader = new RecordLoader();
+
+    private String year0selection, year1selection, year2selection, year3selection, year4selection;
+
+    public void setYear0selection(String year0selection) {
+        this.year0selection = year0selection;
+    }
+
+    public void setYear1selection(String year1selection) {
+        this.year1selection = year1selection;
+    }
+
+    public void setYear2selection(String year2selection) {
+        this.year2selection = year2selection;
+    }
+
+    public void setYear3selection(String year3selection) {
+        this.year3selection = year3selection;
+    }
+
+    public void setYear4selection(String year4selection) {
+        this.year4selection = year4selection;
+    }
 
     @FXML
     ComboBox<String> subjectBox;
@@ -187,19 +211,51 @@ public class AdminController implements Initializable {
         year4tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0]));
 
 
+
+
         //get listview selected item to know what to delete
-        String year0Selection = year0list.getSelectionModel().getSelectedItem();
-        String year1Selection = year1list.getSelectionModel().getSelectedItem();
-        String year2Selection = year2list.getSelectionModel().getSelectedItem();
-        String year3Selection = year3list.getSelectionModel().getSelectedItem();
-        String year4Selection = year4list.getSelectionModel().getSelectedItem();
+        year0list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                String year0Selection = year0list.getSelectionModel().getSelectedItem();
+                setYear0selection(year0Selection);
+            }
+        });
+        year1list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                String year1Selection = year1list.getSelectionModel().getSelectedItem();
+                setYear1selection(year1Selection);
+            }
+        });
+        year2list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                String year2Selection = year2list.getSelectionModel().getSelectedItem();
+                setYear2selection(year2Selection);
+            }
+        });
+        year3list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                String year3Selection = year3list.getSelectionModel().getSelectedItem();
+                setYear3selection(year3Selection);
+            }
+        });
+        year4list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                String year4Selection = year4list.getSelectionModel().getSelectedItem();
+                setYear4selection(year4Selection);
+            }
+        });
 
 
         //more fancy lambda expressions for removing and adding module buttons
         removeBtn0.setOnMouseClicked(event -> {
             System.out.println("Remove button0 pressed");
             try {
-                removeModule(year0Selection);
+                removeModule(year0selection);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -207,7 +263,7 @@ public class AdminController implements Initializable {
         removeBtn1.setOnMouseClicked(event -> {
             System.out.println("Remove button1 pressed");
             try {
-                removeModule(year1Selection);
+                removeModule(year1selection);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -215,7 +271,7 @@ public class AdminController implements Initializable {
         removeBtn2.setOnMouseClicked(event -> {
             System.out.println("Remove button2 pressed");
             try {
-                removeModule(year2Selection);
+                removeModule(year2selection);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -223,7 +279,7 @@ public class AdminController implements Initializable {
         removeBtn3.setOnMouseClicked(event -> {
             System.out.println("Remove button3 pressed");
             try {
-                removeModule(year3Selection);
+                removeModule(year3selection);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -231,7 +287,7 @@ public class AdminController implements Initializable {
         removeBtn4.setOnMouseClicked(event -> {
             System.out.println("Remove button4 pressed");
             try {
-                removeModule(year4Selection);
+                removeModule(year4selection);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
