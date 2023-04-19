@@ -425,14 +425,16 @@ public class RecommendationController implements Initializable {
             }
 
 
-        tag1.setText(tags.get(0));
-        tag2.setText(tags.get(1));
-        tag3.setText(tags.get(2));
-        tag4.setText(tags.get(3));
-        tag5.setText(tags.get(4));
-        tag6.setText(tags.get(5));
-        tag7.setText(tags.get(6));
-        tag8.setText(tags.get(7));
+        if (tags.size() > 0) {
+            tag1.setText(tags.get(0));
+            tag2.setText(tags.get(1));
+            tag3.setText(tags.get(2));
+            tag4.setText(tags.get(3));
+            tag5.setText(tags.get(4));
+            tag6.setText(tags.get(5));
+            tag7.setText(tags.get(6));
+            tag8.setText(tags.get(7));
+        }
 
     }
 
