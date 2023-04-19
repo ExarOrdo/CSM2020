@@ -483,4 +483,11 @@ public class DatabaseInteractionTest {
         RecordLoader recordLoader = new RecordLoader();
         recordLoader.getCourseListBySubject("Computer Science");
     }
+
+    @Test
+    @Order(22)
+    void testGettingModules() throws SQLException {
+        RecordLoader recordLoader = new RecordLoader();
+        recordLoader.getModuleListByCourse("BSc Computer Science", 1);
+    }
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class RecordLoader extends DatabaseHandler{
 
@@ -73,5 +74,45 @@ public class RecordLoader extends DatabaseHandler{
         }
 
         return courseList;
+    }
+
+    public ArrayList<String> getModuleListByCourse(String course, int year) throws SQLException {
+        ArrayList<String> moduleStringList = new ArrayList<>();
+
+        this.connection = getConnection();
+
+        try {
+            PreparedStatement coreStatement = connection.prepareStatement("SELECT MODULE.ModuleName FROM MODULE JOIN CORE_MODULE ON CORE_MODULE.ModuleID = MODULE.ModuleID" +
+                    " JOIN COURSE ON COURSE.CourseID = CORE_MODULE.CourseID WHERE COURSE.CourseName = ? AND MODULE.ModuleYear = ?");
+            coreStatement.setString(1, course);
+            coreStatement.setInt(2, year);
+
+            PreparedStatement optionalStatement = connection.prepareStatement("SELECT MODULE.ModuleName FROM MODULE JOIN OPTIONAL_MODULE ON OPTIONAL_MODULE.ModuleID = MODULE.ModuleID " +
+                    "JOIN COURSE ON COURSE.CourseID = OPTIONAL_MODULE.CourseID WHERE COURSE.CourseName = ? AND MODULE.ModuleYear = ?");
+            optionalStatement.setString(1, course);
+            optionalStatement.setInt(2, year);
+
+            ResultSet coreResultSet = coreStatement.executeQuery();
+            ResultSet optionalResultSet = optionalStatement.executeQuery();
+
+            //rewrite cores
+            while (coreResultSet.next()) {
+                moduleStringList.add(coreResultSet.getString("ModuleName"));
+                System.out.println(coreResultSet.getString("ModuleName"));
+            }
+
+            //rewrite optionals
+            while (optionalResultSet.next()) {
+                moduleStringList.add(optionalResultSet.getString("ModuleName"));
+                System.out.println(optionalResultSet.getString("ModuleName"));
+            }
+
+
+        } catch (Exception err) {
+            System.err.println(err.getMessage());
+            err.printStackTrace();
+        }
+
+        return moduleStringList;
     }
 }
