@@ -82,7 +82,9 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        //arraylists used for combo boxes and listviews
         ArrayList<String> subjectStringList = new ArrayList<>();
+
         var ref = new Object() {
             ArrayList<String> courseStringList = new ArrayList<>();
         };
