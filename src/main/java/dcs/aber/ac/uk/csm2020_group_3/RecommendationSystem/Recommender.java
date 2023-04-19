@@ -18,7 +18,7 @@ public class Recommender extends ModuleHandler{
 
     public WeightGenerator weightGenerator;
 
-    private StrengthCalculator strengthCalculator;
+    public StrengthCalculator strengthCalculator;
 
     private TimeLimitCalculator timeLimitCalculator;
 
@@ -44,9 +44,20 @@ public class Recommender extends ModuleHandler{
         sortModules(coreListGenerator.getCoreModulesList());
         weightGenerator.generateWeights(this.getCoreList(), this.getElectiveList());
         strengthCalculator.sortByWeights(this.getElectiveList());
-        //
+
     }
 
+    public void recalculateWeightsOnAdd(){
+        // recalculate weights with chosen electives and regenerate lists
+        weightGenerator.recalculateWeightsOnAdd();
+        strengthCalculator.sortByWeights(ElectiveListGenerator.electiveModulesList);
+    }
+
+    public void recalculateWeightsOnRemove(){
+        // recalculate weights with chosen electives and regenerate lists
+        weightGenerator.recalculateWeightsOnRemove();
+        strengthCalculator.sortByWeights(ElectiveListGenerator.electiveModulesList);
+    }
 
     public ArrayList<Module> getCoreList() {
         return CoreListGenerator.coreModulesList;
