@@ -7,15 +7,15 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table;
  */
 public class StudentRecord extends Record {
 
-    private String studentId;
+    private final String studentId;
 
-    private String studentName;
+    private final String studentName;
 
-    private int studentYear;
+    private final int studentYear;
 
-    private String studentPassword;
+    private final String studentPassword;
 
-    private String studentCourse;
+    private final String studentCourse;
 
 
     /**

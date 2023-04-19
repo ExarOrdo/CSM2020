@@ -52,13 +52,7 @@ public class Login extends DatabaseHandler {
         return false;
     }
     public boolean allFieldsFilled() {
-        if (studentId.isEmpty() || password.isEmpty()){
-            return false;
-
-        }
-        else{
-            return true;
-        }
+        return !studentId.isEmpty() && !password.isEmpty();
 
     }
 

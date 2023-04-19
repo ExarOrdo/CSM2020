@@ -147,7 +147,7 @@ public class AdminController implements Initializable {
 
         //handle subject box selection
         subjectBox.setOnAction((event) -> {
-            String chosenSubject = (String) subjectBox.getValue();
+            String chosenSubject = subjectBox.getValue();
             System.out.println("Admin chose: " + chosenSubject);
 
             //after user chooses subject, let them select course
@@ -171,7 +171,7 @@ public class AdminController implements Initializable {
 
         //handle course box selection
         courseBox.setOnAction((event) -> {
-            chosenCourse[0] = (String) courseBox.getValue();
+            chosenCourse[0] = courseBox.getValue();
             System.out.println("Admin chose: " + chosenCourse[0]);
 
             //get whether BSc or MSc
