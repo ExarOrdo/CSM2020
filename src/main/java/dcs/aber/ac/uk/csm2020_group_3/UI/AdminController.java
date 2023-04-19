@@ -23,6 +23,8 @@ public class AdminController implements Initializable {
 
     private final RecordLoader recordLoader = new RecordLoader();
 
+    final String[] chosenCourse = new String[1];
+
     private String year0selection, year1selection, year2selection, year3selection, year4selection;
 
     public void setYear0selection(String year0selection) {
@@ -165,7 +167,7 @@ public class AdminController implements Initializable {
         });
 
 
-        final String[] chosenCourse = new String[1];
+
 
         //handle course box selection
         courseBox.setOnAction((event) -> {
@@ -378,6 +380,7 @@ public class AdminController implements Initializable {
 
         recordRemover.tryRemovingRecord();
 
+        getModuleListViewPopulated(chosenCourse[0]);
 
     }
 
