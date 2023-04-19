@@ -75,7 +75,7 @@
             <Font size="14.0" />
          </font></Button>
         <ProgressBar layoutX="311.0" layoutY="194.0" prefHeight="20.0" prefWidth="380.0" progress="0.7" />
-        <Button layoutX="471.0" layoutY="740.0" mnemonicParsing="false" text="Confirm" />
+        <Button fx:id="confirmButton" layoutX="471.0" layoutY="740.0" mnemonicParsing="false" text="Confirm" onAction="#confirm" />
         <ListView fx:id="highView" layoutX="148.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="mediumView" layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="lowView" layoutX="679.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />

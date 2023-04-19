@@ -4,6 +4,8 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.StudentModule;
+
 
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import javafx.collections.FXCollections;
@@ -24,7 +26,9 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
@@ -409,10 +413,56 @@ public class RecommendationController implements Initializable {
         System.out.println(selectedElective);
     }
 
-    private void confirm() {
-        // when confirm is pressed, local moduleYearLists are added to db
-        //,or they are
+
+    @FXML
+    private Button confirmButton;
+
+    public void confirm() {
+    List<String> selectedElectiveIds = new ArrayList<>();
+        selectedElectiveIds.add(elective1Name.getText());
+        selectedElectiveIds.add(elective2Name.getText());
+        selectedElectiveIds.add(elective3Name.getText());
+
+        if (selectedElectiveIds.stream().anyMatch(s -> s.isEmpty()) || selectedElectiveIds.stream().distinct().count() != selectedElectiveIds.size()) {
+        showAlert(Alert.AlertType.WARNING, "Warning", "Please make a selection for each elective module and ensure you have not selected the same module twice.");
+        return;
     }
+
+    String studentID = DatabaseHandler.getCurrentStudentId();
+
+    DataLoader dataLoader = new DataLoader();
+    List<String> alreadyExistingModules = dataLoader.saveSelectedModules(studentID, selectedElectiveIds);
+
+    Alert alert = new Alert(alreadyExistingModules.isEmpty() ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
+        alert.setTitle(alreadyExistingModules.isEmpty() ? "Success" : "Error");
+        alert.setHeaderText(null);
+
+        if (alreadyExistingModules.isEmpty()) {
+        alert.setContentText("Modules were successfully added to your student record.");
+    } else {
+        String bulletPointList = alreadyExistingModules.stream()
+                .map(moduleName -> "• " + moduleName)
+                .collect(Collectors.joining("\n"));
+
+        alert.setContentText("The following modules already exist in your student record and cannot be added:\n" + bulletPointList);
+    }
+
+    DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setMinWidth(400);
+        dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+        dialogPane.setMaxWidth(800);
+
+        alert.showAndWait();
+}
+
+    private void showAlert(Alert.AlertType alertType, String title, String contentText) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
 
     public void loadTags() {
         List<String> tags = new ArrayList<String>();
