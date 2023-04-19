@@ -2,11 +2,7 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -21,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
 
-    private RecordLoader recordLoader = new RecordLoader();
+    private final RecordLoader recordLoader = new RecordLoader();
 
     @FXML
     ComboBox<String> subjectBox;
@@ -34,6 +30,11 @@ public class AdminController implements Initializable {
     Tab year0tab, year1tab, year2tab, year3tab, year4tab;
     @FXML
     ListView<String> year0list, year1list, year2list, year3list, year4list;
+
+    @FXML
+    Button removeBtn0, removeBtn1, removeBtn2, removeBtn3, removeBtn4;
+    @FXML
+    Button addBtn0, addBtn1, addBtn2, addBtn3, addBtn4;
     @FXML
     Pane expandedPane;
     @FXML
@@ -171,21 +172,42 @@ public class AdminController implements Initializable {
             ref2.moduleStringList = new ArrayList<>();
 
             //depending on which tab is selected, execute different query
-            getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList);
+            getModuleListViewPopulated(chosenCourse[0]);
 
         });
 
 
         //fancy looking lambda expressions B), listeners for year tabs
-        year0tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
-        year1tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
-        year2tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
-        year3tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
-        year4tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
+        year0tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0]));
+        year1tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0]));
+        year2tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0]));
+        year3tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0]));
+        year4tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0]));
+
+
+        //get listview selected item to know what to delete
+
+
+
+        //more fancy lambda expressions for removing and adding module buttons
+        removeBtn0.setOnMouseClicked(event -> System.out.println("Remove button0 pressed"));
+        removeBtn1.setOnMouseClicked(event -> System.out.println("Remove button1 pressed"));
+        removeBtn2.setOnMouseClicked(event -> System.out.println("Remove button2 pressed"));
+        removeBtn3.setOnMouseClicked(event -> System.out.println("Remove button3 pressed"));
+        removeBtn4.setOnMouseClicked(event -> System.out.println("Remove button4 pressed"));
+
+        addBtn0.setOnMouseClicked(event -> System.out.println("Add button0 pressed"));
+        addBtn1.setOnMouseClicked(event -> System.out.println("Add button1 pressed"));
+        addBtn2.setOnMouseClicked(event -> System.out.println("Add button2 pressed"));
+        addBtn3.setOnMouseClicked(event -> System.out.println("Add button3 pressed"));
+        addBtn4.setOnMouseClicked(event -> System.out.println("Add button4 pressed"));
+
+
+
 
     }
 
-    private void getModuleListViewPopulated(String chosenCourse, ArrayList<String> moduleStringList) {
+    private void getModuleListViewPopulated(String chosenCourse) {
         //clear the list views to avoid appending
         year0list.getItems().clear();
         year1list.getItems().clear();
@@ -194,6 +216,7 @@ public class AdminController implements Initializable {
         year4list.getItems().clear();
 
         //depending on which tab is selected load its contents
+        ArrayList<String> moduleStringList;
         if (year0tab.isSelected()) {
             try {
                 moduleStringList = recordLoader.getModuleListByCourse(chosenCourse, 0);
@@ -249,5 +272,6 @@ public class AdminController implements Initializable {
         }
     }
 
+   //private void removeModule()
 
 }

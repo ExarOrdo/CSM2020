@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class RecordLoader extends DatabaseHandler{
@@ -49,6 +50,8 @@ public class RecordLoader extends DatabaseHandler{
             err.printStackTrace();
         }
 
+        Collections.sort(subjectList);
+
         return subjectList;
     }
 
@@ -73,6 +76,7 @@ public class RecordLoader extends DatabaseHandler{
             err.printStackTrace();
         }
 
+        Collections.sort(courseList);
         return courseList;
     }
 
@@ -113,6 +117,7 @@ public class RecordLoader extends DatabaseHandler{
             err.printStackTrace();
         }
 
+        Collections.sort(moduleStringList);
         return moduleStringList;
     }
 }
