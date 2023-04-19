@@ -181,8 +181,6 @@ public class RecommendationController implements Initializable {
             }
 
 
-            // add chosenElective back to electiveList
-            ElectiveListGenerator.electiveModulesList.add(selectedModule);
 
             // recalculate weights
             recommender.recalculateWeightsOnRemove();
