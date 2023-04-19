@@ -1,10 +1,14 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.StudentModule;
+
 
 import java.sql.*;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DataLoader extends DatabaseHandler {
@@ -20,7 +24,9 @@ public class DataLoader extends DatabaseHandler {
     private final String studentRecordQuery = "SELECT * FROM STUDENT WHERE StudentID = ?";
     private final String studentRecordModulesQuery = "SELECT module.ModuleID, marks.StudentMark, module.ModuleYear, marks.MarkDate FROM marks JOIN module ON marks.ModuleID = module.ModuleID WHERE marks.StudentID = ? AND module.ModuleYear = ?";
     private final String moduleNameAndDescriptionQuery = "SELECT ModuleName, ModuleDescription FROM MODULE WHERE ModuleID = ?";
-
+    private final String saveModulesString = "INSERT INTO marks (StudentID, ModuleID, StudentMark, MarkDate) VALUES (?, ?, ?, ?)";
+    private final String isModuleinRecordString = "SELECT * FROM marks WHERE StudentID = ? AND ModuleID = ?";
+    private final String getModuleIDByNameString = "SELECT ModuleID FROM MODULE WHERE ModuleName = ?";
 
     public boolean tryLoadingModules() throws SQLException {
         this.connection = DriverManager.getConnection(connectionString);
@@ -69,6 +75,81 @@ public class DataLoader extends DatabaseHandler {
     }
 
 
+
+    public boolean isModuleinRecord(String studentID, String moduleID) {
+        boolean exists = false;
+
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(isModuleinRecordString);
+            statement.setString(1, studentID);
+            statement.setString(2, moduleID);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                exists = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return exists;
+    }
+
+
+    public String getModuleIDByName(String moduleName) {
+        String moduleID = "";
+
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(getModuleIDByNameString);
+            statement.setString(1, moduleName);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                moduleID = resultSet.getString("ModuleID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return moduleID;
+    }
+
+    public List<String> saveSelectedModules(String studentID, List<String> selectedOptionalModuleNames) {
+        List<String> alreadyExistingModules = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(saveModulesString)) {
+
+            for (String moduleName : selectedOptionalModuleNames) {
+                String moduleId = getModuleIDByName(moduleName);
+
+                if (!moduleId.isEmpty()) {
+                    if (isModuleinRecord(studentID, moduleId)) {
+                        alreadyExistingModules.add(moduleName);
+                    } else {
+                        preparedStatement.setString(1, studentID);
+                        preparedStatement.setString(2, moduleId);
+                        preparedStatement.setNull(3, java.sql.Types.INTEGER);
+                        preparedStatement.setNull(4, java.sql.Types.DATE);
+                        preparedStatement.executeUpdate();
+                        System.out.println("Module inserted: " + moduleId);
+                    }
+                } else {
+                    System.err.println("Module not found for name: " + moduleName);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return alreadyExistingModules;
+    }
+
+
+
     public Map<String, String> loadStudentDetails(String studentId) {
         Map<String, String> studentDetails = new HashMap<>();
 
@@ -105,6 +186,20 @@ public class DataLoader extends DatabaseHandler {
 
         return null;
     }
+
+    public ResultSet loadModulesNoMarks(String studentID) throws SQLException {
+        connection = getConnection();
+        try {
+
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT marks.ModuleID FROM marks WHERE marks.StudentID = ? AND marks.StudentMark = -1");
+            preparedStatement.setString(1, studentID);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public Map<String, String> getModuleNameAndDescription(String moduleID) {
         Map<String, String> moduleNameAndDescription = new HashMap<>();

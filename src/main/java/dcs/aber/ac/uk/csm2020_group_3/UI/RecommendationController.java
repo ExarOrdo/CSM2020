@@ -1,8 +1,11 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.StudentModule;
+
 
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import javafx.collections.FXCollections;
@@ -14,14 +17,18 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
@@ -37,6 +44,8 @@ public class RecommendationController implements Initializable {
     public TextArea elective3Name;
     public TextArea elective3Sem;
     public TextArea elective3Cred;
+    public RadioButton tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8;
+    public Text currentYear;
     private Recommender recommender;
 
     @FXML
@@ -209,27 +218,63 @@ public class RecommendationController implements Initializable {
     @FXML
     private TextArea coreModule1, coreModule2, coreModule3, semester1, semester2, semester3, credits1, credits2, credits3;
 
-    private void displayCoreModules() {
-        List<Module> coreModules = recommender.getCoreList();
-
-        if (coreModules.size() >= 1) {
-            coreModule1.setText(coreModules.get(0).getName());
-            semester1.setText("Sem " + coreModules.get(0).getSemester());
-            credits1.setText(coreModules.get(0).getCredits() + " Credits");
+    private void displayCoreModules() throws SQLException {
+        RecordLoader recordLoader = new RecordLoader();
+        int year = recordLoader.getStudentYear(DatabaseHandler.getCurrentStudentId());
+        if (year ==1) {
+            if (ModuleHandler.year1Modules.size() >= 1) {
+                coreModule1.setText(ModuleHandler.year1Modules.get(0).getName());
+                semester1.setText("Sem " + ModuleHandler.year1Modules.get(0).getSemester());
+                credits1.setText(ModuleHandler.year1Modules.get(0).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year1Modules.size() >= 2) {
+                coreModule2.setText(ModuleHandler.year1Modules.get(1).getName());
+                semester2.setText("Sem " + ModuleHandler.year1Modules.get(1).getSemester());
+                credits2.setText(ModuleHandler.year1Modules.get(1).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year1Modules.size() >= 3) {
+                coreModule3.setText(ModuleHandler.year1Modules.get(2).getName());
+                semester3.setText("Sem " + ModuleHandler.year1Modules.get(2).getSemester());
+                credits3.setText(ModuleHandler.year1Modules.get(2).getCredits() + " Credits");
+            }
         }
-        if (coreModules.size() >= 2) {
-            coreModule2.setText(coreModules.get(1).getName());
-            semester2.setText("Sem " + coreModules.get(1).getSemester());
-            credits2.setText(coreModules.get(1).getCredits() + " Credits");
+        else if (year ==2) {
+            if (ModuleHandler.year2Modules.size() >= 1) {
+                coreModule1.setText(ModuleHandler.year2Modules.get(0).getName());
+                semester1.setText("Sem " + ModuleHandler.year2Modules.get(0).getSemester());
+                credits1.setText(ModuleHandler.year2Modules.get(0).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year2Modules.size() >= 2) {
+                coreModule2.setText(ModuleHandler.year2Modules.get(1).getName());
+                semester2.setText("Sem " + ModuleHandler.year2Modules.get(1).getSemester());
+                credits2.setText(ModuleHandler.year2Modules.get(1).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year2Modules.size() >= 3) {
+                coreModule3.setText(ModuleHandler.year2Modules.get(2).getName());
+                semester3.setText("Sem " + ModuleHandler.year2Modules.get(2).getSemester());
+                credits3.setText(ModuleHandler.year2Modules.get(2).getCredits() + " Credits");
+            }
         }
-        if (coreModules.size() >= 3) {
-            coreModule3.setText(coreModules.get(2).getName());
-            semester3.setText("Sem " + coreModules.get(2).getSemester());
-            credits3.setText(coreModules.get(2).getCredits() + " Credits");
+        else if (year ==3) {
+            if (ModuleHandler.year3Modules.size() >= 1) {
+                coreModule1.setText(ModuleHandler.year3Modules.get(0).getName());
+                semester1.setText("Sem " + ModuleHandler.year3Modules.get(0).getSemester());
+                credits1.setText(ModuleHandler.year3Modules.get(0).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year3Modules.size() >= 2) {
+                coreModule2.setText(ModuleHandler.year3Modules.get(1).getName());
+                semester2.setText("Sem " + ModuleHandler.year3Modules.get(1).getSemester());
+                credits2.setText(ModuleHandler.year3Modules.get(1).getCredits() + " Credits");
+            }
+            if (ModuleHandler.year3Modules.size() >= 3) {
+                coreModule3.setText(ModuleHandler.year3Modules.get(2).getName());
+                semester3.setText("Sem " + ModuleHandler.year3Modules.get(2).getSemester());
+                credits3.setText(ModuleHandler.year3Modules.get(2).getCredits() + " Credits");
+            }
         }
     }
 
-    private void createRecommender(){
+    private void createRecommender() {
         String studentID = DatabaseHandler.getCurrentStudentId(); // Use the logged-in student's ID
         recommender = new Recommender(studentID);
     }
@@ -272,7 +317,7 @@ public class RecommendationController implements Initializable {
      * Bunch of functions that run when an elective is chosen in the UI.
      */
 
-    private void listViewWrapText(ListView<String> listView){
+    private void listViewWrapText(ListView<String> listView) {
         listView.setCellFactory(new Callback<>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
@@ -326,23 +371,23 @@ public class RecommendationController implements Initializable {
     /**
      * Bunch of functions that run when an elective is chosen in the UI.
      */
-    private void onElectiveChosen(){
+    private void onElectiveChosen() {
 
 
         // get module/modules chosen
         // check prereq
         // checks credits
         // sorts into list
-        String selectedElective ="";
+        String selectedElective = "";
         Module selectedModule = null;
 
 
-        if(highView.getSelectionModel().getSelectedItem()!= null){
+        if (highView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = highView.getSelectionModel().getSelectedItem();
 
-        }else if(mediumView.getSelectionModel().getSelectedItem()!= null){
+        } else if (mediumView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = mediumView.getSelectionModel().getSelectedItem();
-        }else if(lowView.getSelectionModel().getSelectedItem()!= null){
+        } else if (lowView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = lowView.getSelectionModel().getSelectedItem();
         }
         highView.getSelectionModel().clearSelection();
@@ -352,7 +397,7 @@ public class RecommendationController implements Initializable {
 
         //iterate across currently selected modules
         for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
-            if(selectedElective.equals(ElectiveListGenerator.electiveModulesList.get(i).getName())){
+            if (selectedElective.equals(ElectiveListGenerator.electiveModulesList.get(i).getName())) {
                 selectedModule = ElectiveListGenerator.electiveModulesList.get(i);
             }
         }
@@ -366,6 +411,7 @@ public class RecommendationController implements Initializable {
 
         // for each module and it's prereqs.
         for (int i = 0; i < ModuleHandler.modulesToBeMoved.size(); i++){
+
 
             // sort modules into yearXModules.
             recommender.sortModules(ModuleHandler.modulesToBeMoved.get(i));
@@ -390,6 +436,7 @@ public class RecommendationController implements Initializable {
         }
 
         recommender.recalculateWeightsOnAdd();
+
 
         if (!elective1.isVisible() && !elective2.isVisible() && !elective3.isVisible()) {
             elective1Name.setText(String.valueOf(selectedModule.getName()));
@@ -421,15 +468,96 @@ public class RecommendationController implements Initializable {
         System.out.println(selectedElective);
     }
 
-    private void confirm(){
-        // when confirm is pressed, local moduleYearLists are added to db
-        //,or they are
+
+    @FXML
+    private Button confirmButton;
+
+    public void confirm() {
+    List<String> selectedElectiveIds = new ArrayList<>();
+        selectedElectiveIds.add(elective1Name.getText());
+        selectedElectiveIds.add(elective2Name.getText());
+        selectedElectiveIds.add(elective3Name.getText());
+
+        if (selectedElectiveIds.stream().anyMatch(s -> s.isEmpty()) || selectedElectiveIds.stream().distinct().count() != selectedElectiveIds.size()) {
+        showAlert(Alert.AlertType.WARNING, "Warning", "Please make a selection for each elective module and ensure you have not selected the same module twice.");
+        return;
     }
+
+    String studentID = DatabaseHandler.getCurrentStudentId();
+
+    DataLoader dataLoader = new DataLoader();
+    List<String> alreadyExistingModules = dataLoader.saveSelectedModules(studentID, selectedElectiveIds);
+
+    Alert alert = new Alert(alreadyExistingModules.isEmpty() ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
+        alert.setTitle(alreadyExistingModules.isEmpty() ? "Success" : "Error");
+        alert.setHeaderText(null);
+
+        if (alreadyExistingModules.isEmpty()) {
+        alert.setContentText("Modules were successfully added to your student record.");
+    } else {
+        String bulletPointList = alreadyExistingModules.stream()
+                .map(moduleName -> "• " + moduleName)
+                .collect(Collectors.joining("\n"));
+
+        alert.setContentText("The following modules already exist in your student record and cannot be added:\n" + bulletPointList);
+    }
+
+    DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setMinWidth(400);
+        dialogPane.setMinHeight(Region.USE_PREF_SIZE);
+        dialogPane.setMaxWidth(800);
+
+        alert.showAndWait();
+}
+
+    private void showAlert(Alert.AlertType alertType, String title, String contentText) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
+
+    public void loadTags() {
+        List<String> tags = new ArrayList<String>();
+        for (int i = 0; i<ElectiveListGenerator.electiveModulesList.size();i++){
+            for (int x = 1; x<ElectiveListGenerator.electiveModulesList.get(i).getTagList().size(); x++){
+                    if (!tags.contains(ElectiveListGenerator.electiveModulesList.get(i).getTagList().get(x))){
+                         tags.add(ElectiveListGenerator.electiveModulesList.get(i).getTagList().get(x));
+                    }
+                }
+            }
+
+
+        if (tags.size() > 0) {
+            tag1.setText(tags.get(0));
+            tag2.setText(tags.get(1));
+            tag3.setText(tags.get(2));
+            tag4.setText(tags.get(3));
+            tag5.setText(tags.get(4));
+            tag6.setText(tags.get(5));
+            tag7.setText(tags.get(6));
+            tag8.setText(tags.get(7));
+        }
+
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        RecordLoader recordLoader = new RecordLoader();
+        try {
+            currentYear.setText("Year " + recordLoader.getStudentYear(DatabaseHandler.getCurrentStudentId()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         createRecommender();
-        displayCoreModules();
+        try {
+            displayCoreModules();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         displayRecommendations();
         listViewWrapText(highView);
         listViewWrapText(mediumView);
@@ -438,5 +566,16 @@ public class RecommendationController implements Initializable {
             allElectivesList.getItems().add(ElectiveListGenerator.electiveModulesList.get(i).getName());
             electiveNames.add(ElectiveListGenerator.electiveModulesList.get(i).getName());
         }
+        loadTags();
+        ToggleGroup toggleGroup = new ToggleGroup();
+        tag1.setToggleGroup(toggleGroup);
+        tag2.setToggleGroup(toggleGroup);
+        tag3.setToggleGroup(toggleGroup);
+        tag4.setToggleGroup(toggleGroup);
+        tag5.setToggleGroup(toggleGroup);
+        tag6.setToggleGroup(toggleGroup);
+        tag7.setToggleGroup(toggleGroup);
+        tag8.setToggleGroup(toggleGroup);
+
     }
 }

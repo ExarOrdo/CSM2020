@@ -27,7 +27,6 @@ public class Recommender extends ModuleHandler{
     private ElectiveListGenerator electiveListGenerator;
 
     private DataLoader dataLoader;
-
     /**
      * Constructor for Recommender class
      * @param studentID

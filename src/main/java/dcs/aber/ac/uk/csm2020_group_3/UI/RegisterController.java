@@ -38,6 +38,8 @@ public class RegisterController {
     public void initialize() {
         yearComboBox.getItems().removeAll(yearComboBox.getItems());
         yearComboBox.getItems().addAll("1", "2", "3", "4");
+        courseComboBox.getItems().removeAll(courseComboBox.getItems());
+        courseComboBox.getItems().addAll("G400", "G480");
     }
 
     @FXML

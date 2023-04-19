@@ -101,7 +101,8 @@ public class RecordCreator extends DatabaseHandler{
                 ModuleRecord moduleRecord = (ModuleRecord) recordObject;
                 try {
                     PreparedStatement createRecord = connection.prepareStatement("INSERT INTO MODULE (ModuleID, ModuleName, ModuleDescription, ModuleCredits," +
-                            "ModuleYear, ModuleSemester, ModuleTag1, ModuleTag2, ModuleTag3) VALUES (?,?,?,?,?,?,?,?,?)");
+                            "ModuleYear, ModuleSemester, ModuleTag1, ModuleTag2, ModuleTag3, ModuleTag4, ModuleTag5, ModuleTag6, " +
+                            "ModuleTag7, ModuleTag8, ModulePrerequisite) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                     createRecord.setString(1, moduleRecord.getModuleId());
                     createRecord.setString(2, moduleRecord.getModuleName());
@@ -112,6 +113,12 @@ public class RecordCreator extends DatabaseHandler{
                     createRecord.setString(7, moduleRecord.getTag1());
                     createRecord.setString(8, moduleRecord.getTag2());
                     createRecord.setString(9, moduleRecord.getTag3());
+                    createRecord.setString(10, moduleRecord.getTag4());
+                    createRecord.setString(11, moduleRecord.getTag5());
+                    createRecord.setString(12, moduleRecord.getTag6());
+                    createRecord.setString(13, moduleRecord.getTag7());
+                    createRecord.setString(14, moduleRecord.getTag8());
+                    createRecord.setString(15, moduleRecord.getModulePrerequisite());
 
 
                     createRecord.execute();

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController">
+<?import javafx.scene.control.RadioButton?>
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController">
     <children>
         <Pane prefHeight="800.0" prefWidth="55.0" style="-fx-background-color: lightgrey;" />
       <Text layoutX="423.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recommendation">
@@ -14,17 +23,45 @@
             <Font size="20.0" />
          </font>
       </Text>
-        <Text layoutX="460.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year One">
+        <Text fx:id="currentYear" layoutX="460.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year One">
          <font>
             <Font size="20.0" />
          </font></Text>
         <Text layoutX="111.0" layoutY="583.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
-      <CheckBox layoutX="493.0" layoutY="90.0" mnemonicParsing="false" text="Tag 1" />
-      <CheckBox layoutX="493.0" layoutY="119.0" mnemonicParsing="false" text="Tag 4" />
-      <CheckBox layoutX="583.0" layoutY="90.0" mnemonicParsing="false" text="Tag 2" />
-      <CheckBox layoutX="583.0" layoutY="119.0" mnemonicParsing="false" text="Tag 5" />
-      <CheckBox layoutX="673.0" layoutY="90.0" mnemonicParsing="false" text="Tag 3" />
-      <CheckBox layoutX="673.0" layoutY="119.0" mnemonicParsing="false" text="Tag 6" />
+      <RadioButton fx:id="tag1" layoutX="450.0" layoutY="75.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Tag 1" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="tag2" layoutX="450.0" layoutY="132.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Tag 4" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="tag3" layoutX="583.0" layoutY="75.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Tag 2" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="tag4" layoutX="583.0" layoutY="132.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Tag 5" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="tag5" layoutX="716.0" layoutY="75.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Tag 3" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="tag6" layoutX="716.0" layoutY="132.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Tag 6" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="tag8" layoutX="849.0" layoutY="132.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Tag 8" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="tag7" layoutX="849.0" layoutY="75.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Tag 7" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
       <Button fx:id="selectBtn" layoutX="261.0" layoutY="90.0" mnemonicParsing="false" onAction="#pressSelectBtn" prefHeight="57.0" prefWidth="180.0" text="Search Modules">
          <font>
             <Font size="16.0" />
@@ -38,7 +75,7 @@
             <Font size="14.0" />
          </font></Button>
         <ProgressBar layoutX="311.0" layoutY="194.0" prefHeight="20.0" prefWidth="380.0" progress="0.7" />
-        <Button layoutX="471.0" layoutY="740.0" mnemonicParsing="false" text="Confirm" />
+        <Button fx:id="confirmButton" layoutX="471.0" layoutY="740.0" mnemonicParsing="false" text="Confirm" onAction="#confirm" />
         <ListView fx:id="highView" layoutX="148.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="mediumView" layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="lowView" layoutX="679.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
