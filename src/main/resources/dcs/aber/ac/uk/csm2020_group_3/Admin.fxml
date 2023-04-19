@@ -1,48 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.AdminController">
-   <TabPane layoutX="62.0" layoutY="70.0" prefHeight="710.0" prefWidth="922.0" tabClosingPolicy="UNAVAILABLE">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.AdminController">
+   <TabPane fx:id="tabPane" layoutX="62.0" layoutY="70.0" prefHeight="710.0" prefWidth="922.0" tabClosingPolicy="UNAVAILABLE">
      <tabs>
-       <Tab text="Year 0">
+       <Tab fx:id="year0tab" text="Year 0">
          <content>
            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                     <ListView layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
-                     <Button layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
+                     <ListView fx:id="year0list" layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
+                     <Button fx:id="removeBtn0" layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
                         <font>
                            <Font size="18.0" />
                         </font></Button>
-                     <Button layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
+                     <Button fx:id="addBtn0" layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
                         <font>
                            <Font size="18.0" />
                         </font></Button>
+
                   </children>
                </AnchorPane>
          </content>
        </Tab>
-         <Tab text="Year 1">
+         <Tab fx:id="year1tab" text="Year 1">
             <content>
                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                     <ListView layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
-                     <Button layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
+                     <ListView fx:id="year1list" layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
+                     <Button fx:id="removeBtn1" layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
                         <font>
                            <Font size="18.0" />
                         </font>
                      </Button>
-                     <Button layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
+                     <Button fx:id="addBtn1" layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
                         <font>
                            <Font size="18.0" />
                         </font>
@@ -51,17 +45,17 @@
                </AnchorPane>
             </content>
          </Tab>
-         <Tab text="Year 2">
+         <Tab fx:id="year2tab" text="Year 2">
             <content>
                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                     <ListView layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
-                     <Button layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
+                     <ListView fx:id="year2list" layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
+                     <Button fx:id="removeBtn2" layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
                         <font>
                            <Font size="18.0" />
                         </font>
                      </Button>
-                     <Button layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
+                     <Button fx:id="addBtn2" layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
                         <font>
                            <Font size="18.0" />
                         </font>
@@ -70,17 +64,17 @@
                </AnchorPane>
             </content>
          </Tab>
-         <Tab text="Year 3">
+         <Tab fx:id="year3tab" text="Year 3">
             <content>
                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                     <ListView layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
-                     <Button layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
+                     <ListView fx:id="year3list" layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
+                     <Button fx:id="removeBtn3" layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
                         <font>
                            <Font size="18.0" />
                         </font>
                      </Button>
-                     <Button layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
+                     <Button fx:id="addBtn3" layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
                         <font>
                            <Font size="18.0" />
                         </font>
@@ -89,17 +83,17 @@
                </AnchorPane>
             </content>
          </Tab>
-         <Tab text="Year 4">
+         <Tab fx:id="year4tab" text="Year 4">
             <content>
                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                     <ListView layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
-                     <Button layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
+                     <ListView fx:id="year4list" layoutX="8.0" layoutY="9.0" prefHeight="554.0" prefWidth="908.0" />
+                     <Button fx:id="removeBtn4" layoutX="181.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Remove">
                         <font>
                            <Font size="18.0" />
                         </font>
                      </Button>
-                     <Button layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
+                     <Button fx:id="addBtn4" layoutX="588.0" layoutY="598.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="168.0" text="Add">
                         <font>
                            <Font size="18.0" />
                         </font>
@@ -110,8 +104,8 @@
          </Tab>
      </tabs>
    </TabPane>
-   <ComboBox layoutX="139.0" layoutY="21.0" prefHeight="30.0" prefWidth="150.0" />
-   <ComboBox layoutX="398.0" layoutY="20.0" prefHeight="30.0" prefWidth="310.0" />
+   <ComboBox fx:id="subjectBox" layoutX="139.0" layoutY="21.0" prefHeight="30.0" prefWidth="150.0" />
+   <ComboBox fx:id="courseBox" layoutX="398.0" layoutY="20.0" prefHeight="30.0" prefWidth="310.0" />
    <Text layoutX="69.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" y="20.0">
       <font>
          <Font size="18.0" />
@@ -136,4 +130,16 @@
                     <Image url="@burgerBtn.png" />
                 </image></ImageView>
         </graphic></Button>
+   <Pane fx:id="popUp" prefHeight="800.0" prefWidth="1033.0" visible="false">
+      <children>
+            <Button fx:id="confirmRemoveButton" layoutX="553.0" layoutY="383.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" text="Confirm" />
+            <Button fx:id="cancelButton" layoutX="312.0" layoutY="383.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" text="Cancel" />
+            <TextArea editable="false" layoutX="312.0" layoutY="303.0" prefHeight="30.0" prefWidth="409.0" text="Are you sure you want to remove?">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </TextArea>
+      </children>
+   </Pane>
+
 </AnchorPane>

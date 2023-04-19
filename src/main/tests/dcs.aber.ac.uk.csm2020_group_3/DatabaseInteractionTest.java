@@ -12,8 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -469,5 +467,27 @@ public class DatabaseInteractionTest {
     void testGettingStudentYear() throws SQLException {
         RecordLoader recordLoader = new RecordLoader();
         System.out.println("Year fetched: " + recordLoader.getStudentYear("12345"));
+    }
+
+    @Test
+    @Order(20)
+    void testGettingSubjectNames() throws SQLException{
+        RecordLoader recordLoader = new RecordLoader();
+        recordLoader.getSubjectList();
+
+    }
+
+    @Test
+    @Order(21)
+    void testGettingCourseNames() throws SQLException {
+        RecordLoader recordLoader = new RecordLoader();
+        recordLoader.getCourseListBySubject("Computer Science");
+    }
+
+    @Test
+    @Order(22)
+    void testGettingModules() throws SQLException {
+        RecordLoader recordLoader = new RecordLoader();
+        recordLoader.getModuleListByCourse("BSc Computer Science", 1);
     }
 }
