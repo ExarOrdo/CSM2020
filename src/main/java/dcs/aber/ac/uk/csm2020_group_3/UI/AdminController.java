@@ -24,6 +24,9 @@ public class AdminController implements Initializable {
     private final RecordLoader recordLoader = new RecordLoader();
 
     final String[] chosenCourse = new String[1];
+    public Pane popUp;
+    public Button confirmRemoveButton;
+    public Button cancelButton;
 
     private String year0selection, year1selection, year2selection, year3selection, year4selection;
 
@@ -79,9 +82,9 @@ public class AdminController implements Initializable {
     @FXML
     protected void pressBurgerBtn() {
         expandedPane.setVisible(!expandedPane.isVisible());
-        if(expandedPane.isVisible()){
+        if (expandedPane.isVisible()) {
             burgerIcon.setRotate(90);
-        }else {
+        } else {
             burgerIcon.setRotate(0);
         }
     }
@@ -131,7 +134,6 @@ public class AdminController implements Initializable {
         };
 
 
-
         try {
             subjectStringList = recordLoader.getSubjectList();
         } catch (SQLException e) {
@@ -167,8 +169,6 @@ public class AdminController implements Initializable {
         });
 
 
-
-
         //handle course box selection
         courseBox.setOnAction((event) -> {
             chosenCourse[0] = (String) courseBox.getValue();
@@ -180,7 +180,7 @@ public class AdminController implements Initializable {
                 level += chosenCourse[0].charAt(i);
             }
             //depending on what level the course is at, disable unusable tabs
-            switch(level) {
+            switch (level) {
                 case "MSc" -> {
                     year0tab.setDisable(true);
                     year1tab.setDisable(true);
@@ -213,8 +213,6 @@ public class AdminController implements Initializable {
         year4tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0]));
 
 
-
-
         //get listview selected item to know what to delete
         year0list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             String year0Selection = year0list.getSelectionModel().getSelectedItem();
@@ -241,44 +239,40 @@ public class AdminController implements Initializable {
         //more fancy lambda expressions for remove buttons
         removeBtn0.setOnMouseClicked(event -> {
             System.out.println("Remove button0 pressed");
-            try {
-                removeModule(year0selection);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            popUp.setVisible(true);
         });
         removeBtn1.setOnMouseClicked(event -> {
             System.out.println("Remove button1 pressed");
-            try {
-                removeModule(year1selection);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            popUp.setVisible(true);
         });
         removeBtn2.setOnMouseClicked(event -> {
             System.out.println("Remove button2 pressed");
-            try {
-                removeModule(year2selection);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            popUp.setVisible(true);
         });
         removeBtn3.setOnMouseClicked(event -> {
             System.out.println("Remove button3 pressed");
-            try {
-                removeModule(year3selection);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            popUp.setVisible(true);
         });
         removeBtn4.setOnMouseClicked(event -> {
             System.out.println("Remove button4 pressed");
-            try {
-                removeModule(year4selection);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            popUp.setVisible(true);
         });
+
+        //confirm and delete or cancel and go on
+        confirmRemoveButton.setOnMouseClicked(event -> {
+                    popUp.setVisible(false);
+                    try {
+                        removeModule(year1selection);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+        );
+        cancelButton.setOnMouseClicked(event -> {
+                    popUp.setVisible(false);
+                }
+        );
 
 
         //even more lambda for adding stuff
@@ -287,8 +281,6 @@ public class AdminController implements Initializable {
         addBtn2.setOnMouseClicked(event -> System.out.println("Add button2 pressed"));
         addBtn3.setOnMouseClicked(event -> System.out.println("Add button3 pressed"));
         addBtn4.setOnMouseClicked(event -> System.out.println("Add button4 pressed"));
-
-
 
 
     }

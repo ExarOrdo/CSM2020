@@ -21,6 +21,7 @@
                         <font>
                            <Font size="18.0" />
                         </font></Button>
+
                   </children>
                </AnchorPane>
          </content>
@@ -129,4 +130,16 @@
                     <Image url="@burgerBtn.png" />
                 </image></ImageView>
         </graphic></Button>
+   <Pane fx:id="popUp" prefHeight="800.0" prefWidth="1033.0" visible="false">
+      <children>
+            <Button fx:id="confirmRemoveButton" layoutX="553.0" layoutY="383.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" text="Confirm" />
+            <Button fx:id="cancelButton" layoutX="312.0" layoutY="383.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="168.0" text="Cancel" />
+            <TextArea editable="false" layoutX="312.0" layoutY="303.0" prefHeight="30.0" prefWidth="409.0" text="Are you sure you want to remove?">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </TextArea>
+      </children>
+   </Pane>
+
 </AnchorPane>
