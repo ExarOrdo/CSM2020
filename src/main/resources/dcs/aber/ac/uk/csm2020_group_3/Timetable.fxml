@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.TimetableController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.TimetableController">
     <Label layoutX="456.0" layoutY="25.0" text="Timetable">
         <font>
             <Font size="20.0" />
@@ -95,46 +103,166 @@
          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <TextArea fx:id="textArea00" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-         <TextArea fx:id="textArea10" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" />
-         <TextArea fx:id="textArea20" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" />
-         <TextArea fx:id="textArea30" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" />
-         <TextArea fx:id="textArea40" editable="false" layoutX="100.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" />
-         <TextArea fx:id="textArea01" editable="false" layoutX="370.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="1" />
-         <TextArea fx:id="textArea11" editable="false" layoutX="280.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <TextArea fx:id="textArea21" editable="false" layoutX="190.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         <TextArea fx:id="textArea31" editable="false" layoutX="100.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-         <TextArea fx:id="textArea41" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-         <TextArea fx:id="textArea02" editable="false" layoutX="10.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="2" />
-         <TextArea fx:id="textArea12" editable="false" layoutX="100.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <TextArea fx:id="textArea22" editable="false" layoutX="190.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-         <TextArea fx:id="textArea32" editable="false" layoutX="280.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-         <TextArea fx:id="textArea42" editable="false" layoutX="370.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-         <TextArea fx:id="textArea03" editable="false" layoutX="10.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="3" />
-         <TextArea fx:id="textArea13" editable="false" layoutX="100.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         <TextArea fx:id="textArea23" editable="false" layoutX="190.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-         <TextArea fx:id="textArea33" editable="false" layoutX="280.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-         <TextArea fx:id="textArea43" editable="false" layoutX="370.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-         <TextArea fx:id="textArea04" editable="false" layoutX="10.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="4" />
-         <TextArea fx:id="textArea14" editable="false" layoutX="100.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         <TextArea fx:id="textArea24" editable="false" layoutX="190.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-         <TextArea fx:id="textArea34" editable="false" layoutX="280.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-         <TextArea fx:id="textArea44" editable="false" layoutX="370.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-         <TextArea fx:id="textArea05" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="5" />
-         <TextArea fx:id="textArea15" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-         <TextArea fx:id="textArea25" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-         <TextArea fx:id="textArea35" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-         <TextArea fx:id="textArea45" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-         <TextArea fx:id="textArea06" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="6" />
-         <TextArea fx:id="textArea16" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-         <TextArea fx:id="textArea26" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-         <TextArea fx:id="textArea36" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-         <TextArea fx:id="textArea46" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-         <TextArea fx:id="textArea07" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="7" />
-         <TextArea fx:id="textArea17" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-         <TextArea fx:id="textArea27" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-         <TextArea fx:id="textArea37" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-         <TextArea fx:id="textArea47" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+         <TextArea fx:id="textArea00" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea10" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea20" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea30" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea40" editable="false" layoutX="100.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea01" editable="false" layoutX="370.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="1">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea11" editable="false" layoutX="280.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea21" editable="false" layoutX="190.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea31" editable="false" layoutX="100.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea41" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea02" editable="false" layoutX="10.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="2">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea12" editable="false" layoutX="100.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea22" editable="false" layoutX="190.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea32" editable="false" layoutX="280.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea42" editable="false" layoutX="370.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea03" editable="false" layoutX="10.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="3">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea13" editable="false" layoutX="100.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea23" editable="false" layoutX="190.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea33" editable="false" layoutX="280.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea43" editable="false" layoutX="370.0" layoutY="158.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea04" editable="false" layoutX="10.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="4">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea14" editable="false" layoutX="100.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea24" editable="false" layoutX="190.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea34" editable="false" layoutX="280.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea44" editable="false" layoutX="370.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea05" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="5">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea15" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea25" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea35" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea45" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="5">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea06" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="6">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea16" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea26" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea36" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="6">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea46" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="6">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea07" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.rowIndex="7">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea17" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea27" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea37" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
+         <TextArea fx:id="textArea47" editable="false" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="7">
+            <font>
+               <Font size="18.0" />
+            </font></TextArea>
       </children>
    </GridPane>
 
