@@ -51,21 +51,19 @@ public class RegisterController {
     }
 
     @FXML
-    private void confirm(ActionEvent actionEvent) throws IOException, SQLException {
+    private void confirm() throws IOException, SQLException {
 
         Main main = new Main();
-        Register register = new Register(studentId.getText(), password.getText(), firstName.getText(),lastName.getText(),yearComboBox, courseComboBox);
+        Register register = new Register(studentId.getText(), password.getText(), firstName.getText(), lastName.getText(), yearComboBox, courseComboBox);
 
-        if (!register.studentExists()){
+        if (!register.studentExists()) {
             alreadyExists.setText("Student ID already exists");
             alreadyExists.setVisible(true);
-        }
-        else if(!register.allFieldsFilled()) {
+        } else if (!register.allFieldsFilled()) {
             alreadyExists.setText("All fields must be filled");
             alreadyExists.setVisible(true);
 
-        }
-        else{
+        } else {
             register.tryRegister();
             alreadyExists.setVisible(false);
             main.changeScene("Recommendation.fxml");
