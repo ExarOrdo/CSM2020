@@ -161,37 +161,12 @@ public class AdminController implements Initializable {
         });
 
 
-        //somehow it works so let's just leave it at it, could be made more elegant
-        year0tab.setOnSelectionChanged(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList);
-            }
-        });
-        year1tab.setOnSelectionChanged(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList);
-            }
-        });
-        year2tab.setOnSelectionChanged(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList);
-            }
-        });
-        year3tab.setOnSelectionChanged(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList);
-            }
-        });
-        year4tab.setOnSelectionChanged(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList);
-            }
-        });
+        //fancy looking lambda expressions B), listeners for year tabs
+        year0tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
+        year1tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
+        year2tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
+        year3tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
+        year4tab.setOnSelectionChanged(event -> getModuleListViewPopulated(chosenCourse[0], ref2.moduleStringList));
 
     }
 
