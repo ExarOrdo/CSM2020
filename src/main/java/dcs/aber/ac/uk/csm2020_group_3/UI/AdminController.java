@@ -216,44 +216,29 @@ public class AdminController implements Initializable {
 
 
         //get listview selected item to know what to delete
-        year0list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                String year0Selection = year0list.getSelectionModel().getSelectedItem();
-                setYear0selection(year0Selection);
-            }
+        year0list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            String year0Selection = year0list.getSelectionModel().getSelectedItem();
+            setYear0selection(year0Selection);
         });
-        year1list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                String year1Selection = year1list.getSelectionModel().getSelectedItem();
-                setYear1selection(year1Selection);
-            }
+        year1list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            String year1Selection = year1list.getSelectionModel().getSelectedItem();
+            setYear1selection(year1Selection);
         });
-        year2list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                String year2Selection = year2list.getSelectionModel().getSelectedItem();
-                setYear2selection(year2Selection);
-            }
+        year2list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            String year2Selection = year2list.getSelectionModel().getSelectedItem();
+            setYear2selection(year2Selection);
         });
-        year3list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                String year3Selection = year3list.getSelectionModel().getSelectedItem();
-                setYear3selection(year3Selection);
-            }
+        year3list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            String year3Selection = year3list.getSelectionModel().getSelectedItem();
+            setYear3selection(year3Selection);
         });
-        year4list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                String year4Selection = year4list.getSelectionModel().getSelectedItem();
-                setYear4selection(year4Selection);
-            }
+        year4list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            String year4Selection = year4list.getSelectionModel().getSelectedItem();
+            setYear4selection(year4Selection);
         });
 
 
-        //more fancy lambda expressions for removing and adding module buttons
+        //more fancy lambda expressions for remove buttons
         removeBtn0.setOnMouseClicked(event -> {
             System.out.println("Remove button0 pressed");
             try {
@@ -296,6 +281,7 @@ public class AdminController implements Initializable {
         });
 
 
+        //even more lambda for adding stuff
         addBtn0.setOnMouseClicked(event -> System.out.println("Add button0 pressed"));
         addBtn1.setOnMouseClicked(event -> System.out.println("Add button1 pressed"));
         addBtn2.setOnMouseClicked(event -> System.out.println("Add button2 pressed"));
