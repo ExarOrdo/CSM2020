@@ -159,6 +159,7 @@ public class WeightGenerator extends ModuleHandler {
             for (int j = 0; j < selectedModules.size(); j++) {
 
 
+
                 // set new weight, where:
 
                 // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
