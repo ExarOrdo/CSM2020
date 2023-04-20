@@ -115,7 +115,7 @@ public class WeightGenerator extends ModuleHandler {
                 // set new weight, where:
                 System.out.println("BEFORECALC");
                 System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getName());
-                System.out.println(modulesToBeMoved.get(j).getName());
+                System.out.println(selectedModules.get(j).getName());
                 System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getName());
                 System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());
                 System.out.println(((float) (ElectiveListGenerator.electiveModulesList.size() - selectedModules.size())  / ElectiveListGenerator.electiveModulesList.size()) );
@@ -150,8 +150,8 @@ public class WeightGenerator extends ModuleHandler {
         // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
 
         System.out.println("MOVEMODULE");
-        System.out.println(modulesToBeMoved.get(0).getName());
-        System.out.println(modulesToBeMoved.get(0).getWeight());
+        System.out.println(selectedModules.get(0).getName());
+        System.out.println(selectedModules.get(0).getWeight());
 
 
         // iterate across modules in electives list
@@ -197,10 +197,10 @@ public class WeightGenerator extends ModuleHandler {
 
         }
         System.out.println("MOVEMODULE");
-        System.out.println(modulesToBeMoved.get(0).getName());
-        System.out.println(modulesToBeMoved.get(0).getWeight());
+        System.out.println(selectedModules.get(0).getName());
+        System.out.println(selectedModules.get(0).getWeight());
 
-        ElectiveListGenerator.electiveModulesList.addAll(modulesToBeMoved);
+        ElectiveListGenerator.electiveModulesList.addAll(selectedModules);
 
         for (int z = 0; z < ElectiveListGenerator.electiveModulesList.size(); z++){
             System.out.println(ElectiveListGenerator.electiveModulesList.get(z).getName());
