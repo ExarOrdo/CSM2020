@@ -207,7 +207,7 @@ public class DataLoader extends DatabaseHandler {
         connection = getConnection();
         try {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT marks.ModuleID FROM marks WHERE marks.StudentID = ? AND marks.StudentMark = -1");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT marks.ModuleID FROM marks JOIN STUDENT ON STUDENT.StudentID JOIN MODULE ON MODULE.ModuleID = MARKS.ModuleID WHERE marks.StudentID = ? AND marks.StudentMark = -1 AND STUDENT.StudentYear = MODULE.ModuleYear");
             preparedStatement.setString(1, studentID);
             return preparedStatement.executeQuery();
         } catch (SQLException e) {
@@ -312,6 +312,26 @@ public class DataLoader extends DatabaseHandler {
         }
 
         return electiveModuleResult;
+    }
+
+    public int getStudentYearById(String studentId) throws SQLException {
+        this.connection = getConnection();
+        int year = -1;
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT StudentYear FROM STUDENT WHERE StudentID = ?");
+            statement.setString(1, studentId);
+
+            ResultSet yearSet = statement.executeQuery();
+
+            yearSet.next();
+            year = yearSet.getInt("StudentYear");
+
+        } catch (Exception err) {
+            System.err.println("Error when getting student year for timetable: " + err.getMessage());
+            err.printStackTrace();
+        }
+        return year;
     }
 
 }

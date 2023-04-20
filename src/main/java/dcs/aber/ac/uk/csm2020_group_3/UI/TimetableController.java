@@ -156,8 +156,8 @@ public class TimetableController implements Initializable {
         }
         allModules.addAll(coreNames);
         allModules.addAll(electiveNames);*/
-
-        EnrolledModules enrolledModules = new EnrolledModules(new DataLoader());
+        DataLoader dataLoader = new DataLoader();
+        EnrolledModules enrolledModules = new EnrolledModules(dataLoader);
         try {
             enrolledModules.generateEnrolledModules(LoginController.getLoginID());
         } catch (SQLException e) {

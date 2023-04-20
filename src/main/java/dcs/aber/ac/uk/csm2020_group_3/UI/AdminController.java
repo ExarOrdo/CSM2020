@@ -215,24 +215,24 @@ public class AdminController implements Initializable {
 
         //get listview selected item to know what to delete
         year0list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            String year0Selection = year0list.getSelectionModel().getSelectedItem();
-            setYear0selection(year0Selection);
+            year0selection = year0list.getSelectionModel().getSelectedItem();
+            setYear0selection(year0selection);
         });
         year1list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            String year1Selection = year1list.getSelectionModel().getSelectedItem();
-            setYear1selection(year1Selection);
+            year1selection = year1list.getSelectionModel().getSelectedItem();
+            setYear1selection(year1selection);
         });
         year2list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            String year2Selection = year2list.getSelectionModel().getSelectedItem();
-            setYear2selection(year2Selection);
+            year2selection = year2list.getSelectionModel().getSelectedItem();
+            setYear2selection(year2selection);
         });
         year3list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            String year3Selection = year3list.getSelectionModel().getSelectedItem();
-            setYear3selection(year3Selection);
+            year3selection = year3list.getSelectionModel().getSelectedItem();
+            setYear3selection(year3selection);
         });
         year4list.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            String year4Selection = year4list.getSelectionModel().getSelectedItem();
-            setYear4selection(year4Selection);
+            year4selection = year4list.getSelectionModel().getSelectedItem();
+            setYear4selection(year4selection);
         });
 
 
@@ -262,7 +262,16 @@ public class AdminController implements Initializable {
         confirmRemoveButton.setOnMouseClicked(event -> {
                     popUp.setVisible(false);
                     try {
-                        removeModule(year1selection);
+                        if (year0tab.isSelected())
+                            removeModule(year0selection);
+                        else if (year1tab.isSelected())
+                            removeModule(year1selection);
+                        else if (year2tab.isSelected())
+                            removeModule(year2selection);
+                        else if (year3tab.isSelected())
+                            removeModule(year3selection);
+                        else if (year4tab.isSelected())
+                            removeModule(year4selection);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
