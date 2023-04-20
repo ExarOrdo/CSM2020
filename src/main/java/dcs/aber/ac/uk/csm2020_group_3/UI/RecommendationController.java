@@ -7,14 +7,20 @@ import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -587,6 +593,31 @@ public class RecommendationController implements Initializable {
             tag8.setText(tags.get(7));
         }
 
+    }
+
+    @FXML
+    private void showInstructions(ActionEvent event) {
+        Stage stage = new Stage();
+        stage.setTitle("Instructions");
+
+        VBox vbox = new VBox();
+        vbox.setPadding(new Insets(10));
+        vbox.setSpacing(10);
+
+        TextFlow textFlow = new TextFlow();
+        textFlow.setPrefWidth(600);
+        textFlow.setLineSpacing(10);
+
+        Text instructions = new Text("Functionality:\n\n - You must select three modules before pressing the 'Confirm' button.\n - Recommendations will be calculated based on similarities between modules. This will default to Course, but can be diversified through personal selections below.\n\nHow to use:\n\nSearch Modules\n - You can search for specific modules within the search bar. These modules will be added to your personalised recommendations.\n\nModule Tags\n - Selecting a specific tag will update your recommendations with one of eight unique focus areas.\n\nAdd Module\n - This will add a module to your selections ready to be confirmed. The module will be removed for the recommendation boxes and prompt a recalculation.\n\nCancel Module Selection\n - This will return your module selection to your recommendations and produce a new calculation.\n\nConfirm\n - This will confirm your choices and update your Student Record.\n");
+
+        textFlow.getChildren().addAll(instructions);
+
+        vbox.getChildren().add(textFlow);
+
+        Scene scene = new Scene(vbox);
+        stage.setScene(scene);
+
+        stage.show();
     }
 
 
