@@ -149,8 +149,7 @@ public class WeightGenerator extends ModuleHandler {
         // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
 
         System.out.println("MOVEMODULE");
-        System.out.println(selectedModules.get(0).getName());
-        System.out.println(selectedModules.get(0).getWeight());
+
 
 
         // iterate across modules in electives list
