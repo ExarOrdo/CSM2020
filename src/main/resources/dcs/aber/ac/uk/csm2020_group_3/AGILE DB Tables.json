@@ -12,19 +12,23 @@
     {
       "course_id": "G480",
       "course_name": "MSc Computer Science",
-      "course_description": ["Our MSc in Computer Science aims to provide an intensive",
-      "professionally-oriented introduction to computing for able graduates in other",
-      "disciplines, especially the humanities, to enable them to enter the software",
-      "industry. No previous experience of computing is required."]
+      "course_description": [
+        "Our MSc in Computer Science aims to provide an intensive",
+        "professionally-oriented introduction to computing for able graduates in other",
+        "disciplines, especially the humanities, to enable them to enter the software",
+        "industry. No previous experience of computing is required."
+      ]
     }
   ],
   "modules": [
     {
       "module_id": "CSM2020",
       "module_name": "Agile Software Development Project",
-      "module_description": ["The aim of this module is to give the student a strong",
-      "foundation in agile software engineering that will inform their software development",
-      "practice, and prepare them to work in the software industry."],
+      "module_description": [
+        "The aim of this module is to give the student a strong",
+        "foundation in agile software engineering that will inform their software development",
+        "practice, and prepare them to work in the software industry."
+      ],
       "module_credits": 20,
       "module_year": 4,
       "module_semester": 2,
@@ -35,9 +39,11 @@
     {
       "module_id": "CSM6120",
       "module_name": "Fundamentals of Intelligent Systems",
-      "module_description": ["This module introduces the key ideas in Artificial Intelligence",
-      "and ensures all students are at roughly the same level before moving on to the",
-      "specialist modules."],
+      "module_description": [
+        "This module introduces the key ideas in Artificial Intelligence",
+        "and ensures all students are at roughly the same level before moving on to the",
+        "specialist modules."
+      ],
       "module_credits": 20,
       "module_year": 4,
       "module_semester": 1,

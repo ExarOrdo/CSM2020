@@ -32,7 +32,6 @@ public class EnrolledModules extends ModuleHandler {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Enrolled Modules: " + enrolledModules);
         enrolledModuleList = enrolledModules;
     }
 }

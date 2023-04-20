@@ -5,7 +5,6 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordRemover;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordUpdater;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
-
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
@@ -39,7 +37,6 @@ public class DatabaseInteractionTest {
     private final String updatePassword = "UpdatePassword";
 
 
-
     //course record details
     private final String courseId = "testCourseId";
     private final String courseName = "testCourseName";
@@ -49,7 +46,6 @@ public class DatabaseInteractionTest {
     private final String courseId2 = "testCourseId2";
     private final String courseName2 = "testCourseName2";
     private final String courseDescription2 = "testCourseDescription2";
-
 
 
     //module details
@@ -110,10 +106,10 @@ public class DatabaseInteractionTest {
 
     //mark details
     private final int studentMark = 42;
-    private final java.sql.Date markDate = new java.sql.Date(2023,11,1); //deprecated but why not
+    private final java.sql.Date markDate = new java.sql.Date(2023, 11, 1); //deprecated but why not
 
     private final int studentMark2 = 50;
-    private final java.sql.Date markDate2 = new java.sql.Date(2023,2,12); //deprecated but why not
+    private final java.sql.Date markDate2 = new java.sql.Date(2023, 2, 12); //deprecated but why not
 
 
     //record objects to use in tests
@@ -212,7 +208,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (2)
+    @Order(2)
     void testCreatingModule() throws SQLException {
         RecordCreator recordCreator = new RecordCreator(moduleRecord);
 
@@ -222,7 +218,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (3)
+    @Order(3)
     void testCreatingCourse() throws SQLException {
 
         RecordCreator recordCreator = new RecordCreator(courseRecord);
@@ -233,7 +229,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (4)
+    @Order(4)
     void testCreatingOptionalModule() throws SQLException {
 
         createCourseRecord(courseRecord);
@@ -249,7 +245,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (5)
+    @Order(5)
     void testCreatingCoreModule() throws SQLException {
         createCourseRecord(courseRecord);
         createModuleRecord(moduleRecord);
@@ -264,8 +260,8 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (6)
-    void testCreatingMark() throws SQLException{
+    @Order(6)
+    void testCreatingMark() throws SQLException {
         createStudentRecord(studentRecord);
         createModuleRecord(moduleRecord);
 
@@ -283,7 +279,7 @@ public class DatabaseInteractionTest {
     //then test removing them
 
     @Test
-    @Order (7)
+    @Order(7)
     void testRemovingMark() throws SQLException {
         createStudentRecord(studentRecord);
         createModuleRecord(moduleRecord);
@@ -310,7 +306,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (9)
+    @Order(9)
     void testRemovingOptionalModule() throws SQLException {
         createCourseRecord(courseRecord);
         createModuleRecord(moduleRecord);
@@ -325,7 +321,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (10)
+    @Order(10)
     void testRemovingCoreModule() throws SQLException {
         createCourseRecord(courseRecord);
         createModuleRecord(moduleRecord);
@@ -340,7 +336,7 @@ public class DatabaseInteractionTest {
     }
 
     @Test
-    @Order (11)
+    @Order(11)
     void testRemovingCourse() throws SQLException {
         createCourseRecord(courseRecord);
 
@@ -351,7 +347,7 @@ public class DatabaseInteractionTest {
 
 
     @Test
-    @Order (12)
+    @Order(12)
     void testRemovingModule() throws SQLException {
         createModuleRecord(moduleRecord);
 
@@ -471,7 +467,7 @@ public class DatabaseInteractionTest {
 
     @Test
     @Order(20)
-    void testGettingSubjectNames() throws SQLException{
+    void testGettingSubjectNames() throws SQLException {
         RecordLoader recordLoader = new RecordLoader();
         recordLoader.getSubjectList();
 

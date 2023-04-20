@@ -1,7 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Class responsible for generating and calculating similarity between modules (weights)
@@ -13,10 +12,10 @@ public class WeightGenerator extends ModuleHandler {
     /**
      * Bias determines how much current electives change the weights of suggested electives, from 1-4 (for now)
      */
-    private final Integer bias = 1;
-    private final ElectiveListGenerator electiveListGenerator;
+    private Integer bias = 1;
+    private ElectiveListGenerator electiveListGenerator;
 
-    private final CoreListGenerator coreListGenerator;
+    private CoreListGenerator coreListGenerator;
 
     public WeightGenerator(CoreListGenerator coreListGenerator, ElectiveListGenerator electiveListGenerator) {
         this.coreListGenerator = coreListGenerator;
@@ -107,79 +106,21 @@ public class WeightGenerator extends ModuleHandler {
             //System.out.println(getModuleAmount());
             //System.out.println(modulesToBeMoved);
 
-            //
-
             // recalculate each elective weight w.r.t newlyAddedElectives
-            for (int j = 0; j < modulesToBeMoved.size(); j++){
+            for (int j = 0; j < selectedModules.size(); j++){
 
                 // set new weight, where:
                 System.out.println("BEFORECALC");
                 System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getName());
-                System.out.println(modulesToBeMoved.get(j).getName());
-                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getName());
                 System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());
-                System.out.println(((float) (ElectiveListGenerator.electiveModulesList.size() - modulesToBeMoved.size())  / ElectiveListGenerator.electiveModulesList.size()) );
-                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() - modulesToBeMoved.size())  / ElectiveListGenerator.electiveModulesList.size())  );
-                System.out.println(bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList())/ ElectiveListGenerator.electiveModulesList.size()));
-                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() - modulesToBeMoved.size())/ ElectiveListGenerator.electiveModulesList.size()));
-                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() - modulesToBeMoved.size())/ ElectiveListGenerator.electiveModulesList.size()) + (bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList())/ ElectiveListGenerator.electiveModulesList.size())));
+                System.out.println(((float) (ElectiveListGenerator.electiveModulesList.size() - selectedModules.size())  / ElectiveListGenerator.electiveModulesList.size()) );
+                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() - selectedModules.size())  / ElectiveListGenerator.electiveModulesList.size())  );
+                System.out.println(bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), selectedModules.get(j).getTagList())/ ElectiveListGenerator.electiveModulesList.size()));
+                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() - selectedModules.size())/ ElectiveListGenerator.electiveModulesList.size()));
+                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() - selectedModules.size())/ ElectiveListGenerator.electiveModulesList.size()) + (bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), selectedModules.get(j).getTagList())/ ElectiveListGenerator.electiveModulesList.size())));
 
                 // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
-                ElectiveListGenerator.electiveModulesList.get(i).setWeight(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() - modulesToBeMoved.size())/ ElectiveListGenerator.electiveModulesList.size()) + bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList())/ ElectiveListGenerator.electiveModulesList.size()));
-
-            //calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())
-            //ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (getModuleAmount()/newlyAddedModules.size()) + 2 * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())/ newlyAddedModules.size())
-            // weights are set, but then moduleweight needs to be set.
-
-
-            System.out.println("Chosen Elective :");
-            System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getName());
-            System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());
-            }
-        }
-
-    }
-
-    public void recalculateWeightsOnRemove() {
-
-        //newElectiveList = ElectiveListGenerator.electiveModulesList.remove(modulesToBeMoved);
-        // take module we are adding back in
-        // for each old electiveList we calculate jaccrds w/ modulesMoved
-        // take from old electiveList weights, add modulesMoved in.
-
-        // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
-
-        System.out.println("MOVEMODULE");
-        System.out.println(modulesToBeMoved.get(0).getName());
-        System.out.println(modulesToBeMoved.get(0).getWeight());
-
-
-        // iterate across modules in electives list
-        for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
-
-            // assign modules new weights
-            //System.out.println(getModuleAmount());
-            //System.out.println(modulesToBeMoved);
-
-            // recalculate each elective weight w.r.t newlyAddedElectives
-            for (int j = 0; j < modulesToBeMoved.size(); j++) {
-
-                // set new weight, where:
-                System.out.println("REMOVECALC");
-                System.out.println("chosen elective");
-                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());
-                System.out.println(((float) (ElectiveListGenerator.electiveModulesList.size() + modulesToBeMoved.size()) / ElectiveListGenerator.electiveModulesList.size()));
-                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() + modulesToBeMoved.size()) / ElectiveListGenerator.electiveModulesList.size()));
-                System.out.println(bias * (calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList()) / ElectiveListGenerator.electiveModulesList.size()));
-                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() + modulesToBeMoved.size()) / ElectiveListGenerator.electiveModulesList.size()));
-                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() + modulesToBeMoved.size()) / ElectiveListGenerator.electiveModulesList.size()) - (bias * (calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList()) / (ElectiveListGenerator.electiveModulesList.size() + modulesToBeMoved.size()))));
-                System.out.println(calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList()) / (ElectiveListGenerator.electiveModulesList.size() + modulesToBeMoved.size()));
-                System.out.println("similarity");
-                System.out.println(calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList()));
-                System.out.println(calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList()) / (ElectiveListGenerator.electiveModulesList.size() + modulesToBeMoved.size()));
-
-                // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
-                ElectiveListGenerator.electiveModulesList.get(i).setWeight(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() + modulesToBeMoved.size()) / ElectiveListGenerator.electiveModulesList.size()) - bias * (calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), modulesToBeMoved.get(j).getTagList()) / (ElectiveListGenerator.electiveModulesList.size() + modulesToBeMoved.size())));
+                ElectiveListGenerator.electiveModulesList.get(i).setWeight(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() - selectedModules.size())/ ElectiveListGenerator.electiveModulesList.size()) + bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), selectedModules.get(j).getTagList())/ ElectiveListGenerator.electiveModulesList.size()));
 
                 //calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())
                 //ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (getModuleAmount()/newlyAddedModules.size()) + 2 * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())/ newlyAddedModules.size())
@@ -190,18 +131,57 @@ public class WeightGenerator extends ModuleHandler {
                 System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getName());
                 System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());
             }
-
-
         }
-        System.out.println("MOVEMODULE");
-        System.out.println(modulesToBeMoved.get(0).getName());
-        System.out.println(modulesToBeMoved.get(0).getWeight());
 
-        ElectiveListGenerator.electiveModulesList.addAll(modulesToBeMoved);
+    }
 
-        for (int z = 0; z < ElectiveListGenerator.electiveModulesList.size(); z++){
-            System.out.println(ElectiveListGenerator.electiveModulesList.get(z).getName());
-            System.out.println(ElectiveListGenerator.electiveModulesList.get(z).getWeight());
+    public void recalculateWeightsOnRemove() {
+
+
+        // take module we are adding back in
+        // for each old electiveList we calculate jaccrds w/ modulesMoved
+        // take from old electiveList weights, add modulesMoved in.
+
+        // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
+
+
+        // iterate across modules in electives list
+        for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
+
+            float moduleWeight = 0;
+
+            // assign modules new weights
+            //System.out.println(getModuleAmount());
+            //System.out.println(modulesToBeMoved);
+
+            // recalculate each elective weight w.r.t newlyAddedElectives
+            for (int j = 0; j < selectedModules.size(); j++){
+
+
+                // set new weight, where:
+                System.out.println("REMOVECALC");
+                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());
+                System.out.println(((float) (ElectiveListGenerator.electiveModulesList.size() + selectedModules.size())  / ElectiveListGenerator.electiveModulesList.size()) );
+                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() + selectedModules.size())  / ElectiveListGenerator.electiveModulesList.size())  );
+                System.out.println(bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), selectedModules.get(j).getTagList())/ ElectiveListGenerator.electiveModulesList.size()));
+                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() + selectedModules.size())/ ElectiveListGenerator.electiveModulesList.size()));
+                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() + selectedModules.size())/ ElectiveListGenerator.electiveModulesList.size()) - (bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), selectedModules.get(j).getTagList())/ (ElectiveListGenerator.electiveModulesList.size()+ selectedModules.size()))));
+                System.out.println(calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), selectedModules.get(j).getTagList())/ (ElectiveListGenerator.electiveModulesList.size()+ selectedModules.size()));
+                System.out.println("similarity");
+                System.out.println(calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), selectedModules.get(j).getTagList()));
+
+                // weight = old weight * (old amount/new amount) + bias * ( newWeight / electiveList.size() )
+                ElectiveListGenerator.electiveModulesList.get(i).setWeight(ElectiveListGenerator.electiveModulesList.get(i).getWeight() * ((float) (ElectiveListGenerator.electiveModulesList.size() + selectedModules.size())/ ElectiveListGenerator.electiveModulesList.size()) - bias * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), selectedModules.get(j).getTagList())/ (ElectiveListGenerator.electiveModulesList.size()+ selectedModules.size())));
+
+                //calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())
+                //ElectiveListGenerator.electiveModulesList.get(i).getWeight() * (getModuleAmount()/newlyAddedModules.size()) + 2 * ( calculateWeight(ElectiveListGenerator.electiveModulesList.get(i).getTagList(), newlyAddedModules.get(j).getTagList())/ newlyAddedModules.size())
+                // weights are set, but then moduleweight needs to be set.
+
+
+                System.out.println("Chosen Elective :");
+                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getName());
+                System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());
+            }
         }
 
     }

@@ -79,11 +79,11 @@ public class Module implements Comparable<Module> {
         this.Weight = weight;
     }
 
-    public void setPrerequisite(String prerequisitename){
+    public void setPrerequisite(String prerequisitename) {
         this.prerequisiteModule = prerequisitename;
     }
 
-    public String getPrerequisite(){
+    public String getPrerequisite() {
         return this.prerequisiteModule;
     }
 

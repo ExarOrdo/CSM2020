@@ -58,7 +58,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-        <TextArea fx:id="coreModule1" editable="false" layoutX="152.0" layoutY="558.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+        <TextArea fx:id="coreModule1" editable="false" layoutX="152.0" layoutY="558.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" wrapText="true" />
         <TextArea fx:id="semester1" editable="false" layoutX="352.0" layoutY="558.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
         <TextArea fx:id="credits1" editable="false" layoutX="412.0" layoutY="558.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
         <Button fx:id="addModuleBtn" layoutX="405.0" layoutY="435.0" mnemonicParsing="false" onAction="#showElective" prefHeight="40.0" prefWidth="190.0" text="Add Module">
@@ -71,11 +71,11 @@
         <ListView fx:id="mediumView" layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="lowView" layoutX="679.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
       <Text layoutX="110.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
-      <TextArea fx:id="coreModule2" editable="false" layoutX="152.0" layoutY="603.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+      <TextArea fx:id="coreModule2" editable="false" layoutX="152.0" layoutY="603.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" wrapText="true" />
       <TextArea fx:id="semester2" editable="false" layoutX="352.0" layoutY="603.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
       <TextArea fx:id="credits2" editable="false" layoutX="412.0" layoutY="603.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
       <Text layoutX="111.0" layoutY="672.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
-      <TextArea fx:id="coreModule3" editable="false" layoutX="152.0" layoutY="648.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+      <TextArea fx:id="coreModule3" editable="false" layoutX="152.0" layoutY="648.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" wrapText="true" />
       <TextArea fx:id="semester3" editable="false" layoutX="352.0" layoutY="648.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
       <TextArea fx:id="credits3" editable="false" layoutX="412.0" layoutY="648.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
       <Text layoutX="219.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High">
@@ -96,7 +96,7 @@
             <TextArea fx:id="elective1Sem" editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
             <TextArea fx:id="elective1Cred" editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
             <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
-            <Button fx:id="clear1" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElective" prefHeight="25.0" prefWidth="40.0" text="X" />
+            <Button fx:id="clear1" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElectiveOne" prefHeight="25.0" prefWidth="40.0" text="X" />
          </children>
       </Pane>
       <Pane fx:id="elective2" layoutX="528.0" layoutY="603.0" prefHeight="40.0" prefWidth="435.0" visible="false">
@@ -105,7 +105,7 @@
             <TextArea fx:id="elective2Sem" editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
             <TextArea fx:id="elective2Cred" editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
             <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
-            <Button fx:id="clear2" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElective" prefHeight="25.0" prefWidth="40.0" text="X" />
+            <Button fx:id="clear2" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElectiveTwo" prefHeight="25.0" prefWidth="40.0" text="X" />
          </children>
       </Pane>
       <Pane fx:id="elective3" layoutX="528.0" layoutY="648.0" prefHeight="40.0" prefWidth="435.0" visible="false">
@@ -114,7 +114,7 @@
             <TextArea fx:id="elective3Sem" editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
             <TextArea fx:id="elective3Cred" editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
             <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
-            <Button fx:id="clear3" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElective" prefHeight="25.0" prefWidth="40.0" text="X" />
+            <Button fx:id="clear3" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElectiveThree" prefHeight="25.0" prefWidth="40.0" text="X" />
          </children>
       </Pane>
         <Pane fx:id="expandedPane" layoutX="-1.0" prefHeight="800.0" prefWidth="140.0" style="-fx-background-color: lightgrey;" visible="false">
@@ -149,5 +149,9 @@
             </Text>
          </children>
       </Pane>
+      <Button fx:id="Instructions" layoutX="829.0" layoutY="22.0" onAction="#showInstructions" prefHeight="42.0" prefWidth="147.0" text="Instructions">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
     </children>
 </AnchorPane>

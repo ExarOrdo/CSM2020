@@ -3,18 +3,14 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Register;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class RegisterController {
     public Button confirmBtn;
@@ -50,7 +46,7 @@ public class RegisterController {
 
             //set selected index to 1 to avoid red errors
             courseComboBox.getSelectionModel().select(0);
-                });
+        });
 
         courseComboBox.setOnAction(actionEvent -> {
             String course = (String) courseComboBox.getValue();
@@ -95,7 +91,6 @@ public class RegisterController {
             register.tryRegister();
             alreadyExists.setVisible(false);
             main.changeScene("Recommendation.fxml");
-            System.out.println("Registered successfully.");
         }
 
 

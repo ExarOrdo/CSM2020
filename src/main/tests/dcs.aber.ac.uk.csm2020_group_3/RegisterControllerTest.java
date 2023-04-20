@@ -12,9 +12,9 @@ import org.testfx.framework.junit5.ApplicationTest;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegisterControllerTest extends ApplicationTest {
 

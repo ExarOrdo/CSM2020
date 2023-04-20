@@ -11,17 +11,17 @@ public abstract class ModuleHandler {
     public Integer test;
 
     private static Integer currentModuleAmount;
-    public static ArrayList<Module> modulesToBeMoved;
+    public static ArrayList<Module> selectedModules;
     private static Integer credits;
 
-    public ModuleHandler(){
+    public ModuleHandler() {
         year0Modules = new ArrayList<>();
         year1Modules = new ArrayList<>();
         year2Modules = new ArrayList<>();
         year3Modules = new ArrayList<>();
         year4Modules = new ArrayList<>();
         currentModuleAmount = 0;
-        modulesToBeMoved = new ArrayList<>();
+        selectedModules = new ArrayList<>();
 
     }
 
@@ -35,17 +35,13 @@ public abstract class ModuleHandler {
      * Gets a Module object from it's string name
      */
 
-    public void updateModuleAmount(Module elective){
+    public void updateModuleAmount(Module elective) {
         currentModuleAmount = year0Modules.size() + year1Modules.size() + year2Modules.size() + year3Modules.size() + year4Modules.size();
-        modulesToBeMoved.add(elective);
+        selectedModules.add(elective);
     }
 
-    public Integer getModuleAmount(){
+    public Integer getModuleAmount() {
         return currentModuleAmount;
-    }
-
-    public void clearNewModules() {
-        modulesToBeMoved = new ArrayList<>();
     }
 
 
@@ -78,6 +74,7 @@ public abstract class ModuleHandler {
         }
 
     }
+
     public void sortModules(ArrayList<Module> modules) {
         // iterate through list of module info items
         for (Module module : modules) {
@@ -113,43 +110,43 @@ public abstract class ModuleHandler {
      * before adding electives to the yearXModule lists.
      * Returns Bool depending on whether credit limit is reached.
      */
-    public Boolean checkCredits(){
+    public Boolean checkCredits() {
 
         // counter variable
         credits = 0;
         // check current credits in each yearlist
-        for (int i = 0; i < year0Modules.size(); i++){
+        for (int i = 0; i < year0Modules.size(); i++) {
             credits += year0Modules.get(i).getCredits();
-            if (credits > 120){
+            if (credits > 120) {
                 return Boolean.FALSE;
             }
         }
 
         credits = 0;
-        for (int j = 0; j < year1Modules.size(); j++){
+        for (int j = 0; j < year1Modules.size(); j++) {
             credits += year1Modules.get(j).getCredits();
-            if (credits > 120){
+            if (credits > 120) {
                 return Boolean.FALSE;
             }
         }
         credits = 0;
-        for (int k = 0; k < year2Modules.size(); k++){
+        for (int k = 0; k < year2Modules.size(); k++) {
             credits += year2Modules.get(k).getCredits();
-            if (credits > 120){
+            if (credits > 120) {
                 return Boolean.FALSE;
             }
         }
         credits = 0;
-        for (int n = 0; n < year3Modules.size(); n++){
+        for (int n = 0; n < year3Modules.size(); n++) {
             credits += year3Modules.get(n).getCredits();
-            if (credits > 120){
+            if (credits > 120) {
                 return Boolean.FALSE;
             }
         }
         credits = 0;
-        for (int m = 0; m < year4Modules.size(); m++){
+        for (int m = 0; m < year4Modules.size(); m++) {
             credits += year4Modules.get(m).getCredits();
-            if (credits > 180){
+            if (credits > 180) {
                 return Boolean.FALSE;
             }
         }
@@ -157,40 +154,40 @@ public abstract class ModuleHandler {
         return Boolean.TRUE;
     }
 
+
     /**
      * Module that takes an elective, checks whether it has prerequisites, if so, adds to them current modules lists.
      * Then runs check on that added module if it also has prerequisites.
      * Saves amount of modules to variables for use in WeightGenerator functions.
+     *
      * @param elective
      */
-    public void checkPrerequisites(Module elective){
-        modulesToBeMoved = new ArrayList<>();
-        modulesToBeMoved.add(elective);
+    public void checkPrerequisites(Module elective) {
+        selectedModules.add(elective);
 
         // check if module has a prerequisite
         if (!elective.getPrerequisite().equals("")) {
 
             // check for prerequisite in electiveLists, if's not in electiveList it's either already in selectedList
             //or not possible
-            for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++){
+            for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
 
                 // after prereq. found in list
-                if (elective.getPrerequisite().equals(ElectiveListGenerator.electiveModulesList.get(i).getPrerequisite())){
+                if (elective.getPrerequisite().equals(ElectiveListGenerator.electiveModulesList.get(i).getPrerequisite())) {
 
-                        // run check on newly added module, update moduleAmount
-                        checkPrerequisites(ElectiveListGenerator.electiveModulesList.get(i));
-                        updateModuleAmount(elective);
-                    }
-
-
-
+                    // run check on newly added module, update moduleAmount
+                    checkPrerequisites(ElectiveListGenerator.electiveModulesList.get(i));
+                    updateModuleAmount(elective);
                 }
-            }
 
+
+            }
         }
 
-
     }
+
+
+}
 
 
 

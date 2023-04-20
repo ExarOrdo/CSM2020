@@ -1,20 +1,15 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
 import dcs.aber.ac.uk.csm2020_group_3.Main;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.CoreListGenerator;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.DataLoader;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.ElectiveListGenerator;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.EnrolledModules;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,7 +20,7 @@ import java.util.ResourceBundle;
 public class TimetableController implements Initializable {
 
     public GridPane timetable;
-    public TextArea textArea00 ,textArea10 ,textArea20 ,textArea30 ,textArea40 ,textArea01 ,textArea11 ,textArea21 ,textArea31,textArea41 ,textArea02 ,textArea12 ,textArea22 ,textArea32 ,textArea42 ,textArea03 ,textArea13 ,textArea23 ,textArea33 , textArea43 ,textArea04 ,textArea14 ,textArea24 ,textArea34 ,textArea44 ,textArea05 ,textArea15 ,textArea25 ,textArea35 ,textArea45,textArea06 ,textArea16 ,textArea26 ,textArea36 ,textArea46 ,textArea07 ,textArea17 ,textArea27 ,textArea37 ,textArea47;
+    public TextArea textArea00, textArea10, textArea20, textArea30, textArea40, textArea01, textArea11, textArea21, textArea31, textArea41, textArea02, textArea12, textArea22, textArea32, textArea42, textArea03, textArea13, textArea23, textArea33, textArea43, textArea04, textArea14, textArea24, textArea34, textArea44, textArea05, textArea15, textArea25, textArea35, textArea45, textArea06, textArea16, textArea26, textArea36, textArea46, textArea07, textArea17, textArea27, textArea37, textArea47;
     @FXML
     Pane expandedPane;
     @FXML
@@ -51,9 +46,9 @@ public class TimetableController implements Initializable {
     @FXML
     protected void pressBurgerBtn() {
         expandedPane.setVisible(!expandedPane.isVisible());
-        if(expandedPane.isVisible()){
+        if (expandedPane.isVisible()) {
             burgerIcon.setRotate(90);
-        }else {
+        } else {
             burgerIcon.setRotate(0);
         }
     }
@@ -139,6 +134,7 @@ public class TimetableController implements Initializable {
         allTextAreas.add(38,textArea37);
         allTextAreas.add(39,textArea47);
 
+
         for (int i = 0; i < allModules.size(); i++) {
             allTextAreas.get(i).setText(allModules.get(i));
         }
@@ -159,7 +155,6 @@ public class TimetableController implements Initializable {
 
         allModules.addAll(EnrolledModules.enrolledModuleList);
 
-        System.out.println(EnrolledModules.enrolledModuleList);
         populateTimetable();
     }
 }

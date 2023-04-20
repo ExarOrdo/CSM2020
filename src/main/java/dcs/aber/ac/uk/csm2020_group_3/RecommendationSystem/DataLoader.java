@@ -1,11 +1,8 @@
 package dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
-import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.StudentModule;
-
 
 import java.sql.*;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +25,7 @@ public class DataLoader extends DatabaseHandler {
     private final String isModuleinRecordString = "SELECT * FROM marks WHERE StudentID = ? AND ModuleID = ?";
     private final String getModuleIDByNameString = "SELECT ModuleID FROM MODULE WHERE ModuleName = ?";
     private final String deleteDuplicates = "DELETE FROM marks WHERE StudentID = ? AND ModuleID = ?";
-    private final String resetModuleChoices = "DELETE FROM marks WHERE StudentID = ? AND ModuleID = ? WHERE StudentMark = NULL AND MarkDate";
+    private final String resetModuleChoices = "DELETE FROM Marks WHERE StudentID = ? AND StudentMark = -1 AND MarkDate IS NULL";
 
     public boolean tryLoadingModules() throws SQLException {
         this.connection = DriverManager.getConnection(connectionString);
@@ -76,6 +73,16 @@ public class DataLoader extends DatabaseHandler {
         return false;
     }
 
+    public void resetOptionalModules(String studentID) {
+
+        try (Connection connection = DatabaseHandler.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(resetModuleChoices)) {
+            preparedStatement.setString(1, studentID);
+            int deletedRows = preparedStatement.executeUpdate();
+            System.out.println(deletedRows + " rows deleted from Marks table.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public boolean isModuleinRecord(String studentID, String moduleID) {
@@ -122,8 +129,7 @@ public class DataLoader extends DatabaseHandler {
         List<String> alreadyExistingModules = new ArrayList<>();
         List<String> insertedModuleIds = new ArrayList<>();
 
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(saveModulesString)) {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(saveModulesString)) {
 
             for (String moduleName : selectedOptionalModuleNames) {
                 String moduleId = getModuleIDByName(moduleName);
@@ -134,11 +140,10 @@ public class DataLoader extends DatabaseHandler {
                     } else {
                         preparedStatement.setString(1, studentID);
                         preparedStatement.setString(2, moduleId);
-                        preparedStatement.setNull(3, java.sql.Types.INTEGER);
+                        preparedStatement.setInt(3, -1);
                         preparedStatement.setNull(4, java.sql.Types.DATE);
                         preparedStatement.executeUpdate();
                         insertedModuleIds.add(moduleId);
-                        System.out.println("Module inserted: " + moduleId);
                     }
                 } else {
                     System.err.println("Module not found for name: " + moduleName);
@@ -151,7 +156,6 @@ public class DataLoader extends DatabaseHandler {
                     deleteStatement.setString(1, studentID);
                     deleteStatement.setString(2, moduleId);
                     deleteStatement.executeUpdate();
-                    System.out.println("Module deleted: " + moduleId);
                 }
                 deleteStatement.close();
             }
@@ -162,8 +166,6 @@ public class DataLoader extends DatabaseHandler {
 
         return alreadyExistingModules;
     }
-
-
 
 
     public Map<String, String> loadStudentDetails(String studentId) {
@@ -252,7 +254,6 @@ public class DataLoader extends DatabaseHandler {
             if (studentResult.next()) {
                 courseID = studentResult.getString("StudentCourse");
             }
-            System.out.println("CourseID: " + courseID); // Debug statement
 
             if (!courseID.isEmpty()) {
                 // Find the core modules for the course
@@ -290,7 +291,6 @@ public class DataLoader extends DatabaseHandler {
             if (studentResult.next()) {
                 courseID = studentResult.getString("StudentCourse");
             }
-            System.out.println("CourseID: " + courseID); // Debug statement
 
             if (!courseID.isEmpty()) {
                 // Find the core modules for the course
