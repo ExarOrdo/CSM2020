@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class StudentRecordController implements Initializable {
+    private DataLoader dataLoader = new DataLoader();
+    private String studentID;
 
     @FXML
     private Pane expandedPane;
@@ -43,10 +45,14 @@ public class StudentRecordController implements Initializable {
     private TableColumn<StudentModule, Integer> studentMarkColumn;
     @FXML
     private TextArea moduleNameField, moduleDescriptionField;
-
+    @FXML
+    private void resetOptionalModules() {
+        dataLoader.resetOptionalModules(studentID);
+    }
 
     public void setStudentDetails(Map<String, String> studentDetails) {
-        studentIDField.setText(studentDetails.get("student_id"));
+        studentID = studentDetails.get("student_id");
+        studentIDField.setText(studentID);
         studentNameField.setText(studentDetails.get("student_name"));
         studentCourseField.setText(studentDetails.get("student_course"));
         yearComboBox.setValue(studentDetails.get("student_year"));

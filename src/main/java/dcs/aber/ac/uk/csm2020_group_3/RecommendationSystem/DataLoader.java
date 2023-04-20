@@ -25,7 +25,7 @@ public class DataLoader extends DatabaseHandler {
     private final String isModuleinRecordString = "SELECT * FROM marks WHERE StudentID = ? AND ModuleID = ?";
     private final String getModuleIDByNameString = "SELECT ModuleID FROM MODULE WHERE ModuleName = ?";
     private final String deleteDuplicates = "DELETE FROM marks WHERE StudentID = ? AND ModuleID = ?";
-    private final String resetModuleChoices = "DELETE FROM marks WHERE StudentID = ? AND ModuleID = ? WHERE StudentMark = NULL AND MarkDate";
+    private final String resetModuleChoices = "DELETE FROM Marks WHERE StudentID = ? AND StudentMark = -1 AND MarkDate IS NULL";
 
     public boolean tryLoadingModules() throws SQLException {
         this.connection = DriverManager.getConnection(connectionString);
@@ -71,6 +71,17 @@ public class DataLoader extends DatabaseHandler {
         }
 
         return false;
+    }
+
+    public void resetOptionalModules(String studentID) {
+
+        try (Connection connection = DatabaseHandler.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(resetModuleChoices)) {
+            preparedStatement.setString(1, studentID);
+            int deletedRows = preparedStatement.executeUpdate();
+            System.out.println(deletedRows + " rows deleted from Marks table.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

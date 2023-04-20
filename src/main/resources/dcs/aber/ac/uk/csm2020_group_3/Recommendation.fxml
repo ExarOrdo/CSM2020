@@ -149,6 +149,9 @@
             </Text>
          </children>
       </Pane>
-      <Button fx:id="Instructions" layoutX="84.0" layoutY="25.0" onAction="#showInstructions" prefHeight="30.0" prefWidth="128.0" text="Instructions" />
+      <Button fx:id="Instructions" layoutX="829.0" layoutY="22.0" onAction="#showInstructions" prefHeight="42.0" prefWidth="147.0" text="Instructions">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
     </children>
 </AnchorPane>
