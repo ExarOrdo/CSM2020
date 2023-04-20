@@ -1,8 +1,8 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.StudentModule;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
-import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.DataLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +38,7 @@ public class StudentRecordController implements Initializable {
     @FXML
     private TableColumn<StudentModule, String> moduleIDColumn;
     @FXML
-    private TableColumn<StudentModule, Date> moduleMarkDateColumn;
+    private TableColumn<StudentModule, String> moduleMarkDateColumn;
     @FXML
     private TableColumn<StudentModule, Integer> studentMarkColumn;
     @FXML
@@ -71,6 +71,24 @@ public class StudentRecordController implements Initializable {
         moduleMarkDateColumn.setCellValueFactory(new PropertyValueFactory<>("markDate"));
         studentMarkColumn.setCellValueFactory(new PropertyValueFactory<>("studentMark"));
 
+        studentMarkColumn.setCellFactory(column -> new TableCell<StudentModule, Integer>() {
+            @Override
+            protected void updateItem(Integer item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item == null || empty) {
+                    setText(null);
+                } else {
+                    if (item == -1) {
+                        setText("Current Module");
+                    } else {
+                        setText(item.toString());
+                    }
+                }
+            }
+        });
+
+
         loadStudentModulesByYear();
 
         studentModuleTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -82,6 +100,7 @@ public class StudentRecordController implements Initializable {
             }
         });
     }
+
 
     private void loadStudentModulesByYear() {
         int year = 1;
@@ -102,6 +121,7 @@ public class StudentRecordController implements Initializable {
                 int studentMark = resultSet.getInt("StudentMark");
                 int moduleYear = resultSet.getInt("ModuleYear");
                 Date markDate = resultSet.getDate("MarkDate");
+
 
                 studentModules.add(new StudentModule(moduleID, moduleYear, studentMark, markDate));
             }

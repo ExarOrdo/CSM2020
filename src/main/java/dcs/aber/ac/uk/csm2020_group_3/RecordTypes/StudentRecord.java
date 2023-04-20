@@ -7,26 +7,27 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table;
  */
 public class StudentRecord extends Record {
 
-    private String studentId;
+    private final String studentId;
 
-    private String studentName;
+    private final String studentName;
 
-    private int studentYear;
+    private final int studentYear;
 
-    private String studentPassword;
+    private final String studentPassword;
 
-    private String studentCourse;
+    private final String studentCourse;
 
 
     /**
      * Construct a single student record for Student table
-     * @param id student's id
+     *
+     * @param id        student's id
      * @param firstName student's first name
-     * @param lastName student's last name
-     * @param year student's current year
-     * @param password student's password
+     * @param lastName  student's last name
+     * @param year      student's current year
+     * @param password  student's password
      */
-    public StudentRecord (String id, String firstName, String lastName, int year, String course,String password) {
+    public StudentRecord(String id, String firstName, String lastName, int year, String course, String password) {
         this.studentId = id;
 
         this.studentName = firstName + lastName;

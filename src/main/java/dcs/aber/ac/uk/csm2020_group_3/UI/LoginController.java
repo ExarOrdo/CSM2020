@@ -1,8 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
-import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Login;
-import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordCreator;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,17 +35,20 @@ public class LoginController {
         Main main = new Main();
         Login login = new Login(studentId.getText(), studentPassword.getText());
 
-        if (login.tryLogin()) {
-            incorrectField.setVisible(false);
-            Login.setCurrentStudentId(studentId.getText()); // Store the logged-in student's ID
-
-            loginID = studentId.getText();
-            main.changeScene("Recommendation.fxml");
-            System.out.println("Successful login");
+        if (login.allFieldsFilled()) {
+            if (login.tryLogin()) {
+                incorrectField.setVisible(false);
+                Login.setCurrentStudentId(studentId.getText()); // Store the logged-in student's ID
+                loginID = studentId.getText();
+                main.changeScene("Recommendation.fxml");
+            } else {
+                incorrectField.setText("Incorrect Student ID or Password");
+                incorrectField.setVisible(true);
+            }
         } else {
+            incorrectField.setText("All fields must be filled");
             incorrectField.setVisible(true);
         }
-
 
     }
 

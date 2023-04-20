@@ -1,9 +1,8 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.Record;
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -11,7 +10,7 @@ import java.sql.SQLException;
 /**
  * Creates a record for any of the existing tables in our db
  */
-public class RecordCreator extends DatabaseHandler{
+public class RecordCreator extends DatabaseHandler {
 
     private final Table typeOfRecord;
     private final Record recordObject;
@@ -23,7 +22,6 @@ public class RecordCreator extends DatabaseHandler{
     }
 
     public boolean tryCreatingRecord() throws SQLException {
-
 
 
         this.connection = getConnection();
@@ -46,8 +44,6 @@ public class RecordCreator extends DatabaseHandler{
                     createStudent.execute();
                     createStudent.close();
 
-                    System.out.println("Registered student with id: " + studentRecord.getStudentId());
-
 
                 } catch (Exception err) {
                     System.err.println("Error when creating Student record in Student table:" + err.getMessage());
@@ -65,9 +61,6 @@ public class RecordCreator extends DatabaseHandler{
 
                     createRecord.execute();
                     createRecord.close();
-
-                    System.out.println("Added new optional module with id: " + optionalModuleRecord.getModuleId() + " for " +
-                            "course with id: +" + optionalModuleRecord.getCourseId());
 
 
                 } catch (Exception err) {
@@ -87,9 +80,6 @@ public class RecordCreator extends DatabaseHandler{
                     createRecord.execute();
                     createRecord.close();
 
-                    System.out.println("Added new core module with id: " + coreModuleRecord.getModuleId() + " for " +
-                            "course with id: +" + coreModuleRecord.getCourseId());
-
 
                 } catch (Exception err) {
                     System.err.println("Error when creating Core module record in Core_Module table:" + err.getMessage());
@@ -101,7 +91,8 @@ public class RecordCreator extends DatabaseHandler{
                 ModuleRecord moduleRecord = (ModuleRecord) recordObject;
                 try {
                     PreparedStatement createRecord = connection.prepareStatement("INSERT INTO MODULE (ModuleID, ModuleName, ModuleDescription, ModuleCredits," +
-                            "ModuleYear, ModuleSemester, ModuleTag1, ModuleTag2, ModuleTag3) VALUES (?,?,?,?,?,?,?,?,?)");
+                            "ModuleYear, ModuleSemester, ModuleTag1, ModuleTag2, ModuleTag3, ModuleTag4, ModuleTag5, ModuleTag6, " +
+                            "ModuleTag7, ModuleTag8, ModulePrerequisite) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                     createRecord.setString(1, moduleRecord.getModuleId());
                     createRecord.setString(2, moduleRecord.getModuleName());
@@ -112,12 +103,16 @@ public class RecordCreator extends DatabaseHandler{
                     createRecord.setString(7, moduleRecord.getTag1());
                     createRecord.setString(8, moduleRecord.getTag2());
                     createRecord.setString(9, moduleRecord.getTag3());
+                    createRecord.setString(10, moduleRecord.getTag4());
+                    createRecord.setString(11, moduleRecord.getTag5());
+                    createRecord.setString(12, moduleRecord.getTag6());
+                    createRecord.setString(13, moduleRecord.getTag7());
+                    createRecord.setString(14, moduleRecord.getTag8());
+                    createRecord.setString(15, moduleRecord.getModulePrerequisite());
 
 
                     createRecord.execute();
                     createRecord.close();
-
-                    System.out.println("Added new module with id: " + moduleRecord.getModuleId() + " and name: " + moduleRecord.getModuleName());
 
 
                 } catch (Exception err) {
@@ -139,8 +134,6 @@ public class RecordCreator extends DatabaseHandler{
                     createRecord.execute();
                     createRecord.close();
 
-                    System.out.println("Added new Mark: " + markRecord.getStudentMark() + " for student id: " + markRecord.getStudentId());
-
 
                 } catch (Exception err) {
                     System.err.println("Error when creating Mark record in Marks table:" + err.getMessage());
@@ -160,9 +153,6 @@ public class RecordCreator extends DatabaseHandler{
                     createRecord.execute();
                     createRecord.close();
 
-                    System.out.println("Added new course with id: " + courseRecord.getCourseId() + " and name: " +
-                            courseRecord.getCourseName());
-
 
                 } catch (Exception err) {
                     System.err.println("Error when creating Course record in Course table:" + err.getMessage());
@@ -175,7 +165,6 @@ public class RecordCreator extends DatabaseHandler{
                 return false;
             }
         }
-
 
 
         return true;

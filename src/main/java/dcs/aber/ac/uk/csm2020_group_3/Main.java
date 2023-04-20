@@ -1,7 +1,6 @@
 package dcs.aber.ac.uk.csm2020_group_3;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,12 +11,11 @@ import java.util.Objects;
 
 public class Main extends Application {
 
-    // voodoo request processor for magic backend handling
-    //USE IT!
-    private RequestProcessor requestProcessor;
+
     public static Stage currentStage;
 
     public FXMLLoader fxmlLoader;
+
     @Override
     public void start(Stage stage) throws IOException {
         currentStage = stage;
@@ -30,7 +28,7 @@ public class Main extends Application {
         currentStage.setTitle("Login");
     }
 
-    public void changeScene(String fxml) throws IOException{
+    public void changeScene(String fxml) throws IOException {
 
         final String sceneTitle = fxml.substring(0, fxml.length() - 5);
         switch (fxml) {
