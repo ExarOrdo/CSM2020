@@ -90,48 +90,50 @@ public class TimetableController implements Initializable {
         pressBurgerBtn();
     }
 
-    private void populateTimetable() {
+    private void populateTimetable(){
 
-        allTextAreas.add(0, textArea00);
-        allTextAreas.add(1, textArea10);
-        allTextAreas.add(2, textArea20);
-        allTextAreas.add(3, textArea30);
-        allTextAreas.add(4, textArea40);
-        allTextAreas.add(5, textArea01);
-        allTextAreas.add(6, textArea11);
-        allTextAreas.add(7, textArea21);
-        allTextAreas.add(8, textArea31);
-        allTextAreas.add(9, textArea41);
-        allTextAreas.add(10, textArea02);
-        allTextAreas.add(11, textArea12);
-        allTextAreas.add(12, textArea22);
-        allTextAreas.add(13, textArea32);
-        allTextAreas.add(14, textArea42);
-        allTextAreas.add(15, textArea03);
-        allTextAreas.add(16, textArea13);
-        allTextAreas.add(17, textArea23);
-        allTextAreas.add(18, textArea33);
-        allTextAreas.add(19, textArea43);
-        allTextAreas.add(20, textArea04);
-        allTextAreas.add(21, textArea14);
-        allTextAreas.add(22, textArea24);
-        allTextAreas.add(23, textArea34);
-        allTextAreas.add(24, textArea44);
-        allTextAreas.add(25, textArea05);
-        allTextAreas.add(26, textArea15);
-        allTextAreas.add(27, textArea25);
-        allTextAreas.add(28, textArea35);
-        allTextAreas.add(29, textArea45);
-        allTextAreas.add(30, textArea06);
-        allTextAreas.add(31, textArea16);
-        allTextAreas.add(32, textArea26);
-        allTextAreas.add(33, textArea36);
-        allTextAreas.add(34, textArea46);
-        allTextAreas.add(35, textArea07);
-        allTextAreas.add(36, textArea17);
-        allTextAreas.add(37, textArea27);
-        allTextAreas.add(38, textArea37);
-        allTextAreas.add(39, textArea47);
+        //adds all text areas to a list
+        allTextAreas.add(0,textArea00);
+        allTextAreas.add(1,textArea10);
+        allTextAreas.add(2,textArea20);
+        allTextAreas.add(3,textArea30);
+        allTextAreas.add(4,textArea40);
+        allTextAreas.add(5,textArea01);
+        allTextAreas.add(6,textArea11);
+        allTextAreas.add(7,textArea21);
+        allTextAreas.add(8,textArea31);
+        allTextAreas.add(9,textArea41);
+        allTextAreas.add(10,textArea02);
+        allTextAreas.add(11,textArea12);
+        allTextAreas.add(12,textArea22);
+        allTextAreas.add(13,textArea32);
+        allTextAreas.add(14,textArea42);
+        allTextAreas.add(15,textArea03);
+        allTextAreas.add(16,textArea13);
+        allTextAreas.add(17,textArea23);
+        allTextAreas.add(18,textArea33);
+        allTextAreas.add(19,textArea43);
+        allTextAreas.add(20,textArea04);
+        allTextAreas.add(21,textArea14);
+        allTextAreas.add(22,textArea24);
+        allTextAreas.add(23,textArea34);
+        allTextAreas.add(24,textArea44);
+        allTextAreas.add(25,textArea05);
+        allTextAreas.add(26,textArea15);
+        allTextAreas.add(27,textArea25);
+        allTextAreas.add(28,textArea35);
+        allTextAreas.add(29,textArea45);
+        allTextAreas.add(30,textArea06);
+        allTextAreas.add(31,textArea16);
+        allTextAreas.add(32,textArea26);
+        allTextAreas.add(33,textArea36);
+        allTextAreas.add(34,textArea46);
+        allTextAreas.add(35,textArea07);
+        allTextAreas.add(36,textArea17);
+        allTextAreas.add(37,textArea27);
+        allTextAreas.add(38,textArea37);
+        allTextAreas.add(39,textArea47);
+
 
         for (int i = 0; i < allModules.size(); i++) {
             allTextAreas.get(i).setText(allModules.get(i));
@@ -143,14 +145,6 @@ public class TimetableController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-       /* for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
-            electiveNames.add(ElectiveListGenerator.electiveModulesList.get(i).getName());
-        }
-        for (int i = 0; i < CoreListGenerator.coreModulesList.size(); i++) {
-            coreNames.add(CoreListGenerator.coreModulesList.get(i).getName());
-        }
-        allModules.addAll(coreNames);
-        allModules.addAll(electiveNames);*/
         DataLoader dataLoader = new DataLoader();
         EnrolledModules enrolledModules = new EnrolledModules(dataLoader);
         try {
