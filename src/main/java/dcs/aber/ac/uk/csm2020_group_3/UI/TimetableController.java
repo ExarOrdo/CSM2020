@@ -97,6 +97,7 @@ public class TimetableController implements Initializable {
 
     private void populateTimetable(){
 
+        //adds all text areas to a list
         allTextAreas.add(0,textArea00);
         allTextAreas.add(1,textArea10);
         allTextAreas.add(2,textArea20);
@@ -148,14 +149,6 @@ public class TimetableController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-       /* for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
-            electiveNames.add(ElectiveListGenerator.electiveModulesList.get(i).getName());
-        }
-        for (int i = 0; i < CoreListGenerator.coreModulesList.size(); i++) {
-            coreNames.add(CoreListGenerator.coreModulesList.get(i).getName());
-        }
-        allModules.addAll(coreNames);
-        allModules.addAll(electiveNames);*/
         DataLoader dataLoader = new DataLoader();
         EnrolledModules enrolledModules = new EnrolledModules(dataLoader);
         try {

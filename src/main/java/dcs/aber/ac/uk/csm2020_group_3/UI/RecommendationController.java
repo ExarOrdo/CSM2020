@@ -77,6 +77,9 @@ public class RecommendationController implements Initializable {
 
     private Boolean oneElective, twoElective, threeElective = false;
 
+    /**
+     * Method for opening and closing the navigation pane
+     */
     @FXML
     protected void pressBurgerBtn() {
         expandedPane.setVisible(!expandedPane.isVisible());
@@ -87,16 +90,26 @@ public class RecommendationController implements Initializable {
         }
     }
 
+    /**
+     * Method for opening the pane to search for modules
+     */
     @FXML
     protected void pressSelectBtn() {
         categoryPane.setVisible(true);
     }
 
+    /**
+     * Method that closes search modules pane
+     */
     @FXML
     protected void closeSelectPane() {
         categoryPane.setVisible(false);
     }
 
+    /**
+     * Method for returning to login screen
+     * @throws IOException
+     */
     @FXML
     private void logout() throws IOException {
 
@@ -105,6 +118,10 @@ public class RecommendationController implements Initializable {
 
     }
 
+    /**
+     * Method for changing screen to student record
+     * @throws IOException
+     */
     @FXML
     private void toStudentRecord() throws IOException {
 
@@ -113,6 +130,10 @@ public class RecommendationController implements Initializable {
 
     }
 
+    /**
+     * Method for changing screen to help page
+     * @throws IOException
+     */
     @FXML
     private void toHelp() throws IOException {
 
@@ -121,6 +142,10 @@ public class RecommendationController implements Initializable {
 
     }
 
+    /**
+     * Method for changing screen to timetable
+     * @throws IOException
+     */
     @FXML
     private void toTimetable() throws IOException {
 
@@ -129,11 +154,17 @@ public class RecommendationController implements Initializable {
 
     }
 
+    /**
+     * Method for changing screen to recommendation page
+     */
     @FXML
     private void toRecommendation() {
         pressBurgerBtn();
     }
 
+    /**
+     * Method to show the correct elective box based on how many are currently active
+     */
     @FXML
     private void showElective() {
         onElectiveChosen();
