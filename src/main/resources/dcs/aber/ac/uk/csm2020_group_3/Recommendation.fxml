@@ -96,7 +96,7 @@
             <TextArea fx:id="elective1Sem" editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
             <TextArea fx:id="elective1Cred" editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
             <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
-            <Button fx:id="clear1" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElective" prefHeight="25.0" prefWidth="40.0" text="X" />
+            <Button fx:id="clear1" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElectiveOne" prefHeight="25.0" prefWidth="40.0" text="X" />
          </children>
       </Pane>
       <Pane fx:id="elective2" layoutX="528.0" layoutY="603.0" prefHeight="40.0" prefWidth="435.0" visible="false">
@@ -105,7 +105,7 @@
             <TextArea fx:id="elective2Sem" editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
             <TextArea fx:id="elective2Cred" editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
             <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
-            <Button fx:id="clear2" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElective" prefHeight="25.0" prefWidth="40.0" text="X" />
+            <Button fx:id="clear2" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElectiveTwo" prefHeight="25.0" prefWidth="40.0" text="X" />
          </children>
       </Pane>
       <Pane fx:id="elective3" layoutX="528.0" layoutY="648.0" prefHeight="40.0" prefWidth="435.0" visible="false">
@@ -114,7 +114,7 @@
             <TextArea fx:id="elective3Sem" editable="false" layoutX="250.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
             <TextArea fx:id="elective3Cred" editable="false" layoutX="310.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
             <Text layoutX="1.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elective" />
-            <Button fx:id="clear3" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElective" prefHeight="25.0" prefWidth="40.0" text="X" />
+            <Button fx:id="clear3" layoutX="395.0" layoutY="8.0" mnemonicParsing="false" onAction="#clearElectiveThree" prefHeight="25.0" prefWidth="40.0" text="X" />
          </children>
       </Pane>
         <Pane fx:id="expandedPane" layoutX="-1.0" prefHeight="800.0" prefWidth="140.0" style="-fx-background-color: lightgrey;" visible="false">

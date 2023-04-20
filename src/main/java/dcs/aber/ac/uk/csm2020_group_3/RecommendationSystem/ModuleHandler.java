@@ -11,7 +11,7 @@ public abstract class ModuleHandler {
     public Integer test;
 
     private static Integer currentModuleAmount;
-    public static ArrayList<Module> modulesToBeMoved;
+    public static ArrayList<Module> selectedModules;
     private static Integer credits;
 
     public ModuleHandler(){
@@ -21,7 +21,7 @@ public abstract class ModuleHandler {
         year3Modules = new ArrayList<>();
         year4Modules = new ArrayList<>();
         currentModuleAmount = 0;
-        modulesToBeMoved = new ArrayList<>();
+        selectedModules = new ArrayList<>();
 
     }
 
@@ -37,16 +37,14 @@ public abstract class ModuleHandler {
 
     public void updateModuleAmount(Module elective){
         currentModuleAmount = year0Modules.size() + year1Modules.size() + year2Modules.size() + year3Modules.size() + year4Modules.size();
-        modulesToBeMoved.add(elective);
+        selectedModules.add(elective);
     }
 
     public Integer getModuleAmount(){
         return currentModuleAmount;
     }
 
-    public void clearNewModules() {
-        modulesToBeMoved = new ArrayList<>();
-    }
+
 
 
     /**
@@ -164,8 +162,7 @@ public abstract class ModuleHandler {
      * @param elective
      */
     public void checkPrerequisites(Module elective){
-        modulesToBeMoved = new ArrayList<>();
-        modulesToBeMoved.add(elective);
+        selectedModules.add(elective);
 
         // check if module has a prerequisite
         if (!elective.getPrerequisite().equals("")) {
