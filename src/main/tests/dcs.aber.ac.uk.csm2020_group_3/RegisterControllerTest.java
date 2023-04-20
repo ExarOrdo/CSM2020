@@ -45,8 +45,8 @@ public class RegisterControllerTest extends ApplicationTest {
         robot.clickOn("#password").write("password123");
         robot.clickOn("#firstName").write("John");
         robot.clickOn("#lastName").write("Doe");
-        robot.clickOn("#yearComboBox").write("1");
-        robot.clickOn("#courseComboBox").write("Computer Science");
+        robot.clickOn("#yearComboBox").clickOn("1");
+        robot.clickOn("#courseComboBox").clickOn("G400");
         robot.clickOn("#confirmBtn");
         assertEquals("Recommendation", Main.currentStage.getTitle());
     }
@@ -74,8 +74,8 @@ public class RegisterControllerTest extends ApplicationTest {
         robot.clickOn("#password").write("password123");
         robot.clickOn("#firstName").write("John");
         robot.clickOn("#lastName").write("Doe");
-        robot.clickOn("#yearComboBox").write("1");
-        robot.clickOn("#courseComboBox").write("Computer Science");
+        robot.clickOn("#yearComboBox").clickOn("1");
+        robot.clickOn("#courseComboBox").clickOn("G400");
         robot.clickOn("#confirmBtn");
         Scene scene = Main.currentStage.getScene();
         Text incorrectField = (Text) scene.lookup("#alreadyExists");

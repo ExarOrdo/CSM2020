@@ -13,9 +13,9 @@ import static dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table.COURSE;
 
 public class RecordRemover extends DatabaseHandler{
 
-    private Record recordObject;
+    private final Record recordObject;
 
-    private Table typeOfRecord;
+    private final Table typeOfRecord;
 
 
     /**

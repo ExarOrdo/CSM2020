@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Module implements Comparable<Module> {
     private String prerequisiteModule;
     private float Weight;
-    private String Name;
-    private int Credits;
-    private int Semester;
-    private int Year;
-    private String tag1;
+    private final String Name;
+    private final int Credits;
+    private final int Semester;
+    private final int Year;
+    private final String tag1;
     private String tag2;
     private String tag3;
     private String tag4;

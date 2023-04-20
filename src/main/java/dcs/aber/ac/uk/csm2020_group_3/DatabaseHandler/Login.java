@@ -51,5 +51,9 @@ public class Login extends DatabaseHandler {
         }
         return false;
     }
+    public boolean allFieldsFilled() {
+        return !studentId.isEmpty() && !password.isEmpty();
+
+    }
 
 }

@@ -5,6 +5,7 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
 
+import javafx.scene.input.MouseEvent;
 
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
 import javafx.collections.FXCollections;
@@ -19,11 +20,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.*;
+
 
 import javafx.fxml.Initializable;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.scene.layout.Region;
@@ -42,8 +44,10 @@ public class RecommendationController implements Initializable {
     public TextArea elective3Name;
     public TextArea elective3Sem;
     public TextArea elective3Cred;
-    public RadioButton tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8;
+    public RadioButton  tag2, tag3, tag4, tag5, tag6, tag7, tag8;
+    public RadioButton tag1;
     public Text currentYear;
+    public Button confirmSearchSelection;
     private Recommender recommender;
 
     @FXML
@@ -210,6 +214,7 @@ public class RecommendationController implements Initializable {
             oneElective = false;
             twoElective = true;
 
+
             clearElective(elective1Name.getText());
             elective1Name.setText(elective2Name.getText());
             elective1Sem.setText(elective2Sem.getText());
@@ -218,6 +223,7 @@ public class RecommendationController implements Initializable {
             elective2Name.setText(elective3Name.getText());
             elective2Sem.setText(elective3Sem.getText());
             elective2Cred.setText(elective3Cred.getText());
+
 
 
         }
@@ -244,6 +250,7 @@ public class RecommendationController implements Initializable {
             elective2Cred.setText(elective3Cred.getText());
 
         }
+
     }
 
     public void clearElectiveThree() {
@@ -427,6 +434,10 @@ public class RecommendationController implements Initializable {
         } else if (lowView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = lowView.getSelectionModel().getSelectedItem();
         }
+        else if (allElectivesList.getSelectionModel().getSelectedItem() !=null){
+            selectedElective = allElectivesList.getSelectionModel().getSelectedItem();
+
+        }
         highView.getSelectionModel().clearSelection();
         mediumView.getSelectionModel().clearSelection();
         lowView.getSelectionModel().clearSelection();
@@ -495,7 +506,7 @@ public class RecommendationController implements Initializable {
         highView.getItems().clear();
         mediumView.getItems().clear();
         lowView.getItems().clear();
-
+        allElectivesList.getItems().remove(selectedModule.getName());
         displayRecommendations();
         // ElectiveListGenerator.electiveList should be updated above by 'sortModules'
         // strengthCalculator then orders into separate lists.
@@ -515,8 +526,14 @@ public class RecommendationController implements Initializable {
         selectedElectiveIds.add(elective2Name.getText());
         selectedElectiveIds.add(elective3Name.getText());
 
-        if (selectedElectiveIds.stream().anyMatch(s -> s.isEmpty()) || selectedElectiveIds.stream().distinct().count() != selectedElectiveIds.size()) {
-            showAlert(Alert.AlertType.WARNING, "Warning", "Please make a selection for each elective module and ensure you have not selected the same module twice.");
+
+        if (selectedElectiveIds.stream().anyMatch(s -> s.equals("Module Name"))) {
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select three modules.");
+            return;
+        }
+
+        if (selectedElectiveIds.stream().filter(s -> !s.equals("Module Name")).distinct().count() != selectedElectiveIds.size()) {
+            showAlert(Alert.AlertType.WARNING, "Warning", "Duplicate modules are not allowed.");
             return;
         }
 
@@ -525,14 +542,24 @@ public class RecommendationController implements Initializable {
         DataLoader dataLoader = new DataLoader();
         List<String> alreadyExistingModules = dataLoader.saveSelectedModules(studentID, selectedElectiveIds);
 
+
         Alert alert = new Alert(alreadyExistingModules.isEmpty() ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
         alert.setTitle(alreadyExistingModules.isEmpty() ? "Success" : "Error");
         alert.setHeaderText(null);
 
         if (alreadyExistingModules.isEmpty()) {
-            alert.setContentText("Modules were successfully added to your student record.");
+
+
+            String bulletPointList = selectedElectiveIds.stream()
+                    .map(moduleName -> "• " + moduleName)
+                    .collect(Collectors.joining("\n"));
+
+            alert.setContentText("The following modules were successfully added to your student record:\n" + bulletPointList);
         } else {
-            String bulletPointList = alreadyExistingModules.stream().map(moduleName -> "• " + moduleName).collect(Collectors.joining("\n"));
+            String bulletPointList = alreadyExistingModules.stream()
+                    .map(moduleName -> "• " + moduleName)
+                    .collect(Collectors.joining("\n"));
+
 
             alert.setContentText("The following modules already exist in your student record and cannot be added:\n" + bulletPointList);
         }
@@ -552,6 +579,7 @@ public class RecommendationController implements Initializable {
         alert.setContentText(contentText);
         alert.showAndWait();
     }
+
 
 
     public void loadTags() {
@@ -577,6 +605,7 @@ public class RecommendationController implements Initializable {
         }
 
     }
+
 
 
     @Override
@@ -611,6 +640,9 @@ public class RecommendationController implements Initializable {
         tag6.setToggleGroup(toggleGroup);
         tag7.setToggleGroup(toggleGroup);
         tag8.setToggleGroup(toggleGroup);
+
+
+
 
     }
 }

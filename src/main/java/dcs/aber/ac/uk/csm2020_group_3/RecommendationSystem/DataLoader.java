@@ -27,6 +27,8 @@ public class DataLoader extends DatabaseHandler {
     private final String saveModulesString = "INSERT INTO marks (StudentID, ModuleID, StudentMark, MarkDate) VALUES (?, ?, ?, ?)";
     private final String isModuleinRecordString = "SELECT * FROM marks WHERE StudentID = ? AND ModuleID = ?";
     private final String getModuleIDByNameString = "SELECT ModuleID FROM MODULE WHERE ModuleName = ?";
+    private final String deleteDuplicates = "DELETE FROM marks WHERE StudentID = ? AND ModuleID = ?";
+    private final String resetModuleChoices = "DELETE FROM marks WHERE StudentID = ? AND ModuleID = ? WHERE StudentMark = NULL AND MarkDate";
 
     public boolean tryLoadingModules() throws SQLException {
         this.connection = DriverManager.getConnection(connectionString);
@@ -118,6 +120,7 @@ public class DataLoader extends DatabaseHandler {
 
     public List<String> saveSelectedModules(String studentID, List<String> selectedOptionalModuleNames) {
         List<String> alreadyExistingModules = new ArrayList<>();
+        List<String> insertedModuleIds = new ArrayList<>();
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(saveModulesString)) {
@@ -131,14 +134,26 @@ public class DataLoader extends DatabaseHandler {
                     } else {
                         preparedStatement.setString(1, studentID);
                         preparedStatement.setString(2, moduleId);
-                        preparedStatement.setNull(3, java.sql.Types.INTEGER);
+                        preparedStatement.setInt(3, -1);
                         preparedStatement.setNull(4, java.sql.Types.DATE);
                         preparedStatement.executeUpdate();
+                        insertedModuleIds.add(moduleId);
                         System.out.println("Module inserted: " + moduleId);
                     }
                 } else {
                     System.err.println("Module not found for name: " + moduleName);
                 }
+            }
+
+            if (!alreadyExistingModules.isEmpty()) {
+                PreparedStatement deleteStatement = connection.prepareStatement(deleteDuplicates);
+                for (String moduleId : insertedModuleIds) {
+                    deleteStatement.setString(1, studentID);
+                    deleteStatement.setString(2, moduleId);
+                    deleteStatement.executeUpdate();
+                    System.out.println("Module deleted: " + moduleId);
+                }
+                deleteStatement.close();
             }
 
         } catch (SQLException e) {
@@ -147,6 +162,7 @@ public class DataLoader extends DatabaseHandler {
 
         return alreadyExistingModules;
     }
+
 
 
 
@@ -163,7 +179,7 @@ public class DataLoader extends DatabaseHandler {
                 studentDetails.put("student_id", resultSet.getString("StudentID"));
                 studentDetails.put("student_name", resultSet.getString("StudentName"));
                 studentDetails.put("student_course", resultSet.getString("StudentCourse"));
-                studentDetails.put("student_year", resultSet.getString("StudentYear")); // Added student_year
+                studentDetails.put("student_year", resultSet.getString("StudentYear"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -191,7 +207,7 @@ public class DataLoader extends DatabaseHandler {
         connection = getConnection();
         try {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT marks.ModuleID FROM marks WHERE marks.StudentID = ? AND marks.StudentMark = -1");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT marks.ModuleID FROM marks JOIN STUDENT ON STUDENT.StudentID JOIN MODULE ON MODULE.ModuleID = MARKS.ModuleID WHERE marks.StudentID = ? AND marks.StudentMark = -1 AND STUDENT.StudentYear = MODULE.ModuleYear");
             preparedStatement.setString(1, studentID);
             return preparedStatement.executeQuery();
         } catch (SQLException e) {
@@ -296,6 +312,26 @@ public class DataLoader extends DatabaseHandler {
         }
 
         return electiveModuleResult;
+    }
+
+    public int getStudentYearById(String studentId) throws SQLException {
+        this.connection = getConnection();
+        int year = -1;
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT StudentYear FROM STUDENT WHERE StudentID = ?");
+            statement.setString(1, studentId);
+
+            ResultSet yearSet = statement.executeQuery();
+
+            yearSet.next();
+            year = yearSet.getInt("StudentYear");
+
+        } catch (Exception err) {
+            System.err.println("Error when getting student year for timetable: " + err.getMessage());
+            err.printStackTrace();
+        }
+        return year;
     }
 
 }

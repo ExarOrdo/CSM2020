@@ -13,7 +13,7 @@ public class ElectiveListGenerator extends ModuleHandler{
     public static ArrayList<Module> electiveModulesList;
     //
 
-    private DataLoader dataLoader;
+    private final DataLoader dataLoader;
 
     public ElectiveListGenerator(DataLoader dataLoader) {
         this.dataLoader = dataLoader;
