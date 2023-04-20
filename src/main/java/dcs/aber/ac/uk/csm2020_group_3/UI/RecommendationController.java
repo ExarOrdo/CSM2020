@@ -4,7 +4,6 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
-import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.StudentModule;
 
 
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
@@ -19,7 +18,6 @@ import javafx.scene.layout.Pane;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
@@ -159,61 +157,103 @@ public class RecommendationController implements Initializable {
     }
 
     @FXML
-    private void clearElective() {
+    private void clearElective(String electiveToClear) {
         addModuleBtn.setVisible(true);
+        // get Module selectedModule from ModuleName string
+        String selectedElective = electiveToClear;
+        Module selectedModule = null;
+        System.out.println("m0duL0");
+        System.out.println(ModuleHandler.selectedModules);
+        System.out.println(ModuleHandler.selectedModules.get(0).getName());
+
+        for (int i = 0; i < ModuleHandler.selectedModules.size(); i++) {
+            if (selectedElective.equals(ModuleHandler.selectedModules.get(i).getName())) {
+                selectedModule = ModuleHandler.selectedModules.get(i);
+            }
+        }
+
+        // add chosenElective back to electiveList
+        ModuleHandler.selectedModules.remove(selectedModule);
+        ElectiveListGenerator.electiveModulesList.add(selectedModule);
+
+        // recalculate weights
+        recommender.recalculateWeightsOnRemove();
+
+        // update UI
+        highView.getItems().clear();
+        mediumView.getItems().clear();
+        lowView.getItems().clear();
+        displayRecommendations();
+
+    }
+
+    public void clearElectiveOne() {
         if (oneElective) {
             elective1.setVisible(false);
-            oneElective = false;
             twoElective = false;
+            oneElective = false;
             threeElective = false;
-
-            // get Module selectedModule from ModuleName string
-            String selectedElective = elective1Name.getText();
-            Module selectedModule = null;
-            System.out.println("m0duL0");
-            System.out.println(ModuleHandler.modulesToBeMoved);
-            System.out.println(ModuleHandler.modulesToBeMoved.get(0).getName());
-
-            for (int i = 0; i < ModuleHandler.modulesToBeMoved.size(); i++) {
-                if(selectedElective.equals(ModuleHandler.modulesToBeMoved.get(i).getName())){
-                    selectedModule = ModuleHandler.modulesToBeMoved.get(i);
-                }
-            }
-
-
-            // add chosenElective back to electiveList
-            ElectiveListGenerator.electiveModulesList.add(selectedModule);
-
-            // recalculate weights
-            recommender.recalculateWeightsOnRemove();
-            recommender.clearNewModules();
-
-            // update UI
-            highView.getItems().clear();
-            mediumView.getItems().clear();
-            lowView.getItems().clear();
-            displayRecommendations();
-
-
-
+            clearElective(elective1Name.getText());
         } else if (twoElective) {
             elective2.setVisible(false);
             twoElective = false;
             oneElective = true;
             threeElective = false;
-            elective2Name.getText();
-
+            clearElective(elective1Name.getText());
+            elective1Name.setText(elective2Name.getText());
+            elective1Sem.setText(elective2Sem.getText());
+            elective1Cred.setText(elective2Cred.getText());
 
         } else if (threeElective) {
             elective3.setVisible(false);
             threeElective = false;
             oneElective = false;
             twoElective = true;
-            elective3Name.getText();
+
+            clearElective(elective1Name.getText());
+            elective1Name.setText(elective2Name.getText());
+            elective1Sem.setText(elective2Sem.getText());
+            elective1Cred.setText(elective2Cred.getText());
+
+            elective2Name.setText(elective3Name.getText());
+            elective2Sem.setText(elective3Sem.getText());
+            elective2Cred.setText(elective3Cred.getText());
 
 
         }
     }
+
+
+    public void clearElectiveTwo() {
+        if (twoElective) {
+            elective2.setVisible(false);
+            twoElective = false;
+            oneElective = true;
+            threeElective = false;
+            clearElective(elective2Name.getText());
+
+        } else if (threeElective) {
+            elective3.setVisible(false);
+            threeElective = false;
+            oneElective = false;
+            twoElective = true;
+
+            clearElective(elective2Name.getText());
+            elective2Name.setText(elective3Name.getText());
+            elective2Sem.setText(elective3Sem.getText());
+            elective2Cred.setText(elective3Cred.getText());
+
+        }
+    }
+
+    public void clearElectiveThree() {
+        elective3.setVisible(false);
+        threeElective = false;
+        oneElective = false;
+        twoElective = true;
+        clearElective(elective3Name.getText());
+    }
+
 
     @FXML
     private TextArea coreModule1, coreModule2, coreModule3, semester1, semester2, semester3, credits1, credits2, credits3;
@@ -221,7 +261,7 @@ public class RecommendationController implements Initializable {
     private void displayCoreModules() throws SQLException {
         RecordLoader recordLoader = new RecordLoader();
         int year = recordLoader.getStudentYear(DatabaseHandler.getCurrentStudentId());
-        if (year ==1) {
+        if (year == 1) {
             if (ModuleHandler.year1Modules.size() >= 1) {
                 coreModule1.setText(ModuleHandler.year1Modules.get(0).getName());
                 semester1.setText("Sem " + ModuleHandler.year1Modules.get(0).getSemester());
@@ -237,8 +277,7 @@ public class RecommendationController implements Initializable {
                 semester3.setText("Sem " + ModuleHandler.year1Modules.get(2).getSemester());
                 credits3.setText(ModuleHandler.year1Modules.get(2).getCredits() + " Credits");
             }
-        }
-        else if (year ==2) {
+        } else if (year == 2) {
             if (ModuleHandler.year2Modules.size() >= 1) {
                 coreModule1.setText(ModuleHandler.year2Modules.get(0).getName());
                 semester1.setText("Sem " + ModuleHandler.year2Modules.get(0).getSemester());
@@ -254,8 +293,7 @@ public class RecommendationController implements Initializable {
                 semester3.setText("Sem " + ModuleHandler.year2Modules.get(2).getSemester());
                 credits3.setText(ModuleHandler.year2Modules.get(2).getCredits() + " Credits");
             }
-        }
-        else if (year ==3) {
+        } else if (year == 3) {
             if (ModuleHandler.year3Modules.size() >= 1) {
                 coreModule1.setText(ModuleHandler.year3Modules.get(0).getName());
                 semester1.setText("Sem " + ModuleHandler.year3Modules.get(0).getSemester());
@@ -364,7 +402,7 @@ public class RecommendationController implements Initializable {
         return searchResult;
     }
 
-    public void moduleNameToModule(){
+    public void moduleNameToModule() {
 
     }
 
@@ -380,7 +418,6 @@ public class RecommendationController implements Initializable {
         // sorts into list
         String selectedElective = "";
         Module selectedModule = null;
-
 
         if (highView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = highView.getSelectionModel().getSelectedItem();
@@ -410,27 +447,27 @@ public class RecommendationController implements Initializable {
         recommender.checkPrerequisites(selectedModule);                             // return newlyAddedModules
 
         // for each module and it's prereqs.
-        for (int i = 0; i < ModuleHandler.modulesToBeMoved.size(); i++){
+        for (int i = 0; i < ModuleHandler.selectedModules.size(); i++) {
 
 
             // sort modules into yearXModules.
-            recommender.sortModules(ModuleHandler.modulesToBeMoved.get(i));
+            recommender.sortModules(ModuleHandler.selectedModules.get(i));
 
             // check credit limit for each year.
-            if (recommender.checkCredits().equals(Boolean.FALSE)){
+            if (recommender.checkCredits().equals(Boolean.FALSE)) {
 
                 // remove selected module + any prereqs from lists.
-                ElectiveListGenerator.electiveModulesList.removeAll(ModuleHandler.modulesToBeMoved);
+                ElectiveListGenerator.electiveModulesList.removeAll(ModuleHandler.selectedModules);
 
                 // UI message
                 // failed to add message due to credit limit
             }
 
             // if credit check suceeds
-            else{
+            else {
 
                 // remove module from electiveList
-                ElectiveListGenerator.electiveModulesList.remove(ModuleHandler.modulesToBeMoved.get(i));
+                ElectiveListGenerator.electiveModulesList.remove(ModuleHandler.selectedModules.get(i));
             }
 
         }
@@ -460,8 +497,8 @@ public class RecommendationController implements Initializable {
         lowView.getItems().clear();
 
         displayRecommendations();
-            // ElectiveListGenerator.electiveList should be updated above by 'sortModules'
-            // strengthCalculator then orders into separate lists.
+        // ElectiveListGenerator.electiveList should be updated above by 'sortModules'
+        // strengthCalculator then orders into separate lists.
         // show new weights in UI
 
         // set newlyAddedModules to empty again.
@@ -473,42 +510,40 @@ public class RecommendationController implements Initializable {
     private Button confirmButton;
 
     public void confirm() {
-    List<String> selectedElectiveIds = new ArrayList<>();
+        List<String> selectedElectiveIds = new ArrayList<>();
         selectedElectiveIds.add(elective1Name.getText());
         selectedElectiveIds.add(elective2Name.getText());
         selectedElectiveIds.add(elective3Name.getText());
 
         if (selectedElectiveIds.stream().anyMatch(s -> s.isEmpty()) || selectedElectiveIds.stream().distinct().count() != selectedElectiveIds.size()) {
-        showAlert(Alert.AlertType.WARNING, "Warning", "Please make a selection for each elective module and ensure you have not selected the same module twice.");
-        return;
-    }
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please make a selection for each elective module and ensure you have not selected the same module twice.");
+            return;
+        }
 
-    String studentID = DatabaseHandler.getCurrentStudentId();
+        String studentID = DatabaseHandler.getCurrentStudentId();
 
-    DataLoader dataLoader = new DataLoader();
-    List<String> alreadyExistingModules = dataLoader.saveSelectedModules(studentID, selectedElectiveIds);
+        DataLoader dataLoader = new DataLoader();
+        List<String> alreadyExistingModules = dataLoader.saveSelectedModules(studentID, selectedElectiveIds);
 
-    Alert alert = new Alert(alreadyExistingModules.isEmpty() ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
+        Alert alert = new Alert(alreadyExistingModules.isEmpty() ? Alert.AlertType.INFORMATION : Alert.AlertType.ERROR);
         alert.setTitle(alreadyExistingModules.isEmpty() ? "Success" : "Error");
         alert.setHeaderText(null);
 
         if (alreadyExistingModules.isEmpty()) {
-        alert.setContentText("Modules were successfully added to your student record.");
-    } else {
-        String bulletPointList = alreadyExistingModules.stream()
-                .map(moduleName -> "• " + moduleName)
-                .collect(Collectors.joining("\n"));
+            alert.setContentText("Modules were successfully added to your student record.");
+        } else {
+            String bulletPointList = alreadyExistingModules.stream().map(moduleName -> "• " + moduleName).collect(Collectors.joining("\n"));
 
-        alert.setContentText("The following modules already exist in your student record and cannot be added:\n" + bulletPointList);
-    }
+            alert.setContentText("The following modules already exist in your student record and cannot be added:\n" + bulletPointList);
+        }
 
-    DialogPane dialogPane = alert.getDialogPane();
+        DialogPane dialogPane = alert.getDialogPane();
         dialogPane.setMinWidth(400);
         dialogPane.setMinHeight(Region.USE_PREF_SIZE);
         dialogPane.setMaxWidth(800);
 
         alert.showAndWait();
-}
+    }
 
     private void showAlert(Alert.AlertType alertType, String title, String contentText) {
         Alert alert = new Alert(alertType);
@@ -521,13 +556,13 @@ public class RecommendationController implements Initializable {
 
     public void loadTags() {
         List<String> tags = new ArrayList<String>();
-        for (int i = 0; i<ElectiveListGenerator.electiveModulesList.size();i++){
-            for (int x = 1; x<ElectiveListGenerator.electiveModulesList.get(i).getTagList().size(); x++){
-                    if (!tags.contains(ElectiveListGenerator.electiveModulesList.get(i).getTagList().get(x))){
-                         tags.add(ElectiveListGenerator.electiveModulesList.get(i).getTagList().get(x));
-                    }
+        for (int i = 0; i < ElectiveListGenerator.electiveModulesList.size(); i++) {
+            for (int x = 1; x < ElectiveListGenerator.electiveModulesList.get(i).getTagList().size(); x++) {
+                if (!tags.contains(ElectiveListGenerator.electiveModulesList.get(i).getTagList().get(x))) {
+                    tags.add(ElectiveListGenerator.electiveModulesList.get(i).getTagList().get(x));
                 }
             }
+        }
 
 
         if (tags.size() > 0) {
