@@ -25,9 +25,9 @@ public class AdminTimetableController {
     @FXML
     protected void pressBurgerBtn() {
         expandedPane.setVisible(!expandedPane.isVisible());
-        if(expandedPane.isVisible()){
+        if (expandedPane.isVisible()) {
             burgerIcon.setRotate(90);
-        }else {
+        } else {
             burgerIcon.setRotate(0);
         }
     }
@@ -39,7 +39,7 @@ public class AdminTimetableController {
     }
 
     @FXML
-    private void toAdminTimetable(){
+    private void toAdminTimetable() {
         pressBurgerBtn();
     }
 

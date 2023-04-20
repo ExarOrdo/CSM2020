@@ -4,8 +4,6 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordRemover;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.ModuleRecord;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -148,7 +146,6 @@ public class AdminController implements Initializable {
         //handle subject box selection
         subjectBox.setOnAction((event) -> {
             String chosenSubject = subjectBox.getValue();
-            System.out.println("Admin chose: " + chosenSubject);
 
             //after user chooses subject, let them select course
             courseBox.setDisable(false);
@@ -172,7 +169,6 @@ public class AdminController implements Initializable {
         //handle course box selection
         courseBox.setOnAction((event) -> {
             chosenCourse[0] = courseBox.getValue();
-            System.out.println("Admin chose: " + chosenCourse[0]);
 
             //get whether BSc or MSc
             String level = "";
@@ -238,50 +234,38 @@ public class AdminController implements Initializable {
 
         //more fancy lambda expressions for remove buttons
         removeBtn0.setOnMouseClicked(event -> {
-            System.out.println("Remove button0 pressed");
             popUp.setVisible(true);
         });
         removeBtn1.setOnMouseClicked(event -> {
-            System.out.println("Remove button1 pressed");
             popUp.setVisible(true);
         });
         removeBtn2.setOnMouseClicked(event -> {
-            System.out.println("Remove button2 pressed");
             popUp.setVisible(true);
         });
         removeBtn3.setOnMouseClicked(event -> {
-            System.out.println("Remove button3 pressed");
             popUp.setVisible(true);
         });
         removeBtn4.setOnMouseClicked(event -> {
-            System.out.println("Remove button4 pressed");
             popUp.setVisible(true);
         });
 
         //confirm and delete or cancel and go on
         confirmRemoveButton.setOnMouseClicked(event -> {
-                    popUp.setVisible(false);
-                    try {
-                        if (year0tab.isSelected())
-                            removeModule(year0selection);
-                        else if (year1tab.isSelected())
-                            removeModule(year1selection);
-                        else if (year2tab.isSelected())
-                            removeModule(year2selection);
-                        else if (year3tab.isSelected())
-                            removeModule(year3selection);
-                        else if (year4tab.isSelected())
-                            removeModule(year4selection);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+            popUp.setVisible(false);
+            try {
+                if (year0tab.isSelected()) removeModule(year0selection);
+                else if (year1tab.isSelected()) removeModule(year1selection);
+                else if (year2tab.isSelected()) removeModule(year2selection);
+                else if (year3tab.isSelected()) removeModule(year3selection);
+                else if (year4tab.isSelected()) removeModule(year4selection);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
-                }
-        );
+        });
         cancelButton.setOnMouseClicked(event -> {
-                    popUp.setVisible(false);
-                }
-        );
+            popUp.setVisible(false);
+        });
 
 
         //even more lambda for adding stuff

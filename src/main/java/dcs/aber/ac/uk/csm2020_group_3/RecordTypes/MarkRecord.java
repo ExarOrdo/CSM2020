@@ -2,9 +2,7 @@ package dcs.aber.ac.uk.csm2020_group_3.RecordTypes;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table;
 
-import java.util.Date;
-
-public class MarkRecord extends Record{
+public class MarkRecord extends Record {
 
     private final String studentId;
 
@@ -17,6 +15,7 @@ public class MarkRecord extends Record{
 
     /**
      * Constructs an object holding data for single Marks record
+     *
      * @param studentId
      * @param moduleId
      * @param studentMark

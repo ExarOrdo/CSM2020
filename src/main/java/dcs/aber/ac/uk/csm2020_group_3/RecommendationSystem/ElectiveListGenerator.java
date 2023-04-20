@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Class parsing elective module data and storing them
  */
 
-public class ElectiveListGenerator extends ModuleHandler{
+public class ElectiveListGenerator extends ModuleHandler {
 
     public static ArrayList<Module> electiveModulesList;
     //
@@ -103,7 +103,7 @@ public class ElectiveListGenerator extends ModuleHandler{
                     //e.printStackTrace();
                 }
 
-                try{
+                try {
                     prerequisiteModule = electiveModuleResult.getString("ModulePrerequisite");
                     if (prerequisiteModule != null) {
                         electiveModule.setPrerequisite(prerequisiteModule);
@@ -119,7 +119,6 @@ public class ElectiveListGenerator extends ModuleHandler{
             e.printStackTrace();
         }
 
-        System.out.println("Elective Modules: " + electiveModules);
         electiveModulesList = electiveModules;
     }
 

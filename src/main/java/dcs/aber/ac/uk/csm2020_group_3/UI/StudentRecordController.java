@@ -1,8 +1,8 @@
 package dcs.aber.ac.uk.csm2020_group_3.UI;
 
+import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.StudentModule;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
-import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.DataLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -122,10 +122,6 @@ public class StudentRecordController implements Initializable {
                 int moduleYear = resultSet.getInt("ModuleYear");
                 Date markDate = resultSet.getDate("MarkDate");
 
-                System.out.println("ModuleID: " + moduleID);
-                System.out.println("StudentMark: " + studentMark);
-                System.out.println("ModuleYear: " + moduleYear);
-                System.out.println("MarkDate: " + markDate);
 
                 studentModules.add(new StudentModule(moduleID, moduleYear, studentMark, markDate));
             }

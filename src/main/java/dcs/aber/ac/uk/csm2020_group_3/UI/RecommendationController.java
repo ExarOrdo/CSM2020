@@ -3,34 +3,27 @@ package dcs.aber.ac.uk.csm2020_group_3.UI;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.DatabaseHandler;
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.RecordLoader;
 import dcs.aber.ac.uk.csm2020_group_3.Main;
-import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
-
-import javafx.scene.input.MouseEvent;
-
 import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.Module;
+import dcs.aber.ac.uk.csm2020_group_3.RecommendationSystem.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.*;
-
-
-import javafx.fxml.Initializable;
-
-import java.io.IOException;
-import java.util.stream.Collectors;
-
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 
 public class RecommendationController implements Initializable {
@@ -44,7 +37,7 @@ public class RecommendationController implements Initializable {
     public TextArea elective3Name;
     public TextArea elective3Sem;
     public TextArea elective3Cred;
-    public RadioButton  tag2, tag3, tag4, tag5, tag6, tag7, tag8;
+    public RadioButton tag2, tag3, tag4, tag5, tag6, tag7, tag8;
     public RadioButton tag1;
     public Text currentYear;
     public Button confirmSearchSelection;
@@ -166,9 +159,7 @@ public class RecommendationController implements Initializable {
         // get Module selectedModule from ModuleName string
         String selectedElective = electiveToClear;
         Module selectedModule = null;
-        System.out.println("m0duL0");
-        System.out.println(ModuleHandler.selectedModules);
-        System.out.println(ModuleHandler.selectedModules.get(0).getName());
+
 
         for (int i = 0; i < ModuleHandler.selectedModules.size(); i++) {
             if (selectedElective.equals(ModuleHandler.selectedModules.get(i).getName())) {
@@ -223,7 +214,6 @@ public class RecommendationController implements Initializable {
             elective2Name.setText(elective3Name.getText());
             elective2Sem.setText(elective3Sem.getText());
             elective2Cred.setText(elective3Cred.getText());
-
 
 
         }
@@ -433,8 +423,7 @@ public class RecommendationController implements Initializable {
             selectedElective = mediumView.getSelectionModel().getSelectedItem();
         } else if (lowView.getSelectionModel().getSelectedItem() != null) {
             selectedElective = lowView.getSelectionModel().getSelectedItem();
-        }
-        else if (allElectivesList.getSelectionModel().getSelectedItem() !=null){
+        } else if (allElectivesList.getSelectionModel().getSelectedItem() != null) {
             selectedElective = allElectivesList.getSelectionModel().getSelectedItem();
 
         }
@@ -513,7 +502,6 @@ public class RecommendationController implements Initializable {
         // show new weights in UI
 
         // set newlyAddedModules to empty again.
-        System.out.println(selectedElective);
     }
 
 
@@ -550,15 +538,11 @@ public class RecommendationController implements Initializable {
         if (alreadyExistingModules.isEmpty()) {
 
 
-            String bulletPointList = selectedElectiveIds.stream()
-                    .map(moduleName -> "• " + moduleName)
-                    .collect(Collectors.joining("\n"));
+            String bulletPointList = selectedElectiveIds.stream().map(moduleName -> "• " + moduleName).collect(Collectors.joining("\n"));
 
             alert.setContentText("The following modules were successfully added to your student record:\n" + bulletPointList);
         } else {
-            String bulletPointList = alreadyExistingModules.stream()
-                    .map(moduleName -> "• " + moduleName)
-                    .collect(Collectors.joining("\n"));
+            String bulletPointList = alreadyExistingModules.stream().map(moduleName -> "• " + moduleName).collect(Collectors.joining("\n"));
 
 
             alert.setContentText("The following modules already exist in your student record and cannot be added:\n" + bulletPointList);
@@ -579,7 +563,6 @@ public class RecommendationController implements Initializable {
         alert.setContentText(contentText);
         alert.showAndWait();
     }
-
 
 
     public void loadTags() {
@@ -605,7 +588,6 @@ public class RecommendationController implements Initializable {
         }
 
     }
-
 
 
     @Override
@@ -640,8 +622,6 @@ public class RecommendationController implements Initializable {
         tag6.setToggleGroup(toggleGroup);
         tag7.setToggleGroup(toggleGroup);
         tag8.setToggleGroup(toggleGroup);
-
-
 
 
     }

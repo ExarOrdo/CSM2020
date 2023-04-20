@@ -19,19 +19,25 @@
     {
       "course_id": "G480",
       "course_name": "MSc Computer Science",
-      "course_description": ["Our MSc in Computer Science aims to provide an intensive professionally-oriented introduction to computing for able graduates in other disciplines, especially the humanities, to enable them to enter the software industry. No previous experience of computing is required."]
+      "course_description": [
+        "Our MSc in Computer Science aims to provide an intensive professionally-oriented introduction to computing for able graduates in other disciplines, especially the humanities, to enable them to enter the software industry. No previous experience of computing is required."
+      ]
     },
     {
       "course_id": "G400",
       "course_name": "BSc Computer Science",
-      "course_description": ["Computer Science, here at Aberystwyth University, covers a wide range of fundamentals - infrastructure, programming, web development, communication, technology and more.\n\nThe course is accredited by the Chartered Institute for IT (BCS) on behalf of the Engineering Council, which allows you to develop the skills needed to solve complex problems that include analysis, design, solution choice and implementation.\n\nSkills acquired from this course are taught from cutting-edge research, in a supportive learning environment, and are highly sought after by future employers."]
+      "course_description": [
+        "Computer Science, here at Aberystwyth University, covers a wide range of fundamentals - infrastructure, programming, web development, communication, technology and more.\n\nThe course is accredited by the Chartered Institute for IT (BCS) on behalf of the Engineering Council, which allows you to develop the skills needed to solve complex problems that include analysis, design, solution choice and implementation.\n\nSkills acquired from this course are taught from cutting-edge research, in a supportive learning environment, and are highly sought after by future employers."
+      ]
     }
   ],
   "modules": [
     {
       "module_id": "CSM2020",
       "module_name": "Agile Software Development Project",
-      "module_description": ["The aim of this module is to give the student a strong foundation in agile software engineering that will inform their software development practice, and prepare them to work in the software industry."],
+      "module_description": [
+        "The aim of this module is to give the student a strong foundation in agile software engineering that will inform their software development practice, and prepare them to work in the software industry."
+      ],
       "module_credits": 20,
       "module_year": 4,
       "module_semester": 2,
@@ -42,7 +48,9 @@
     {
       "module_id": "CSM6720",
       "module_name": "Advanced Data Analytics",
-      "module_description": ["In order to model the wide variety of phenomena that modern data analysts are expected to cover it is important to be able to understand a wide variety of different data storage methods and data models. This module will cover the essential concepts behind modern database models known as NoSQL. We will cover the process of data analytics from initial data modelling through storage, clearing, retrieval, processing, visualising and analysis of a variety of different data models. In addition we will cover technical, legal and ethical issues associated with data collection and storage."],
+      "module_description": [
+        "In order to model the wide variety of phenomena that modern data analysts are expected to cover it is important to be able to understand a wide variety of different data storage methods and data models. This module will cover the essential concepts behind modern database models known as NoSQL. We will cover the process of data analytics from initial data modelling through storage, clearing, retrieval, processing, visualising and analysis of a variety of different data models. In addition we will cover technical, legal and ethical issues associated with data collection and storage."
+      ],
       "module_credits": 20,
       "module_year": 4,
       "module_semester": 2,
@@ -59,7 +67,9 @@
     {
       "module_id": "CSM6120",
       "module_name": "Fundamentals of Intelligent Systems",
-      "module_description": ["This module introduces the key ideas in Artificial Intelligence and ensures all students are at roughly the same level before moving on to the specialist modules."],
+      "module_description": [
+        "This module introduces the key ideas in Artificial Intelligence and ensures all students are at roughly the same level before moving on to the specialist modules."
+      ],
       "module_credits": 20,
       "module_year": 4,
       "module_semester": 1,
@@ -70,7 +80,9 @@
     {
       "module_id": "CHM9360",
       "module_name": "MSC Project",
-      "module_description": ["The aims of the module are:\n\nTo provide the students with the opportunity for an in-depth investigation of an appropriate topic. It is intended that the skills and discipline required to write a scholarly paper or report on a specified subject will be developed to an advanced level. The module will provide the opportunity to specialise in a particular aspect of the discipline."],
+      "module_description": [
+        "The aims of the module are:\n\nTo provide the students with the opportunity for an in-depth investigation of an appropriate topic. It is intended that the skills and discipline required to write a scholarly paper or report on a specified subject will be developed to an advanced level. The module will provide the opportunity to specialise in a particular aspect of the discipline."
+      ],
       "module_credits": 60,
       "module_year": 4,
       "module_semester": 3,
@@ -81,7 +93,9 @@
     {
       "module_id": "CSM3120",
       "module_name": "Modelling, Managing and Securing Data",
-      "module_description": ["Many of the issues with the storing and handling of data are process-based. The data is not represented or stored appropriately, or ad hoc processes are used to produce results, or insufficient thought is put into how the data is made available or to whom. The module will look at a range of issues related to performance and security in the context of computer systems. It will address not only confidentiality and privacy of data but also the integrity of data and techniques for guaranteeing reproducible results."],
+      "module_description": [
+        "Many of the issues with the storing and handling of data are process-based. The data is not represented or stored appropriately, or ad hoc processes are used to produce results, or insufficient thought is put into how the data is made available or to whom. The module will look at a range of issues related to performance and security in the context of computer systems. It will address not only confidentiality and privacy of data but also the integrity of data and techniques for guaranteeing reproducible results."
+      ],
       "module_credits": 20,
       "module_year": 4,
       "module_semester": 1,
@@ -92,7 +106,9 @@
     {
       "module_id": "CSM0120",
       "module_name": "Programming for Scientists",
-      "module_description": ["This module will, using the Python programming language, teach the basics of programming and how to manipulate and organise data relevant to the study schemes of the students taking the module."],
+      "module_description": [
+        "This module will, using the Python programming language, teach the basics of programming and how to manipulate and organise data relevant to the study schemes of the students taking the module."
+      ],
       "module_credits": 20,
       "module_year": 4,
       "module_semester": 1,
@@ -103,7 +119,9 @@
     {
       "module_id": "SEM1020",
       "module_name": "Research Topics in Computing",
-      "module_description": ["This module focuses on current issues in the field of computing research. The module will involve students working as a team in an examination of current research literature of interest to masters students in Computer Science."],
+      "module_description": [
+        "This module focuses on current issues in the field of computing research. The module will involve students working as a team in an examination of current research literature of interest to masters students in Computer Science."
+      ],
       "module_credits": 20,
       "module_year": 4,
       "module_semester": 2,
@@ -114,7 +132,9 @@
     {
       "module_id": "CS11010",
       "module_name": "Fundamentals of Web Development",
-      "module_description": ["This module introduces the core technologies and architectures of the web. It will address the way that web content is displayed, how the visual presentation is controlled and how server-side and client-side code are used to control the behavior of the web pages. It will also cover the communications protocol used to transfer web data and consider issues such as validation and DOM manipulation. Students will have the opportunity to develop both theoretical and practical understanding of the web."],
+      "module_description": [
+        "This module introduces the core technologies and architectures of the web. It will address the way that web content is displayed, how the visual presentation is controlled and how server-side and client-side code are used to control the behavior of the web pages. It will also cover the communications protocol used to transfer web data and consider issues such as validation and DOM manipulation. Students will have the opportunity to develop both theoretical and practical understanding of the web."
+      ],
       "module_credits": 10,
       "module_year": 1,
       "module_semester": 1,
@@ -125,7 +145,9 @@
     {
       "module_id": "CS11110",
       "module_name": "Information security",
-      "module_description": ["This module introduces key concepts in information security, providing an overview of theoretical frameworks for secure systems and practical recommendations. It will cover aspects of software, hardware and network security."],
+      "module_description": [
+        "This module introduces key concepts in information security, providing an overview of theoretical frameworks for secure systems and practical recommendations. It will cover aspects of software, hardware and network security."
+      ],
       "module_credits": 10,
       "module_year": 1,
       "module_semester": 2,
@@ -136,7 +158,9 @@
     {
       "module_id": "CS10220",
       "module_name": "Introduction to Computer Infrastructure",
-      "module_description": ["This module gives students a broad understanding of the infrastructure of a personal computer. It addresses basic issues in hardware, operating systems and networks, and focuses on commonly available desktop personal computer systems."],
+      "module_description": [
+        "This module gives students a broad understanding of the infrastructure of a personal computer. It addresses basic issues in hardware, operating systems and networks, and focuses on commonly available desktop personal computer systems."
+      ],
       "module_credits": 20,
       "module_year": 1,
       "module_semester": 1,
@@ -147,7 +171,9 @@
     {
       "module_id": "CS12020",
       "module_name": "Introduction to Programming",
-      "module_description": ["This module will introduce students to procedural programming, covering the use of variables, conditionals and loops and the structure of a program. The first 5 weeks will be lecture driven with supporting practical sessions. Weeks 5-10 of the course will be project based, with periods of lecture and practical work mixed within practical sessions. Students will be allocated to project groups based on their degree scheme, and will cover the same core material within a project that is tailored to their scheme."],
+      "module_description": [
+        "This module will introduce students to procedural programming, covering the use of variables, conditionals and loops and the structure of a program. The first 5 weeks will be lecture driven with supporting practical sessions. Weeks 5-10 of the course will be project based, with periods of lecture and practical work mixed within practical sessions. Students will be allocated to project groups based on their degree scheme, and will cover the same core material within a project that is tailored to their scheme."
+      ],
       "module_credits": 20,
       "module_year": 1,
       "module_semester": 1,
@@ -158,7 +184,9 @@
     {
       "module_id": "CS10720",
       "module_name": "Problems and Solutions",
-      "module_description": ["The module makes students familiar with some fundamental aspects of general computer science and theoretical computer science. It helps to gain a deeper understanding of the working principles and limitations of computers and algorithms. It lays the foundations for most advanced modules in the second and final year."],
+      "module_description": [
+        "The module makes students familiar with some fundamental aspects of general computer science and theoretical computer science. It helps to gain a deeper understanding of the working principles and limitations of computers and algorithms. It lays the foundations for most advanced modules in the second and final year."
+      ],
       "module_credits": 20,
       "module_year": 1,
       "module_semester": 2,
@@ -169,7 +197,9 @@
     {
       "module_id": "CS12320",
       "module_name": "Programming Using an Object-Oriented Language",
-      "module_description": ["This module will build on CS12020 Introduction to programming. In particular, it will explore the use of the object-oriented paradigm and its embodiment in the Java programming language. UML (Unified Modeling Language) notation will be defined and used as appropriate. It provides a foundation for Part 2 modules that use object-oriented languages, such as CS21120 - Data Structures and Algorithms, and CS22120 - The Software Development Life Cycle."],
+      "module_description": [
+        "This module will build on CS12020 Introduction to programming. In particular, it will explore the use of the object-oriented paradigm and its embodiment in the Java programming language. UML (Unified Modeling Language) notation will be defined and used as appropriate. It provides a foundation for Part 2 modules that use object-oriented languages, such as CS21120 - Data Structures and Algorithms, and CS22120 - The Software Development Life Cycle."
+      ],
       "module_credits": 20,
       "module_year": 1,
       "module_semester": 2,
@@ -180,7 +210,9 @@
     {
       "module_id": "CS18010",
       "module_name": "Professional and Personal Development",
-      "module_description": ["The module covers material which is not addressed elsewhere in specific modules but which is essential in order to gain a more complete appreciation of the field as a whole.\nPersonal transferable skills are an important quality of any software engineer and form a crucial part of this module."],
+      "module_description": [
+        "The module covers material which is not addressed elsewhere in specific modules but which is essential in order to gain a more complete appreciation of the field as a whole.\nPersonal transferable skills are an important quality of any software engineer and form a crucial part of this module."
+      ],
       "module_credits": 10,
       "module_year": 1,
       "module_semester": 1,
@@ -191,7 +223,9 @@
     {
       "module_id": "CS21120",
       "module_name": "Algorithm Design and Data Structures",
-      "module_description": ["This module builds on the foundations of the first year modules on program design and provides a thorough grounding in the design of data structures and algorithms and gives further insight into object-oriented design."],
+      "module_description": [
+        "This module builds on the foundations of the first year modules on program design and provides a thorough grounding in the design of data structures and algorithms and gives further insight into object-oriented design."
+      ],
       "module_credits": 20,
       "module_year": 2,
       "module_semester": 1,
@@ -202,7 +236,9 @@
     {
       "module_id": "CS27020",
       "module_name": "Modelling Persistent Data",
-      "module_description": ["This module develops the concepts of database design, and implementation and use. The emphasis is on relational and semi-structured (XML) systems, with NoSQL systems introduced. It covers practical topics concerned with modelling and effective use of the facilities provided by a modern Database Management System (DBMS). Theoretical topics include data modelling, placing particular emphasis on the data model, relational algebra and the realisation of the relational model in a DBMS."],
+      "module_description": [
+        "This module develops the concepts of database design, and implementation and use. The emphasis is on relational and semi-structured (XML) systems, with NoSQL systems introduced. It covers practical topics concerned with modelling and effective use of the facilities provided by a modern Database Management System (DBMS). Theoretical topics include data modelling, placing particular emphasis on the data model, relational algebra and the realisation of the relational model in a DBMS."
+      ],
       "module_credits": 20,
       "module_year": 2,
       "module_semester": 1,
@@ -213,7 +249,9 @@
     {
       "module_id": "CS22120",
       "module_name": "Software Engineering",
-      "module_description": ["The module covers issues pertinent to the uses, drawbacks, physical limitations and technological possibilities offered by robots, and mobile/embedded computer systems. This includes discussion of physical constraints, communication mechanisms, battery life, energy budgets and the use of low-power and interrupt driven processing. Robotics and embedded system programming are introduced through real world programming of such systems with an emphasis on programming in ways that deal with the constraints and errors that interaction with the real world introduces."],
+      "module_description": [
+        "The module covers issues pertinent to the uses, drawbacks, physical limitations and technological possibilities offered by robots, and mobile/embedded computer systems. This includes discussion of physical constraints, communication mechanisms, battery life, energy budgets and the use of low-power and interrupt driven processing. Robotics and embedded system programming are introduced through real world programming of such systems with an emphasis on programming in ways that deal with the constraints and errors that interaction with the real world introduces."
+      ],
       "module_credits": 20,
       "module_year": 2,
       "module_semester": 2,
@@ -224,7 +262,9 @@
     {
       "module_id": "CS26020",
       "module_name": "Robotics and Embedded Systems",
-      "module_description": ["The module covers issues pertinent to the uses, drawbacks, physical limitations and technological possibilities offered by robots, and mobile/embedded computer systems. This includes discussion of physical constraints, communication mechanisms, battery life, energy budgets and the use of low-power and interrupt driven processing. Robotics and embedded system programming are introduced through real world programming of such systems with an emphasis on programming in ways that deal with the constraints and errors that interaction with the real world introduces."],
+      "module_description": [
+        "The module covers issues pertinent to the uses, drawbacks, physical limitations and technological possibilities offered by robots, and mobile/embedded computer systems. This includes discussion of physical constraints, communication mechanisms, battery life, energy budgets and the use of low-power and interrupt driven processing. Robotics and embedded system programming are introduced through real world programming of such systems with an emphasis on programming in ways that deal with the constraints and errors that interaction with the real world introduces."
+      ],
       "module_credits": 20,
       "module_year": 2,
       "module_semester": 2,
@@ -235,7 +275,9 @@
     {
       "module_id": "CS31310",
       "module_name": "Agile Development and Testing",
-      "module_description": ["We look at development processes, techniques and technologies for constructing real operational software systems. We examine a selection of methodologies that apply concepts from the Agile Manifesto and compare them to plan-driven methodologies.\n\nWe will explore some of the techniques for testing software systems. We will also examine tools and frameworks that support testing in a team environment. The coverage of testing builds on techniques introduced in first and second year modules that involve software development."],
+      "module_description": [
+        "We look at development processes, techniques and technologies for constructing real operational software systems. We examine a selection of methodologies that apply concepts from the Agile Manifesto and compare them to plan-driven methodologies.\n\nWe will explore some of the techniques for testing software systems. We will also examine tools and frameworks that support testing in a team environment. The coverage of testing builds on techniques introduced in first and second year modules that involve software development."
+      ],
       "module_credits": 10,
       "module_year": 3,
       "module_semester": 1,
@@ -246,7 +288,9 @@
     {
       "module_id": "CS39440",
       "module_name": "Major Project",
-      "module_description": ["Students must complete a substantial piece of technical and written work under the direction of a supervisor but involving self-discipline, organisation and initiative.\nThe project will be relevant to the student’s degree scheme. The student will methodically apply practical and analytical skills and techniques studied during the degree.\nThe work involves developing software as the main part of the project or to support the project. The following project styles are possible.\n\n• Developing software from an initial statement of requirements through specification and design stages, to successful implementation and testing.\n• Researching a technical area, including developing software and methods to conduct and assess the research.\n• Analysing data, including developing software and methods for the analysis and interpretation of results.\n\nFor studentswith a suitable background the project may contain a hardware element.\nBy working on this project, students will learn to apply and develop their skills from the degree scheme, complete the project and document their progress. The students will undertake tasks for the full lifecycle from specifying requirements for the project through to demonstrating that the software and analysis satisfies those requirements. The student will provide a critical self-evaluation of the work and its results.\nStudents will define a process that they will use to manage the work. This process involves producing appropriate documentation, including documentation of the design decisions made. Research focused projects will also emphasise research process and the evaluation of the results of the research."],
+      "module_description": [
+        "Students must complete a substantial piece of technical and written work under the direction of a supervisor but involving self-discipline, organisation and initiative.\nThe project will be relevant to the student’s degree scheme. The student will methodically apply practical and analytical skills and techniques studied during the degree.\nThe work involves developing software as the main part of the project or to support the project. The following project styles are possible.\n\n• Developing software from an initial statement of requirements through specification and design stages, to successful implementation and testing.\n• Researching a technical area, including developing software and methods to conduct and assess the research.\n• Analysing data, including developing software and methods for the analysis and interpretation of results.\n\nFor studentswith a suitable background the project may contain a hardware element.\nBy working on this project, students will learn to apply and develop their skills from the degree scheme, complete the project and document their progress. The students will undertake tasks for the full lifecycle from specifying requirements for the project through to demonstrating that the software and analysis satisfies those requirements. The student will provide a critical self-evaluation of the work and its results.\nStudents will define a process that they will use to manage the work. This process involves producing appropriate documentation, including documentation of the design decisions made. Research focused projects will also emphasise research process and the evaluation of the results of the research."
+      ],
       "module_credits": 40,
       "module_year": 3,
       "module_semester": 2,
@@ -257,7 +301,9 @@
     {
       "module_id": "CS38220",
       "module_name": "Professional Issues in the Computing Industry",
-      "module_description": ["This module addresses many of the non-technical issues that are vital for students intending to pursue a professional career in the software industry. The subjects covered in this module will enable students to understand many of the issues that will arise as they pursue a career in computing. In particular, our degrees are accredited by the BCS (the Chartered Institute for IT), and the kinds of topics that are addressed in this module are seen by the BCS as a necessary part of the education of any chartered IT professional."],
+      "module_description": [
+        "This module addresses many of the non-technical issues that are vital for students intending to pursue a professional career in the software industry. The subjects covered in this module will enable students to understand many of the issues that will arise as they pursue a career in computing. In particular, our degrees are accredited by the BCS (the Chartered Institute for IT), and the kinds of topics that are addressed in this module are seen by the BCS as a necessary part of the education of any chartered IT professional."
+      ],
       "module_credits": 20,
       "module_year": 3,
       "module_semester": 1,
@@ -268,7 +314,9 @@
     {
       "module_id": "CS31920",
       "module_name": "Advanced Algorithms",
-      "module_description": ["This module covers important, significant and non-trivial algorithms from different fields of research. The different fields covered are aligned with the research groups of the department, Advanced Reasoning, Bioinformatics and Computational Biology, Intelligent Robotics, and Vision, Graphics and Visualisation."],
+      "module_description": [
+        "This module covers important, significant and non-trivial algorithms from different fields of research. The different fields covered are aligned with the research groups of the department, Advanced Reasoning, Bioinformatics and Computational Biology, Intelligent Robotics, and Vision, Graphics and Visualisation."
+      ],
       "module_credits": 20,
       "module_year": 3,
       "module_semester": 2,
@@ -279,7 +327,9 @@
     {
       "module_id": "CS31420",
       "module_name": "Computational Bioinformatics",
-      "module_description": ["This is an interdisciplinary module introducing state-of-the-art computational methods used to analyse biological data. The module focuses on string analysis which has broad applications in genomics, text mining and natural language processing. The content will be delivered within the context of DNA sequence analysis (e.g., predicting gene functions ) and health informatics (e.g., information retrieval from electronic medical records), and the module will cover a wide range of algorithms for efficient string storage, search, comparison, annotation, compression, semantics analysis and prediction. The students will be gently introduced to biological concepts and terminology with no prior knowledge required and will have the opportunity to apply their computing skills to discover new knowledge in life sciences."],
+      "module_description": [
+        "This is an interdisciplinary module introducing state-of-the-art computational methods used to analyse biological data. The module focuses on string analysis which has broad applications in genomics, text mining and natural language processing. The content will be delivered within the context of DNA sequence analysis (e.g., predicting gene functions ) and health informatics (e.g., information retrieval from electronic medical records), and the module will cover a wide range of algorithms for efficient string storage, search, comparison, annotation, compression, semantics analysis and prediction. The students will be gently introduced to biological concepts and terminology with no prior knowledge required and will have the opportunity to apply their computing skills to discover new knowledge in life sciences."
+      ],
       "module_credits": 20,
       "module_year": 3,
       "module_semester": 2,
@@ -290,7 +340,9 @@
     {
       "module_id": "CS32420",
       "module_name": "Computer Graphics and Games",
-      "module_description": ["Modern game engines are sophisticated tools utilising modern software engineering technics. This module will teach core design principals used to create modern games and real-time graphical systems. We will cover the main algorithms and ideas behind rendering, implementing behaviours, AI and designing complex interactive systems."],
+      "module_description": [
+        "Modern game engines are sophisticated tools utilising modern software engineering technics. This module will teach core design principals used to create modern games and real-time graphical systems. We will cover the main algorithms and ideas behind rendering, implementing behaviours, AI and designing complex interactive systems."
+      ],
       "module_credits": 20,
       "module_year": 3,
       "module_semester": 2,
@@ -301,7 +353,9 @@
     {
       "module_id": "CS31620",
       "module_name": "Mobile Development with Android",
-      "module_description": ["The module will explore the ways in which people are using Android on handheld devices such as phones and tablets, and the larger systems those devices are part of. The module will cover the importance of user interface issues, the different kinds of trade-offs that are made when building Android apps, and techniques for building an app as part of a distributed system. It will ground these issues in the practical development of Android apps built using Kotlin."],
+      "module_description": [
+        "The module will explore the ways in which people are using Android on handheld devices such as phones and tablets, and the larger systems those devices are part of. The module will cover the importance of user interface issues, the different kinds of trade-offs that are made when building Android apps, and techniques for building an app as part of a distributed system. It will ground these issues in the practical development of Android apps built using Kotlin."
+      ],
       "module_credits": 20,
       "module_year": 3,
       "module_semester": 2,

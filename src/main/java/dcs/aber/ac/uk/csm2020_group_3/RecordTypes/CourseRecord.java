@@ -2,7 +2,7 @@ package dcs.aber.ac.uk.csm2020_group_3.RecordTypes;
 
 import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table;
 
-public class CourseRecord extends Record{
+public class CourseRecord extends Record {
 
     private final String courseId;
 
@@ -12,6 +12,7 @@ public class CourseRecord extends Record{
 
     /**
      * Construct an object holding data about a single Course record
+     *
      * @param courseId
      * @param courseName
      * @param courseDescription
