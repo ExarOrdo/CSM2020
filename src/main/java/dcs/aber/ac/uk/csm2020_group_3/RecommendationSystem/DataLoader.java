@@ -134,7 +134,7 @@ public class DataLoader extends DatabaseHandler {
                     } else {
                         preparedStatement.setString(1, studentID);
                         preparedStatement.setString(2, moduleId);
-                        preparedStatement.setNull(3, java.sql.Types.INTEGER);
+                        preparedStatement.setInt(3, -1);
                         preparedStatement.setNull(4, java.sql.Types.DATE);
                         preparedStatement.executeUpdate();
                         insertedModuleIds.add(moduleId);
