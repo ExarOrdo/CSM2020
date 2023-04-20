@@ -9,8 +9,6 @@ public class Record {
     protected Table tableName;
 
 
-
-
     public Table getTableName() {
         return this.tableName;
     }
@@ -18,8 +16,6 @@ public class Record {
     public int getNumberOfFields() {
         return this.numberOfFields;
     }
-
-
 
 
     public void setNumberOfFields(int numberOfFields) {

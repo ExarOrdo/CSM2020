@@ -12,7 +12,8 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-class AdminLoginControllerTest extends ApplicationTest{
+
+class AdminLoginControllerTest extends ApplicationTest {
     @Override
     public void start(Stage stage) {
         Thread thread = new Thread(() -> Platform.runLater(() -> {
@@ -36,7 +37,7 @@ class AdminLoginControllerTest extends ApplicationTest{
     }
 
     @Test
-    void testToAdmin(){
+    void testToAdmin() {
 
         FxRobot robot = new FxRobot();
         robot.clickOn("#adminId").write("admin");
@@ -44,6 +45,7 @@ class AdminLoginControllerTest extends ApplicationTest{
         robot.clickOn("#adminLoginBtn");
         assertEquals("Admin", Main.currentStage.getTitle());
     }
+
     @Test
     public void testLoginFailure() {
         FxRobot robot = new FxRobot();

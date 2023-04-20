@@ -14,6 +14,7 @@ public class OptionalModuleRecord extends Record {
 
     /**
      * Construct a single optional module record for Optional Module table
+     *
      * @param courseId course id
      * @param moduleId module id
      */

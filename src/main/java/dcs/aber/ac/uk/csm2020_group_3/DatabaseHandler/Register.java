@@ -8,19 +8,19 @@ import java.sql.*;
  * Creates new account with given data,
  * depends on what RecordCreator is meant to be
  */
-public class Register extends DatabaseHandler{
+public class Register extends DatabaseHandler {
 
     private final String studentId;
     private final String password;
     private final String firstName;
     private final String lastName;
-    private String year ="";
-    private String course= "";
+    private String year = "";
+    private String course = "";
     private final ComboBox initalCourse;
     private final ComboBox initalYear;
 
 
-    public Register(String studentId, String password, String firstName, String lastName, ComboBox year, ComboBox course){
+    public Register(String studentId, String password, String firstName, String lastName, ComboBox year, ComboBox course) {
         this.studentId = studentId;
         this.password = password;
         this.firstName = firstName;
@@ -30,7 +30,7 @@ public class Register extends DatabaseHandler{
         currentStudentId = studentId;
     }
 
-    public boolean studentExists() throws SQLException{
+    public boolean studentExists() throws SQLException {
         this.connection = DriverManager.getConnection(connectionString);
         try {
             Statement statement = connection.createStatement();
@@ -38,10 +38,8 @@ public class Register extends DatabaseHandler{
             ResultSet studentExists = statement.executeQuery(query);
 
             if (studentExists.next()) {
-                System.out.println("Student ID already exists.");
                 return false;
-            }
-            else{
+            } else {
                 return true;
             }
         } catch (SQLException e) {
@@ -51,11 +49,10 @@ public class Register extends DatabaseHandler{
     }
 
     public boolean allFieldsFilled() {
-        if (firstName.isEmpty() || lastName.isEmpty() || studentId.isEmpty() || password.isEmpty() || initalYear.getValue() == null || initalCourse.getValue() == null){
+        if (firstName.isEmpty() || lastName.isEmpty() || studentId.isEmpty() || password.isEmpty() || initalYear.getValue() == null || initalCourse.getValue() == null) {
             return false;
 
-        }
-        else{
+        } else {
             year = initalYear.getValue().toString();
             course = initalCourse.getValue().toString();
 
@@ -67,20 +64,19 @@ public class Register extends DatabaseHandler{
     public void tryRegister() throws SQLException {
         //this.connection = DriverManager.getConnection(connectionString);
         this.connection = getConnection();
-        try{
-                String fullName = firstName + lastName;
-                PreparedStatement createStudent = connection.prepareStatement("INSERT INTO STUDENT (StudentID,StudentName,StudentCourse,StudentYear,StudentPassword) VALUES (?,?,?,?,?)");
-                createStudent.setString(1,this.studentId);
-                createStudent.setString(2,fullName);
-                createStudent.setString(3,this.course);
-                createStudent.setInt(4, Integer.parseInt(this.year));
-                createStudent.setString(5,this.password);
-                createStudent.execute();
-                createStudent.close();
-                System.out.println(currentStudentId);
+        try {
+            String fullName = firstName + lastName;
+            PreparedStatement createStudent = connection.prepareStatement("INSERT INTO STUDENT (StudentID,StudentName,StudentCourse,StudentYear,StudentPassword) VALUES (?,?,?,?,?)");
+            createStudent.setString(1, this.studentId);
+            createStudent.setString(2, fullName);
+            createStudent.setString(3, this.course);
+            createStudent.setInt(4, Integer.parseInt(this.year));
+            createStudent.setString(5, this.password);
+            createStudent.execute();
+            createStudent.close();
 
 
-        }catch  (Exception err) {
+        } catch (Exception err) {
             System.err.println("Error:" + err.getMessage());
             err.printStackTrace();
         }

@@ -3,7 +3,9 @@ package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
 import dcs.aber.ac.uk.csm2020_group_3.Main;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Objects;
 
 /**
@@ -29,13 +31,11 @@ public class Login extends DatabaseHandler {
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet;
-            System.out.println(Main.currentStage.getTitle());
-            if (Objects.equals(Main.currentStage.getTitle(), "AdminLogin")){
+            if (Objects.equals(Main.currentStage.getTitle(), "AdminLogin")) {
                 String query = "SELECT * FROM admin WHERE adminId = '" + this.studentId + "' AND adminPassword = '" + this.password + "'";
                 resultSet = statement.executeQuery(query);
 
-            }
-            else {
+            } else {
                 String query = "SELECT * FROM STUDENT WHERE StudentID = '" + this.studentId + "' AND StudentPassword = '" + this.password + "'";
                 resultSet = statement.executeQuery(query);
             }
@@ -51,6 +51,7 @@ public class Login extends DatabaseHandler {
         }
         return false;
     }
+
     public boolean allFieldsFilled() {
         return !studentId.isEmpty() && !password.isEmpty();
 

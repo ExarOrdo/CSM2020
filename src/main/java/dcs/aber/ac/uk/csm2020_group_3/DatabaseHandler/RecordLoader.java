@@ -2,15 +2,13 @@ package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.ModuleRecord;
 
-import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.ResourceBundle;
 
-public class RecordLoader extends DatabaseHandler{
+public class RecordLoader extends DatabaseHandler {
 
     public int getStudentYear(String studentId) throws SQLException {
 
@@ -43,7 +41,6 @@ public class RecordLoader extends DatabaseHandler{
 
             while (subjectResultSet.next()) {
                 subjectList.add(subjectResultSet.getString("ModuleTag1"));
-                System.out.println(subjectResultSet.getString("ModuleTag1"));
             }
 
 
@@ -63,15 +60,13 @@ public class RecordLoader extends DatabaseHandler{
         this.connection = getConnection();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT DISTINCT CourseName FROM COURSE JOIN CORE_MODULE ON CORE_MODULE.CourseID = COURSE.CourseID " +
-                    "JOIN MODULE ON MODULE.ModuleID = CORE_MODULE.ModuleID WHERE MODULE.ModuleTag1 = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT DISTINCT CourseName FROM COURSE JOIN CORE_MODULE ON CORE_MODULE.CourseID = COURSE.CourseID " + "JOIN MODULE ON MODULE.ModuleID = CORE_MODULE.ModuleID WHERE MODULE.ModuleTag1 = ?");
             statement.setString(1, subject);
             ResultSet courseResultSet = statement.executeQuery();
 
             while (courseResultSet.next()) {
 
                 courseList.add(courseResultSet.getString("CourseName"));
-                System.out.println(courseResultSet.getString("CourseName"));
             }
         } catch (Exception err) {
             System.err.println("Error during getting course list for admin page: " + err.getMessage());
@@ -88,13 +83,11 @@ public class RecordLoader extends DatabaseHandler{
         this.connection = getConnection();
 
         try {
-            PreparedStatement coreStatement = connection.prepareStatement("SELECT MODULE.ModuleName FROM MODULE JOIN CORE_MODULE ON CORE_MODULE.ModuleID = MODULE.ModuleID" +
-                    " JOIN COURSE ON COURSE.CourseID = CORE_MODULE.CourseID WHERE COURSE.CourseName = ? AND MODULE.ModuleYear = ?");
+            PreparedStatement coreStatement = connection.prepareStatement("SELECT MODULE.ModuleName FROM MODULE JOIN CORE_MODULE ON CORE_MODULE.ModuleID = MODULE.ModuleID" + " JOIN COURSE ON COURSE.CourseID = CORE_MODULE.CourseID WHERE COURSE.CourseName = ? AND MODULE.ModuleYear = ?");
             coreStatement.setString(1, course);
             coreStatement.setInt(2, year);
 
-            PreparedStatement optionalStatement = connection.prepareStatement("SELECT MODULE.ModuleName FROM MODULE JOIN OPTIONAL_MODULE ON OPTIONAL_MODULE.ModuleID = MODULE.ModuleID " +
-                    "JOIN COURSE ON COURSE.CourseID = OPTIONAL_MODULE.CourseID WHERE COURSE.CourseName = ? AND MODULE.ModuleYear = ?");
+            PreparedStatement optionalStatement = connection.prepareStatement("SELECT MODULE.ModuleName FROM MODULE JOIN OPTIONAL_MODULE ON OPTIONAL_MODULE.ModuleID = MODULE.ModuleID " + "JOIN COURSE ON COURSE.CourseID = OPTIONAL_MODULE.CourseID WHERE COURSE.CourseName = ? AND MODULE.ModuleYear = ?");
             optionalStatement.setString(1, course);
             optionalStatement.setInt(2, year);
 
@@ -104,13 +97,11 @@ public class RecordLoader extends DatabaseHandler{
             //rewrite cores
             while (coreResultSet.next()) {
                 moduleStringList.add(coreResultSet.getString("ModuleName"));
-                System.out.println(coreResultSet.getString("ModuleName"));
             }
 
             //rewrite optionals
             while (optionalResultSet.next()) {
                 moduleStringList.add(optionalResultSet.getString("ModuleName"));
-                System.out.println(optionalResultSet.getString("ModuleName"));
             }
 
 
@@ -145,12 +136,12 @@ public class RecordLoader extends DatabaseHandler{
             int semester = moduleResultSet.getInt("ModuleSemester");
             String tag1 = moduleResultSet.getString("ModuleTag1");
             String tag2 = moduleResultSet.getString("ModuleTag2");
-            String tag3 =moduleResultSet.getString("ModuleTag3");
-            String tag4 =moduleResultSet.getString("ModuleTag4");
-            String tag5 =moduleResultSet.getString("ModuleTag5");
-            String tag6 =moduleResultSet.getString("ModuleTag6");
-            String tag7 =moduleResultSet.getString("ModuleTag7");
-            String tag8 =moduleResultSet.getString("ModuleTag8");
+            String tag3 = moduleResultSet.getString("ModuleTag3");
+            String tag4 = moduleResultSet.getString("ModuleTag4");
+            String tag5 = moduleResultSet.getString("ModuleTag5");
+            String tag6 = moduleResultSet.getString("ModuleTag6");
+            String tag7 = moduleResultSet.getString("ModuleTag7");
+            String tag8 = moduleResultSet.getString("ModuleTag8");
             String prerequisite = moduleResultSet.getString("ModulePrerequisite");
 
             moduleRecord = new ModuleRecord(id, name, description, credits, year, semester, tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, prerequisite);

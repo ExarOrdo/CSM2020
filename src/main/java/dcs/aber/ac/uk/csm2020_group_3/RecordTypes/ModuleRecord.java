@@ -30,6 +30,7 @@ public class ModuleRecord extends Record {
 
     /**
      * Constructs module record object
+     *
      * @param moduleId
      * @param moduleName
      * @param moduleDescription
@@ -40,10 +41,7 @@ public class ModuleRecord extends Record {
      * @param tag2
      * @param tag3
      */
-    public ModuleRecord(String moduleId, String moduleName, String moduleDescription,
-                        int moduleCredits, int moduleYear, int moduleSemester,
-                        String tag1, String tag2, String tag3, String tag4, String tag5,
-                        String tag6, String tag7, String tag8, String modulePrerequisite) {
+    public ModuleRecord(String moduleId, String moduleName, String moduleDescription, int moduleCredits, int moduleYear, int moduleSemester, String tag1, String tag2, String tag3, String tag4, String tag5, String tag6, String tag7, String tag8, String modulePrerequisite) {
 
         this.moduleId = moduleId;
 
@@ -55,7 +53,7 @@ public class ModuleRecord extends Record {
 
         this.moduleYear = moduleYear;
 
-        this. moduleSemester = moduleSemester;
+        this.moduleSemester = moduleSemester;
 
         this.tag1 = tag1;
         this.tag2 = tag2;
