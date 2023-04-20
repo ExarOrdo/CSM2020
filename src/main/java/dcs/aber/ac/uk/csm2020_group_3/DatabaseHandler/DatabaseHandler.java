@@ -14,7 +14,7 @@ public abstract class DatabaseHandler {
     protected static String connectionString = String.format("jdbc:mysql://%s:3306/%s?useSSL=true&requireSSL=false&user=%s&password=%s", serverName, databaseName, adminUsername, adminPassword);
     protected Connection connection;
 
-    private static Connection staticConnection = null;
+    private static final Connection staticConnection = null;
 
     public static String currentStudentId;
 
@@ -22,15 +22,20 @@ public abstract class DatabaseHandler {
         return currentStudentId;
     }
 
-    public void load() {;}
+    public void load() {
+    }
 
-    public void save() {;}
+    public void save() {
+    }
 
-    public void remove() {;}
+    public void remove() {
+    }
 
-    public void add() {;}
+    public void add() {
+    }
 
-    public void update() {;}
+    public void update() {
+    }
 
     protected static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(connectionString);

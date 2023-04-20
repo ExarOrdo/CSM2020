@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.RadioButton?>
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.RecommendationController">
     <children>
         <Pane prefHeight="800.0" prefWidth="55.0" style="-fx-background-color: lightgrey;" />
       <Text layoutX="423.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recommendation">
@@ -67,7 +58,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-        <TextArea fx:id="coreModule1" editable="false" layoutX="152.0" layoutY="558.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+        <TextArea fx:id="coreModule1" editable="false" layoutX="152.0" layoutY="558.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" wrapText="true" />
         <TextArea fx:id="semester1" editable="false" layoutX="352.0" layoutY="558.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
         <TextArea fx:id="credits1" editable="false" layoutX="412.0" layoutY="558.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
         <Button fx:id="addModuleBtn" layoutX="405.0" layoutY="435.0" mnemonicParsing="false" onAction="#showElective" prefHeight="40.0" prefWidth="190.0" text="Add Module">
@@ -75,16 +66,16 @@
             <Font size="14.0" />
          </font></Button>
         <ProgressBar layoutX="311.0" layoutY="194.0" prefHeight="20.0" prefWidth="380.0" progress="0.7" />
-        <Button fx:id="confirmButton" layoutX="471.0" layoutY="740.0" mnemonicParsing="false" text="Confirm" onAction="#confirm" />
+        <Button fx:id="confirmButton" layoutX="471.0" layoutY="740.0" mnemonicParsing="false" onAction="#confirm" text="Confirm" />
         <ListView fx:id="highView" layoutX="148.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="mediumView" layoutX="411.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
         <ListView fx:id="lowView" layoutX="679.0" layoutY="259.0" prefHeight="150.0" prefWidth="180.0" />
       <Text layoutX="110.0" layoutY="628.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
-      <TextArea fx:id="coreModule2" editable="false" layoutX="152.0" layoutY="603.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+      <TextArea fx:id="coreModule2" editable="false" layoutX="152.0" layoutY="603.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" wrapText="true" />
       <TextArea fx:id="semester2" editable="false" layoutX="352.0" layoutY="603.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
       <TextArea fx:id="credits2" editable="false" layoutX="412.0" layoutY="603.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
       <Text layoutX="111.0" layoutY="672.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Core" />
-      <TextArea fx:id="coreModule3" editable="false" layoutX="152.0" layoutY="648.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" />
+      <TextArea fx:id="coreModule3" editable="false" layoutX="152.0" layoutY="648.0" prefHeight="40.0" prefWidth="200.0" text="Module Name" wrapText="true" />
       <TextArea fx:id="semester3" editable="false" layoutX="352.0" layoutY="648.0" prefHeight="40.0" prefWidth="60.0" text="Sem 1" />
       <TextArea fx:id="credits3" editable="false" layoutX="412.0" layoutY="648.0" prefHeight="40.0" prefWidth="80.0" text="20 Credits" />
       <Text layoutX="219.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High">
@@ -150,7 +141,7 @@
             <TextField fx:id="searchBar" layoutX="78.0" layoutY="15.0" onKeyTyped="#search" prefHeight="30.0" prefWidth="467.0" promptText="Module..." />
             <ListView fx:id="allElectivesList" layoutX="15.0" layoutY="54.0" prefHeight="405.0" prefWidth="530.0" />
             <Button layoutX="113.0" layoutY="476.0" mnemonicParsing="false" onAction="#closeSelectPane" prefHeight="25.0" prefWidth="110.0" text="Cancel" />
-            <Button layoutX="320.0" layoutY="476.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" text="Confirm" />
+            <Button fx:id="confirmSearchSelection" layoutX="320.0" layoutY="476.0" mnemonicParsing="false" onAction="#showElective" prefHeight="25.0" prefWidth="110.0" text="Confirm" />
             <Text layoutX="15.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" wrappingWidth="66.2255859375">
                <font>
                   <Font size="18.0" />
@@ -158,5 +149,6 @@
             </Text>
          </children>
       </Pane>
+      <Button fx:id="Instructions" layoutX="84.0" layoutY="25.0" onAction="#showInstructions" prefHeight="30.0" prefWidth="128.0" text="Instructions" />
     </children>
 </AnchorPane>

@@ -1,8 +1,7 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.Record;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
+import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Updates any specified record with new information
  */
-public class RecordUpdater extends DatabaseHandler{
+public class RecordUpdater extends DatabaseHandler {
 
     private final Table typeOfRecord;
 
@@ -20,7 +19,8 @@ public class RecordUpdater extends DatabaseHandler{
 
     /**
      * Constructs an Object that given an instance of Record's subclass, can update this record with new details
-     * @param recordObject record object to update
+     *
+     * @param recordObject     record object to update
      * @param newRecordDetails record object containing new details
      */
     public RecordUpdater(Record recordObject, Record newRecordDetails) {
@@ -35,14 +35,12 @@ public class RecordUpdater extends DatabaseHandler{
     public boolean tryUpdatingRecord() throws SQLException {
         this.connection = getConnection();
 
-        switch(typeOfRecord) {
+        switch (typeOfRecord) {
             case STUDENT -> {
                 StudentRecord studentRecord = (StudentRecord) recordToUpdate;
                 StudentRecord newDetails = (StudentRecord) newRecordDetails;
                 try {
-                    PreparedStatement editRecord = connection.prepareStatement("UPDATE STUDENT SET" +
-                            " StudentName = ?, StudentCourse = ?, StudentYear = ?, StudentPassword = ?" +
-                            "WHERE StudentID = ?");
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE STUDENT SET" + " StudentName = ?, StudentCourse = ?, StudentYear = ?, StudentPassword = ?" + "WHERE StudentID = ?");
 
                     editRecord.setString(1, (newDetails.getStudentName()));
                     editRecord.setString(2, (newDetails.getStudentCourse()));
@@ -53,7 +51,6 @@ public class RecordUpdater extends DatabaseHandler{
                     editRecord.execute();
                     editRecord.close();
 
-                    System.out.println("Edited details for Student Id: " + studentRecord.getStudentId());
                 } catch (Exception err) {
                     System.err.println("Error when editing Student record in Student table: " + err.getMessage());
                     err.printStackTrace();
@@ -65,8 +62,7 @@ public class RecordUpdater extends DatabaseHandler{
                 OptionalModuleRecord optionalModuleRecord = (OptionalModuleRecord) recordToUpdate;
                 OptionalModuleRecord newDetails = (OptionalModuleRecord) newRecordDetails;
                 try {
-                    PreparedStatement editRecord = connection.prepareStatement("UPDATE OPTIONAL_MODULE SET " +
-                            "CourseID = ?, ModuleID = ? WHERE CourseID = ? AND ModuleID = ?");
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE OPTIONAL_MODULE SET " + "CourseID = ?, ModuleID = ? WHERE CourseID = ? AND ModuleID = ?");
 
                     editRecord.setString(1, newDetails.getCourseId());
                     editRecord.setString(2, newDetails.getModuleId());
@@ -76,8 +72,7 @@ public class RecordUpdater extends DatabaseHandler{
                     editRecord.execute();
                     editRecord.close();
 
-                    System.out.println("Edited details for Optional Module ID: " + optionalModuleRecord.getModuleId() +
-                            " for Course ID: " + optionalModuleRecord.getCourseId());
+
                 } catch (Exception err) {
                     System.err.println("Error when editing Optional Module record in Optional_Module table: " + err.getMessage());
                     err.printStackTrace();
@@ -90,8 +85,7 @@ public class RecordUpdater extends DatabaseHandler{
                 CoreModuleRecord newDetails = (CoreModuleRecord) newRecordDetails;
 
                 try {
-                    PreparedStatement editRecord = connection.prepareStatement("UPDATE CORE_MODULE SET " +
-                            "CourseID = ?, ModuleID = ? WHERE CourseID = ? AND ModuleID = ?");
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE CORE_MODULE SET " + "CourseID = ?, ModuleID = ? WHERE CourseID = ? AND ModuleID = ?");
                     editRecord.setString(1, newDetails.getCourseId());
                     editRecord.setString(2, newDetails.getModuleId());
                     editRecord.setString(3, coreModuleRecord.getCourseId());
@@ -100,8 +94,6 @@ public class RecordUpdater extends DatabaseHandler{
                     editRecord.execute();
                     editRecord.close();
 
-                    System.out.println("Edited details for Core Module ID: " + coreModuleRecord.getModuleId() +
-                            " for Course ID: " + coreModuleRecord.getCourseId());
 
                 } catch (Exception err) {
                     System.err.println("Error when editing Core Module record in Core_Module table: " + err.getMessage());
@@ -112,14 +104,10 @@ public class RecordUpdater extends DatabaseHandler{
 
             case MODULE -> {
                 ModuleRecord moduleRecord = (ModuleRecord) recordToUpdate;
-                ModuleRecord newDetails = (ModuleRecord)  newRecordDetails;
+                ModuleRecord newDetails = (ModuleRecord) newRecordDetails;
 
                 try {
-                    PreparedStatement editRecord = connection.prepareStatement("UPDATE MODULE SET " +
-                            "ModuleName = ?, ModuleDescription = ?, ModuleCredits = ?, ModuleYear = ?," +
-                            "ModuleSemester = ?, ModuleTag1 = ?, ModuleTag2 = ?, ModuleTag3 = ?, ModuleTag4 = ?," +
-                            "ModuleTag5 = ?, ModuleTag6 = ?, ModuleTag7 = ?, ModuleTag8 = ?, ModulePrerequisite = ?" +
-                            "WHERE ModuleID = ?");
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE MODULE SET " + "ModuleName = ?, ModuleDescription = ?, ModuleCredits = ?, ModuleYear = ?," + "ModuleSemester = ?, ModuleTag1 = ?, ModuleTag2 = ?, ModuleTag3 = ?, ModuleTag4 = ?," + "ModuleTag5 = ?, ModuleTag6 = ?, ModuleTag7 = ?, ModuleTag8 = ?, ModulePrerequisite = ?" + "WHERE ModuleID = ?");
                     editRecord.setString(1, newDetails.getModuleName());
                     editRecord.setString(2, newDetails.getModuleDescription());
                     editRecord.setInt(3, newDetails.getModuleCredits());
@@ -139,9 +127,8 @@ public class RecordUpdater extends DatabaseHandler{
                     editRecord.execute();
                     editRecord.close();
 
-                    System.out.println("Edited details for a Module ID: " + moduleRecord.getModuleId());
 
-                }catch (Exception err) {
+                } catch (Exception err) {
                     System.err.println("Error when editing Module record in Module table: " + err.getMessage());
                     err.printStackTrace();
                     return false;
@@ -154,8 +141,7 @@ public class RecordUpdater extends DatabaseHandler{
                 MarkRecord newDetails = (MarkRecord) newRecordDetails;
 
                 try {
-                    PreparedStatement editRecord = connection.prepareStatement("UPDATE MARKS SET " +
-                            "StudentMark = ?, MarkDate = ? WHERE StudentID = ? AND ModuleID = ?");
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE MARKS SET " + "StudentMark = ?, MarkDate = ? WHERE StudentID = ? AND ModuleID = ?");
 
                     editRecord.setInt(1, newDetails.getStudentMark());
                     editRecord.setDate(2, newDetails.getMarkDate());
@@ -178,9 +164,7 @@ public class RecordUpdater extends DatabaseHandler{
                 CourseRecord newDetails = (CourseRecord) newRecordDetails;
 
                 try {
-                    PreparedStatement editRecord = connection.prepareStatement("UPDATE COURSE SET " +
-                            "CourseName = ?, CourseDescription = ? " +
-                            "WHERE CourseID = ?");
+                    PreparedStatement editRecord = connection.prepareStatement("UPDATE COURSE SET " + "CourseName = ?, CourseDescription = ? " + "WHERE CourseID = ?");
 
                     editRecord.setString(1, newDetails.getCourseName());
                     editRecord.setString(2, newDetails.getCourseDescription());
@@ -189,7 +173,7 @@ public class RecordUpdater extends DatabaseHandler{
                     editRecord.execute();
                     editRecord.close();
 
-                }catch (Exception err) {
+                } catch (Exception err) {
                     System.err.println("Error when updating Course record in Course table " + err.getMessage());
                     err.printStackTrace();
                     return false;

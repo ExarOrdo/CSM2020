@@ -28,12 +28,16 @@ public class AdminLoginController {
     private void toAdmin() throws IOException {
         Main main = new Main();
         Login login = new Login(adminId.getText(), adminPassword.getText());
-        if (login.tryLogin()) {
-            incorrectField.setVisible(false);
-
-            main.changeScene("Admin.fxml");
-            System.out.println("Successful login");
+        if (login.allFieldsFilled()) {
+            if (login.tryLogin()) {
+                incorrectField.setVisible(false);
+                main.changeScene("Admin.fxml");
+            } else {
+                incorrectField.setText("Incorrect Admin ID or Password");
+                incorrectField.setVisible(true);
+            }
         } else {
+            incorrectField.setText("All fields must be filled");
             incorrectField.setVisible(true);
         }
     }

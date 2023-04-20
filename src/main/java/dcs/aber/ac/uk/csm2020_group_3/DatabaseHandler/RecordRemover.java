@@ -1,25 +1,22 @@
 package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 
-import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.Record;
 import dcs.aber.ac.uk.csm2020_group_3.RecordTypes.*;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table.COURSE;
 
+public class RecordRemover extends DatabaseHandler {
 
-public class RecordRemover extends DatabaseHandler{
+    private final Record recordObject;
 
-    private Record recordObject;
-
-    private Table typeOfRecord;
+    private final Table typeOfRecord;
 
 
     /**
      * Constructs RecordRemover for removing a record of specific Record subclass
+     *
      * @param recordObject
      */
     public RecordRemover(Record recordObject) {
@@ -45,8 +42,6 @@ public class RecordRemover extends DatabaseHandler{
                     statement.execute();
                     statement.close();
 
-                    System.out.println("Removed student with id: " + studentRecord.getStudentId());
-
 
                 } catch (Exception err) {
                     System.err.println("Error when removing Student record from Student table:" + err.getMessage());
@@ -64,9 +59,6 @@ public class RecordRemover extends DatabaseHandler{
 
                     statement.execute();
                     statement.close();
-
-                    System.out.println("Removed optional module with id: " + optionalModuleRecord.getModuleId() + " for " +
-                            "course with id: +" + optionalModuleRecord.getCourseId());
 
 
                 } catch (Exception err) {
@@ -86,9 +78,6 @@ public class RecordRemover extends DatabaseHandler{
                     statement.execute();
                     statement.close();
 
-                    System.out.println("Removed core module with id: " + coreModuleRecord.getModuleId() + " for " +
-                            "course with id: +" + coreModuleRecord.getCourseId());
-
 
                 } catch (Exception err) {
                     System.err.println("Error when deleting Core module record in Core_Module table:" + err.getMessage());
@@ -105,8 +94,6 @@ public class RecordRemover extends DatabaseHandler{
 
                     statement.execute();
                     statement.close();
-
-                    System.out.println("Removed module with id: " + moduleRecord.getModuleId());
 
 
                 } catch (Exception err) {
@@ -129,8 +116,6 @@ public class RecordRemover extends DatabaseHandler{
                     statement.execute();
                     statement.close();
 
-                    System.out.println("Removed Mark for student: " + markRecord.getStudentId() + " for module id: " + markRecord.getModuleId());
-
 
                 } catch (Exception err) {
                     System.err.println("Error when removing Mark record from Marks table:" + err.getMessage());
@@ -146,8 +131,6 @@ public class RecordRemover extends DatabaseHandler{
 
                     statement.execute();
                     statement.close();
-
-                    System.out.println("Removed course with id: " + courseRecord.getCourseId());
 
 
                 } catch (Exception err) {

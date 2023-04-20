@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class EnrolledModules extends ModuleHandler {
 
     public static ArrayList<String> enrolledModuleList;
-    private DataLoader dataLoader;
+    private final DataLoader dataLoader;
 
     public EnrolledModules(DataLoader dataLoader) {
         this.dataLoader = dataLoader;
@@ -32,7 +32,6 @@ public class EnrolledModules extends ModuleHandler {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Enrolled Modules: " + enrolledModules);
         enrolledModuleList = enrolledModules;
     }
 }

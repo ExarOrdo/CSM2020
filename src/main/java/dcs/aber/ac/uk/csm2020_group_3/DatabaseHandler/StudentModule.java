@@ -4,9 +4,9 @@ package dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler;
 import java.sql.Date;
 
 public class StudentModule {
-    private String moduleID;
-    private int moduleYear;
-    private int studentMark;
+    private final String moduleID;
+    private final int moduleYear;
+    private final int studentMark;
 
     private final Date markDate;
 
@@ -17,8 +17,12 @@ public class StudentModule {
         this.markDate = markDate;
     }
 
-    public Date getMarkDate() {
-        return markDate;
+    public String getMarkDate() {
+        if (markDate == null) {
+            return "Current Module";
+        } else {
+            return markDate.toString();
+        }
     }
 
     public String getModuleID() {
@@ -34,3 +38,4 @@ public class StudentModule {
     }
 
 }
+

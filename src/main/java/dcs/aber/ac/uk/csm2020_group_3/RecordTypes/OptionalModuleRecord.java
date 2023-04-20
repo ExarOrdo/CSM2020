@@ -7,13 +7,14 @@ import dcs.aber.ac.uk.csm2020_group_3.DatabaseHandler.Table;
  */
 public class OptionalModuleRecord extends Record {
 
-    private String courseId;
+    private final String courseId;
 
-    private String moduleId;
+    private final String moduleId;
 
 
     /**
      * Construct a single optional module record for Optional Module table
+     *
      * @param courseId course id
      * @param moduleId module id
      */

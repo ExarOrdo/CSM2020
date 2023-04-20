@@ -10,12 +10,13 @@ import java.util.ArrayList;
 public class CoreListGenerator extends ModuleHandler {
 
     public static ArrayList<Module> coreModulesList;
-    private DataLoader dataLoader;
+    private final DataLoader dataLoader;
 
     public CoreListGenerator(DataLoader dataLoader) {
         this.dataLoader = dataLoader;
     }
-    public ArrayList<Module> getCoreModulesList(){
+
+    public ArrayList<Module> getCoreModulesList() {
         return coreModulesList;
     }
 
@@ -114,7 +115,6 @@ public class CoreListGenerator extends ModuleHandler {
             e.printStackTrace();
         }
 
-        System.out.println("Core Modules: " + coreModules);
         coreModulesList = coreModules;
 
     }
