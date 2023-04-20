@@ -170,16 +170,12 @@ public class RecommendationController implements Initializable {
             // get Module selectedModule from ModuleName string
             String selectedElective = elective1Name.getText();
             Module selectedModule = null;
-            System.out.println("m0duL0");
-            System.out.println(ModuleHandler.modulesToBeMoved);
-            System.out.println(ModuleHandler.modulesToBeMoved.get(0).getName());
 
             for (int i = 0; i < ModuleHandler.modulesToBeMoved.size(); i++) {
                 if(selectedElective.equals(ModuleHandler.modulesToBeMoved.get(i).getName())){
                     selectedModule = ModuleHandler.modulesToBeMoved.get(i);
                 }
             }
-
 
 
             allElectivesList.getItems().add(selectedModule.getName());
@@ -469,8 +465,7 @@ public class RecommendationController implements Initializable {
             // strengthCalculator then orders into separate lists.
         // show new weights in UI
 
-        // set newlyAddedModules to empty again.
-        System.out.println(selectedElective);
+
     }
 
 

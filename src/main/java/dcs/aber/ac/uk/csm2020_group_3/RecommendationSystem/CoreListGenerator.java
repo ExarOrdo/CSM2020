@@ -114,7 +114,6 @@ public class CoreListGenerator extends ModuleHandler {
             e.printStackTrace();
         }
 
-        System.out.println("Core Modules: " + coreModules);
         coreModulesList = coreModules;
 
     }

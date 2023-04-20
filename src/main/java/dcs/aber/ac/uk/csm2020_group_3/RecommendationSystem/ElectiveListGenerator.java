@@ -119,7 +119,6 @@ public class ElectiveListGenerator extends ModuleHandler{
             e.printStackTrace();
         }
 
-        System.out.println("Elective Modules: " + electiveModules);
         electiveModulesList = electiveModules;
     }
 

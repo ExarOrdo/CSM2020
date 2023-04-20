@@ -32,7 +32,7 @@ public abstract class ModuleHandler {
     public static ArrayList<Module> year4Modules;
 
     /**
-     * Gets a Module object from it's string name
+     * Gets a Module object from its string name
      */
 
     public void updateModuleAmount(Module elective){
