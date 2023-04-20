@@ -155,6 +155,7 @@ public abstract class ModuleHandler {
         return Boolean.TRUE;
     }
 
+
     /**
      * Module that takes an elective, checks whether it has prerequisites, if so, adds to them current modules lists.
      * Then runs check on that added module if it also has prerequisites.

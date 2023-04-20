@@ -157,6 +157,7 @@ public class WeightGenerator extends ModuleHandler {
             // recalculate each elective weight w.r.t newlyAddedElectives
             for (int j = 0; j < selectedModules.size(); j++){
 
+
                 // set new weight, where:
                 System.out.println("REMOVECALC");
                 System.out.println(ElectiveListGenerator.electiveModulesList.get(i).getWeight());

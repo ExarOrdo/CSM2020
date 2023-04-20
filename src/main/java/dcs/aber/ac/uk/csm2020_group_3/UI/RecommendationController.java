@@ -224,6 +224,7 @@ public class RecommendationController implements Initializable {
     }
 
 
+
     public void clearElectiveTwo() {
         if (twoElective) {
             elective2.setVisible(false);
