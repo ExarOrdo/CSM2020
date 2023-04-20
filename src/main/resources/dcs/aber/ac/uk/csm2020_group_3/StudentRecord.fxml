@@ -1,91 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.StudentRecordController">
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dcs.aber.ac.uk.csm2020_group_3.UI.StudentRecordController">
     <Text layoutX="80.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year:">
         <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
         </font>
     </Text>
-    <ComboBox fx:id="yearComboBox" layoutX="134.0" layoutY="71.0" prefHeight="30.0" prefWidth="155.0"/>
+    <ComboBox fx:id="yearComboBox" layoutX="134.0" layoutY="71.0" prefHeight="30.0" prefWidth="155.0" />
     <TableView fx:id="studentModuleTableView" layoutX="80.0" layoutY="129.0" prefHeight="617.0" prefWidth="479.0">
         <columns>
-            <TableColumn fx:id="moduleIDColumn" prefWidth="176.0" text="Module ID"/>
-            <TableColumn fx:id="studentMarkColumn" prefWidth="121.0" text="Student Mark"/>
-            <TableColumn fx:id="moduleMarkDateColumn" prefWidth="181.0" text="Mark Date"/>
+            <TableColumn fx:id="moduleIDColumn" prefWidth="176.0" text="Module ID" />
+            <TableColumn fx:id="studentMarkColumn" prefWidth="121.0" text="Student Mark" />
+            <TableColumn fx:id="moduleMarkDateColumn" prefWidth="181.0" text="Mark Date" />
         </columns>
     </TableView>
     <Label layoutX="432.0" layoutY="25.0" text="Student Record">
         <font>
-            <Font size="20.0"/>
+            <Font size="20.0" />
         </font>
     </Label>
     <Text layoutX="590.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID:">
         <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
         </font>
     </Text>
     <Text layoutX="590.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
         <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
         </font>
     </Text>
     <Text layoutX="590.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course:">
         <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
         </font>
     </Text>
     <Label fx:id="studentIDField" layoutX="685.0" layoutY="128.0">
         <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
         </font>
     </Label>
     <Label fx:id="studentNameField" layoutX="685.0" layoutY="164.0">
         <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
         </font>
     </Label>
     <Label fx:id="studentCourseField" layoutX="685.0" layoutY="199.0">
         <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
         </font>
     </Label>
-    <Pane prefHeight="800.0" prefWidth="55.0" style="-fx-background-color: lightgrey;"/>
-    <Pane fx:id="expandedPane" layoutX="-1.0" prefHeight="800.0" prefWidth="140.0"
-          style="-fx-background-color: lightgrey;" visible="false">
+    <Pane prefHeight="800.0" prefWidth="55.0" style="-fx-background-color: lightgrey;" />
+    <Pane fx:id="expandedPane" layoutX="-1.0" prefHeight="800.0" prefWidth="140.0" style="-fx-background-color: lightgrey;" visible="false">
         <children>
-            <Pane prefHeight="800.0" prefWidth="1000.0"/>
-            <Button fx:id="studentRecordBtn" layoutX="6.0" layoutY="70.0" mnemonicParsing="false"
-                    onAction="#toStudentRecord" prefHeight="30.0" prefWidth="128.0" text="Student Record"/>
-            <Button fx:id="recommendationBtn" layoutX="6.0" layoutY="120.0" mnemonicParsing="false"
-                    onAction="#toRecommendation" prefHeight="30.0" prefWidth="128.0" text="Recommendations"/>
-            <Button fx:id="timetableBtn" layoutX="6.0" layoutY="170.0" mnemonicParsing="false" onAction="#toTimetable"
-                    prefHeight="30.0" prefWidth="128.0" text="Timetable"/>
-            <Button fx:id="helpBtn" layoutX="6.0" layoutY="220.0" mnemonicParsing="false" onAction="#toHelp"
-                    prefHeight="30.0" prefWidth="128.0" text="Help"/>
-            <Button fx:id="logoutBtn" layoutX="6.0" layoutY="270.0" mnemonicParsing="false" onAction="#logout"
-                    prefHeight="30.0" prefWidth="128.0" text="Log-Out"/>
+            <Pane prefHeight="800.0" prefWidth="1000.0" />
+            <Button fx:id="studentRecordBtn" layoutX="6.0" layoutY="70.0" mnemonicParsing="false" onAction="#toStudentRecord" prefHeight="30.0" prefWidth="128.0" text="Student Record" />
+            <Button fx:id="recommendationBtn" layoutX="6.0" layoutY="120.0" mnemonicParsing="false" onAction="#toRecommendation" prefHeight="30.0" prefWidth="128.0" text="Recommendations" />
+            <Button fx:id="timetableBtn" layoutX="6.0" layoutY="170.0" mnemonicParsing="false" onAction="#toTimetable" prefHeight="30.0" prefWidth="128.0" text="Timetable" />
+            <Button fx:id="helpBtn" layoutX="6.0" layoutY="220.0" mnemonicParsing="false" onAction="#toHelp" prefHeight="30.0" prefWidth="128.0" text="Help" />
+            <Button fx:id="logoutBtn" layoutX="6.0" layoutY="270.0" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="128.0" text="Log-Out" />
         </children>
     </Pane>
-    <Button fx:id="burgerBtn" layoutX="8.0" layoutY="5.0" minWidth="40.0" mnemonicParsing="false"
-            onAction="#pressBurgerBtn" prefHeight="40.0" prefWidth="40.0">
+    <Button fx:id="burgerBtn" layoutX="8.0" layoutY="5.0" minWidth="40.0" mnemonicParsing="false" onAction="#pressBurgerBtn" prefHeight="40.0" prefWidth="40.0">
         <graphic>
             <ImageView fx:id="burgerIcon" fitHeight="32.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@burgerBtn.png"/>
+                    <Image url="@burgerBtn.png" />
                 </image>
             </ImageView>
         </graphic>
     </Button>
-    <TextArea fx:id="moduleNameField" editable="false" layoutX="584.0" layoutY="327.0" prefHeight="53.0"
-              prefWidth="392.0" wrapText="true"/>
-    <TextArea fx:id="moduleDescriptionField" editable="false" layoutX="584.0" layoutY="400.0" prefHeight="346.0"
-              prefWidth="392.0" wrapText="true"/>
+    <TextArea fx:id="moduleNameField" editable="false" layoutX="584.0" layoutY="327.0" prefHeight="53.0" prefWidth="392.0" wrapText="true" />
+    <TextArea fx:id="moduleDescriptionField" editable="false" layoutX="584.0" layoutY="400.0" prefHeight="346.0" prefWidth="392.0" wrapText="true" />
+    <Button layoutX="734.0" layoutY="44.0" onAction="#resetOptionalModules" prefHeight="54.0" prefWidth="218.0" text="Reset Optional Modules">
+      <font>
+         <Font size="18.0" />
+      </font>
+      <effect>
+         <Blend />
+      </effect></Button>
+
 </AnchorPane>
