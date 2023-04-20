@@ -17,8 +17,12 @@ public class StudentModule {
         this.markDate = markDate;
     }
 
-    public Date getMarkDate() {
-        return markDate;
+    public String getMarkDate() {
+        if (markDate == null) {
+            return "Current Module";
+        } else {
+            return markDate.toString();
+        }
     }
 
     public String getModuleID() {
@@ -34,3 +38,4 @@ public class StudentModule {
     }
 
 }
+
